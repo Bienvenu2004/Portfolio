@@ -1,4 +1,4 @@
-name: E-Commerce CI
+name: PortFolio CI
 
 on:
   push:
