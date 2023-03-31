@@ -4,8 +4,7 @@ import {CssBaseline, ThemeProvider} from "@mui/material"
 import { Fragment, useMemo } from 'react'
 import {createTheme} from "@mui/material/styles"
 import { themeSettings } from './../theme/theme';
-
-let mytheme
+import Layout from "../scenes/layout"
 
 const App = () => {
 	const mode = useSelector( state => state.global.mode)
@@ -13,15 +12,14 @@ const App = () => {
 		() => createTheme(themeSettings(mode)), 
 		[mode]
 	)
-	mytheme  = theme
 	return (
 		<div className='app'>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
+				<Layout/>
 			</ThemeProvider>
 		</div>
 	)
 }
 
-export {mytheme}
 export default App
