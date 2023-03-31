@@ -1,7 +1,18 @@
 import Head from 'next/head'
 import NextNProgress from 'nextjs-progressbar'
+import { Fragment } from 'react'
+import {configureStore} from "@reduxjs/toolkit"
+import globalReducer from "../state"
+import {Provider} from "react-redux"
 
 
+import "../styles/globals.css"
+
+const store = configureStore({
+	reducer: {
+		global: globalReducer
+	}
+})
 
 const App = ({ Component, pageProps }) => {
 	return (
@@ -16,7 +27,9 @@ const App = ({ Component, pageProps }) => {
 				showOnSShallow ={true}
 				height={3}
 			/>
-			<Component {...pageProps} />
+			<Provider store={store}>
+				<Component {...pageProps} />
+			</Provider>
 		</Fragment>
 	)
 }
