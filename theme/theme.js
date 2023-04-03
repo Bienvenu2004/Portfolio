@@ -1,6 +1,3 @@
-import { createContext, useState, useMemo } from "react"
-import { createTheme } from "@mui/material/styles"
-
 //color design tokens
 export const tokensDark  = {
 	gray: {
@@ -15,7 +12,7 @@ export const tokensDark  = {
 		900: "#141414"
 	},
 	primary: {
-		100: "#d0d1d5",
+		100: "#ffffff",
 		200: "#a1a4ab",
 		300: "#727681",
 		400: "#434957",
@@ -60,16 +57,17 @@ export const tokensDark  = {
 	},
 
 	blueAccent: {
-		100: "#e1e2fe",
-		200: "#c3c6fd",
-		300: "#a4a9fc",
-		400: "#868dfb",
-		500: "#6870fa",
-		600: "#535ac8",
-		700: "#3e4396",
-		800: "#2a2d64",
-		900: "#151632"
-	}	
+		100: "#ffffff",
+		200: "#d2e3ff",
+		300: "#79acfe",
+		400: "#4c91fe",
+		500: "#1f75fe",
+		600: "#195ecb",
+		700: "#134698",
+		800: "#0c2f66",
+		900: "#061733"
+	},
+
 }
 
 const reverseTokens = (tokensDark) => {
@@ -101,8 +99,8 @@ export const themeSettings = (mode) =>{
 					light: tokensDark.primary[100],
 				},
 				secondary: {
-					...tokensDark.greenAccent,
-					main: tokensDark.greenAccent[500],
+					...tokensDark.blueAccent,
+					main: tokensDark.blueAccent[500],
 				},
 				error: {
 					...tokensDark.redAccent,
@@ -123,7 +121,7 @@ export const themeSettings = (mode) =>{
 			} :{
 				primary: {
 					...tokensLight.primary,
-					main: tokensLight.primary[500],
+					main: tokensLight.primary[100],
 					light: tokensLight.primary[100],
 				},
 				secondary: {
