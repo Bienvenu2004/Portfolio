@@ -101,6 +101,7 @@ export const themeSettings = (mode) =>{
 				secondary: {
 					...tokensDark.blueAccent,
 					main: tokensDark.blueAccent[500],
+					text: tokensDark.blueAccent[200]
 				},
 				error: {
 					...tokensDark.redAccent,
@@ -120,30 +121,31 @@ export const themeSettings = (mode) =>{
 				}, 
 			} :{
 				primary: {
-					...tokensLight.primary,
-					main: tokensLight.primary[100],
-					light: tokensLight.primary[100],
+					...tokensDark.primary,
+					main: tokensDark.primary[100],
+					light: tokensDark.primary[500],
 				},
 				secondary: {
-					...tokensLight.greenAccent,
-					main: tokensLight.greenAccent[500],
+					...tokensDark.blueAccent,
+					main: tokensDark.blueAccent[500],
+					text: tokensDark.gray[500]
 				},
 				error: {
-					...tokensLight.redAccent,
-					main: tokensLight.redAccent[500],
+					...tokensDark.redAccent,
+					main: tokensDark.redAccent[500],
 				},
 				info: {
-					...tokensLight.info,
-					main: tokensLight.info[500],
+					...tokensDark.info,
+					main: tokensDark.info[500],
 				},
 				neutral: {
-					...tokensLight.gray,
-					main: tokensLight.gray[500],
+					...tokensDark.gray,
+					main: tokensDark.gray[500],
 				},
 				background: {
-					default: tokensLight.primary[500],
-					alt: tokensLight.primary[600],
-				},
+					default: tokensDark.primary[100],
+					alt: tokensDark.primary[100],
+				}, 
 			})
 		},
 		typography: {

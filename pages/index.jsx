@@ -16,8 +16,16 @@ const App = () => {
 		<div className='app'>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-				<Layout/>
+				<Layout>
+					<div style={{
+						padding: "1.2rem 1.2rem 1.2rem 1.5rem",
+						color: theme.palette.secondary.text
+					}}>
+						HomePage
+					</div>
+				</Layout>
 			</ThemeProvider>
+			
 		</div>
 	)
 }
