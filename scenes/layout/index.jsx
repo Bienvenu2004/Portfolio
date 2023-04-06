@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Navbar from "../../components/Navbar"
 import Sidebar from "../../components/Sidebar"
 
-const Layout = () => {
+const Layout = ({children}) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 	const isMobile = useMediaQuery('(max-width: 600px)')
 
@@ -18,6 +18,8 @@ const Layout = () => {
 			/>
 			<Box>
 				<Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
+				{/** content of page*/}
+				{children}
 			</Box>
 		</Box>
 	)

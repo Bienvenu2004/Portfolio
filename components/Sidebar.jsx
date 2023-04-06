@@ -49,6 +49,8 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 								boxSizing: "border-box",
 								borderWidth: isMobile ? "2px" : "0px",
 								width: drawerWidth,
+								boxShadow: theme.palette.mode === "light" 
+									&& "0px 0px 5px 0px rgba(0,0,0,0.2)",
 							}
 						}}
 					>
@@ -56,7 +58,7 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 							<Box m= "1rem 3rem 1.5rem 1.2rem">
 								<FlexBetween>
 									<Box display="flex" alignItems="center" gap="0.5rem" mr="5rem">
-										<Typography variant="h5" fontWeight="bold">PORTFOLIO</Typography>
+										<Typography variant="h5" fontWeight="bold" color="secondary.text">PORTFOLIO</Typography>
 									</Box>
 									{
 										isSidebarOpen && (
@@ -83,15 +85,17 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 									return (
 										<ListItem key={item.name} disablePadding >  
 											<ListItemButton onClick={()=> {
-													router.push(`/${item.name.toLowerCase()}`)
+													item.name === "Dashboard" ? router.push("/") 
+													:router.push(`/${item.name.toLowerCase()}`)
 													setActiveUrl(item.name.toLowerCase())
 												}} 
 												sx={{
 													backgroundColor: activeUrl === item.name.toLowerCase() ? theme.palette.secondary.main : "transparent",
-													color: activeUrl === item.name.toLowerCase() ? theme.palette.secondary[100]: theme.palette.secondary[200]												}}
+													color: activeUrl === item.name.toLowerCase() ? theme.palette.secondary[100]: theme.palette.secondary.text
+												}}
 											>
 												<ListItemIcon sx={{
-													color: activeUrl === item.name.toLowerCase() ? theme.palette.primary.light : theme.palette.secondary[200]
+													color: activeUrl === item.name.toLowerCase() ? theme.palette.secondary[100]: theme.palette.secondary.text
 												}}>
 													{item.icon}
 												</ListItemIcon>
