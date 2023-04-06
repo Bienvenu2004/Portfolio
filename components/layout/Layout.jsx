@@ -23,8 +23,13 @@ const Layout = ({children}) => {
 					isMobile={isMobile}
 					drawerWidth="250px"
 				/>
-				<Box>
-					<Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} mode={mode} setMode={setMode}/>
+				<Box flexGrow={1} >
+					<Navbar 
+						isSidebarOpen={isSidebarOpen} 
+						setIsSidebarOpen={setIsSidebarOpen} 
+						mode={mode} 
+						setMode={setMode}
+					/>
 					{/** content of page*/}
 					{children}
 				</Box>

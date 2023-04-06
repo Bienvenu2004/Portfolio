@@ -1,15 +1,13 @@
 import {
-	settingsOutlined,
 	HomeOutlined,
 	PieChart,
-	AdminPanelSettingsOutlined,
 	TodayOutlined,
-	AccountBoxOutlined,
 	VerifiedOutlined,
 	CodeOutlined,
 	TimelineOutlined,
 	NearMeOutlined,
 	SignalCellularAltOutlined,
+	Person4Outlined
 } from "@mui/icons-material"
 
 import { AiFillGithub, AiOutlineLinkedin } from "react-icons/ai"
@@ -22,7 +20,7 @@ export const navItems = [
 	},
 	{
 		name: "Profile",
-		icon: <AccountBoxOutlined/>,
+		icon: <Person4Outlined/>,
 	},
 	{
 		name: "Education",
@@ -41,12 +39,12 @@ export const navItems = [
 		icon: null,
 	},
 	{
-		name: "Pie",
-		icon: <PieChart/>,
-	},
-	{
 		name: "Line",
 		icon: <TimelineOutlined/>,
+	},
+	{
+		name: "Pie",
+		icon: <PieChart/>,
 	},
 	{
 		name: "Bar",
