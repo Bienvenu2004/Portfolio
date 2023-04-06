@@ -17,6 +17,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { navItems } from "../data/data"
 import { ArrowRightOutlined, ArrowBackOutlined}  from "@mui/icons-material"
+import { SettingsOutlined } from "@mui/icons-material"
 
 const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 	const theme = useTheme()
@@ -113,6 +114,35 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 									)
 								})
 							}
+						</Box>
+
+						<Box 
+							position="absolute" 
+							bottom="0rem"
+							width='100%' 
+							backgroundColor={theme.palette.background.alt}
+						>
+							<Divider sx={{
+								width: "100%",
+							}}/>
+							<FlexBetween textTransform={"none"} gap="1.5rem" m="1rem 3rem ">
+								<Box 
+									component='img' 
+									src="images/me.png"
+									alt="Profile"
+									width='40px'
+									height='40px'
+									sx={{
+										borderRadius: "50%",
+										objectFit: "cover",
+									}}
+								/>
+								<Box textAlign='left'>
+									<Typography  fontWeight="bold" color="secondary.text">
+										Abdulrahim
+									</Typography>
+								</Box>
+							</FlexBetween>
 						</Box>
 					</Drawer>
 				)

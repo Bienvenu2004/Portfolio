@@ -1,14 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import { LightModeOutlined, DarkModeOutlined, Menu as MenuIcon, Search, SettingsOutlined, ArrowDropDownOutlined } from '@mui/icons-material'
 import FlexBetween from "./FlexBetween"
-import { useTheme, AppBar, Toolbar, IconButton, InputBase } from '@mui/material'
+import { useTheme, AppBar, Toolbar, IconButton, InputBase, Button , Menu, Box, Typography} from '@mui/material'
 import { Loading } from '@nextui-org/react'
 
 const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 	const [searchValue, setSearchValue] = useState(null)
 	const [isTyping, setIsTyping] = useState(false)
-	//const dispatch = useDispatch()
+	const [anchorEl, setAnchorEl] = useState(null)
 	const theme = useTheme()
+
+	const isOpen = Boolean(anchorEl)
+	const handleClick = (event) => setAnchorEl(event.currentTarget)
+	const handleClose = () => setAnchorEl(null)
 
 	useEffect(()=>{
 	if(searchValue != null)
@@ -79,6 +83,44 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 					<IconButton>
 						<SettingsOutlined sx={{fontSize: "25px"}}/>
 					</IconButton>
+
+					<FlexBetween>
+						<Button onClick = {handleClick} sx={{
+								display: "flex",
+								justifyContent: "space-between",
+								alignItems: "center",
+								gap: "1rem",
+								textTransform: "none",
+							}}
+						>
+							<Box 
+								component='img' 
+								src="images/me.png"
+								alt="Profile"
+								width='32px'
+								height='32px'
+								sx={{
+									borderRadius: "50%",
+									objectFit: "cover",
+								}}
+							/>
+							<Box textAlign='left'>
+								<Typography  fontWeight="bold" color="secondary.text" fontSize='0.85rem' >
+									Abdulrahim
+								</Typography>
+							</Box>
+						</Button>
+						<Menu 
+							anchorEl={anchorEl}
+							open={isOpen}
+							onClose={handleClose}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'center',
+							}}
+						/>
+					</FlexBetween>
+
 				</FlexBetween>
 			</Toolbar>
 		</AppBar>
