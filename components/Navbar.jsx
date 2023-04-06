@@ -1,15 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { LightModeOutlined, DarkModeOutlined, Menu as MenuIcon, Search, SettingsOutlined, ArrowDropDownOutlined } from '@mui/icons-material'
 import FlexBetween from "./FlexBetween"
-import {useDispatch} from "react-redux"
-import {setMode} from "../state"
 import { useTheme, AppBar, Toolbar, IconButton, InputBase } from '@mui/material'
 import { Loading } from '@nextui-org/react'
 
-const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
+const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 	const [searchValue, setSearchValue] = useState(null)
 	const [isTyping, setIsTyping] = useState(false)
-	const dispatch = useDispatch()
+	//const dispatch = useDispatch()
 	const theme = useTheme()
 
 	useEffect(()=>{
@@ -68,7 +66,10 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
 				</FlexBetween>
 				{/* Right */}
 				<FlexBetween gap = "1.5rem">
-					<IconButton onClick={()=> dispatch(setMode())}>
+					<IconButton onClick={()=> 
+							mode == "dark" ? setMode("light") : setMode("dark")
+						}
+					>
 						{
 							theme.palette.mode === "dark" ?
 							<LightModeOutlined sx={{fontSize: "25px"}}/> 
