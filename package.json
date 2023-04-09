@@ -1,5 +1,5 @@
 {
-	"name": "PortFolio",
+	"name": "portfolio",
 	"version": "1.0",
 	"scripts": {
 		"dev": "next dev",
