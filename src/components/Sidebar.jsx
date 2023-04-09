@@ -117,7 +117,7 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 						</Box>
 
 						<Box 
-							position="absolute" 
+							position="static" 
 							bottom="0rem"
 							width='100%' 
 							backgroundColor={theme.palette.background.alt}
