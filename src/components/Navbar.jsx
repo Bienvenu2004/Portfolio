@@ -110,7 +110,7 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 								</Typography>
 							</Box>
 						</Button>
-						<Menu 
+						<Menu
 							anchorEl={anchorEl}
 							open={isOpen}
 							onClose={handleClose}
