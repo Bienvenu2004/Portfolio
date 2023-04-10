@@ -17,7 +17,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { navItems } from "../data/data"
 import { ArrowRightOutlined, ArrowBackOutlined}  from "@mui/icons-material"
-import { SettingsOutlined } from "@mui/icons-material"
 
 const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 	const theme = useTheme()
