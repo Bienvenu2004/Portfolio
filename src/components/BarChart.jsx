@@ -6,7 +6,7 @@ const BarChart = ({ data }) => {
 	const theme = useTheme()
 
 	return (
-		<Box height = "75vh" width="100%">
+		<Box height = "75vh" width="99%" justifyContent='center'>
 			<ResponsiveBar
 				data={data}
 				keys={[
@@ -29,12 +29,13 @@ const BarChart = ({ data }) => {
 					'PostgreSQL'
 				]}
 				indexBy="skills"
-				margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+				margin={{ top: 50, right: 130, bottom: 50, left: 45 }}
 				padding={0.3}
-				
 				valueScale={{ type: 'linear' }}
+				borderWidth={2}
 				indexScale={{ type: 'band', round: true }}
 				colors={{ scheme: 'category10' }}
+				groupMode='stacked'
 				defs={[
 					{
 						id: 'dots',

@@ -6,7 +6,7 @@ const PieChart = ({ data }) => {
 	const theme = useTheme()
 
 	return (
-		<Box height = "75vh" width="100%">
+		<Box height = "75vh" width="99%">
 			<ResponsivePie
 				data={data}
 				margin={{ top: 40, right: 80, bottom: 80, left: 80 }}

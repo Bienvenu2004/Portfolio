@@ -264,3 +264,10 @@ export const barData = [
 		"VercelColor": "#1b4b4d"
 	}
 ]
+
+export const geographyData = [
+	{
+		"id": "CMR",
+		"value": 1,
+	},
+]

@@ -7,7 +7,7 @@ const LineChart = ({ data, lineType }) => {
 	const theme = useTheme()
 
 	return (
-		<Box height = "75vh" width="100%">
+		<Box height = "75vh" width="99%" >
 			<ResponsiveLine
 				data={data}
 				margin={{ top: 50, right: 110, bottom: 70, left: 60 }}
