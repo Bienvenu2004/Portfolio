@@ -1,4 +1,11 @@
-import { useTheme } from "@mui/material"
+import { useTheme, Typography, Box } from "@mui/material"
+import { geographyData } from "@/data/charts"
+import { features } from "@/data/geographyFeatures"
+import dynamic from 'next/dynamic'
+
+const DynamicGeographyChart = dynamic(() => import('@/components/GeographyChart'), {
+	ssr: false
+})
 
 const Index = () => {
 	const theme = useTheme()
@@ -8,7 +15,12 @@ const Index = () => {
 			padding: "1.2rem 1.2rem 1.2rem 1.5rem",
 			color: theme.palette.secondary.text
 		}}>
-			Geography Page
+			<Box p= '10px'>
+				<Typography  fontWeight="bold" color="secondary.text" fontSize='1rem' >
+					Geography Chart
+				</Typography>
+				<DynamicGeographyChart data={geographyData} features={features}/>
+			</Box>
 		</div>
 	)
 }

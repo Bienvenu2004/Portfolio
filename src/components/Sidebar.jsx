@@ -17,7 +17,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { navItems } from "../data/data"
 import { ArrowRightOutlined, ArrowBackOutlined}  from "@mui/icons-material"
-import { SettingsOutlined } from "@mui/icons-material"
 
 const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 	const theme = useTheme()
@@ -59,7 +58,9 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 							<Box m= "1rem 3rem 1.5rem 1.2rem">
 								<FlexBetween>
 									<Box display="flex" alignItems="center" gap="0.5rem" mr="5rem">
-										<Typography variant="h5" fontWeight="bold" color="secondary.text">PORTFOLIO</Typography>
+										<Typography variant="h5" fontWeight="bold" color="secondary.text">
+											PORTFOLIO
+										</Typography>
 									</Box>
 									{
 										isSidebarOpen && (
