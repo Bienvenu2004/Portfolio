@@ -10,22 +10,38 @@ const PieChart = ({ data }) => {
 			<ResponsivePie
 				data={data}
 				margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-				innerRadius={0.4}
-				padAngle={8}
+				innerRadius={0.3}
+				padAngle={4}
 				cornerRadius={6}
 				activeOuterRadiusOffset={8}
-				endAngle={350}
+				endAngle={360}
 				startAngle={5}
 				borderWidth={5}
-				borderColor={data[0].color}
-				colors={{ datum: 'color' }}
+				borderColor={{
+					from: 'color',
+					modifiers: [
+						[
+							'darker',
+							1
+						]
+					]
+				}}
+				colors={{ scheme: "category10" }}
 				arcLinkLabelsSkipAngle={10}
 				arcLinkLabelsTextColor={theme.palette.secondary.text}
 				arcLinkLabelsThickness={4}
-				arcLinkLabelsColor={data[0].color}
+				arcLinkLabelsColor={{ from: 'color' }}
 				arcLabelsSkipAngle={10}
 				arcLinkLabelsDiagonalLength={30}
-				arcLabelsTextColor={data[0].color}
+				arcLabelsTextColor={{
+					from: 'color',
+					modifiers: [
+						[
+							'darker',
+							2
+						]
+					]
+				}}
 				arcLinkLabelsOffset={13}
 				arcLinkLabelsTextOffset={5}
 				defs={[
@@ -33,7 +49,7 @@ const PieChart = ({ data }) => {
 						id: 'dots',
 						type: 'patternDots',
 						background: 'inherit',
-						color: 'rgba(255, 255, 255, 0.3)',
+						color: 'rgba(255, 255, 255, 0.18)',
 						size: 4,
 						padding: 1,
 						stagger: true
@@ -42,11 +58,75 @@ const PieChart = ({ data }) => {
 						id: 'lines',
 						type: 'patternLines',
 						background: 'inherit',
-						color: 'rgba(255, 255, 255, 0.3)',
-						rotation: -45,
+						color: 'rgba(255, 255, 255, 0.1)',
+						rotation: -50,
 						lineWidth: 6,
-						spacing: 10
-					}
+						spacing: 10,
+						stagger: true
+					},
+
+				]}
+				fill={[
+					{
+						match: {
+							id: 'CSS'
+						},
+						id: 'dots'
+					},
+					{
+						match: {
+							id: 'HTML'
+						},
+						id: 'dots'
+					},
+					{
+						match: {
+							id: 'Vercel'
+						},
+						id: 'dots'
+					},
+					{
+						match: {
+							id: 'MySQL'
+						},
+						id: 'lines'
+					},
+					{
+						match: {
+							id: 'MongoDB'
+						},
+						id: 'lines'
+					},
+					{
+						match: {
+							id: 'NextUI'
+						},
+						id: 'lines'
+					},
+					{
+						match: {
+							id: 'MUI5'
+						},
+						id: 'lines'
+					},
+					{
+						match: {
+							id: 'JavaScript'
+						},
+						id: 'lines'
+					},
+					{
+						match: {
+							id: 'React JS'
+						},
+						id: 'lines'
+					},
+					{
+						match: {
+							id: 'Next JS'
+						},
+						id: 'dots'
+					},
 				]}
 				legends={[
 					{
@@ -58,7 +138,7 @@ const PieChart = ({ data }) => {
 						itemsSpacing: 5,
 						itemWidth: 100,
 						itemHeight: 18,
-						itemTextColor: theme.palette.mode === 'dark' ? '#fff' : '#000',
+						itemTextColor:theme.palette.secondary.text,
 						itemDirection: 'left-to-right',
 						itemOpacity: 1,
 						symbolBorderColor: data[0].color,
@@ -68,20 +148,19 @@ const PieChart = ({ data }) => {
 							{
 								on: 'hover',
 								style: {
-									itemTextColor: theme.palette.mode === 'dark' ? '#fff' : '#000'
+									itemTextColor: theme.palette.secondary.text,
 								}
 							}
 						]
 					}
 				]}
 				theme={{
-					tooltip: {
+					tooltip: { 
 						container: {
-							background: data[0].color,
-							color: theme.palette.mode === 'dark' ? '#fff' : '#000'
+							background: theme.palette.primary.main,
+							color: theme.palette.secondary.text,
 						}
 					},
-						
 				}}
 			/>
 		</Box>

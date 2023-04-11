@@ -1,4 +1,6 @@
-import { useTheme } from "@mui/material"
+import { useTheme, Box, Typography } from "@mui/material"
+import { barData } from "@/data/charts"
+import BarChart from "@/components/BarChart"
 
 
 const Index = () => {
@@ -9,7 +11,12 @@ const Index = () => {
 			padding: "1.2rem 1.2rem 1.2rem 1.5rem",
 			color: theme.palette.secondary.text
 		}}>
-			Bar Chart
+			<Box p= '10px'>
+				<Typography  fontWeight="bold" color="secondary.text" fontSize='1rem' >
+					Bar Chart
+				</Typography>
+				<BarChart data={barData}/>
+			</Box>
 		</div>
 	)
 }

@@ -60,7 +60,7 @@ const LineChart = ({ data, lineType }) => {
 						direction: 'column',
 						justify: false,
 						translateX: -96,
-						translateY: -370,
+						translateY: -360,
 						itemsSpacing: 0,
 						itemDirection: 'left-to-right',
 						itemWidth: 80,
@@ -108,7 +108,7 @@ const LineChart = ({ data, lineType }) => {
 					},
 					legends: {
 						text: {
-							fill: data[0].color,
+							fill: theme.palette.mode === 'dark' && data[0].color,
 							fontWeight: 600,
 						},
 					},

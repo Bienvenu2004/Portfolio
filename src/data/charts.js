@@ -31,7 +31,7 @@ export const lineDataJS = [
 
 export const lineDataCSS = [
 	{
-		"id": "HTML & CSS Frameworks", 
+		"id": "HTML & CSS & UI Libraries", 
 		"color": "hsl(213, 70%, 50%)",
 		"data": [
 			{
@@ -69,7 +69,7 @@ export const lineDataCSS = [
 export const lineDataDB = [
 	{
 		"id": "Database & Deployment",
-		"color": "hsl(166, 70%, 50%)",
+		"color": "hsl(134, 70%, 50%)",
 		"data": [
 			{
 				"x": "MongoDB",
@@ -179,9 +179,9 @@ export const pieDataCSS = [
 
 export const pieDataDB = [
 	{
-		"id": "MongoDB",
-		"label": "MongoDB",
-		"value": 72,
+		"id": "PostgreSQL",
+		"label": "PostgreSQL",
+		"value": 78,
 		"color": "hsl(134, 70%, 50%)"
 		},
 		{
@@ -191,9 +191,9 @@ export const pieDataDB = [
 		"color": "hsl(38, 70%, 50%)"
 		},
 		{
-		"id": "PostgreSQL",
-		"label": "PostgreSQL",
-		"value": 78,
+		"id": "MongoDB",
+		"label": "MongoDB",
+		"value": 72,
 		"color": "hsl(310, 70%, 50%)"
 		},
 		{
@@ -204,7 +204,7 @@ export const pieDataDB = [
 		},
 		{
 		"id": "Amazon Web Services",
-		"label": "Amazon Web Services",
+		"label": "AWS",
 		"value": 50,
 		"color": "hsl(38, 70%, 50%)"
 		},
@@ -213,5 +213,54 @@ export const pieDataDB = [
 		"label": "Vercel",
 		"value": 82,
 		"color": "#1b4b4d"
+	}
+]
+
+
+export const barData = [
+	{
+		"skills": "JavaScript & Frameworks",
+		"JavaScript": 75,
+		"JavaScriptColor": "hsl(40, 70%, 50%)",
+		"Node JS": 70,
+		"Node JSColor": "hsl(134, 70%, 50%)",
+		"Next JS": 80,
+		"Next JSColor": "hsl(216, 70%, 50%)",
+		"React JS": 70,
+		"React JSColor": "hsl(216, 70%, 50%)",
+		"Express JS": 65,
+		"Express JSColor": "hsl(262, 70%, 50%)",
+	},
+	{
+		"skills": "HTML & CSS & UI Libraries",
+		"HTML": 75,
+		"HTMLColor": "hsl(312, 70%, 50%)",
+		"CSS": 75,
+		"CSSColor": "hsl(38, 70%, 50%)",
+		"MUI5": 80,
+		"MUI5Color": "hsl(134, 70%, 50%)",
+		"NextUI": 85,
+		"NextUIColor": "hsl(310, 70%, 50%)",
+		"Antd": 70,
+		"AntdColor": "hsl(258, 70%, 50%)",
+		"Primereact": 70,
+		"PrimereactColor": "#d4abdc",
+		"React Bootstrap": 73,
+		"React BootstrapColor": "#342056"
+	},
+	{
+		"skills": "Database & Hosting",
+		"PostgreSQL": 78,
+		"PostgreSQLColor": "hsl(134, 70%, 50%)",
+		"MySQL": 79,
+		"MySQLColor": "hsl(38, 70%, 50%)",
+		"MongoDB": 72,
+		"MongoDBColor": "hsl(310, 70%, 50%)",
+		"Firebase": 60,
+		"FirebaseColor": "hsl(216, 70%, 50%)",
+		"Amazon Web Services": 50,
+		"Amazon Web ServicesColor": "hsl(38, 70%, 50%)",
+		"Vercel": 82,
+		"VercelColor": "#1b4b4d"
 	}
 ]
