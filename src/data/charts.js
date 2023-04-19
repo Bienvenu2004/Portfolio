@@ -100,31 +100,31 @@ export const lineDataDB = [
 ]
 
 export const pieDataJS = [
-		{
+	{
 		"id": "Node JS",
 		"label": "Node JS",
 		"value": 70,
 		"color": "hsl(134, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "JavaScript",
 		"label": "JavaScript",
 		"value": 75,
 		"color": "hsl(38, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Next JS",
 		"label": "Next JS",
 		"value": 80,
 		"color": "hsl(310, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "React JS",
 		"label": "React JS",
 		"value": 70,
 		"color": "hsl(216, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Express JS",
 		"label": "Express JS",
 		"value": 65,
@@ -138,38 +138,38 @@ export const pieDataCSS = [
 		"label": "HTML",
 		"value": 75,
 		"color": "#9d65c9"
-		},
-		{
+	},
+	{
 		"id": "CSS",
 		"label": "CSS",
 		"value": 75,
 		"color": "#7fcbd7"
-		},
-		{
+	},
+	{
 		"id": "MUI5",
 		"label": "MUI5",
 		"value": 80,
 		"color": "hsl(216, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "NextUI",
 		"label": "NextUI",
 		"value": 85,
 		"color": "hsl(310, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Antd",
 		"label": "Antd",
 		"value": 70,
 		"color": "#5454c5"
-		},
-		{
+	},
+	{
 		"id": "Primereact",
 		"label": "Primereact",
 		"value": 70,
 		"color": "#d4abdc"
-		},
-		{
+	},
+	{
 		"id": "React Bootstrap",
 		"label": "React Bootstrap",
 		"value": 73,
@@ -183,32 +183,32 @@ export const pieDataDB = [
 		"label": "PostgreSQL",
 		"value": 78,
 		"color": "hsl(134, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "MySQL",
 		"label": "MySQL",
 		"value": 79,
 		"color": "hsl(38, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "MongoDB",
 		"label": "MongoDB",
 		"value": 72,
 		"color": "hsl(310, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Firebase",
 		"label": "Firebase",
 		"value": 60,
 		"color": "hsl(216, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Amazon Web Services",
 		"label": "AWS",
 		"value": 50,
 		"color": "hsl(38, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Vercel",
 		"label": "Vercel",
 		"value": 82,
