@@ -9,13 +9,9 @@ if (!MONGODB_URI) {
 	);
 }
 
-const client = new MongoClient(MONGODB_URI, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
+const client = await MongoClient.connect(MONGODB_URI);
 
 export async function connectDatabase() {
-	if (!client.isConnected()) await client.connect();
 	return client;
 }
 
