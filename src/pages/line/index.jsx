@@ -4,9 +4,10 @@ import LineChart from "@/components/LineChart"
 import { useState } from "react"
 
 const Index = () => {
+
 	const theme = useTheme()
 	const [lineType, setLineType] = useState("linear")
-	
+
 	return (
 		<div className='app' style={{
 			padding: "1.2rem 1.2rem 1.2rem 1.5rem",
@@ -35,6 +36,7 @@ const Index = () => {
 			</Box>
 		</div>
 	)
+	
 }
 
 export default Index

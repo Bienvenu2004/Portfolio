@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 
 const MONGODB_URI = process.env.MONGODB_URI;
+const database = "Portfolio"
 
 if (!MONGODB_URI) {
 	throw new Error(
@@ -19,7 +20,7 @@ export async function connectDatabase() {
 }
 
 export async function insertDocument(client, collection, document) {
-	const db = client.db();
+	const db = client.db(database);
 
 	const result = await db.collection(collection).insertOne(document);
 
@@ -27,7 +28,7 @@ export async function insertDocument(client, collection, document) {
 }
 
 export async function getAllDocuments(client, collection, sort) {
-	const db = client.db();
+	const db = client.db(database);
 
 	const documents = await db
 		.collection(collection)

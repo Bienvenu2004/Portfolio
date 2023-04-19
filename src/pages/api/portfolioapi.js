@@ -5,18 +5,26 @@ import { connectDatabase ,insertDocument, getAllDocuments } from "@/lib/mongodb"
 
 export default async function handler(req, res) {
 
-  const client = await connectDatabase()
+    const client = await connectDatabase()
+    let documents = []
+    const {collection, document, sort} = req.body
+    
 
-  if (req.method === 'POST'){
-    const {collection, document} = req.body
-    const documents = await insertDocument(client, collection, document)
-    res.status(200).json({ documents })
-  }
+    switch(req.method){
+        case 'POST':
+            //insert document
+            documents = await insertDocument(client, collection, document)
+            res.status(200).json({ documents })
+            break
 
-  if  (req.method === 'GET'){
-    const {collection, sort} = req.body
-    const documents = await getAllDocuments(client, collection, sort)
-    res.status(200).json({documents })
-  }
+        case 'GET':
+            //retrieve documents
+            documents = await getAllDocuments(client, collection, sort)
+            res.status(200).json({documents })
+            break
+        default:
+            res.setHeader('Allow', ['GET', 'PUT'])
+            res.status(405).end(`Method ${req.method} Not Allowed`)
+    }
 
 }
