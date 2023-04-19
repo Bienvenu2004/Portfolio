@@ -1,16 +1,13 @@
 import { useTheme } from "@mui/material"
-import { useEffect } from "react"
+
+import { lineDataJS, lineDataCSS, lineDataDB } from "@/data/charts"
+
 import axios from "axios"
 
-const App = () => {
+const App = ({document}) => {
 	const theme = useTheme()
-	
-	useEffect(() => {
-		axios.get("http://localhost:3000/api/portfolio")
-			.then(res => console.log(res))
-			.catch(err => console.log(err))
-	}, [])
 
+	console.log(document)
 	return (
 		<div className='app' style={{
 			padding: "1.2rem 1.2rem 1.2rem 1.5rem",
@@ -19,6 +16,16 @@ const App = () => {
 			HomePage
 		</div>
 	)
+}
+
+export const getStaticProps = async () => {
+
+	return {
+		props: {
+			document: null
+		},
+		revalidate: 10
+	}
 }
 
 export default App

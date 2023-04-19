@@ -22,11 +22,9 @@ export const lineDataJS = [
 			{
 				"x": "Node JS",
 				"y": 70
-			},
-		
+			}
 		]
-	},
-	
+	}
 ]
 
 export const lineDataCSS = [
@@ -61,7 +59,7 @@ export const lineDataCSS = [
 			{
 				"x": "React Bootstrap",
 				"y": 73
-			},
+			}
 		]
 	}
 ]
@@ -94,7 +92,7 @@ export const lineDataDB = [
 			{
 				"x":"Vercel",
 				"y": 82
-			},
+			}
 		]
 	}
 ]
@@ -269,5 +267,5 @@ export const geographyData = [
 	{
 		"id": "CMR",
 		"value": 1,
-	},
+	}
 ]
