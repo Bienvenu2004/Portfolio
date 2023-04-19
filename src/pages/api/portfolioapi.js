@@ -20,10 +20,11 @@ const cors = initMiddleware(
 export default async function handler(req, res) {
 
     await cors(req, res)
-    
+    console.log(req)
     const client = await connectDatabase()
     let documents = []
-    const {collection, document, sort} = req.body
+    const {collection, document} = req.body
+    const {getCollection} = req.query
     
 
     switch(req.method){
@@ -35,7 +36,7 @@ export default async function handler(req, res) {
 
         case 'GET':
             //retrieve documents
-            documents = await getAllDocuments(client, collection, sort)
+            documents = await getAllDocuments(client, getCollection)
             res.status(200).json({documents })
             break
         default:

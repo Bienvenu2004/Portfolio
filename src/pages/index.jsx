@@ -17,18 +17,9 @@ const App = ({document}) => {
 
 export const getStaticProps = async () => {
 
-	const document = await axios.post("http://localhost:3000/api/portfolioapi", 
-		//body
-		{
-			document: lineDataJS,
-			collection: "Line",
-			sort: { "id": 1 }	
-		}
-	).then(res => console.log(res)).catch(err => console.log(err))
-
 	return {
 		props: {
-			document
+			document: null
 		},
 		revalidate: 10
 	}

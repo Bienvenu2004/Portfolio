@@ -23,13 +23,12 @@ export async function insertDocument(client, collection, document) {
 	return result;
 }
 
-export async function getAllDocuments(client, collection, sort) {
+export async function getAllDocuments(client, collection) {
 	const db = client.db(database);
 
 	const documents = await db
 		.collection(collection)
-		.find()
-		.sort(sort)
+		.find({})
 		.toArray();
 
 	return documents;
