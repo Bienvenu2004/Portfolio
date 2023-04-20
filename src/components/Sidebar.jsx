@@ -53,6 +53,9 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 								pr: '10px',
 								boxShadow: theme.palette.mode === "light" 
 									&& "0px 0px 2px 0px rgba(0,0,0,0.2)",
+								transition: 'all 0.3s ease-in-out',
+								borderTopRightRadius: "15px",
+								borderBottomRightRadius: "15px"
 							}
 						}}
 					>

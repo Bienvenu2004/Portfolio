@@ -1,68 +1,65 @@
-import { useState, forwardRef, useImperativeHandle } from 'react'
+import { useState, forwardRef, useImperativeHandle, Fragment } from 'react'
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { Box, useTheme } from '@mui/material';
+import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material'
 
-const SettingsDrawer = ({},ref) => {
-	const [state, setState] = useState({right: false})
+
+const SettingsDrawer = ({placement},ref) => {
 	const [isOpen, setIsOpen] = useState(false)
+
 	const theme = useTheme()
-	const toggleDrawer = (anchor, open) => (event) => {
-		if (
-			event &&
-			event.type === 'keydown' &&
-			(event.key === 'Tab' || event.key === 'Shift')
-		) {
-			return;
-		}
+
+	const toggleDrawer =  () => setIsOpen(!isOpen)
 	
-		setState({ ...state, [anchor]: open });
-		setIsOpen(!isOpen)
-	}
 
 	useImperativeHandle( ref, () => {
-		return {
-			alterDrawerState: () => toggleDrawer('right', true)
-		};
-	},
-	[]
-)
+			return {
+				alterDrawerState: () => toggleDrawer()
+			};
+		},[]
+	)
 
 	const buttons = [
-		<Button key="light">Light</Button>,
-		<Button key="system">System</Button>,
-		<Button key="dark">Dark</Button>,
+		<Button key="light" color={theme.palette.secondary[100]} startIcon={<LightModeOutlined/>}>
+			Light
+		</Button>,
+		<Button key="system" color={theme.palette.secondary[100]}>
+			System
+		</Button>,
+		<Button key="dark" color={theme.palette.secondary[100]} startIcon={<DarkModeOutlined/>}>
+			Dark
+		</Button>,
 	];
 	return (
-		<Drawer
-			anchor='right'
-			open={isOpen}
-            onClose={toggleDrawer('right', false)}
-            onOpen={toggleDrawer('right', true)}
-			sx={{
-				flexShrink: 0,
-				"& .MuiDrawer-paper": {
-					color: theme.palette.secondary[200],
-					backgroundColor: "#101624",
-					boxSizing: "border-box",
-					width: 250,
-				},
-				justifyItems:'center'
-			}}
-		>
-			<Box
-				sx={{ width: 250 }}
-				role="presentation"
-				onClick={toggleDrawer('right', false)}
-				onKeyDown={toggleDrawer('right', false)}
-				display='flex'
-			>
-				<ButtonGroup size="large" aria-label="large button group">
-					{buttons}
-				</ButtonGroup>	
-			</Box>
-		</Drawer>
+		<Fragment>
+			<Drawer
+				anchor={placement}
+				open={isOpen}
+				onClose={toggleDrawer}
+				sx={{
+					flexShrink: 0,
+					"& .MuiDrawer-paperAnchorRight": {
+						backgroundColor: theme.palette.mode === 'dark' && '#0A1929',
+						boxSizing: "border-box",
+						width: 250,
+						color: theme.palette.mode === 'dark' ? '#FFF' : '#000',
+						borderTopLeftRadius: "15px",
+						borderBottomLeftRadius: '15px',
+						justifyItems:'center',
+					},
+					backgroundColor: 'transparent'
+				}}
+				>
+				<Box width={250} p={5} justifyItems='center'>
+					<ButtonGroup>
+						{buttons}
+					</ButtonGroup>
+				</Box>
+				
+			</Drawer>
+		</Fragment>
 	)
 }
 

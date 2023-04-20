@@ -31,6 +31,7 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 				background: 'none',
 				boxShadow: 'none',			}}
 		>
+			<SettingsDrawer ref={settingsDrawerRef} placement='right'/>
 			<Toolbar sx={{justifyContent: 'space-between'}}>
 				{/* Left */}
 				<FlexBetween>
@@ -73,22 +74,22 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 					</FlexBetween>
 				</FlexBetween>
 				{/* Right */}
-				<FlexBetween gap = "0.5rem">
+				<FlexBetween gap = "0.3rem">
 					<IconButton onClick={()=> mode == "dark" ? setMode("light") : setMode("dark")}>
 						{
 							theme.palette.mode === "dark" ?
-							<LightModeOutlined sx={{fontSize: "25px"}}/> 
-							: <DarkModeOutlined sx={{fontSize: "25px"}}/>
+							<LightModeOutlined sx={{fontSize: "20px"}}/> 
+							: <DarkModeOutlined sx={{fontSize: "20px"}}/>
 						}
 					</IconButton>
 					{/* <IconButton>
 						<SettingsOutlined sx={{fontSize: "25px"}}/>
 					</IconButton> */}
 					<IconButton>
-						<GitHub sx={{fontSize: "25px"}}/>
+						<GitHub sx={{fontSize: "20px"}}/>
 					</IconButton>
 					<IconButton>
-						<LinkedIn sx={{fontSize: "25px"}}/>
+						<LinkedIn sx={{fontSize: "20px"}}/>
 					</IconButton>
 					<FlexBetween>
 						<Button onClick = {handleClick} sx={{
@@ -124,7 +125,6 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 					</FlexBetween>
 
 				</FlexBetween>
-				<SettingsDrawer ref = {settingsDrawerRef} />
 			</Toolbar>
 		</AppBar>
 	)
