@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react'
-import { LightModeOutlined, DarkModeOutlined, Menu as MenuIcon, Search, SettingsOutlined, ArrowDropDownOutlined } from '@mui/icons-material'
+import React, {useState, useEffect, useRef} from 'react'
+import { LightModeOutlined, DarkModeOutlined, Menu as MenuIcon, Search, SettingsOutlined, ArrowDropDownOutlined , GitHub, LinkedIn} from '@mui/icons-material'
 import FlexBetween from "./FlexBetween"
 import { useTheme, AppBar, Toolbar, IconButton, InputBase, Button , Menu, Box, Typography} from '@mui/material'
 import { Loading } from '@nextui-org/react'
+import SettingsDrawer from './SettingsDrawer'
+
 
 const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 	const [searchValue, setSearchValue] = useState(null)
 	const [isTyping, setIsTyping] = useState(false)
 	const [anchorEl, setAnchorEl] = useState(null)
 	const theme = useTheme()
+	const settingsDrawerRef = useRef()
 
 	const isOpen = Boolean(anchorEl)
 	const handleClick = (event) => setAnchorEl(event.currentTarget)
@@ -40,10 +43,12 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 					}
 					<FlexBetween
 						backgroundColor = {theme.palette.background.alt}
-						border={theme.palette.mode === "dark" ? "none" : "1px solid #c2c2c2"}
-						borderRadius = "9px"
+						border='none'
+						borderRadius = {3}
 						gap = "3rem"
 						p = "0.1rem 1.5rem"
+						boxShadow = { theme.palette.mode === "light" 
+									&& "0px 0px 2px 0px rgba(0,0,0,0.2)"}
 					>
 						<InputBase placeholder = 'Search...' 
 							sx={{
@@ -68,21 +73,23 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 					</FlexBetween>
 				</FlexBetween>
 				{/* Right */}
-				<FlexBetween gap = "1.5rem">
-					<IconButton onClick={()=> 
-							mode == "dark" ? setMode("light") : setMode("dark")
-						}
-					>
+				<FlexBetween gap = "0.5rem">
+					<IconButton onClick={()=> mode == "dark" ? setMode("light") : setMode("dark")}>
 						{
 							theme.palette.mode === "dark" ?
 							<LightModeOutlined sx={{fontSize: "25px"}}/> 
 							: <DarkModeOutlined sx={{fontSize: "25px"}}/>
 						}
 					</IconButton>
-					<IconButton>
+					{/* <IconButton>
 						<SettingsOutlined sx={{fontSize: "25px"}}/>
+					</IconButton> */}
+					<IconButton>
+						<GitHub sx={{fontSize: "25px"}}/>
 					</IconButton>
-
+					<IconButton>
+						<LinkedIn sx={{fontSize: "25px"}}/>
+					</IconButton>
 					<FlexBetween>
 						<Button onClick = {handleClick} sx={{
 								display: "flex",
@@ -102,14 +109,10 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 									borderRadius: "50%",
 									objectFit: "cover",
 								}}
+								onClick={() => settingsDrawerRef.current.alterDrawerState()}
 							/>
-							<Box textAlign='left'>
-								<Typography  fontWeight="bold" color="secondary.text" fontSize='0.85rem' >
-									Abdulrahim
-								</Typography>
-							</Box>
 						</Button>
-						<Menu
+						{/* <Menu
 							anchorEl={anchorEl}
 							open={isOpen}
 							onClose={handleClose}
@@ -117,10 +120,11 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen, setMode, mode}) => {
 								vertical: 'bottom',
 								horizontal: 'center',
 							}}
-						/>
+						/> */}
 					</FlexBetween>
 
 				</FlexBetween>
+				<SettingsDrawer ref = {settingsDrawerRef} />
 			</Toolbar>
 		</AppBar>
 	)
