@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-    LightModeOutlined,
-    DarkModeOutlined,
-    Menu as MenuIcon,
     Search,
     SettingsOutlined,
-    ArrowDropDownOutlined,
     GitHub,
     LinkedIn,
+    Menu as MenuIcon,
 } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
 import {
@@ -15,14 +12,14 @@ import {
     AppBar,
     Toolbar,
     IconButton,
-    InputBase,
-    Button,
-    Menu,
+    Chip,
     Box,
     Typography,
 } from "@mui/material";
-import { Loading } from "@nextui-org/react";
+import Button from "@mui/material/Button";
+
 import SettingsDrawer from "./SettingsDrawer";
+import SearchDialogue from "./SearchDialogue";
 
 const Navbar = ({
     isSidebarOpen,
@@ -32,13 +29,28 @@ const Navbar = ({
 }) => {
     const [searchValue, setSearchValue] = useState(null);
     const [isTyping, setIsTyping] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
     const theme = useTheme();
     const settingsDrawerRef = useRef();
+    const searchDialogueRef = useRef();
 
-    const isOpen = Boolean(anchorEl);
-    const handleClick = (event) => setAnchorEl(event.currentTarget);
-    const handleClose = () => setAnchorEl(null);
+    {
+        /* <InputBase
+        placeholder="Search..."
+        sx={{
+            color:
+                theme.palette.mode === "light" &&
+                "secondary.text",
+        }}
+        onChange={(event) => {
+            setSearchValue(event.target.value);
+            if (event.target.value.length < 1) {
+                setSearchValue(null);
+            }
+        }}
+    /> */
+    }
+
+    const handleClick = () => settingsDrawerRef.current.alterDrawerState();
 
     useEffect(() => {
         if (searchValue != null) setIsTyping(true);
@@ -59,9 +71,10 @@ const Navbar = ({
                 placement="right"
                 prefersDarkMode={prefersDarkMode}
             />
+            <SearchDialogue ref={searchDialogueRef} />
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 {/* Left */}
-                <FlexBetween>
+                <FlexBetween flexDirection="row">
                     {!isSidebarOpen && (
                         <IconButton
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -69,97 +82,173 @@ const Navbar = ({
                             <MenuIcon />
                         </IconButton>
                     )}
-                    <FlexBetween
-                        backgroundColor={theme.palette.background.alt}
-                        border="none"
-                        borderRadius={3}
-                        gap="3rem"
-                        p="0.1rem 1.5rem"
-                        boxShadow={
-                            theme.palette.mode === "light" &&
-                            "0px 0px 2px 0px rgba(0,0,0,0.2)"
-                        }
-                    >
-                        <InputBase
-                            placeholder="Search..."
-                            sx={{
-                                color:
-                                    theme.palette.mode === "light" &&
-                                    "secondary.text",
-                            }}
-                            onChange={(event) => {
-                                setSearchValue(event.target.value);
-                                if (event.target.value.length < 1) {
-                                    setSearchValue(null);
-                                }
-                            }}
-                        />
-                        <IconButton>
-                            {isTyping ? (
-                                <Loading type="default" size="xs" />
-                            ) : (
-                                <Search />
-                            )}
-                        </IconButton>
-                    </FlexBetween>
+                    <Box flexGrow={1} />
                 </FlexBetween>
                 {/* Right */}
                 <FlexBetween gap="0.3rem">
-                    {/* <IconButton
+                    <Button
+                        variant="outlined"
+                        startIcon={
+                            <Search
+                                sx={{
+                                    color: "rgba(1, 87, 155, 0.8)",
+                                }}
+                            />
+                        }
+                        endIcon={
+                            <Chip
+                                variant="outlined"
+                                label={
+                                    <Typography
+                                        sx={{
+                                            textTransform: "none",
+                                            fontSize: "12px",
+                                            color: theme.palette.secondary.text,
+                                            fontWeight: "bold",
+                                        }}
+                                    >
+                                        Ctrl+K
+                                    </Typography>
+                                }
+                                size="small"
+                                sx={{
+                                    textTransform: "none",
+                                    backgroundColor:
+                                        theme.palette.mode === "dark"
+                                            ? "rgba(1, 87, 155, 0.5)"
+                                            : "#FFF",
+                                    border:
+                                        theme.palette.mode === "dark"
+                                            ? "1px solid rgba(1, 87, 155, 0.8)"
+                                            : "1px solid rgba(1, 1, 1, 0.2)",
+                                }}
+                                rounded={false}
+                            />
+                        }
+                        sx={{
+                            width: "fit-content",
+                            borderRadius: "0.8rem",
+                            textTransform: "none",
+                            fontSize: "14px",
+                            color:
+                                theme.palette.mode === "dark"
+                                    ? "rgba(255,255, 255, 0.6)"
+                                    : "rgba(0, 0, 0, 0.5)",
+                            border:
+                                theme.palette.mode === "dark"
+                                    ? "1px solid rgba(1, 87, 155, 0.8)"
+                                    : "1px solid rgba(1, 87, 155, 0.2)",
+                            backgroundColor:
+                                theme.palette.mode === "dark"
+                                    ? "rgba(1, 87, 155, 0.1)"
+                                    : "rgba(1, 87, 155, 0.03)",
+                            "&:hover": {
+                                backgroundColor:
+                                    theme.palette.mode === "dark"
+                                        ? "rgba(1, 87, 155, 0.4)"
+                                        : "rgba(1, 87, 155, 0.1)",
+                                transition: "all 0.5s ease-in-out",
+                                border:
+                                    theme.palette.mode === "dark"
+                                        ? "1px solid rgba(1, 87, 155, 0.8)"
+                                        : "1px solid rgba(1, 87, 155, 0.2)",
+                            },
+                        }}
                         onClick={() =>
-                            mode == "dark" ? setMode("light") : setMode("dark")
+                            searchDialogueRef.current.alterSearchDialogueState()
                         }
                     >
-                        {theme.palette.mode === "dark" ? (
-                            <LightModeOutlined sx={{ fontSize: "20px" }} />
-                        ) : (
-                            <DarkModeOutlined sx={{ fontSize: "20px" }} />
-                        )}
-                    </IconButton> */}
-                    {/* <IconButton>
-						<SettingsOutlined sx={{fontSize: "25px"}}/>
-					</IconButton> */}
-                    <IconButton>
+                        Search...
+                    </Button>
+                    <IconButton
+                        sx={{
+                            display: "flex",
+                            transition: "all 0.5s ease-in-out",
+                            color: theme.palette.secondary.main,
+                            backgroundColor:
+                                theme.palette.mode === "dark" &&
+                                "rgba(69, 90, 100, 0.1)",
+                            borderRadius: "0.8rem",
+                            border:
+                                theme.palette.mode === "dark"
+                                    ? "1px solid rgba(1, 87, 155, 0.8)"
+                                    : "1px solid rgba(1, 87, 155, 0.2)",
+                            "&:hover": {
+                                backgroundColor:
+                                    theme.palette.mode === "dark"
+                                        ? "rgba(1, 87, 155, 0.4)"
+                                        : theme.palette.secondary.main,
+                                transition: "all 0.5s ease-in-out",
+                                "& svg": {
+                                    color:
+                                        theme.palette.mode === "light" &&
+                                        "#FFF",
+                                },
+                            },
+                        }}
+                    >
                         <GitHub sx={{ fontSize: "20px" }} />
                     </IconButton>
-                    <IconButton>
+                    <IconButton
+                        sx={{
+                            display: "flex",
+                            transition: "all 0.5s ease-in-out",
+                            color: theme.palette.secondary.main,
+                            backgroundColor:
+                                theme.palette.mode === "dark" &&
+                                "rgba(69, 90, 100, 0.1)",
+                            borderRadius: "0.8rem",
+                            border:
+                                theme.palette.mode === "dark"
+                                    ? "1px solid rgba(1, 87, 155, 0.8)"
+                                    : "1px solid rgba(1, 87, 155, 0.2)",
+                            "&:hover": {
+                                backgroundColor:
+                                    theme.palette.mode === "dark"
+                                        ? "rgba(1, 87, 155, 0.4)"
+                                        : theme.palette.secondary.main,
+                                transition: "all 0.5s ease-in-out",
+                                "& svg": {
+                                    color:
+                                        theme.palette.mode === "light" &&
+                                        "#FFF",
+                                },
+                            },
+                        }}
+                    >
                         <LinkedIn sx={{ fontSize: "20px" }} />
                     </IconButton>
                     <FlexBetween>
-                        <Button
-                            onClick={handleClick}
+                        <IconButton
                             sx={{
                                 display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                gap: "1rem",
-                                textTransform: "none",
+                                transition: "all 0.5s ease-in-out",
+                                color: theme.palette.secondary.main,
+                                backgroundColor:
+                                    theme.palette.mode === "dark" &&
+                                    "rgba(69, 90, 100, 0.1)",
+                                borderRadius: "0.8rem",
+                                border:
+                                    theme.palette.mode === "dark"
+                                        ? "1px solid rgba(1, 87, 155, 0.8)"
+                                        : "1px solid rgba(1, 87, 155, 0.2)",
+                                "&:hover": {
+                                    backgroundColor:
+                                        theme.palette.mode === "dark"
+                                            ? "rgba(1, 87, 155, 0.4)"
+                                            : theme.palette.secondary.main,
+                                    transition: "all 0.5s ease-in-out",
+                                    "& svg": {
+                                        color:
+                                            theme.palette.mode === "light" &&
+                                            "#FFF",
+                                    },
+                                },
                             }}
+                            onClick={handleClick}
                         >
-                            <Box
-                                component="img"
-                                src="images/me.png"
-                                alt="Profile"
-                                width="32px"
-                                height="32px"
-                                sx={{
-                                    borderRadius: "50%",
-                                    objectFit: "cover",
-                                }}
-                                onClick={() =>
-                                    settingsDrawerRef.current.alterDrawerState()
-                                }
-                            />
-                        </Button>
-                        {/* <Menu
-							anchorEl={anchorEl}
-							open={isOpen}
-							onClose={handleClose}
-							anchorOrigin={{
-								vertical: 'bottom',
-								horizontal: 'center',
-							}}
-						/> */}
+                            <SettingsOutlined sx={{ fontSize: "20px" }} />
+                        </IconButton>
                     </FlexBetween>
                 </FlexBetween>
             </Toolbar>
