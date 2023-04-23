@@ -2,6 +2,12 @@ import Head from 'next/head'
 import NextNProgress from 'nextjs-progressbar'
 import Layout from '../components/layout/Layout'
 
+//theme
+import "primereact/resources/themes/lara-light-indigo/theme.css";     
+//core
+import "primereact/resources/primereact.min.css";
+
+        
 import "../styles/globals.css"
 
 

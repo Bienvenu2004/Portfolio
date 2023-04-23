@@ -20,7 +20,6 @@ const cors = initMiddleware(
 export default async function handler(req, res) {
 
     await cors(req, res)
-    console.log(req)
     const client = await connectDatabase()
     let documents = []
     const {collection, document} = req.body

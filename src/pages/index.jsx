@@ -1,9 +1,12 @@
 import { useTheme } from "@mui/material"
+
 import { lineDataJS, lineDataCSS, lineDataDB } from "@/data/charts"
+
 import axios from "axios"
 
 const App = ({document}) => {
 	const theme = useTheme()
+
 	console.log(document)
 	return (
 		<div className='app' style={{

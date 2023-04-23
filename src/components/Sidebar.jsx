@@ -37,7 +37,8 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 		<Box component = "nav">
 			{
 				isSidebarOpen && (
-					<Drawer	variant="persistent" open={isSidebarOpen}
+					<Drawer	variant="persistent" 
+						open={isSidebarOpen}
 						onClose={()=> setIsSidebarOpen(false)}
 						anchor="left"
 						sx={{
@@ -49,8 +50,12 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 								boxSizing: "border-box",
 								borderWidth: isMobile ? "2px" : "0px",
 								width: drawerWidth,
+								pr: '10px',
 								boxShadow: theme.palette.mode === "light" 
-									&& "0px 0px 5px 0px rgba(0,0,0,0.2)",
+									&& "0px 0px 2px 0px rgba(0,0,0,0.2)",
+								transition: 'all 0.3s ease-in-out',
+								borderTopRightRadius: "15px",
+								borderBottomRightRadius: "15px"
 							}
 						}}
 					>
@@ -92,6 +97,8 @@ const Sidebar = ({drawerWidth, isSidebarOpen, setIsSidebarOpen, isMobile}) => {
 													setActiveUrl(item.name.toLowerCase())
 												}} 
 												sx={{
+													borderTopRightRadius: '25px',
+													borderBottomRightRadius: '25px',
 													backgroundColor: activeUrl === item.name.toLowerCase() ? theme.palette.secondary.main : "transparent",
 													color: activeUrl === item.name.toLowerCase() ? theme.palette.secondary[100]: theme.palette.secondary.text
 												}}

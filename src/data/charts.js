@@ -98,31 +98,31 @@ export const lineDataDB = [
 ]
 
 export const pieDataJS = [
-		{
+	{
 		"id": "Node JS",
 		"label": "Node JS",
 		"value": 70,
 		"color": "hsl(134, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "JavaScript",
 		"label": "JavaScript",
 		"value": 75,
 		"color": "hsl(38, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Next JS",
 		"label": "Next JS",
 		"value": 80,
 		"color": "hsl(310, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "React JS",
 		"label": "React JS",
 		"value": 70,
 		"color": "hsl(216, 70%, 50%)"
-		},
-		{
+	},
+	{
 		"id": "Express JS",
 		"label": "Express JS",
 		"value": 65,
