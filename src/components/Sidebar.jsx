@@ -72,23 +72,39 @@ const Sidebar = ({
                     }}
                 >
                     <Box width="100%">
-                        <Box m="1rem 3rem 1.5rem 1.2rem">
+                        <Box m="1rem 3rem 1.5rem 0.6rem">
                             <FlexBetween>
                                 <Box
                                     display="flex"
                                     alignItems="center"
-                                    gap="0.5rem"
-                                    mr="5rem"
+                                    mr="1rem"
                                 >
-                                    <Typography
-                                        variant="h5"
-                                        fontWeight="bold"
-                                        sx={{
-                                            color: theme.palette.secondary.main,
+                                    <User
+                                        src="/images/me.png"
+                                        name="Abdulrahim"
+                                        description="Web Developer @Neema"
+                                        bordered
+                                        color="primary"
+                                        size="lg"
+                                        css={{
+                                            "& .nextui-user-name": {
+                                                color: theme.palette.secondary
+                                                    .main,
+                                            },
+                                            "& .nextui-user-description": {
+                                                color: theme.palette.secondary
+                                                    .text,
+                                            },
+                                            "& .nextui-avatar-img": {
+                                                border: "none",
+                                            },
+                                            p: 0,
                                         }}
                                     >
-                                        PORTFOLIO
-                                    </Typography>
+                                        <User.Link href="https://github.com/Abdulrahim2567/">
+                                            @abdulrahim2567
+                                        </User.Link>
+                                    </User>
                                 </Box>
                                 {isSidebarOpen && (
                                     <IconButton
@@ -126,16 +142,6 @@ const Sidebar = ({
                                     </IconButton>
                                 )}
                             </FlexBetween>
-                            <Box width="100%" justifyItems="center" m={1}>
-                                <User
-                                    src="images/abdulrahim.png"
-                                    name="Abdulrahim"
-                                    description="Web Developer @Neema"
-                                    bordered
-                                    color="primary"
-                                    size="lg"
-                                />
-                            </Box>
                         </Box>
                         {navItems.map((item) => {
                             if (!item.icon) {

@@ -15,10 +15,12 @@ import {
     Chip,
     Box,
     Typography,
+    useMediaQuery,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import SettingsDrawer from "./SettingsDrawer";
 import SearchDialogue from "./SearchDialogue";
+import { User } from "@nextui-org/react";
 
 let detectedOS;
 
@@ -33,6 +35,8 @@ const Navbar = ({
     const theme = useTheme();
     const settingsDrawerRef = useRef();
     const searchDialogueRef = useRef();
+    const isMobile = useMediaQuery("(max-width: 600px)");
+    const isExtraSmall = useMediaQuery("(max-width: 400px)");
 
     //add event listener for ctrl+k for Linux and Windows
     document.addEventListener("keydown", (event) => {
@@ -96,30 +100,38 @@ const Navbar = ({
                             sx={{
                                 display: "flex",
                                 transition: "all 0.5s ease-in-out",
+                                p: "3px",
                                 color: theme.palette.secondary.main,
-                                backgroundColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgba(69, 90, 100, 0.1)",
                                 borderRadius: "0.8rem",
-                                border:
-                                    theme.palette.mode === "dark"
-                                        ? "1px solid rgba(1, 87, 155, 0.8)"
-                                        : "1px solid rgba(1, 87, 155, 0.2)",
                                 "&:hover": {
-                                    backgroundColor:
-                                        theme.palette.mode === "dark"
-                                            ? "rgba(1, 87, 155, 0.4)"
-                                            : theme.palette.secondary.main,
                                     transition: "all 0.5s ease-in-out",
-                                    "& svg": {
-                                        color:
-                                            theme.palette.mode === "light" &&
-                                            "#FFF",
-                                    },
                                 },
                             }}
                         >
-                            <MenuIcon />
+                            {/* <MenuIcon /> */}
+                            <User
+                                src="/images/me.png"
+                                name={!isMobile && "Abdulrahim"}
+                                description={
+                                    !isMobile && "Web Developer @Neema"
+                                }
+                                bordered
+                                color="primary"
+                                size={isMobile ? "md" : "lg"}
+                                css={{
+                                    transition: "all 0.3s ease-in-out",
+                                    "& .nextui-user-name": {
+                                        color: theme.palette.secondary.main,
+                                    },
+                                    "& .nextui-user-description": {
+                                        color: theme.palette.secondary.text,
+                                    },
+                                    "& .nextui-avatar-img": {
+                                        border: "none",
+                                    },
+                                    p: 0,
+                                }}
+                            />
                         </IconButton>
                     )}
                     <Box flexGrow={1} />
@@ -235,35 +247,37 @@ const Navbar = ({
                     >
                         <GitHub sx={{ fontSize: "20px" }} />
                     </IconButton>
-                    <IconButton
-                        sx={{
-                            display: "flex",
-                            transition: "all 0.5s ease-in-out",
-                            color: theme.palette.secondary.main,
-                            backgroundColor:
-                                theme.palette.mode === "dark" &&
-                                "rgba(69, 90, 100, 0.1)",
-                            borderRadius: "0.8rem",
-                            border:
-                                theme.palette.mode === "dark"
-                                    ? "1px solid rgba(1, 87, 155, 0.8)"
-                                    : "1px solid rgba(1, 87, 155, 0.2)",
-                            "&:hover": {
-                                backgroundColor:
-                                    theme.palette.mode === "dark"
-                                        ? "rgba(1, 87, 155, 0.4)"
-                                        : theme.palette.secondary.main,
+                    {!isExtraSmall && (
+                        <IconButton
+                            sx={{
+                                display: "flex",
                                 transition: "all 0.5s ease-in-out",
-                                "& svg": {
-                                    color:
-                                        theme.palette.mode === "light" &&
-                                        "#FFF",
+                                color: theme.palette.secondary.main,
+                                backgroundColor:
+                                    theme.palette.mode === "dark" &&
+                                    "rgba(69, 90, 100, 0.1)",
+                                borderRadius: "0.8rem",
+                                border:
+                                    theme.palette.mode === "dark"
+                                        ? "1px solid rgba(1, 87, 155, 0.8)"
+                                        : "1px solid rgba(1, 87, 155, 0.2)",
+                                "&:hover": {
+                                    backgroundColor:
+                                        theme.palette.mode === "dark"
+                                            ? "rgba(1, 87, 155, 0.4)"
+                                            : theme.palette.secondary.main,
+                                    transition: "all 0.5s ease-in-out",
+                                    "& svg": {
+                                        color:
+                                            theme.palette.mode === "light" &&
+                                            "#FFF",
+                                    },
                                 },
-                            },
-                        }}
-                    >
-                        <LinkedIn sx={{ fontSize: "20px" }} />
-                    </IconButton>
+                            }}
+                        >
+                            <LinkedIn sx={{ fontSize: "20px" }} />
+                        </IconButton>
+                    )}
                     <FlexBetween>
                         <IconButton
                             sx={{
