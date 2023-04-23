@@ -17,9 +17,10 @@ import {
     Typography,
 } from "@mui/material";
 import Button from "@mui/material/Button";
-
 import SettingsDrawer from "./SettingsDrawer";
 import SearchDialogue from "./SearchDialogue";
+
+let detectedOS;
 
 const Navbar = ({
     isSidebarOpen,
@@ -33,8 +34,23 @@ const Navbar = ({
     const settingsDrawerRef = useRef();
     const searchDialogueRef = useRef();
 
-    {
-        /* <InputBase
+    //add event listener for ctrl+k for Linux and Windows
+    document.addEventListener("keydown", (event) => {
+        if ((event.ctrlKey && event.key === "k") || event.key === "K") {
+            searchDialogueRef.current.alterSearchDialogueState();
+        }
+    });
+    //add event listener for cmd+k for MacOS
+    document.addEventListener("keydown", (event) => {
+        if ((event.metaKey && event.key === "k") || event.key === "K") {
+            searchDialogueRef.current.alterSearchDialogueState();
+        }
+    });
+
+    //get OS type
+    if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
+
+    /* <InputBase
         placeholder="Search..."
         sx={{
             color:
@@ -48,7 +64,6 @@ const Navbar = ({
             }
         }}
     /> */
-    }
 
     const handleClick = () => settingsDrawerRef.current.alterDrawerState();
 
@@ -107,7 +122,8 @@ const Navbar = ({
                                             fontWeight: "bold",
                                         }}
                                     >
-                                        Ctrl+K
+                                        {detectedOS === "MacOS" && "⌘ + K"}
+                                        {detectedOS !== "MacOS" && "Ctrl+K"}
                                     </Typography>
                                 }
                                 size="small"
@@ -121,6 +137,10 @@ const Navbar = ({
                                         theme.palette.mode === "dark"
                                             ? "1px solid rgba(1, 87, 155, 0.8)"
                                             : "1px solid rgba(1, 1, 1, 0.2)",
+                                    "&.MuiChip-root": {
+                                        borderRadius: "8px",
+                                        margin: "0px",
+                                    },
                                 }}
                                 rounded={false}
                             />
@@ -130,6 +150,7 @@ const Navbar = ({
                             borderRadius: "0.8rem",
                             textTransform: "none",
                             fontSize: "14px",
+                            paddingX: "8px",
                             color:
                                 theme.palette.mode === "dark"
                                     ? "rgba(255,255, 255, 0.6)"
