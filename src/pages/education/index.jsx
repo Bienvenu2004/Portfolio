@@ -8,7 +8,7 @@ const Index = () => {
         <div
             className="app"
             style={{
-                padding: "0.6rem 1.2rem 0.6rem 1.32rem",
+                padding: "0 0.5rem",
                 color: theme.palette.secondary.text,
                 height: matches ? "92vh" : "90vh",
             }}

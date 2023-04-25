@@ -79,8 +79,10 @@ const Navbar = ({
     return (
         <AppBar
             sx={{
-                position: "static",
+                position: "sticky",
+                margin: "0",
                 background: "none",
+                backdropFilter: "blur(10px)",
                 boxShadow: "none",
             }}
         >
@@ -99,8 +101,9 @@ const Navbar = ({
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                             sx={{
                                 display: "flex",
-                                transition: "all 0.5s ease-in-out",
+                                transition: "all 0.2s ease-in-out",
                                 p: "3px",
+                                width: "fit-content",
                                 color: theme.palette.secondary.main,
                                 borderRadius: "0.8rem",
                                 "&:hover": {
@@ -119,7 +122,7 @@ const Navbar = ({
                                 color="primary"
                                 size={isMobile ? "md" : "lg"}
                                 css={{
-                                    transition: "all 0.3s ease-in-out",
+                                    p: 0,
                                     "& .nextui-user-name": {
                                         color: theme.palette.secondary.main,
                                     },
@@ -129,7 +132,6 @@ const Navbar = ({
                                     "& .nextui-avatar-img": {
                                         border: "none",
                                     },
-                                    p: 0,
                                 }}
                             />
                         </IconButton>

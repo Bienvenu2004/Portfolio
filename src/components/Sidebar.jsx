@@ -38,13 +38,7 @@ const Sidebar = ({
     }
 
     return (
-        <Box
-            component="nav"
-            sx={{
-                width: isSidebarOpen ? drawerWidth : "0px",
-                transition: !isSidebarOpen && "all 0.3s ease-in-out",
-            }}
-        >
+        <Box component="nav">
             {isSidebarOpen && (
                 <Drawer
                     variant="persistent"
@@ -53,7 +47,7 @@ const Sidebar = ({
                     anchor="left"
                     sx={{
                         width: isSidebarOpen ? drawerWidth : "0px",
-                        transition: "all 0.3s ease-in-out",
+                        height: "100vh",
                         flexShrink: 0,
                         "& .MuiDrawer-paper": {
                             color: theme.palette.secondary[200],
@@ -61,7 +55,6 @@ const Sidebar = ({
                             boxSizing: "border-box",
                             borderWidth: isMobile ? "2px" : "0px",
                             width: isSidebarOpen ? drawerWidth : "0px",
-                            transition: "all 0.3s ease-in-out",
                             pr: "10px",
                             boxShadow:
                                 theme.palette.mode === "light" &&
@@ -216,44 +209,6 @@ const Sidebar = ({
                                 </ListItem>
                             );
                         })}
-                    </Box>
-
-                    <Box
-                        position="static"
-                        bottom="0rem"
-                        width="100%"
-                        backgroundColor={theme.palette.background.alt}
-                    >
-                        <Divider
-                            sx={{
-                                width: "100%",
-                            }}
-                        />
-                        <FlexBetween
-                            textTransform={"none"}
-                            gap="1.5rem"
-                            m="1rem 3rem "
-                        >
-                            <Box
-                                component="img"
-                                src="images/me.png"
-                                alt="Profile"
-                                width="40px"
-                                height="40px"
-                                sx={{
-                                    borderRadius: "50%",
-                                    objectFit: "cover",
-                                }}
-                            />
-                            <Box textAlign="left">
-                                <Typography
-                                    fontWeight="bold"
-                                    color="secondary.text"
-                                >
-                                    Abdulrahim
-                                </Typography>
-                            </Box>
-                        </FlexBetween>
                     </Box>
                 </Drawer>
             )}
