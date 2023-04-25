@@ -2,12 +2,14 @@ import axios from "axios";
 import { useTheme, Box, useMediaQuery } from "@mui/material";
 import { useEffect } from "react";
 import { getAllDocuments } from "@/lib/mongodbHelper";
+import { Skeleton } from "@mui/material";
 
-const Index = ({ javascript }) => {
+const Index = ({ javascript, css, database }) => {
     const matches = useMediaQuery("(min-width:1366px)", { noSsr: true });
     const theme = useTheme();
-
-    console.log(javascript);
+    console.log("JS", javascript);
+    console.log("CSS", css);
+    console.log("DATABASE", database);
 
     return (
         <div
@@ -27,27 +29,48 @@ const Index = ({ javascript }) => {
                     theme.palette.mode === "light" &&
                     "0px 0px 2px 0px rgba(0,0,0,0.2)"
                 }
-            ></Box>
+            >
+                {!javascript || !css || !database ? (
+                    <Skeleton
+                        variant="rounded"
+                        width="100%"
+                        height="100%"
+                        animation="wave"
+                        sx={{
+                            backgroundColor:
+                                theme.palette.mode === "dark" &&
+                                theme.palette.background.alt,
+                        }}
+                    />
+                ) : (
+                    <div>content</div>
+                )}
+            </Box>
         </div>
     );
 };
 
 export const getStaticProps = async () => {
-    const javascript = await axios
-        .get(`/api/portfolioapi?getCollection=javascript`)
-        .catch((error) => {
-            if (axios.isCancel(error)) {
-                return { isCancelled: true, documents: [] };
-            }
-            return { isCancelled: false, error: error };
-        });
-    console.log(javascript);
-    return {
-        props: {
-            javascript,
-        },
-        revalidate: 10,
-    };
+    try {
+        let result = await getAllDocuments("javascript");
+        const javascript = (await result.data) || null;
+        result = await getAllDocuments("css");
+        const css = (await result.data) || null;
+        result = await getAllDocuments("database");
+        const database = (await result.data) || null;
+        return {
+            props: {
+                javascript: javascript.documents,
+                css: css.documents,
+                database: database.documents,
+            },
+            revalidate: 5,
+        };
+    } catch {
+        return {
+            props: {},
+        };
+    }
 };
 
 export default Index;
