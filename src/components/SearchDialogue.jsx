@@ -7,11 +7,12 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 
 const SearchDialogue = ({}, ref) => {
     const [open, setOpen] = useState(false);
     const theme = useTheme();
+    const isMobile = useMediaQuery("(max-width: 600px)");
 
     const handleClick = () => setOpen(!open);
 
@@ -31,12 +32,16 @@ const SearchDialogue = ({}, ref) => {
             onClose={handleClick}
             sx={{
                 "& .MuiDialog-paper": {
-                    width: "60vw",
-                    height: "60vh",
+                    mt: "-1rem",
+                    width: isMobile ? "100vw" : "60%",
+                    height: "70vh",
                     borderRadius: "0.8rem",
                 },
                 "& .MuiBackdrop-root": {
-                    backdropFilter: "blur(0.5rem)",
+                    backdropFilter: "blur(0.3rem)",
+                },
+                "& .MuiDialog-paperScrollPaper": {
+                    maxWidth: "100vw",
                 },
             }}
         >

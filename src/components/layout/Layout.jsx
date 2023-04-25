@@ -32,6 +32,7 @@ const Layout = ({ children }) => {
                     alignItems: "center",
                     height: "100vh",
                     width: "100vw",
+                    backgroundColor: "transparent",
                 }}
             >
                 <Triangle
