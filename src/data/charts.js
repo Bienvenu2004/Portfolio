@@ -242,8 +242,8 @@ export const barData = [
         AntdColor: "hsl(258, 70%, 50%)",
         Primereact: 70,
         PrimereactColor: "#d4abdc",
-        "React Bootstrap": 73,
-        "React BootstrapColor": "#342056",
+        Bootstrap: 73,
+        BootstrapColor: "#342056",
     },
     {
         skills: "Database & Hosting",
