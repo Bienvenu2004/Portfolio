@@ -5,15 +5,13 @@ import {
     useMediaQuery,
     Modal,
     Slide,
-    Typography,
     Backdrop,
     Divider,
-    Chip,
-    InputBase,
 } from "@mui/material";
-import { Search } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
-import { Loading } from "@nextui-org/react";
+import SearchModalFooter from "./searchmodal/SearchModalFooter";
+import SearchModalContent from "./searchmodal/SearchModalContent";
+import SearchModalHeader from "./searchmodal/SearchModalHeader";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -111,107 +109,11 @@ const SearchDialogue = ({}, ref) => {
                             },
                         }}
                     >
-                        <Box
-                            sx={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                p: 2,
-
-                                backgroundColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgb(0, 30, 60, 0.3)",
-                                width: "100%",
-                                "& svg": {
-                                    color:
-                                        theme.palette.mode === "dark" &&
-                                        "rgba(1, 80, 155, 1)",
-                                },
-                            }}
-                        >
-                            {isTyping ? (
-                                <Loading
-                                    size="sm"
-                                    color="primary"
-                                    type="default"
-                                    css={{
-                                        mr: "16px",
-                                    }}
-                                />
-                            ) : (
-                                <Search
-                                    sx={{
-                                        fontSize: "25px",
-                                        mr: "16px",
-                                    }}
-                                />
-                            )}
-                            <InputBase
-                                fullWidth
-                                id="search"
-                                label="Search..."
-                                variant="standard"
-                                placeholder="Search..."
-                                sx={{
-                                    border: "none",
-                                    margin: "0px",
-                                    pt: "5px",
-                                    fontSize: "16px",
-                                    letterSpacing: "1px",
-                                    "&:focus": {
-                                        outline: "none",
-                                    },
-                                    "& .MuiOutlinedInput-input": {
-                                        m: 0,
-                                        border: "none",
-                                    },
-                                }}
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                                onChange={(event) => {
-                                    setSearchValue(event.target.value);
-                                    if (event.target.value.length < 1) {
-                                        setSearchValue(null);
-                                    }
-                                }}
-                            />
-                            <Chip
-                                variant="outlined"
-                                label={
-                                    <Typography
-                                        sx={{
-                                            textTransform: "none",
-                                            fontSize: "12px",
-                                            fontWeight: "bold",
-                                            color: theme.palette.secondary.text,
-                                            letterSpacing: "3px",
-                                        }}
-                                    >
-                                        esc
-                                    </Typography>
-                                }
-                                size="small"
-                                sx={{
-                                    textTransform: "none",
-                                    transition: "all 0.2s ease-in-out",
-                                    backgroundColor:
-                                        theme.palette.mode === "dark"
-                                            ? "rgb(1, 10, 50, 1)"
-                                            : "#FFF",
-                                    border:
-                                        theme.palette.mode === "dark"
-                                            ? "1px solid rgba(1, 87, 155, 0.8)"
-                                            : "1px solid rgba(1, 1, 1, 0.2)",
-                                    "&.MuiChip-root": {
-                                        borderRadius: "8px",
-                                        margin: "0px",
-                                    },
-                                }}
-                                rounded={false}
-                            />
-                        </Box>
-
+                        {/**Search Modal Header */}
+                        <SearchModalHeader
+                            isTyping={isTyping}
+                            setSearchValue={setSearchValue}
+                        />
                         <Divider
                             sx={{
                                 backgroundColor:
@@ -223,51 +125,8 @@ const SearchDialogue = ({}, ref) => {
                                     "rgba(1, 87, 155, 0.8)",
                             }}
                         />
-                        <Box
-                            sx={{
-                                p: 2,
-                                width: "100%",
-                                flexGrow: 1,
-                                overflowY: "scroll",
-                                backgroundColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgb(0, 30, 60, 0.3)",
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontSize: "14px",
-                                    color: theme.palette.secondary.text,
-                                }}
-                            >
-                                Search results for "{searchValue}"
-                            </Typography>
-                            <Box
-                                sx={{
-                                    mt: 2,
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <Typography
-                                    sx={{
-                                        fontSize: "14px",
-                                        color: theme.palette.secondary.text,
-                                    }}
-                                >
-                                    No results found
-                                </Typography>
-                                <Typography
-                                    sx={{
-                                        fontSize: "14px",
-                                        color: theme.palette.secondary.text,
-                                    }}
-                                >
-                                    Try searching for something else
-                                </Typography>
-                            </Box>
-                        </Box>
+                        {/**Search Modal Content */}
+                        <SearchModalContent searchValue={searchValue} />
                         <Divider
                             sx={{
                                 backgroundColor:
@@ -279,35 +138,8 @@ const SearchDialogue = ({}, ref) => {
                                     "rgba(1, 87, 155, 0.8)",
                             }}
                         />
-                        <Box
-                            sx={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                p: 2,
-                                backgroundColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgb(0, 30, 60, 0.3)",
-                                width: "100%",
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontSize: "14px",
-                                    color: theme.palette.secondary.text,
-                                }}
-                            >
-                                Press esc to close
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    fontSize: "14px",
-                                    color: theme.palette.secondary.text,
-                                }}
-                            >
-                                Press enter to search
-                            </Typography>
-                        </Box>
+                        {/**Search Modal Footer */}
+                        <SearchModalFooter />
                     </Box>
                 </Slide>
             </Modal>
