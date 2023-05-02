@@ -8,10 +8,10 @@ import {
     CardContent,
     Typography,
     IconButton,
+    Skeleton,
 } from "@mui/material";
 import { useEffect } from "react";
 import { getAllDocuments } from "@/lib/mongodbHelper";
-import { Skeleton } from "@mui/material";
 import { Statistic } from "antd";
 import { ArrowUpwardOutlined } from "@mui/icons-material";
 

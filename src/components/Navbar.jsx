@@ -265,6 +265,8 @@ const Navbar = ({
                                 },
                             },
                         }}
+                        href="https://www.github.com/Abdulrahim2567"
+                        target="_blank"
                     >
                         <GitHub sx={{ fontSize: "20px" }} />
                     </IconButton>
@@ -295,6 +297,8 @@ const Navbar = ({
                                     },
                                 },
                             }}
+                            href="https://www.linkedin.com/in/abdou-rahim-729411246/"
+                            target="_blank"
                         >
                             <LinkedIn sx={{ fontSize: "20px" }} />
                         </IconButton>

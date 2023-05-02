@@ -126,7 +126,10 @@ const SearchDialogue = ({}, ref) => {
                             }}
                         />
                         {/**Search Modal Content */}
-                        <SearchModalContent searchValue={searchValue} />
+                        <SearchModalContent
+                            searchValue={searchValue}
+                            isTyping={isTyping}
+                        />
                         <Divider
                             sx={{
                                 backgroundColor:
