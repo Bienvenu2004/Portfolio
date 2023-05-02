@@ -113,6 +113,7 @@ const SearchDialogue = ({}, ref) => {
                         <SearchModalHeader
                             isTyping={isTyping}
                             setSearchValue={setSearchValue}
+                            closeSearchModal={handleClick}
                         />
                         <Divider
                             sx={{

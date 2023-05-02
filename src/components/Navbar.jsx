@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import SettingsDrawer from "./SettingsDrawer";
-import SearchDialogue from "./SearchDialogue";
+import SearchModal from "./SearchModal";
 import { User } from "@nextui-org/react";
 
 let detectedOS;
@@ -70,7 +70,7 @@ const Navbar = ({
                 placement="right"
                 prefersDarkMode={prefersDarkMode}
             />
-            <SearchDialogue ref={searchDialogueRef} />
+            <SearchModal ref={searchDialogueRef} />
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 {/* Left */}
                 <FlexBetween flexDirection="row">

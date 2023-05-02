@@ -13,9 +13,9 @@ import {
     LightModeOutlined,
     DarkModeOutlined,
     SettingsBrightness,
+    CloseRounded,
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import { CloseRounded } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
 import { SettingsOutlined } from "@mui/icons-material";
 
@@ -53,7 +53,6 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
             theme.palette.mode === "light"
                 ? "#cfd8dc"
                 : "rgba(31, 117, 254, 0.5)",
-        opacity: 0.8,
         borderRadius: "10px",
         textTransform: "none",
     }));
@@ -201,7 +200,7 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
                                 sx={{
                                     padding: "10px",
                                     width: "100%",
-                                    opacity: 0.8,
+
                                     backgroundColor:
                                         theme.palette.mode === "light" &&
                                         !isSystem
@@ -240,7 +239,6 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
                                 sx={{
                                     padding: "10px",
                                     width: "100%",
-                                    opacity: 0.8,
                                     backgroundColor:
                                         isSystem &&
                                         theme.palette.mode === "dark"
@@ -276,7 +274,6 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
                                 sx={{
                                     padding: "10px",
                                     width: "100%",
-                                    opacity: 0.8,
                                     backgroundColor:
                                         theme.palette.mode === "dark" &&
                                         !isSystem

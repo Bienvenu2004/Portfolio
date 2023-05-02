@@ -56,16 +56,29 @@ export const tokensDark = {
         900: "#333300",
     },
 
+    // blueAccent: {
+    //     100: "#ffffff",
+    //     200: "#d2e3ff",
+    //     300: "#79acfe",
+    //     400: "#4c91fe",
+    //     500: "#00AEEF",
+    //     // 500: "#1f75fe",
+    //     600: "#195ecb",
+    //     700: "#134698",
+    //     800: "#0c2f66",
+    //     900: "#061733",
+    // },
     blueAccent: {
-        100: "#ffffff",
-        200: "#d2e3ff",
-        300: "#79acfe",
-        400: "#4c91fe",
+        100: "#FFFFFF",
+        200: "#99a1ad",
+        300: "#677284",
+        400: "#34435b",
         500: "#1f75fe",
-        600: "#195ecb",
-        700: "#134698",
-        800: "#0c2f66",
-        900: "#061733",
+        // 500: "#011432",
+        600: "#011028",
+        700: "#010c1e",
+        800: "#000814",
+        900: "#00040a",
     },
 };
 
@@ -128,7 +141,7 @@ export const themeSettings = (mode) => {
                       secondary: {
                           ...tokensDark.blueAccent,
                           main: tokensDark.blueAccent[500],
-                          text: tokensDark.gray[500],
+                          text: tokensDark.gray[700],
                       },
                       error: {
                           ...tokensDark.redAccent,

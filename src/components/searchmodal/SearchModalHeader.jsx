@@ -1,10 +1,23 @@
-import React from "react";
-import { Box, InputBase, useTheme, Chip, Typography } from "@mui/material";
+import {
+    Box,
+    InputBase,
+    useTheme,
+    Chip,
+    Typography,
+    IconButton,
+} from "@mui/material";
 import { Loading } from "@nextui-org/react";
-import { Search } from "@mui/icons-material";
+import { Search, CloseRounded } from "@mui/icons-material";
 
-const SearchHeader = ({ isTyping, setSearchValue }) => {
+let detectedOS;
+
+const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
     const theme = useTheme();
+    if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
+    else if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
+    else if (navigator.userAgent.indexOf("Windows") != -1)
+        detectedOS = "Windows";
+
     return (
         <Box
             sx={{
@@ -69,40 +82,68 @@ const SearchHeader = ({ isTyping, setSearchValue }) => {
                     }
                 }}
             />
-            <Chip
-                variant="outlined"
-                label={
-                    <Typography
-                        sx={{
-                            textTransform: "none",
-                            fontSize: "12px",
-                            fontWeight: "bold",
-                            color: theme.palette.secondary.text,
-                            letterSpacing: "3px",
-                        }}
-                    >
-                        esc
-                    </Typography>
-                }
-                size="small"
-                sx={{
-                    textTransform: "none",
-                    transition: "all 0.2s ease-in-out",
-                    backgroundColor:
-                        theme.palette.mode === "dark"
-                            ? "rgb(1, 10, 50, 1)"
-                            : "#FFF",
-                    border:
-                        theme.palette.mode === "dark"
-                            ? "1px solid rgba(1, 87, 155, 0.8)"
-                            : "1px solid rgba(1, 1, 1, 0.2)",
-                    "&.MuiChip-root": {
-                        borderRadius: "8px",
-                        margin: "0px",
-                    },
-                }}
-                rounded={false}
-            />
+            {detectedOS ? (
+                <Chip
+                    variant="outlined"
+                    label={
+                        <Typography
+                            sx={{
+                                textTransform: "none",
+                                fontSize: "12px",
+                                fontWeight: "bold",
+                                color: theme.palette.secondary.text,
+                                letterSpacing: "3px",
+                            }}
+                        >
+                            esc
+                        </Typography>
+                    }
+                    size="small"
+                    sx={{
+                        textTransform: "none",
+                        transition: "all 0.2s ease-in-out",
+                        cursor: "pointer",
+                        backgroundColor:
+                            theme.palette.mode === "dark"
+                                ? "rgb(1, 10, 50, 0.5)"
+                                : "#FFF",
+                        border:
+                            theme.palette.mode === "dark"
+                                ? "1px solid rgba(1, 87, 155, 0.8)"
+                                : "1px solid rgba(1, 1, 1, 0.2)",
+                        "&.MuiChip-root": {
+                            borderRadius: "6px",
+                            margin: "0px",
+                        },
+                    }}
+                    rounded={false}
+                    onClick={closeSearchModal}
+                />
+            ) : (
+                <IconButton
+                    sx={{
+                        display: "flex",
+                        transition: "all 0.5s ease-in-out",
+                        backgroundColor:
+                            theme.palette.mode === "dark" &&
+                            "rgba(69, 90, 100, 0.1)",
+                        "&:hover": {
+                            backgroundColor:
+                                theme.palette.mode === "dark"
+                                    ? "rgba(1, 87, 155, 0.4)"
+                                    : theme.palette.secondary.main,
+                            transition: "all 0.5s ease-in-out",
+                            transform: "scale(0.8)",
+                            "& svg": {
+                                color: "#FFF",
+                            },
+                        },
+                    }}
+                    onClick={closeSearchModal}
+                >
+                    <CloseRounded />
+                </IconButton>
+            )}
         </Box>
     );
 };
