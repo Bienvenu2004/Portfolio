@@ -30,8 +30,6 @@ const Navbar = ({
     setMode,
     prefersDarkMode,
 }) => {
-    const [searchValue, setSearchValue] = useState(null);
-    const [isTyping, setIsTyping] = useState(false);
     const theme = useTheme();
     const settingsDrawerRef = useRef();
     const searchDialogueRef = useRef();
@@ -54,27 +52,7 @@ const Navbar = ({
     //get OS type
     if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
 
-    /* <InputBase
-        placeholder="Search..."
-        sx={{
-            color:
-                theme.palette.mode === "light" &&
-                "secondary.text",
-        }}
-        onChange={(event) => {
-            setSearchValue(event.target.value);
-            if (event.target.value.length < 1) {
-                setSearchValue(null);
-            }
-        }}
-    /> */
-
     const handleClick = () => settingsDrawerRef.current.alterDrawerState();
-
-    useEffect(() => {
-        if (searchValue != null) setIsTyping(true);
-        else setIsTyping(false);
-    }, [searchValue]);
 
     return (
         <AppBar
@@ -140,86 +118,127 @@ const Navbar = ({
                 </FlexBetween>
                 {/* Right */}
                 <FlexBetween gap="0.3rem">
-                    <Button
-                        variant="outlined"
-                        startIcon={
-                            <Search
-                                sx={{
-                                    color: "rgba(1, 87, 155, 0.8)",
-                                }}
-                            />
-                        }
-                        endIcon={
-                            <Chip
-                                variant="outlined"
-                                label={
-                                    <Typography
-                                        sx={{
-                                            textTransform: "none",
-                                            fontSize: "12px",
-                                            color: theme.palette.secondary.text,
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        {detectedOS === "MacOS" && "⌘ + K"}
-                                        {detectedOS !== "MacOS" && "Ctrl+K"}
-                                    </Typography>
-                                }
-                                size="small"
-                                sx={{
-                                    textTransform: "none",
-                                    backgroundColor:
-                                        theme.palette.mode === "dark"
-                                            ? "rgba(1, 87, 155, 0.5)"
-                                            : "#FFF",
-                                    border:
-                                        theme.palette.mode === "dark"
-                                            ? "1px solid rgba(1, 87, 155, 0.8)"
-                                            : "1px solid rgba(1, 1, 1, 0.2)",
-                                    "&.MuiChip-root": {
-                                        borderRadius: "8px",
-                                        margin: "0px",
-                                    },
-                                }}
-                                rounded={false}
-                            />
-                        }
-                        sx={{
-                            width: "fit-content",
-                            borderRadius: "0.8rem",
-                            textTransform: "none",
-                            fontSize: "14px",
-                            paddingX: "8px",
-                            color:
-                                theme.palette.mode === "dark"
-                                    ? "rgba(255,255, 255, 0.6)"
-                                    : "rgba(0, 0, 0, 0.5)",
-                            border:
-                                theme.palette.mode === "dark"
-                                    ? "1px solid rgba(1, 87, 155, 0.8)"
-                                    : "1px solid rgba(1, 87, 155, 0.2)",
-                            backgroundColor:
-                                theme.palette.mode === "dark"
-                                    ? "rgba(1, 87, 155, 0.1)"
-                                    : "rgba(1, 87, 155, 0.03)",
-                            "&:hover": {
-                                backgroundColor:
+                    {/* Search button for large screens*/}
+                    {!isMobile && (
+                        <Button
+                            variant="outlined"
+                            startIcon={
+                                <Search
+                                    sx={{
+                                        color: "rgba(1, 87, 155, 0.8)",
+                                        fontSize: isMobile && "20px",
+                                    }}
+                                />
+                            }
+                            endIcon={
+                                <Chip
+                                    variant="outlined"
+                                    label={
+                                        <Typography
+                                            sx={{
+                                                textTransform: "none",
+                                                fontSize: "12px",
+                                                color: theme.palette.secondary
+                                                    .text,
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {detectedOS === "MacOS" && "⌘ + K"}
+                                            {detectedOS !== "MacOS" && "Ctrl+K"}
+                                        </Typography>
+                                    }
+                                    size="small"
+                                    sx={{
+                                        textTransform: "none",
+                                        transition: "all 0.2s ease-in-out",
+                                        backgroundColor:
+                                            theme.palette.mode === "dark"
+                                                ? "rgba(1, 87, 155, 0.5)"
+                                                : "#FFF",
+                                        border:
+                                            theme.palette.mode === "dark"
+                                                ? "1px solid rgba(1, 87, 155, 0.8)"
+                                                : "1px solid rgba(1, 1, 1, 0.2)",
+                                        "&.MuiChip-root": {
+                                            borderRadius: "8px",
+                                            margin: "0px",
+                                        },
+                                    }}
+                                    rounded={false}
+                                />
+                            }
+                            sx={{
+                                width: "fit-content",
+                                borderRadius: "0.8rem",
+                                textTransform: "none",
+                                fontSize: "14px",
+                                paddingX: "8px",
+                                color:
                                     theme.palette.mode === "dark"
-                                        ? "rgba(1, 87, 155, 0.4)"
-                                        : "rgba(1, 87, 155, 0.1)",
-                                transition: "all 0.5s ease-in-out",
+                                        ? "rgba(255,255, 255, 0.6)"
+                                        : "rgba(0, 0, 0, 0.5)",
                                 border:
                                     theme.palette.mode === "dark"
-                                        ? "1px solid rgba(1, 87, 155, 0.8)"
+                                        ? "1px solid rgba(1, 87, 155, 0.4)"
                                         : "1px solid rgba(1, 87, 155, 0.2)",
-                            },
-                        }}
-                        onClick={() =>
-                            searchDialogueRef.current.alterSearchDialogueState()
-                        }
-                    >
-                        Search...
-                    </Button>
+                                backgroundColor:
+                                    theme.palette.mode === "dark"
+                                        ? "rgba(1, 87, 155, 0.1)"
+                                        : "rgba(1, 87, 155, 0.03)",
+                                "&:hover": {
+                                    backgroundColor:
+                                        theme.palette.mode === "dark"
+                                            ? "rgba(1, 87, 155, 0.25)"
+                                            : "rgba(1, 87, 155, 0.1)",
+                                    transition: "all 0.3s ease-in-out",
+                                    border:
+                                        theme.palette.mode === "dark"
+                                            ? "1px solid rgba(1, 87, 155, 0.4)"
+                                            : "1px solid rgba(1, 87, 155, 0.2)",
+                                },
+                            }}
+                            onClick={() =>
+                                searchDialogueRef.current.alterSearchDialogueState()
+                            }
+                        >
+                            Search...
+                        </Button>
+                    )}
+                    {/** Search button for small screens*/}
+                    {isMobile && (
+                        <IconButton
+                            sx={{
+                                display: "flex",
+                                transition: "all 0.5s ease-in-out",
+                                color: theme.palette.secondary.main,
+                                backgroundColor:
+                                    theme.palette.mode === "dark" &&
+                                    "rgba(69, 90, 100, 0.1)",
+                                borderRadius: "0.8rem",
+                                border:
+                                    theme.palette.mode === "dark"
+                                        ? "1px solid rgba(1, 87, 155, 0.4)"
+                                        : "1px solid rgba(1, 87, 155, 0.2)",
+                                "&:hover": {
+                                    backgroundColor:
+                                        theme.palette.mode === "dark"
+                                            ? "rgba(1, 87, 155, 0.4)"
+                                            : theme.palette.secondary.main,
+                                    transition: "all 0.5s ease-in-out",
+                                    "& svg": {
+                                        color:
+                                            theme.palette.mode === "light" &&
+                                            "#FFF",
+                                    },
+                                },
+                            }}
+                            onClick={() =>
+                                searchDialogueRef.current.alterSearchDialogueState()
+                            }
+                        >
+                            <Search sx={{ fontSize: "20px" }} />
+                        </IconButton>
+                    )}
                     <IconButton
                         sx={{
                             display: "flex",
@@ -231,7 +250,7 @@ const Navbar = ({
                             borderRadius: "0.8rem",
                             border:
                                 theme.palette.mode === "dark"
-                                    ? "1px solid rgba(1, 87, 155, 0.8)"
+                                    ? "1px solid rgba(1, 87, 155, 0.4)"
                                     : "1px solid rgba(1, 87, 155, 0.2)",
                             "&:hover": {
                                 backgroundColor:
@@ -261,7 +280,7 @@ const Navbar = ({
                                 borderRadius: "0.8rem",
                                 border:
                                     theme.palette.mode === "dark"
-                                        ? "1px solid rgba(1, 87, 155, 0.8)"
+                                        ? "1px solid rgba(1, 87, 155, 0.4)"
                                         : "1px solid rgba(1, 87, 155, 0.2)",
                                 "&:hover": {
                                     backgroundColor:
@@ -292,7 +311,7 @@ const Navbar = ({
                                 borderRadius: "0.8rem",
                                 border:
                                     theme.palette.mode === "dark"
-                                        ? "1px solid rgba(1, 87, 155, 0.8)"
+                                        ? "1px solid rgba(1, 87, 155, 0.4)"
                                         : "1px solid rgba(1, 87, 155, 0.2)",
                                 "&:hover": {
                                     backgroundColor:
