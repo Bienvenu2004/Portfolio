@@ -6,7 +6,6 @@ import axios from "axios";
 
 const App = ({ document }) => {
     const theme = useTheme();
-    const matches = useMediaQuery("(min-width:1366px)", { noSsr: true });
 
     console.log(document);
     return (
@@ -15,7 +14,7 @@ const App = ({ document }) => {
             style={{
                 padding: "0 0.5rem",
                 color: theme.palette.secondary.text,
-                height: matches ? "92vh" : "90vh",
+                height: "100%",
             }}
         >
             <Box

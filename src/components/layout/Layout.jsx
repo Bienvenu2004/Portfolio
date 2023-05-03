@@ -62,15 +62,19 @@ const Layout = ({ children }) => {
                     isMobile={isMobile}
                     drawerWidth="250px"
                 />
-                <Box flexGrow={1}>
-                    <Navbar
-                        isSidebarOpen={isSidebarOpen}
-                        setIsSidebarOpen={setIsSidebarOpen}
-                        setMode={setMode}
-                        prefersDarkMode={prefersDarkMode}
-                    />
+                <Box flexGrow={1} display="flex" flexDirection="column">
+                    <Box display="flex">
+                        <Navbar
+                            isSidebarOpen={isSidebarOpen}
+                            setIsSidebarOpen={setIsSidebarOpen}
+                            setMode={setMode}
+                            prefersDarkMode={prefersDarkMode}
+                        />
+                    </Box>
                     {/** content of page*/}
-                    {children}
+                    <Box flexGrow={1} display="flex" height="100%">
+                        {children}
+                    </Box>
                 </Box>
             </Box>
         </ThemeProvider>

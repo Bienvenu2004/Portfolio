@@ -9,6 +9,8 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                 width: "100%",
                 flexGrow: 1,
                 overflowY: "scroll",
+                p: "0",
+                m: "0",
                 backgroundColor:
                     theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.3)",
             }}
@@ -23,6 +25,8 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                         backgroundColor:
                             theme.palette.mode === "dark" &&
                             "rgb(0, 30, 60, 0.3)",
+                        m: "0",
+                        p: "0",
                     }}
                 />
             ) : (

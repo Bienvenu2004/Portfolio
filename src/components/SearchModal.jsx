@@ -1,17 +1,10 @@
 import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
-import {
-    Box,
-    useTheme,
-    useMediaQuery,
-    Modal,
-    Slide,
-    Backdrop,
-    Divider,
-} from "@mui/material";
+import { Box, useMediaQuery, Modal, Slide, Backdrop } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import SearchModalFooter from "./searchmodal/SearchModalFooter";
-import SearchModalContent from "./searchmodal/SearchModalContent";
-import SearchModalHeader from "./searchmodal/SearchModalHeader";
+import SearchModalFooter from "./searchmodalcomponents/SearchModalFooter";
+import SearchModalContent from "./searchmodalcomponents/SearchModalContent";
+import SearchModalHeader from "./searchmodalcomponents/SearchModalHeader";
+import CustomDivider from "./UI/CustomDivider";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -45,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchDialogue = ({}, ref) => {
     const [open, setOpen] = useState(false);
-    const theme = useTheme();
     const isMobile = useMediaQuery("(max-width: 720px)");
     const classes = useStyles();
     const [searchValue, setSearchValue] = useState(null);
@@ -57,7 +49,7 @@ const SearchDialogue = ({}, ref) => {
         ref,
         () => {
             return {
-                alterSearchDialogueState: () => handleClick(),
+                alterSearchModalState: () => handleClick(),
             };
         },
         []
@@ -115,33 +107,13 @@ const SearchDialogue = ({}, ref) => {
                             setSearchValue={setSearchValue}
                             closeSearchModal={handleClick}
                         />
-                        <Divider
-                            sx={{
-                                backgroundColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgb(0, 30, 60, 0.3)",
-                                width: "100%",
-                                borderColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgba(1, 87, 155, 0.8)",
-                            }}
-                        />
+                        <CustomDivider />
                         {/**Search Modal Content */}
                         <SearchModalContent
                             searchValue={searchValue}
                             isTyping={isTyping}
                         />
-                        <Divider
-                            sx={{
-                                backgroundColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgb(0, 30, 60, 0.3)",
-                                width: "100%",
-                                borderColor:
-                                    theme.palette.mode === "dark" &&
-                                    "rgba(1, 87, 155, 0.8)",
-                            }}
-                        />
+                        <CustomDivider />
                         {/**Search Modal Footer */}
                         <SearchModalFooter />
                     </Box>

@@ -2,7 +2,6 @@ import { useTheme, Box, useMediaQuery } from "@mui/material";
 
 const Index = () => {
     const theme = useTheme();
-    const matches = useMediaQuery("(min-width:1366px)", { noSsr: true });
 
     return (
         <div
@@ -10,7 +9,7 @@ const Index = () => {
             style={{
                 padding: "0 0.5rem",
                 color: theme.palette.secondary.text,
-                height: matches ? "92vh" : "90vh",
+                height: "100%",
             }}
         >
             <Box

@@ -16,7 +16,6 @@ import { Statistic } from "antd";
 import { ArrowUpwardOutlined } from "@mui/icons-material";
 
 const Index = ({ javascript = "1", css = 1, database = 1 }) => {
-    const matches = useMediaQuery("(min-width:1366px)", { noSsr: true });
     const theme = useTheme();
     // console.log("JS", javascript);
     // console.log("CSS", css);
@@ -28,7 +27,7 @@ const Index = ({ javascript = "1", css = 1, database = 1 }) => {
             style={{
                 padding: "0 0.5rem",
                 color: theme.palette.secondary.text,
-                height: matches ? "92vh" : "90vh",
+                height: "100%",
             }}
         >
             <Box
