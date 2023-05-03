@@ -13,7 +13,6 @@ const Index = () => {
             }}
         >
             <Box
-                mx={0.75}
                 height="100%"
                 borderRadius={3}
                 backgroundColor={theme.palette.background.alt}

@@ -1,11 +1,9 @@
 import {
     Box,
     Drawer,
-    Divider,
     IconButton,
     ListItem,
     ListItemButton,
-    List,
     useTheme,
     ListItemText,
     Typography,
@@ -49,6 +47,7 @@ const Sidebar = ({
                         width: isSidebarOpen ? drawerWidth : "0px",
                         height: "100vh",
                         flexShrink: 0,
+                        mr: "0.75rem",
                         "& .MuiDrawer-paper": {
                             color: theme.palette.secondary[200],
                             backgroundColor: theme.palette.background.alt,
