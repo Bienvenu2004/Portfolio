@@ -7,12 +7,13 @@ import {
     useTheme,
     useMediaQuery,
 } from "@mui/material";
-import { Badge } from "antd";
-import { ArrowUpwardOutlined, VerifiedTwoTone } from "@mui/icons-material";
+import { Badge, Progress } from "antd";
+import { VerifiedTwoTone } from "@mui/icons-material";
+import Image from "next/image";
 
-const SkillBox = ({ label, value, ...styles }) => {
+const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
     const theme = useTheme();
-    const isMobile = useMediaQuery("(max-width: 450px)");
+    const isMobile = useMediaQuery("(max-width: 600px)");
 
     return (
         <Box
@@ -20,7 +21,7 @@ const SkillBox = ({ label, value, ...styles }) => {
             height="inherit"
             m={0.5}
             borderRadius={3}
-            backgroundColor={theme.palette.background.alt}
+            backgroundColor="transparent"
             display="flex"
             justifyContent="space-between"
         >
@@ -30,7 +31,7 @@ const SkillBox = ({ label, value, ...styles }) => {
                         <Typography
                             display="inline-block"
                             sx={{
-                                color: theme.palette.secondary.text,
+                                color: "#FFFF",
                                 fontWeight: 400,
                                 px: 1,
                             }}
@@ -44,9 +45,14 @@ const SkillBox = ({ label, value, ...styles }) => {
                     <Card
                         style={{ height: "100%" }}
                         sx={{
-                            backgroundColor: "transparent",
+                            backgroundColor: theme.palette.background.alt,
+                            border:
+                                theme.palette.mode === "dark" &&
+                                "1px solid #1E4976",
                             borderRadius: 1.5,
-                            p: 1,
+
+                            display: "flex",
+                            flexDirection: "row",
                             boxShadow:
                                 theme.palette.mode === "light" &&
                                 "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
@@ -60,7 +66,11 @@ const SkillBox = ({ label, value, ...styles }) => {
                                 height: "100%",
                             }}
                         >
-                            <Box height="fit-content" display="flex">
+                            <Box
+                                height="fit-content"
+                                display="flex"
+                                flexGrow={1}
+                            >
                                 <IconButton
                                     sx={{
                                         backgroundColor: "transparent",
@@ -70,53 +80,117 @@ const SkillBox = ({ label, value, ...styles }) => {
                                     }}
                                 >
                                     <VerifiedTwoTone
-                                        sx={{ fontSize: "23px" }}
+                                        sx={{ fontSize: "25px" }}
                                     />
                                 </IconButton>
                             </Box>
-                            <Box
-                                flexGrow={1}
-                                display="flex"
-                                alignItems="flex-end"
-                            >
+                            <Box display="flex" alignItems="flex-end">
                                 <Typography
                                     variant="h6"
                                     component="div"
                                     display="inline-block"
                                 >
                                     <Box display="inline-block">
-                                        <IconButton
-                                            disableRipple={true}
-                                            sx={{
-                                                mt: 4,
-                                                cursor: "default",
-                                                "&:hover": {
-                                                    backgroundColor:
-                                                        "transparent",
-                                                },
-                                            }}
+                                        <Box
+                                            flexGrow={1}
+                                            display="flex"
+                                            // border="1px solid #1E4976"
+                                            alignItems="center"
+                                            justifyContent="center"
+                                            px={
+                                                label === "Vercel" ||
+                                                (label === "Database" && 1)
+                                            }
                                         >
-                                            <ArrowUpwardOutlined
-                                                sx={{
-                                                    color: "#FFF",
-                                                    fontSize: "1.8rem",
+                                            <Image
+                                                src={image}
+                                                height={100}
+                                                width={100}
+                                                alt={label}
+                                                style={{
+                                                    filter:
+                                                        theme.palette.mode ===
+                                                            "dark" &&
+                                                        label === "Vercel" &&
+                                                        "invert(1)",
                                                 }}
                                             />
-                                            <Typography
-                                                display="inline-block"
-                                                variant="h2"
-                                                sx={{
-                                                    color: theme.palette
-                                                        .secondary.text,
-                                                    mt: "6px",
-                                                    px: 1,
-                                                }}
-                                            >
-                                                {value}
-                                            </Typography>
-                                        </IconButton>
+                                        </Box>
                                     </Box>
                                 </Typography>
+                            </Box>
+                        </Box>
+                        <Box
+                            display="flex"
+                            // border="1px solid #1E4976"
+                            alignItems="flex-end"
+                            justifyContent="flex-end"
+                            flexDirection="row"
+                            flexGrow={1}
+                            width="100%"
+                        >
+                            <Box
+                                display="flex"
+                                // border="1px solid #1E4976"
+                                flexDirection="column"
+                                flexGrow={2}
+                                height={120}
+                                width="100%"
+                                pt={3}
+                            >
+                                {/**progress bars */}
+                                {skill &&
+                                    skill.map((item) => (
+                                        <Box key={item.name} mb={-1} p="0px">
+                                            <Typography
+                                                sx={{
+                                                    fontSize: "10px",
+                                                    m: 0,
+                                                    mb: -1.2,
+                                                }}
+                                            >
+                                                {item.name}
+                                            </Typography>
+                                            <Progress
+                                                percent={item.value}
+                                                status="active"
+                                                size="small"
+                                                trailColor={item.trailColor}
+                                                strokeColor={{
+                                                    "0%": item.trailColor,
+                                                    "100%": item.strokeColor,
+                                                }}
+                                                strokeWidth={8}
+                                                style={{
+                                                    width: "90%",
+                                                }}
+                                                showInfo={false}
+                                            />
+                                        </Box>
+                                    ))}
+                            </Box>
+
+                            <Box
+                                disableRipple={true}
+                                sx={{
+                                    mt: 4,
+                                    flexGrow: 1,
+                                    height: "75%",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    mr: 1,
+                                }}
+                            >
+                                <Progress
+                                    percent={value}
+                                    size="small"
+                                    status="active"
+                                    trailColor={styles.trailColor}
+                                    type="dashboard"
+                                    strokeColor={styles.strokeColor}
+                                    strokeWidth={8}
+                                />
                             </Box>
                         </Box>
                     </Card>
