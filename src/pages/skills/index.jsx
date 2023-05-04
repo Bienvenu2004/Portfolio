@@ -156,7 +156,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                                         strokeColor: "rgb(1, 236, 100)",
                                     },
                                     {
-                                        name: "Amazon Web Services",
+                                        name: "AWS",
                                         value: 50,
                                         trailColor: "hsl(38, 70%, 50%, 0.4)",
                                         strokeColor: "hsl(38, 70%, 50%)",

@@ -14,6 +14,7 @@ import Image from "next/image";
 const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery("(max-width: 600px)");
+    const isMedium = useMediaQuery("(max-width: 1366px)");
 
     return (
         <Box
@@ -104,8 +105,8 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                         >
                                             <Image
                                                 src={image}
-                                                height={100}
-                                                width={100}
+                                                height={isMedium ? 70 : 100}
+                                                width={isMedium ? 70 : 100}
                                                 alt={label}
                                                 style={{
                                                     filter:
@@ -113,6 +114,8 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                             "dark" &&
                                                         label === "Vercel" &&
                                                         "invert(1)",
+                                                    transition:
+                                                        "all 0.3s ease-in-out",
                                                 }}
                                             />
                                         </Box>
@@ -160,7 +163,7 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                     "0%": item.trailColor,
                                                     "100%": item.strokeColor,
                                                 }}
-                                                strokeWidth={8}
+                                                strokeWidth={isMedium ? 4 : 8}
                                                 style={{
                                                     width: "90%",
                                                 }}
