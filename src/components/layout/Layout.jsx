@@ -7,7 +7,6 @@ import Navbar from "../Navbar";
 import { Triangle } from "react-loader-spinner";
 
 const Layout = ({ children }) => {
-    const isMobile = useMediaQuery("(max-width: 600px)");
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const userModePreference = prefersDarkMode ? "dark" : "light";
     const [mode, setMode] = useState(userModePreference);
@@ -50,12 +49,8 @@ const Layout = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Box
-                display={isMobile ? "block" : "flex"}
-                width="100%"
-                height="100%"
-            >
-                <Sidebar isMobile={isMobile} drawerWidth="250px" />
+            <Box display={"flex"} width="100vw" height="100vh">
+                <Sidebar />
                 <Box flexGrow={1} display="flex" flexDirection="column">
                     <Box display="flex">
                         <Navbar

@@ -13,6 +13,7 @@ import Image from "next/image";
 
 const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
     const theme = useTheme();
+    const is300px = useMediaQuery("(max-width: 300px)");
     const isMobile = useMediaQuery("(max-width: 600px)");
     const isMedium = useMediaQuery("(max-width: 1366px)");
 
@@ -116,6 +117,8 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                         "invert(1)",
                                                     transition:
                                                         "all 0.3s ease-in-out",
+                                                    height: is300px && "50px",
+                                                    width: is300px && "50px",
                                                 }}
                                             />
                                         </Box>
@@ -136,9 +139,9 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                 display="flex"
                                 // border="1px solid #1E4976"
                                 flexDirection="column"
+                                width="100%"
                                 flexGrow={2}
                                 height={120}
-                                width="100%"
                                 pt={3}
                             >
                                 {/**progress bars */}
@@ -165,7 +168,8 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                 }}
                                                 strokeWidth={isMedium ? 4 : 8}
                                                 style={{
-                                                    width: "90%",
+                                                    width: "94%",
+
                                                     transition:
                                                         "all 0.3s ease-in-out",
                                                 }}
