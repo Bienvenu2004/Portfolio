@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useContext } from "react";
 import { CssBaseline, ThemeProvider, Box, useMediaQuery } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "../../theme/theme";
@@ -7,8 +7,6 @@ import Navbar from "../Navbar";
 import { Triangle } from "react-loader-spinner";
 
 const Layout = ({ children }) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const isMobile = useMediaQuery("(max-width: 600px)");
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const userModePreference = prefersDarkMode ? "dark" : "light";
     const [mode, setMode] = useState(userModePreference);
@@ -32,7 +30,7 @@ const Layout = ({ children }) => {
                     alignItems: "center",
                     height: "100vh",
                     width: "100vw",
-                    backgroundColor: "transparent",
+                    backgroundColor: theme.palette.background.main,
                 }}
             >
                 <Triangle
@@ -51,26 +49,19 @@ const Layout = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Box
-                display={isMobile ? "block" : "flex"}
-                width="100%"
-                height="100%"
-            >
-                <Sidebar
-                    isSidebarOpen={isSidebarOpen}
-                    setIsSidebarOpen={setIsSidebarOpen}
-                    isMobile={isMobile}
-                    drawerWidth="250px"
-                />
-                <Box flexGrow={1}>
-                    <Navbar
-                        isSidebarOpen={isSidebarOpen}
-                        setIsSidebarOpen={setIsSidebarOpen}
-                        setMode={setMode}
-                        prefersDarkMode={prefersDarkMode}
-                    />
+            <Box display={"flex"} width="100vw" height="100vh">
+                <Sidebar />
+                <Box flexGrow={1} display="flex" flexDirection="column">
+                    <Box display="flex">
+                        <Navbar
+                            setMode={setMode}
+                            prefersDarkMode={prefersDarkMode}
+                        />
+                    </Box>
                     {/** content of page*/}
-                    {children}
+                    <Box flexGrow={1} display="flex" height="100%">
+                        {children}
+                    </Box>
                 </Box>
             </Box>
         </ThemeProvider>

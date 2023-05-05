@@ -94,6 +94,9 @@ dependencies:
   react-loader-spinner:
     specifier: ^5.3.4
     version: 5.3.4(react-dom@18.2.0)(react@18.2.0)
+  react-wavify:
+    specifier: ^1.8.0
+    version: 1.8.0(react@18.2.0)
   sharp:
     specifier: ^0.32.0
     version: 0.32.0
@@ -3591,6 +3594,15 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-wavify@1.8.0(react@18.2.0):
+    resolution: {integrity: sha512-8Pxd1vLuC5VBUxvWa2EFYsQLZIjY68KxzM4ztw2ZG6PCAnu/d0lQDCIW+mathr/PH2AAt4A2MJHVPuWs/BLP2w==}
+    peerDependencies:
+      react: ^0.13.0 || ^0.14.0 || >=15
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react@18.2.0:

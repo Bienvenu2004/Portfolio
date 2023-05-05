@@ -11,11 +11,15 @@ body,
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
+    background-color: transparent;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
     background: transparent;
+}
+::-webkit-scrollbar-track:hover {
+    background: rgba(1, 87, 155, 0.4);
 }
 
 /* Handle */
@@ -25,7 +29,7 @@ body,
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: gray;
+    background: rgba(1, 87, 155);
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
