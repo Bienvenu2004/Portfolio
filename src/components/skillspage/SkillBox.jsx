@@ -9,17 +9,21 @@ import {
 } from "@mui/material";
 import { Badge, Progress } from "antd";
 import { VerifiedTwoTone } from "@mui/icons-material";
+import { SidebarContext } from "../contexts/SidebarContext";
 import Image from "next/image";
 
 const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
     const theme = useTheme();
     const is300px = useMediaQuery("(max-width: 300px)");
-    const isMobile = useMediaQuery("(max-width: 600px)");
+    const isMobile = useMediaQuery("(max-width: 520px)");
+    const is768px = useMediaQuery("(max-width: 768px)");
+    const is900px = useMediaQuery("(max-width: 900px)");
     const isMedium = useMediaQuery("(max-width: 1366px)");
+    const { isSidebarOpen } = React.useContext(SidebarContext);
 
     return (
         <Box
-            width={isMobile ? "100%" : "48%"}
+            width={"100%"}
             height="inherit"
             m={0.5}
             borderRadius={3}
@@ -117,8 +121,22 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                         "invert(1)",
                                                     transition:
                                                         "all 0.3s ease-in-out",
-                                                    height: is300px && "50px",
-                                                    width: is300px && "50px",
+                                                    height:
+                                                        (is300px && "50px") ||
+                                                        (is900px &&
+                                                            !isSidebarOpen &&
+                                                            "50px") ||
+                                                        (isSidebarOpen &&
+                                                            is768px &&
+                                                            "50px"),
+                                                    width:
+                                                        (is300px && "50px") ||
+                                                        (is900px &&
+                                                            !isSidebarOpen &&
+                                                            "50px") ||
+                                                        (isSidebarOpen &&
+                                                            is768px &&
+                                                            "50px"),
                                                 }}
                                             />
                                         </Box>

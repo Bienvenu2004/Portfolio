@@ -24,13 +24,31 @@ const Sidebar = () => {
     const { pathname } = router;
     const [activeUrl, setActiveUrl] = useState(pathname.substring(1));
     const isMobile = useMediaQuery("(max-width: 600px)");
+    const autoCloseSideBar = useMediaQuery("(max-width: 660px)");
 
     //sidebar context
-    const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+    const { isSidebarOpen, setIsSidebarOpen, setIsPersistent } =
+        useContext(SidebarContext);
     const drawerWidth = "250px";
     useEffect(() => {
         setActiveUrl(pathname.substring(1));
     }, [pathname]);
+
+    useEffect(() => {
+        if (autoCloseSideBar) {
+            setIsSidebarOpen(false);
+        }
+    }, [autoCloseSideBar]);
+
+    useEffect(() => {
+        if (isMobile) {
+            setIsSidebarOpen(false);
+            setIsPersistent(false);
+        } else {
+            setIsSidebarOpen(true);
+            setIsPersistent(true);
+        }
+    }, [isMobile]);
 
     if (activeUrl === "") {
         setActiveUrl("dashboard");

@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import SkillBox from "./SkillBox";
 //images
@@ -6,10 +6,16 @@ import js from "@/public/images/js.png";
 import css3 from "@/public/images/css.png";
 import mongodb from "@/public/images/mongodb.png";
 import github from "@/public/images/github.png";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
-    const isMobile = useMediaQuery("(max-width: 600px)");
+    const isMobile = useMediaQuery("(max-width: 520px)");
+    const is600px = useMediaQuery("(max-width: 600px)");
     const isMedium = useMediaQuery("(max-width: 720px)");
+    const is815px = useMediaQuery("(max-width: 815px)");
+    const is950px = useMediaQuery("(max-width: 950px)");
+    const is1100px = useMediaQuery("(max-width: 1100px)");
+    const { isSidebarOpen, isPersistent } = useContext(SidebarContext);
 
     return (
         <Box
@@ -20,7 +26,11 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
             justifyContent="space-between"
             flexDirection="row"
             padding="10px"
-            flexWrap={isMedium && "wrap"}
+            flexWrap={
+                (isMedium && "wrap") ||
+                (isSidebarOpen && is1100px && "wrap") ||
+                (!isSidebarOpen && is815px && "wrap")
+            }
         >
             <Box
                 display="flex"
@@ -28,7 +38,10 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                 width="100%"
                 mx={0.5}
                 justifyContent="space-between"
-                flexWrap={isMobile && "wrap"}
+                flexWrap={
+                    (isMobile && "wrap") ||
+                    (isSidebarOpen && isMedium && "wrap")
+                }
             >
                 <SkillBox
                     label="JavaScript"
@@ -94,7 +107,12 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                 width="100%"
                 mx={0.5}
                 justifyContent="space-between"
-                flexWrap={isMobile && "wrap"}
+                flexWrap={
+                    (isMobile && "wrap") ||
+                    (isMedium && "wrap") ||
+                    (isSidebarOpen && is950px && "wrap") ||
+                    (!isSidebarOpen && is600px && "wrap")
+                }
             >
                 <SkillBox
                     label="Database"
