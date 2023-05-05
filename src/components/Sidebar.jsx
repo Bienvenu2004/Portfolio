@@ -9,23 +9,21 @@ import {
     Typography,
     ListItemIcon,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import FlexBetween from "./FlexBetween";
 import { useRouter } from "next/router";
 import { navItems } from "../data/data";
 import { User } from "@nextui-org/react";
 import { ArrowRightOutlined, ArrowBackOutlined } from "@mui/icons-material";
+import { SidebarContext } from "./contexts/SidebarContext";
 
-const Sidebar = ({
-    drawerWidth,
-    isSidebarOpen,
-    setIsSidebarOpen,
-    isMobile,
-}) => {
+const Sidebar = ({ drawerWidth, isMobile }) => {
     const theme = useTheme();
     const router = useRouter();
     const { pathname } = router;
     const [activeUrl, setActiveUrl] = useState(pathname.substring(1));
+    //sidebar context
+    const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
 
     useEffect(() => {
         setActiveUrl(pathname.substring(1));
@@ -44,16 +42,15 @@ const Sidebar = ({
                     onClose={() => setIsSidebarOpen(false)}
                     anchor="left"
                     sx={{
-                        width: isSidebarOpen ? drawerWidth : "0px",
+                        width: isSidebarOpen && drawerWidth,
                         height: "100vh",
                         flexShrink: 0,
-                        mr: "0.75rem",
                         "& .MuiDrawer-paper": {
                             color: theme.palette.secondary[200],
                             backgroundColor: theme.palette.background.alt,
                             boxSizing: "border-box",
                             borderWidth: isMobile ? "2px" : "0px",
-                            width: isSidebarOpen ? drawerWidth : "0px",
+                            width: isSidebarOpen && drawerWidth,
                             pr: "10px",
                             boxShadow:
                                 theme.palette.mode === "light" &&

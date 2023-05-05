@@ -4,16 +4,14 @@ import SettingsDrawer from "./SettingsDrawer";
 import SearchModal from "./SearchModal";
 import LeftSide from "./navbarcomponents/LeftSide";
 import RightSide from "./navbarcomponents/RightSide";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 
-const Navbar = ({
-    isSidebarOpen,
-    setIsSidebarOpen,
-    setMode,
-    prefersDarkMode,
-}) => {
+const Navbar = ({ setMode, prefersDarkMode }) => {
     const settingsDrawerRef = useRef();
     const searchModalRef = useRef();
     const isMobile = useMediaQuery("(max-width: 600px)");
+    const { isSidebarOpen, setIsSidebarOpen } =
+        React.useContext(SidebarContext);
 
     const handleClick = () => settingsDrawerRef.current.alterDrawerState();
 

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useContext } from "react";
 import { CssBaseline, ThemeProvider, Box, useMediaQuery } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "../../theme/theme";
@@ -7,7 +7,6 @@ import Navbar from "../Navbar";
 import { Triangle } from "react-loader-spinner";
 
 const Layout = ({ children }) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const isMobile = useMediaQuery("(max-width: 600px)");
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const userModePreference = prefersDarkMode ? "dark" : "light";
@@ -56,17 +55,10 @@ const Layout = ({ children }) => {
                 width="100%"
                 height="100%"
             >
-                <Sidebar
-                    isSidebarOpen={isSidebarOpen}
-                    setIsSidebarOpen={setIsSidebarOpen}
-                    isMobile={isMobile}
-                    drawerWidth="250px"
-                />
+                <Sidebar isMobile={isMobile} drawerWidth="250px" />
                 <Box flexGrow={1} display="flex" flexDirection="column">
                     <Box display="flex">
                         <Navbar
-                            isSidebarOpen={isSidebarOpen}
-                            setIsSidebarOpen={setIsSidebarOpen}
                             setMode={setMode}
                             prefersDarkMode={prefersDarkMode}
                         />

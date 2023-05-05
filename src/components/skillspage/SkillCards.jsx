@@ -1,0 +1,163 @@
+import React from "react";
+import { Box, useMediaQuery } from "@mui/material";
+import SkillBox from "./SkillBox";
+//images
+import js from "@/public/images/js.png";
+import css3 from "@/public/images/css.png";
+import mongodb from "@/public/images/mongodb.png";
+import github from "@/public/images/github.png";
+
+const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
+    const isMobile = useMediaQuery("(max-width: 600px)");
+    const isMedium = useMediaQuery("(max-width: 720px)");
+
+    return (
+        <Box
+            width="100%"
+            height="fit-content"
+            borderRadius={3}
+            display="flex"
+            justifyContent="space-between"
+            flexDirection="row"
+            padding="10px"
+            flexWrap={isMedium && "wrap"}
+        >
+            <Box
+                display="flex"
+                height="100%"
+                width="100%"
+                mx={0.5}
+                justifyContent="space-between"
+                flexWrap={isMobile && "wrap"}
+            >
+                <SkillBox
+                    label="JavaScript"
+                    value={Math.round(((65 + 80 + 70) / 300) * 100)}
+                    backgroundColor="#E8C825"
+                    image={js}
+                    trailColor="rgb(232, 200, 37, 0.4)"
+                    strokeColor="rgb(232, 200, 37)"
+                    skill={[
+                        {
+                            label: "Express JS",
+                            value: 65,
+                            trailColor: "rgb(232, 200, 37, 0.4)",
+                            color: "rgb(232, 200, 37)",
+                        },
+                        {
+                            label: "NextJS",
+                            value: 80,
+                            trailColor: "rgb(0, 0, 0, 0.3)",
+                            color: "rgb(0, 0, 0)",
+                        },
+                        {
+                            label: "NodeJS",
+                            value: 70,
+                            trailColor: "rgb(1, 236, 100, 0.4)",
+                            color: "rgb(1, 236, 100)",
+                        },
+                    ]}
+                />
+
+                <SkillBox
+                    label="CSS"
+                    value={Math.round(((75 + 70 + 70) / 300) * 100)}
+                    backgroundColor="#007EFD"
+                    trailColor="rgb(0, 126, 253, 0.4)"
+                    strokeColor="rgb(0, 126, 253)"
+                    image={css3}
+                    skill={[
+                        {
+                            label: "Material UI",
+                            value: 75,
+                            trailColor: "hsl(216, 70%, 50%, 0.4)",
+                            color: "hsl(216, 70%, 50%)",
+                        },
+                        {
+                            label: "Antd",
+                            value: 70,
+                            trailColor: "rgb(84, 84, 197, 0.4)",
+                            color: "rgb(84, 84, 197)",
+                        },
+                        {
+                            label: "Primereact",
+                            value: 70,
+                            trailColor: "rgb(212, 171, 220, 0.4)",
+                            color: "rgb(212, 171, 220)",
+                        },
+                    ]}
+                />
+            </Box>
+            <Box
+                display="flex"
+                height="100%"
+                width="100%"
+                mx={0.5}
+                justifyContent="space-between"
+                flexWrap={isMobile && "wrap"}
+            >
+                <SkillBox
+                    label="Database"
+                    value={Math.round(((72 + 50 + 78) / 300) * 100)}
+                    backgroundColor="#01EC64"
+                    strokeColor="#01EC64"
+                    trailColor="rgb(1, 236, 100, 0.4)"
+                    image={mongodb}
+                    skill={[
+                        {
+                            label: "MongoDB",
+                            value: 72,
+                            trailColor: "rgb(1, 236, 100, 0.4)",
+                            color: "rgb(1, 236, 100)",
+                        },
+                        {
+                            label: "AWS",
+                            value: 50,
+                            trailColor: "hsl(38, 70%, 50%, 0.4)",
+                            color: "hsl(38, 70%, 50%)",
+                        },
+                        {
+                            label: "PostgreSQL",
+                            value: 78,
+                            trailColor: "hsl(134, 70%, 50%, 0.4)",
+                            color: "hsl(134, 70%, 50%)",
+                        },
+                    ]}
+                />
+                <SkillBox
+                    label="Others"
+                    value={Math.round(((85 + 80 + 82) / 300) * 100)}
+                    backgroundColor="#9500ae"
+                    strokeColor="rgb(149, 0, 174)"
+                    trailColor="rgb(149, 0, 174,0.4)"
+                    image={github}
+                    skill={[
+                        {
+                            id: "GitHub",
+                            label: "GitHub",
+                            value: 85,
+                            color: "rgb(0,0,0)",
+                            trailColor: "rgb(0, 0, 0, 0.4)",
+                        },
+                        {
+                            id: "Git",
+                            label: "Git",
+                            value: 80,
+                            color: "rgb(233, 78, 49)",
+                            trailColor: "rgb(233, 78, 49,0.4)",
+                        },
+                        {
+                            id: "Vercel",
+                            label: "Vercel",
+                            value: 82,
+                            color: "rgb(149, 0, 174)",
+                            trailColor: "rgb(149, 0, 174, 0.4)",
+                        },
+                    ]}
+                />
+            </Box>
+        </Box>
+    );
+};
+
+export default SkillCards;

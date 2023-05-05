@@ -99,7 +99,7 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                             alignItems="center"
                                             justifyContent="center"
                                             px={
-                                                label === "Vercel" ||
+                                                label === "Others" ||
                                                 (label === "Database" && 1)
                                             }
                                         >
@@ -112,7 +112,7 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                     filter:
                                                         theme.palette.mode ===
                                                             "dark" &&
-                                                        label === "Vercel" &&
+                                                        label === "Others" &&
                                                         "invert(1)",
                                                     transition:
                                                         "all 0.3s ease-in-out",
@@ -152,7 +152,7 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                     mb: -1.2,
                                                 }}
                                             >
-                                                {item.name}
+                                                {item.label}
                                             </Typography>
                                             <Progress
                                                 percent={item.value}
@@ -161,11 +161,13 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                 trailColor={item.trailColor}
                                                 strokeColor={{
                                                     "0%": item.trailColor,
-                                                    "100%": item.strokeColor,
+                                                    "100%": item.color,
                                                 }}
                                                 strokeWidth={isMedium ? 4 : 8}
                                                 style={{
                                                     width: "90%",
+                                                    transition:
+                                                        "all 0.3s ease-in-out",
                                                 }}
                                                 showInfo={false}
                                             />
@@ -174,7 +176,6 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                             </Box>
 
                             <Box
-                                disableRipple={true}
                                 sx={{
                                     mt: 4,
                                     flexGrow: 1,
