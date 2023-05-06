@@ -10,8 +10,6 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
     const theme = useTheme();
     const { isSidebarOpen } = useContext(SidebarContext);
 
-    console.log("skillpage", isSidebarOpen);
-
     return (
         <div
             className="app"

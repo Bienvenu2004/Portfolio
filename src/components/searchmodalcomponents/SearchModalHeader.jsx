@@ -14,9 +14,8 @@ let detectedOS;
 const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
     const theme = useTheme();
     if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
-    else if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
-    else if (navigator.userAgent.indexOf("Windows") != -1)
-        detectedOS = "Windows";
+    if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
+    if (navigator.userAgent.indexOf("Windows") != -1) detectedOS = "Windows";
 
     return (
         <Box
