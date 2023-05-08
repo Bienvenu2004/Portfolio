@@ -15,7 +15,6 @@ import Image from "next/image";
 const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
     const theme = useTheme();
     const is300px = useMediaQuery("(max-width: 300px)");
-    const isMobile = useMediaQuery("(max-width: 520px)");
     const is768px = useMediaQuery("(max-width: 768px)");
     const is900px = useMediaQuery("(max-width: 900px)");
     const isMedium = useMediaQuery("(max-width: 1366px)");
@@ -25,11 +24,14 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
         <Box
             width={"100%"}
             height="inherit"
-            m={0.5}
+            m={0.75}
             borderRadius={3}
             backgroundColor="transparent"
             display="flex"
             justifyContent="space-between"
+            sx={{
+                transition: "all 0.3s ease-in-out",
+            }}
         >
             <Box height="100%" width="100%">
                 <Badge.Ribbon
@@ -62,6 +64,7 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                             boxShadow:
                                 theme.palette.mode === "light" &&
                                 "0px 0px 10px 0px rgba(0, 0, 0, 0.08)",
+                            transition: "all 0.3s ease-in-out",
                         }}
                     >
                         <Box

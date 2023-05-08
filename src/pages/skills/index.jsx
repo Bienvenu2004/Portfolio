@@ -17,10 +17,12 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 padding: "0",
                 color: theme.palette.secondary.text,
                 height: "100%",
+                display: "flex",
+                flexDirection: "column",
             }}
         >
             <Box
-                height="100%"
+                height="fit-content"
                 borderRadius={3}
                 boxShadow={
                     theme.palette.mode === "light" &&
@@ -47,6 +49,14 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                     />
                 )}
             </Box>
+            <Box
+                height="100%"
+                width="100%"
+                display="flex"
+                flexDirection="row"
+                border="1px solid green"
+                flexGrow={1}
+            ></Box>
         </div>
     );
 };
