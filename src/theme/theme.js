@@ -130,6 +130,7 @@ export const themeSettings = (mode) => {
                       background: {
                           default: tokensDark.primary[700],
                           alt: tokensDark.primary[600],
+                          line: tokensDark.primary[600],
                       },
                   }
                 : {
@@ -158,6 +159,7 @@ export const themeSettings = (mode) => {
                       background: {
                           default: tokensDark.gray[100],
                           alt: tokensDark.primary[100],
+                          line: tokensDark.primary[600],
                       },
                   }),
         },

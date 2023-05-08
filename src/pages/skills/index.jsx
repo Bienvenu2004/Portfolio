@@ -3,6 +3,9 @@ import { useContext } from "react";
 import { useTheme, Box, Skeleton } from "@mui/material";
 import SkillCards from "@/components/skillspage/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
+import Stack from "@/components/skillspage/Stack";
+import { pieDataJS, pieDataCSS, pieDataDB } from "@/data/charts";
+import PieChart from "@/components/PieChart";
 //database helpers
 import { getAllDocuments } from "@/lib/mongodbHelper";
 
@@ -54,9 +57,48 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 width="100%"
                 display="flex"
                 flexDirection="row"
-                border="1px solid green"
                 flexGrow={1}
-            ></Box>
+            >
+                {/**Left side */}
+                <Box height="100%" width="50%" display="flex" px={0.75}>
+                    <Stack
+                        mongodb={[
+                            {
+                                label: "MongoDB",
+                                value: 80,
+                            },
+                        ]}
+                        expressjs={[
+                            {
+                                label: "Express JS",
+                                value: 65,
+                            },
+                        ]}
+                        nextjs={[
+                            {
+                                label: "NextJS",
+                                value: 70,
+                            },
+                        ]}
+                        reactjs={[
+                            {
+                                label: "ReactJS",
+                                value: 75,
+                            },
+                        ]}
+                        nodejs={[
+                            {
+                                label: "NodeJS",
+                                value: 80,
+                            },
+                        ]}
+                    />
+                </Box>
+                {/**Right side */}
+                <Box height="100%" width="50%" display="flex" px={0.75}>
+                    <PieChart data={pieDataJS} />
+                </Box>
+            </Box>
         </div>
     );
 };

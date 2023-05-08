@@ -25,7 +25,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
             display="flex"
             justifyContent="space-between"
             flexDirection="row"
-            p={0.75}
+            px={0.75}
             flexWrap={
                 (isMedium && "wrap") ||
                 (isSidebarOpen && is1100px && "wrap") ||
