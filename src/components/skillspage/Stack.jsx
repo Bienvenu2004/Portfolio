@@ -3,10 +3,11 @@ import React from "react";
 import StackChart from "./StackChart";
 import StackCard from "./StackCard";
 //images
-import js from "@/public/images/js.png";
-import css3 from "@/public/images/css.png";
-import mongodb from "@/public/images/mongodb.png";
-import github from "@/public/images/github.png";
+import mongoDB from "@/public/images/mongodb.png";
+import expressJS from "@/public/images/expressjs.png";
+import reactJS from "@/public/images/reactjs.png";
+import nextJS from "@/public/images/nextjs.png";
+import nodeJS from "@/public/images/nodejs.png";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
@@ -58,7 +59,7 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                             value={72}
                             trailColor="rgb(1, 236, 100,0.4)"
                             strokeColor="rgb(1, 236, 100)"
-                            image={css3}
+                            image={mongoDB}
                         />
 
                         <StackCard
@@ -66,7 +67,7 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                             value={65}
                             trailColor="rgb(232, 200, 37,0.4)"
                             strokeColor="rgb(232, 200, 37)"
-                            image={js}
+                            image={expressJS}
                         />
                     </Box>
                     <Box
@@ -82,14 +83,14 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                             value={75}
                             strokeColor="hsl(216, 70%, 50%,0.3)"
                             trailColor="hsl(216, 70%, 50%)"
-                            image={css3}
+                            image={reactJS}
                         />
                         <StackCard
                             label="Node JS"
                             value={70}
                             strokeColor="rgb(1, 236, 100,0.4)"
                             trailColor="rgb(1, 236, 100)"
-                            image={github}
+                            image={nodeJS}
                         />
                     </Box>
                 </Box>

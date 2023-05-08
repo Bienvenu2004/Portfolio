@@ -88,7 +88,8 @@ const StackCard = ({ label, value, image, ...styles }) => {
                                     style={{
                                         filter:
                                             theme.palette.mode === "dark" &&
-                                            label === "NextJS" &&
+                                            (label === "nextJS" ||
+                                                label === "Express JS") &&
                                             "invert(1)",
                                         transition: "all 0.3s ease-in-out",
                                         height:
@@ -106,7 +107,12 @@ const StackCard = ({ label, value, image, ...styles }) => {
                                                 "50px") ||
                                             (isSidebarOpen &&
                                                 is768px &&
-                                                "50px"),
+                                                "50px") ||
+                                            (label === "Express JS" && "120px"),
+                                        marginRight:
+                                            (label === "Node JS" && "10px") ||
+                                            (label === "React JS" && "10px") ||
+                                            (label === "MongoDB" && "12px"),
                                     }}
                                 />
                             </Box>

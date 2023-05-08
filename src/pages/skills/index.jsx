@@ -1,17 +1,37 @@
 import axios from "axios";
-import { useContext } from "react";
-import { useTheme, Box, Skeleton } from "@mui/material";
+import React, { useContext, useEffect } from "react";
+import { useTheme, Box, Skeleton, Typography } from "@mui/material";
 import SkillCards from "@/components/skillspage/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 import Stack from "@/components/skillspage/Stack";
 import { pieDataJS, pieDataCSS, pieDataDB } from "@/data/charts";
 import PieChart from "@/components/PieChart";
+import { JavascriptTwoTone, CssTwoTone } from "@mui/icons-material";
+
 //database helpers
 import { getAllDocuments } from "@/lib/mongodbHelper";
+import SkillsDropdown from "@/components/skillspage/SkillsDropdown";
+import ChartsDropdown from "@/components/skillspage/ChartsDropdown";
+const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
+const charts = ["Pie", "Bar", "Line"];
 
 const Index = ({ javascript = 1, css = 1, database = 1 }) => {
     const theme = useTheme();
     const { isSidebarOpen } = useContext(SidebarContext);
+    const [selectedSkill, setSelectedSkill] = React.useState(
+        new Set(["JavaScript"])
+    );
+    const [selectedChart, setSelectedChart] = React.useState(new Set(["Pie"]));
+
+    const selectedValue = React.useMemo(
+        () => Array.from(selectedSkill).join(", ").replaceAll("_", " "),
+        [selectedSkill]
+    );
+
+    const selectedChartValue = React.useMemo(
+        () => Array.from(selectedChart).join(", ").replaceAll("_", " "),
+        [selectedChart]
+    );
 
     return (
         <div
@@ -60,7 +80,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 flexGrow={1}
             >
                 {/**Left side */}
-                <Box height="100%" width="50%" display="flex" px={0.75}>
+                <Box height="100%" width="50%" display="flex" p={0.75}>
                     <Stack
                         mongodb={[
                             {
@@ -95,7 +115,36 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                     />
                 </Box>
                 {/**Right side */}
-                <Box height="100%" width="50%" display="flex" px={0.75}>
+                <Box height="100%" width="50%" display="block" p={0.85}>
+                    <Box width="100%" display="flex">
+                        <Box
+                            display="flex"
+                            // border="1px solid red"
+                            width="50%"
+                            justifyContent="flex-start"
+                        >
+                            <SkillsDropdown
+                                selectedValue={selectedValue}
+                                selectedSkill={selectedSkill}
+                                setSelectedSkill={setSelectedSkill}
+                                skills={skills}
+                            />
+                        </Box>
+                        <Box
+                            display="flex"
+                            // border="1px solid green"
+                            width="50%"
+                            justifyContent="flex-end"
+                            px={1.2}
+                        >
+                            <ChartsDropdown
+                                selectedChartValue={selectedChartValue}
+                                selectedChart={selectedChart}
+                                setSelectedChart={setSelectedChart}
+                                charts={charts}
+                            />
+                        </Box>
+                    </Box>
                     <PieChart data={pieDataJS} />
                 </Box>
             </Box>
