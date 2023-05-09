@@ -37,7 +37,6 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
         <div
             className="app"
             style={{
-                padding: "0",
                 color: theme.palette.secondary.text,
                 height: "100%",
                 display: "flex",
@@ -80,7 +79,13 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 flexGrow={1}
             >
                 {/**Left side */}
-                <Box height="100%" width="50%" display="flex" p={0.75}>
+                <Box
+                    height="100%"
+                    width="50%"
+                    boxSizing="border-box"
+                    display="flex"
+                    p={0.75}
+                >
                     <Stack
                         mongodb={[
                             {
@@ -115,7 +120,13 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                     />
                 </Box>
                 {/**Right side */}
-                <Box height="100%" width="50%" display="block" p={0.85}>
+                <Box
+                    height="100%"
+                    width="50%"
+                    display="block"
+                    boxSizing="border-box"
+                    p={0.85}
+                >
                     <Box width="100%" display="flex">
                         <Box
                             display="flex"
@@ -145,7 +156,14 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                             />
                         </Box>
                     </Box>
-                    <PieChart data={pieDataJS} />
+                    <Box
+                        width="660px"
+                        height="400px"
+                        m="auto"
+                        textAlign="center"
+                    >
+                        <PieChart data={pieDataJS} />
+                    </Box>
                 </Box>
             </Box>
         </div>

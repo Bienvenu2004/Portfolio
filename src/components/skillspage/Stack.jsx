@@ -34,7 +34,7 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                     nodejs={nodejs}
                 />
             </Box>
-            <Box flexGrow={1} display="flex">
+            <Box flexGrow={1} display="flex" width="100%">
                 <Box
                     width="100%"
                     height="fit-content"
@@ -74,7 +74,6 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                         display="flex"
                         height="100%"
                         width="100%"
-                        mx={0.5}
                         justifyContent="space-between"
                         flexWrap={"wrap"}
                     >

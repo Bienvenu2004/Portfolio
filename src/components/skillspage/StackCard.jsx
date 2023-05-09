@@ -50,7 +50,7 @@ const StackCard = ({ label, value, image, ...styles }) => {
                                 theme.palette.mode === "dark" &&
                                 "1px solid #1E4976",
                             borderRadius: 1.5,
-
+                            width: "100%",
                             display: "flex",
                             flexDirection: "row",
                             alignItems: "center",

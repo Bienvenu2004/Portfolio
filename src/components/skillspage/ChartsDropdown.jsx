@@ -46,24 +46,27 @@ const ChartsDropdown = ({
                     },
                 }}
             >
-                {charts.map((chart) => (
-                    <Dropdown.Item
-                        css={{
-                            color: theme.palette.secondary.text,
-                            backgroundColor:
-                                chart === selectedChartValue
-                                    ? theme.palette.secondary.main
-                                    : "transparent",
-                            borderRadius: "25px",
-                            "&:hover": {
-                                backgroundColor: theme.palette.secondary.main,
-                            },
-                        }}
-                        key={chart}
-                    >
-                        <Typography>{chart}</Typography>
-                    </Dropdown.Item>
-                ))}
+                <Dropdown.Section title="Chart Type">
+                    {charts.map((chart) => (
+                        <Dropdown.Item
+                            css={{
+                                color: theme.palette.secondary.text,
+                                backgroundColor:
+                                    chart === selectedChartValue
+                                        ? theme.palette.secondary.main
+                                        : "transparent",
+                                borderRadius: "25px",
+                                "&:hover": {
+                                    backgroundColor:
+                                        theme.palette.secondary.main,
+                                },
+                            }}
+                            key={chart}
+                        >
+                            <Typography>{chart}</Typography>
+                        </Dropdown.Item>
+                    ))}
+                </Dropdown.Section>
             </Dropdown.Menu>
         </Dropdown>
     );

@@ -14,7 +14,7 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                 : ["MongoDB", "ExpressJS", "NextJS", "NodeJS"],
             datasets: [
                 {
-                    label: reactjs ? "MERN STACK" : "MENN STACK",
+                    label: reactjs ? "MERN SOLUTION" : "MENN SOLUTION",
                     data: reactjs
                         ? [
                               mongodb[0].value,

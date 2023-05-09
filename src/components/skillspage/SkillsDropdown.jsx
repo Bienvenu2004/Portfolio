@@ -46,24 +46,27 @@ const SkillsDropdown = ({
                     },
                 }}
             >
-                {skills.map((skill) => (
-                    <Dropdown.Item
-                        css={{
-                            color: theme.palette.secondary.text,
-                            backgroundColor:
-                                skill === selectedValue
-                                    ? theme.palette.secondary.main
-                                    : "transparent",
-                            borderRadius: "25px",
-                            "&:hover": {
-                                backgroundColor: theme.palette.secondary.main,
-                            },
-                        }}
-                        key={skill}
-                    >
-                        <Typography>{skill}</Typography>
-                    </Dropdown.Item>
-                ))}
+                <Dropdown.Section title="Skill to display">
+                    {skills.map((skill) => (
+                        <Dropdown.Item
+                            css={{
+                                color: theme.palette.secondary.text,
+                                backgroundColor:
+                                    skill === selectedValue
+                                        ? theme.palette.secondary.main
+                                        : "transparent",
+                                borderRadius: "25px",
+                                "&:hover": {
+                                    backgroundColor:
+                                        theme.palette.secondary.main,
+                                },
+                            }}
+                            key={skill}
+                        >
+                            <Typography>{skill}</Typography>
+                        </Dropdown.Item>
+                    ))}
+                </Dropdown.Section>
             </Dropdown.Menu>
         </Dropdown>
     );

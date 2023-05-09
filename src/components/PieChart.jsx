@@ -6,12 +6,12 @@ const PieChart = ({ data }) => {
     const theme = useTheme();
 
     return (
-        <Box height="75vh" width="99%">
+        <Box height="100%" width="600px">
             <ResponsivePie
                 data={data}
-                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                margin={{ top: 20, right: 50, bottom: 80, left: 80 }}
                 innerRadius={0.3}
-                padAngle={3}
+                padAngle={6}
                 cornerRadius={7}
                 activeOuterRadiusOffset={4}
                 endAngle={275}
@@ -25,14 +25,15 @@ const PieChart = ({ data }) => {
                 arcLinkLabelsTextColor={theme.palette.secondary.text}
                 arcLinkLabelsThickness={4}
                 arcLinkLabelsColor={{ from: "color" }}
-                arcLabelsSkipAngle={10}
-                arcLinkLabelsDiagonalLength={30}
+                arcLabelsSkipAngle={2}
+                arcLinkLabelsDiagonalLength={10}
                 arcLabelsTextColor={{
                     from: "color",
                     modifiers: [["darker", 2]],
                 }}
-                arcLinkLabelsOffset={13}
+                arcLinkLabelsOffset={8}
                 arcLinkLabelsTextOffset={5}
+                arcLinkLabelsStraightLength={10}
                 defs={[
                     {
                         id: "dots",
@@ -121,17 +122,17 @@ const PieChart = ({ data }) => {
                         anchor: "bottom",
                         direction: "row",
                         justify: false,
-                        translateX: 0,
+                        translateX: 10,
                         translateY: 80,
-                        itemsSpacing: 5,
+                        itemsSpacing: -5,
                         itemWidth: 100,
                         itemHeight: 18,
                         itemTextColor: theme.palette.secondary.text,
                         itemDirection: "left-to-right",
                         itemOpacity: 1,
                         symbolBorderColor: data[0].color,
-                        symbolSize: 14,
-                        symbolShape: "circle",
+                        symbolSize: 15,
+                        symbolShape: "diamond", // "circle" | "square" | "diamond" | "triangle" | "star"
                         effects: [
                             {
                                 on: "hover",
@@ -150,6 +151,7 @@ const PieChart = ({ data }) => {
                         },
                     },
                 }}
+                animate={true}
             />
         </Box>
     );
