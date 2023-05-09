@@ -12,6 +12,7 @@ import { JavascriptTwoTone, CssTwoTone } from "@mui/icons-material";
 import { getAllDocuments } from "@/lib/mongodbHelper";
 import SkillsDropdown from "@/components/skillspage/SkillsDropdown";
 import ChartsDropdown from "@/components/skillspage/ChartsDropdown";
+import LineChart from "@/components/PrimeLineChart";
 const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
 const charts = ["Pie", "Bar", "Line"];
 
@@ -157,12 +158,119 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                         </Box>
                     </Box>
                     <Box
-                        width="660px"
+                        width={selectedChartValue === "Line" ? "100%" : "70%"}
                         height="400px"
                         m="auto"
                         textAlign="center"
                     >
-                        <PieChart data={pieDataJS} />
+                        {selectedChartValue === "Pie" &&
+                            selectedValue === "JavaScript" && (
+                                <PieChart data={pieDataJS} />
+                            )}
+                        {selectedChartValue === "Pie" &&
+                            selectedValue === "CSS" && (
+                                <PieChart data={pieDataCSS} />
+                            )}
+                        {selectedChartValue === "Pie" &&
+                            selectedValue === "Database" && (
+                                <PieChart data={pieDataDB} />
+                            )}
+                        {selectedChartValue === "Line" &&
+                            selectedValue === "JavaScript" && (
+                                <LineChart
+                                    javascript={[
+                                        {
+                                            label: "JavaScript",
+                                            value: 80,
+                                        },
+                                        {
+                                            label: "ReactJS",
+                                            value: 75,
+                                        },
+                                        {
+                                            label: "NodeJS",
+                                            value: 80,
+                                        },
+                                        {
+                                            label: "Express JS",
+                                            value: 65,
+                                        },
+                                        {
+                                            label: "NextJS",
+                                            value: 85,
+                                        },
+                                    ]}
+                                />
+                            )}
+                        {selectedChartValue === "Line" &&
+                            selectedValue === "CSS" && (
+                                <LineChart
+                                    css={[
+                                        {
+                                            label: "CSS",
+                                            value: 80,
+                                        },
+                                        {
+                                            label: "Antd",
+                                            value: 75,
+                                        },
+                                        {
+                                            label: "Bootstrap",
+                                            value: 80,
+                                        },
+                                        {
+                                            label: "Material UI",
+                                            value: 78,
+                                        },
+                                        {
+                                            label: "Prime React",
+                                            value: 85,
+                                        },
+                                    ]}
+                                />
+                            )}
+                        {selectedChartValue === "Line" &&
+                            selectedValue === "Database" && (
+                                <LineChart
+                                    database={[
+                                        {
+                                            label: "MongoDB",
+                                            value: 80,
+                                        },
+                                        {
+                                            label: "AWS",
+                                            value: 50,
+                                        },
+                                        {
+                                            label: "MySQL",
+                                            value: 80,
+                                        },
+                                        {
+                                            label: "PostgreSQL",
+                                            value: 78,
+                                        },
+                                    ]}
+                                />
+                            )}
+                        {selectedChartValue === "Line" &&
+                            selectedValue === "Git & GitHub" && (
+                                <LineChart
+                                    github={[
+                                        {
+                                            label: "Git",
+                                            value: 75,
+                                        },
+                                        {
+                                            label: "GitHub",
+                                            value: 84,
+                                        },
+                                        {
+                                            label: "Vercel",
+                                            value: 78,
+                                        },
+                                    ]}
+                                />
+                            )}
                     </Box>
                 </Box>
             </Box>

@@ -6,7 +6,7 @@ const PieChart = ({ data }) => {
     const theme = useTheme();
 
     return (
-        <Box height="100%" width="600px">
+        <Box height="100%" width="100%">
             <ResponsivePie
                 data={data}
                 margin={{ top: 20, right: 50, bottom: 80, left: 80 }}
@@ -152,6 +152,8 @@ const PieChart = ({ data }) => {
                     },
                 }}
                 animate={true}
+                motionStiffness={90}
+                motionDamping={15}
             />
         </Box>
     );
