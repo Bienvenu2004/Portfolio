@@ -9,13 +9,13 @@ import github from "@/public/images/github.png";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
-    const isMobile = useMediaQuery("(max-width: 520px)");
+    const isMobile = useMediaQuery("(max-width: 480px)");
     const is600px = useMediaQuery("(max-width: 600px)");
     const isMedium = useMediaQuery("(max-width: 720px)");
     const is815px = useMediaQuery("(max-width: 815px)");
     const is950px = useMediaQuery("(max-width: 950px)");
     const is1100px = useMediaQuery("(max-width: 1100px)");
-    const { isSidebarOpen, isPersistent } = useContext(SidebarContext);
+    const { isSidebarOpen } = useContext(SidebarContext);
 
     return (
         <Box
@@ -25,7 +25,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
             display="flex"
             justifyContent="space-between"
             flexDirection="row"
-            padding="10px"
+            px={0.75}
             flexWrap={
                 (isMedium && "wrap") ||
                 (isSidebarOpen && is1100px && "wrap") ||
@@ -36,7 +36,6 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                 display="flex"
                 height="100%"
                 width="100%"
-                mx={0.5}
                 justifyContent="space-between"
                 flexWrap={
                     (isMobile && "wrap") ||

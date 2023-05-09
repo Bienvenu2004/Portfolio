@@ -1,28 +1,48 @@
 import axios from "axios";
-import { useContext } from "react";
-import { useTheme, Box, Skeleton } from "@mui/material";
+import React, { useContext } from "react";
+import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
 import SkillCards from "@/components/skillspage/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
+
 //database helpers
 import { getAllDocuments } from "@/lib/mongodbHelper";
+import RightSide from "@/components/skillspage/RightSide";
+import LeftSide from "@/components/skillspage/LeftSide";
+const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
+const charts = ["Pie", "Bar", "Line"];
 
 const Index = ({ javascript = 1, css = 1, database = 1 }) => {
     const theme = useTheme();
     const { isSidebarOpen } = useContext(SidebarContext);
+    const [selectedSkill, setSelectedSkill] = React.useState(
+        new Set(["JavaScript"])
+    );
+    const [selectedChart, setSelectedChart] = React.useState(new Set(["Pie"]));
+    const is1075px = useMediaQuery("(max-width:1075px)");
 
-    console.log("skillpage", isSidebarOpen);
+    const selectedValue = React.useMemo(
+        () => Array.from(selectedSkill).join(", ").replaceAll("_", " "),
+        [selectedSkill]
+    );
+
+    const selectedChartValue = React.useMemo(
+        () => Array.from(selectedChart).join(", ").replaceAll("_", " "),
+        [selectedChart]
+    );
 
     return (
         <div
             className="app"
             style={{
-                padding: "0",
                 color: theme.palette.secondary.text,
-                height: "100%",
+                height: "98%",
+                display: "flex",
+                flexDirection: "column",
+                overflowX: "hidden",
             }}
         >
             <Box
-                height="100%"
+                height="fit-content"
                 borderRadius={3}
                 boxShadow={
                     theme.palette.mode === "light" &&
@@ -48,6 +68,28 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                         database={database}
                     />
                 )}
+            </Box>
+            <Box
+                height={is1075px && isSidebarOpen ? "fit-content" : "100%"}
+                width="100%"
+                display="flex"
+                flexDirection={is1075px && isSidebarOpen ? "column" : "row"}
+                flexWrap={is1075px && isSidebarOpen ? "nowrap" : "wrap"}
+                boxSizing="border-box"
+            >
+                {/**Left side */}
+                <LeftSide />
+                {/**Right side */}
+                <RightSide
+                    selectedSkill={selectedSkill}
+                    setSelectedSkill={setSelectedSkill}
+                    selectedChart={selectedChart}
+                    setSelectedChart={setSelectedChart}
+                    selectedValue={selectedValue}
+                    selectedChartValue={selectedChartValue}
+                    skills={skills}
+                    charts={charts}
+                />
             </Box>
         </div>
     );
