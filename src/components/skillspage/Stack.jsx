@@ -14,7 +14,8 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
     const theme = useTheme();
     const [isMERN, setIsMERN] = React.useState(true);
     const isMobile = useMediaQuery("(max-width: 480px)");
-    const isMedium = useMediaQuery("(max-width: 720px)");
+    const is1225px = useMediaQuery("(max-width:1225px)");
+    const is1075px = useMediaQuery("(max-width:1075px)");
 
     const { isSidebarOpen } = React.useContext(SidebarContext);
 
@@ -51,7 +52,11 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                         justifyContent="space-between"
                         flexWrap={
                             (isMobile && "wrap") ||
-                            (isSidebarOpen && isMedium && "wrap")
+                            (isSidebarOpen &&
+                                is1225px &&
+                                !is1075px &&
+                                "wrap") ||
+                            (isSidebarOpen && is1075px && "nowrap")
                         }
                     >
                         <StackCard

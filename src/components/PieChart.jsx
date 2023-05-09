@@ -1,9 +1,12 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
+import { SidebarContext } from "./contexts/SidebarContext";
 
 const PieChart = ({ data }) => {
     const theme = useTheme();
+    const is1366px = useMediaQuery("(max-width:1366px)");
+    const { isSidebarOpen } = React.useContext(SidebarContext);
 
     return (
         <Box height="100%" width="100%">
@@ -122,10 +125,10 @@ const PieChart = ({ data }) => {
                         anchor: "bottom",
                         direction: "row",
                         justify: false,
-                        translateX: 10,
+                        translateX: is1366px && is1366px ? -30 : 1,
                         translateY: 80,
-                        itemsSpacing: -5,
-                        itemWidth: 100,
+                        itemsSpacing: -8,
+                        itemWidth: is1366px ? 80 : 100,
                         itemHeight: 18,
                         itemTextColor: theme.palette.secondary.text,
                         itemDirection: "left-to-right",

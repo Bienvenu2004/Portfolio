@@ -1,18 +1,13 @@
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
-import { useTheme, Box, Skeleton, Typography } from "@mui/material";
+import React, { useContext } from "react";
+import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
 import SkillCards from "@/components/skillspage/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
-import Stack from "@/components/skillspage/Stack";
-import { pieDataJS, pieDataCSS, pieDataDB } from "@/data/charts";
-import PieChart from "@/components/PieChart";
-import { JavascriptTwoTone, CssTwoTone } from "@mui/icons-material";
 
 //database helpers
 import { getAllDocuments } from "@/lib/mongodbHelper";
-import SkillsDropdown from "@/components/skillspage/SkillsDropdown";
-import ChartsDropdown from "@/components/skillspage/ChartsDropdown";
-import LineChart from "@/components/PrimeLineChart";
+import RightSide from "@/components/skillspage/RightSide";
+import LeftSide from "@/components/skillspage/LeftSide";
 const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
 const charts = ["Pie", "Bar", "Line"];
 
@@ -23,6 +18,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
         new Set(["JavaScript"])
     );
     const [selectedChart, setSelectedChart] = React.useState(new Set(["Pie"]));
+    const is1075px = useMediaQuery("(max-width:1075px)");
 
     const selectedValue = React.useMemo(
         () => Array.from(selectedSkill).join(", ").replaceAll("_", " "),
@@ -39,9 +35,10 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
             className="app"
             style={{
                 color: theme.palette.secondary.text,
-                height: "100%",
+                height: "98%",
                 display: "flex",
                 flexDirection: "column",
+                overflowX: "hidden",
             }}
         >
             <Box
@@ -73,206 +70,26 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 )}
             </Box>
             <Box
-                height="100%"
+                height={is1075px && isSidebarOpen ? "fit-content" : "100%"}
                 width="100%"
                 display="flex"
-                flexDirection="row"
-                flexGrow={1}
+                flexDirection={is1075px && isSidebarOpen ? "column" : "row"}
+                flexWrap={is1075px && isSidebarOpen ? "nowrap" : "wrap"}
+                boxSizing="border-box"
             >
                 {/**Left side */}
-                <Box
-                    height="100%"
-                    width="50%"
-                    boxSizing="border-box"
-                    display="flex"
-                    p={0.75}
-                >
-                    <Stack
-                        mongodb={[
-                            {
-                                label: "MongoDB",
-                                value: 80,
-                            },
-                        ]}
-                        expressjs={[
-                            {
-                                label: "Express JS",
-                                value: 65,
-                            },
-                        ]}
-                        nextjs={[
-                            {
-                                label: "NextJS",
-                                value: 70,
-                            },
-                        ]}
-                        reactjs={[
-                            {
-                                label: "ReactJS",
-                                value: 75,
-                            },
-                        ]}
-                        nodejs={[
-                            {
-                                label: "NodeJS",
-                                value: 80,
-                            },
-                        ]}
-                    />
-                </Box>
+                <LeftSide />
                 {/**Right side */}
-                <Box
-                    height="100%"
-                    width="50%"
-                    display="block"
-                    boxSizing="border-box"
-                    p={0.85}
-                >
-                    <Box width="100%" display="flex">
-                        <Box
-                            display="flex"
-                            // border="1px solid red"
-                            width="50%"
-                            justifyContent="flex-start"
-                        >
-                            <SkillsDropdown
-                                selectedValue={selectedValue}
-                                selectedSkill={selectedSkill}
-                                setSelectedSkill={setSelectedSkill}
-                                skills={skills}
-                            />
-                        </Box>
-                        <Box
-                            display="flex"
-                            // border="1px solid green"
-                            width="50%"
-                            justifyContent="flex-end"
-                            px={1.2}
-                        >
-                            <ChartsDropdown
-                                selectedChartValue={selectedChartValue}
-                                selectedChart={selectedChart}
-                                setSelectedChart={setSelectedChart}
-                                charts={charts}
-                            />
-                        </Box>
-                    </Box>
-                    <Box
-                        width={selectedChartValue === "Line" ? "100%" : "70%"}
-                        height="400px"
-                        m="auto"
-                        textAlign="center"
-                    >
-                        {selectedChartValue === "Pie" &&
-                            selectedValue === "JavaScript" && (
-                                <PieChart data={pieDataJS} />
-                            )}
-                        {selectedChartValue === "Pie" &&
-                            selectedValue === "CSS" && (
-                                <PieChart data={pieDataCSS} />
-                            )}
-                        {selectedChartValue === "Pie" &&
-                            selectedValue === "Database" && (
-                                <PieChart data={pieDataDB} />
-                            )}
-                        {selectedChartValue === "Line" &&
-                            selectedValue === "JavaScript" && (
-                                <LineChart
-                                    javascript={[
-                                        {
-                                            label: "JavaScript",
-                                            value: 80,
-                                        },
-                                        {
-                                            label: "ReactJS",
-                                            value: 75,
-                                        },
-                                        {
-                                            label: "NodeJS",
-                                            value: 80,
-                                        },
-                                        {
-                                            label: "Express JS",
-                                            value: 65,
-                                        },
-                                        {
-                                            label: "NextJS",
-                                            value: 85,
-                                        },
-                                    ]}
-                                />
-                            )}
-                        {selectedChartValue === "Line" &&
-                            selectedValue === "CSS" && (
-                                <LineChart
-                                    css={[
-                                        {
-                                            label: "CSS",
-                                            value: 80,
-                                        },
-                                        {
-                                            label: "Antd",
-                                            value: 75,
-                                        },
-                                        {
-                                            label: "Bootstrap",
-                                            value: 80,
-                                        },
-                                        {
-                                            label: "Material UI",
-                                            value: 78,
-                                        },
-                                        {
-                                            label: "Prime React",
-                                            value: 85,
-                                        },
-                                    ]}
-                                />
-                            )}
-                        {selectedChartValue === "Line" &&
-                            selectedValue === "Database" && (
-                                <LineChart
-                                    database={[
-                                        {
-                                            label: "MongoDB",
-                                            value: 80,
-                                        },
-                                        {
-                                            label: "AWS",
-                                            value: 50,
-                                        },
-                                        {
-                                            label: "MySQL",
-                                            value: 80,
-                                        },
-                                        {
-                                            label: "PostgreSQL",
-                                            value: 78,
-                                        },
-                                    ]}
-                                />
-                            )}
-                        {selectedChartValue === "Line" &&
-                            selectedValue === "Git & GitHub" && (
-                                <LineChart
-                                    github={[
-                                        {
-                                            label: "Git",
-                                            value: 75,
-                                        },
-                                        {
-                                            label: "GitHub",
-                                            value: 84,
-                                        },
-                                        {
-                                            label: "Vercel",
-                                            value: 78,
-                                        },
-                                    ]}
-                                />
-                            )}
-                    </Box>
-                </Box>
+                <RightSide
+                    selectedSkill={selectedSkill}
+                    setSelectedSkill={setSelectedSkill}
+                    selectedChart={selectedChart}
+                    setSelectedChart={setSelectedChart}
+                    selectedValue={selectedValue}
+                    selectedChartValue={selectedChartValue}
+                    skills={skills}
+                    charts={charts}
+                />
             </Box>
         </div>
     );
