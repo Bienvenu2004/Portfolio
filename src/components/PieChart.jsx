@@ -32,7 +32,7 @@ const PieChart = ({ data }) => {
                 arcLinkLabelsDiagonalLength={10}
                 arcLabelsTextColor={{
                     from: "color",
-                    modifiers: [["darker", 2]],
+                    modifiers: [["brighter", 3]],
                 }}
                 arcLinkLabelsOffset={8}
                 arcLinkLabelsTextOffset={5}

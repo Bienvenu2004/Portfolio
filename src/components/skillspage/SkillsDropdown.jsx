@@ -1,6 +1,7 @@
 import React from "react";
 import { Dropdown } from "@nextui-org/react";
 import { useTheme, Typography } from "@mui/material";
+
 const SkillsDropdown = ({
     selectedValue,
     selectedSkill,

@@ -9,31 +9,56 @@ import reactJS from "@/public/images/reactjs.png";
 import nextJS from "@/public/images/nextjs.png";
 import nodeJS from "@/public/images/nodejs.png";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
+import SkillsDropdown from "./SkillsDropdown";
 
 const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
     const theme = useTheme();
     const [isMERN, setIsMERN] = React.useState(true);
+    const [selectedStack, setSelectedStack] = React.useState(new Set(["Pie"]));
     const isMobile = useMediaQuery("(max-width: 480px)");
     const is1225px = useMediaQuery("(max-width:1225px)");
     const is1075px = useMediaQuery("(max-width:1075px)");
 
     const { isSidebarOpen } = React.useContext(SidebarContext);
 
+    const skills = ["MERN", "MENN"];
+
     React.useEffect(() => {
-        if (nextjs) {
+        if (selectedStack.has("MERN")) {
+            setIsMERN(true);
+        } else {
             setIsMERN(false);
         }
-    }, [nextjs]);
+    }, [selectedStack]);
+
+    const selectedValue = React.useMemo(() => {
+        return Array.from(selectedStack);
+    }, [selectedStack]);
 
     return (
         <Box height="100%" width="100%" display="flex" flexDirection="column">
-            <Box height="45%" width="100%" display="flex" py={0.75}>
-                <StackChart
-                    mongodb={mongodb}
-                    expressjs={expressjs}
-                    reactjs={reactjs}
-                    nodejs={nodejs}
-                />
+            <SkillsDropdown
+                skills={skills}
+                selectedSkill={selectedStack}
+                selectedValue={selectedValue}
+                setSelectedSkill={setSelectedStack}
+            />
+            <Box height="40%" width="100%" display="flex" py={0.75}>
+                {isMERN ? (
+                    <StackChart
+                        mongodb={mongodb}
+                        expressjs={expressjs}
+                        reactjs={reactjs}
+                        nodejs={nodejs}
+                    />
+                ) : (
+                    <StackChart
+                        mongodb={mongodb}
+                        expressjs={expressjs}
+                        nextjs={nextjs}
+                        nodejs={nodejs}
+                    />
+                )}
             </Box>
             <Box flexGrow={1} display="flex" width="100%">
                 <Box
@@ -85,15 +110,15 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                         <StackCard
                             label="React JS"
                             value={75}
-                            strokeColor="hsl(216, 70%, 50%,0.3)"
-                            trailColor="hsl(216, 70%, 50%)"
+                            trailColor="hsl(216, 70%, 50%,0.3)"
+                            strokeColor="hsl(216, 70%, 50%)"
                             image={reactJS}
                         />
                         <StackCard
                             label="Node JS"
                             value={70}
-                            strokeColor="rgb(1, 236, 100,0.4)"
-                            trailColor="rgb(1, 236, 100)"
+                            strokeColor="rgb(1, 236, 100)"
+                            trailColor="rgb(1, 236, 100,0.4)"
                             image={nodeJS}
                         />
                     </Box>
