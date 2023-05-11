@@ -21,7 +21,7 @@ const SkillsDropdown = ({
                     fontSize: "1rem",
                     fontFamily: "inherit",
                     backgroundColor: "transparent",
-                    borderColor: theme.palette.background.alt,
+                    borderColor: "transparent",
                     borderRadius: "6px",
                     px: "2rem",
                     "& .nextui-button-text": {
