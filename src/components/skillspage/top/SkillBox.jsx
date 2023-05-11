@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Badge, Progress, ConfigProvider, theme as AntTheme } from "antd";
 import { VerifiedTwoTone } from "@mui/icons-material";
-import { SidebarContext } from "../contexts/SidebarContext";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 import Image from "next/image";
 
 const SkillBox = ({ children, label, value, skill, image, ...styles }) => {

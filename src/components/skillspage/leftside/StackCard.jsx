@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Progress, ConfigProvider, theme as AntTheme } from "antd";
 
-import { SidebarContext } from "../contexts/SidebarContext";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 import Image from "next/image";
 
 const StackCard = ({ label, value, image, ...styles }) => {

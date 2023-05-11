@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, useMediaQuery } from "@mui/material";
-import { SidebarContext } from "../contexts/SidebarContext";
+import { SidebarContext } from "../../contexts/SidebarContext";
 import Stack from "./Stack";
 
 const LeftSide = () => {

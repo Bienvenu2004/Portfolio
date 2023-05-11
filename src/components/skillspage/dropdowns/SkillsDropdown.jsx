@@ -51,7 +51,10 @@ const SkillsDropdown = ({
                     {skills.map((skill) => (
                         <Dropdown.Item
                             css={{
-                                color: theme.palette.secondary.text,
+                                color:
+                                    skill === selectedValue
+                                        ? "#FFF"
+                                        : theme.palette.secondary.text,
                                 backgroundColor:
                                     skill === selectedValue
                                         ? theme.palette.secondary.main
@@ -60,6 +63,7 @@ const SkillsDropdown = ({
                                 "&:hover": {
                                     backgroundColor:
                                         theme.palette.secondary.main,
+                                    color: "#FFF",
                                 },
                             }}
                             key={skill}

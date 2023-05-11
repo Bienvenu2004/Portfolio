@@ -125,11 +125,12 @@ const LineChart = ({ javascript, css, database, github }) => {
         <Chart
             type="line"
             width="100%"
-            height="80%"
+            height="100%"
             data={chartData}
             options={chartOptions}
             style={{
                 fontFamily: "inherit",
+                padding: "0.5rem",
             }}
         />
     );

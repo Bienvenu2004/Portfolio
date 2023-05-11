@@ -50,7 +50,10 @@ const ChartsDropdown = ({
                     {charts.map((chart) => (
                         <Dropdown.Item
                             css={{
-                                color: theme.palette.secondary.text,
+                                color:
+                                    skill === selectedValue
+                                        ? "#FFF"
+                                        : theme.palette.secondary.text,
                                 backgroundColor:
                                     chart === selectedChartValue
                                         ? theme.palette.secondary.main
@@ -59,6 +62,7 @@ const ChartsDropdown = ({
                                 "&:hover": {
                                     backgroundColor:
                                         theme.palette.secondary.main,
+                                    color: "#FFF",
                                 },
                             }}
                             key={chart}

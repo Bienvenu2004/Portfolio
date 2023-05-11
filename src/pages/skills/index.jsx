@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useContext } from "react";
 import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
-import SkillCards from "@/components/skillspage/SkillCards";
+import SkillCards from "@/components/skillspage/top/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 //database helpers
 import { getAllDocuments } from "@/lib/mongodbHelper";
-import RightSide from "@/components/skillspage/RightSide";
-import LeftSide from "@/components/skillspage/LeftSide";
+import RightSide from "@/components/skillspage/rightside/RightSide";
+import LeftSide from "@/components/skillspage/leftside/LeftSide";
 const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
 const charts = ["Pie", "Bar", "Line"];
 
@@ -17,7 +17,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
     const [selectedSkill, setSelectedSkill] = React.useState(
         new Set(["JavaScript"])
     );
-    const [selectedChart, setSelectedChart] = React.useState(new Set(["Pie"]));
+    const [selectedChart, setSelectedChart] = React.useState(new Set(["Bar"]));
     const is1075px = useMediaQuery("(max-width:1075px)");
 
     const selectedValue = React.useMemo(
@@ -41,14 +41,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 overflowX: "hidden",
             }}
         >
-            <Box
-                height="fit-content"
-                borderRadius={3}
-                boxShadow={
-                    theme.palette.mode === "light" &&
-                    "0px 0px 2px 0px rgba(0,0,0,0.2)"
-                }
-            >
+            <Box height="fit-content">
                 {!javascript || !css || !database ? (
                     <Skeleton
                         variant="rounded"

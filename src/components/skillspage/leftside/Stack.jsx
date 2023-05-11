@@ -9,7 +9,7 @@ import reactJS from "@/public/images/reactjs.png";
 import nextJS from "@/public/images/nextjs.png";
 import nodeJS from "@/public/images/nodejs.png";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
-import SkillsDropdown from "./SkillsDropdown";
+import SkillsDropdown from "../dropdowns/SkillsDropdown";
 
 const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
     const theme = useTheme();
