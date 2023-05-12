@@ -1,6 +1,7 @@
 import React from "react";
 import { Dropdown } from "@nextui-org/react";
 import { useTheme, Typography } from "@mui/material";
+
 const SkillsDropdown = ({
     selectedValue,
     selectedSkill,
@@ -8,6 +9,7 @@ const SkillsDropdown = ({
     skills,
 }) => {
     const theme = useTheme();
+
     return (
         <Dropdown>
             <Dropdown.Button
@@ -16,13 +18,13 @@ const SkillsDropdown = ({
                 bordered
                 animated={false}
                 css={{
-                    padding: "5px",
-                    fontSize: "1rem",
+                    fontSize: "0.8rem",
                     fontFamily: "inherit",
                     backgroundColor: "transparent",
-                    borderColor: theme.palette.background.alt,
+                    borderColor: "transparent",
                     borderRadius: "6px",
                     px: "2rem",
+                    mt: "1rem",
                     "& .nextui-button-text": {
                         color: theme.palette.secondary.text,
                     },
@@ -39,10 +41,13 @@ const SkillsDropdown = ({
                 onSelectionChange={setSelectedSkill}
                 containerCss={{
                     backgroundColor: "transparent",
-                    borderRadius: "15px",
+                    borderRadius: "8px",
                     boxShadow: "none",
                     "& .nextui-dropdown-menu": {
-                        backgroundColor: theme.palette.background.alt,
+                        bgBlur:
+                            theme.palette.mode === "dark"
+                                ? "rgba(0, 30, 60, 0.6)"
+                                : "rgb(255,255,255,0.3)",
                     },
                 }}
             >
@@ -50,15 +55,20 @@ const SkillsDropdown = ({
                     {skills.map((skill) => (
                         <Dropdown.Item
                             css={{
-                                color: theme.palette.secondary.text,
+                                color:
+                                    skill === selectedValue
+                                        ? "#FFF"
+                                        : theme.palette.secondary.text,
                                 backgroundColor:
                                     skill === selectedValue
                                         ? theme.palette.secondary.main
                                         : "transparent",
-                                borderRadius: "25px",
+                                borderRadius: "8px",
                                 "&:hover": {
                                     backgroundColor:
-                                        theme.palette.secondary.main,
+                                        skill !== selectedValue &&
+                                        " rgba(0, 0, 00, 0.5)",
+                                    color: "#FFF",
                                 },
                             }}
                             key={skill}

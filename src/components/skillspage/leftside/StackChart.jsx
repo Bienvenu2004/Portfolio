@@ -29,10 +29,16 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                               nodejs[0].value,
                           ],
                     fill: false,
-                    backgroundColor: "rgb(0, 126, 253, 0.3)",
-                    borderColor: "rgb(0, 126, 253,1)",
+                    backgroundColor: reactjs
+                        ? "rgb(0, 126, 253, 0.3)"
+                        : "hsl(262, 70%, 50%,0.3)",
+                    borderColor: reactjs
+                        ? "rgb(0, 126, 253,1)"
+                        : "hsl(262, 70%, 50%)",
                     tension: 0.3,
-                    hoverBackgroundColor: "rgb(0, 126, 253,1)",
+                    hoverBackgroundColor: reactjs
+                        ? "rgb(0, 126, 253,1)"
+                        : "hsl(262, 70%, 50%)",
                 },
             ],
         };
@@ -60,7 +66,9 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                         color: theme.palette.secondary.text,
                     },
                     grid: {
-                        color: theme.palette.background.line,
+                        color: reactjs
+                            ? "rgb(0, 126, 253, 0.3)"
+                            : "hsl(262, 70%, 50%,0.3)",
                     },
                 },
             },
@@ -73,6 +81,7 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
         <Chart
             type="line"
             width="100%"
+            height="280px"
             data={chartData}
             options={chartOptions}
             style={{

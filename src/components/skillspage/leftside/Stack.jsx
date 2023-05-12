@@ -9,31 +9,59 @@ import reactJS from "@/public/images/reactjs.png";
 import nextJS from "@/public/images/nextjs.png";
 import nodeJS from "@/public/images/nodejs.png";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
+import SkillsDropdown from "../dropdowns/SkillsDropdown";
 
 const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
     const theme = useTheme();
     const [isMERN, setIsMERN] = React.useState(true);
+    const [selectedStack, setSelectedStack] = React.useState(new Set(["MERN"]));
     const isMobile = useMediaQuery("(max-width: 480px)");
     const is1225px = useMediaQuery("(max-width:1225px)");
     const is1075px = useMediaQuery("(max-width:1075px)");
 
     const { isSidebarOpen } = React.useContext(SidebarContext);
 
+    const skills = ["MERN", "MENN"];
+
     React.useEffect(() => {
-        if (nextjs) {
+        if (selectedStack.has("MERN")) {
+            setIsMERN(true);
+        } else {
             setIsMERN(false);
         }
-    }, [nextjs]);
+    }, [selectedStack]);
+
+    const selectedValue = React.useMemo(() => {
+        return Array.from(selectedStack);
+    }, [selectedStack]);
 
     return (
         <Box height="100%" width="100%" display="flex" flexDirection="column">
-            <Box height="45%" width="100%" display="flex" py={0.75}>
-                <StackChart
-                    mongodb={mongodb}
-                    expressjs={expressjs}
-                    reactjs={reactjs}
-                    nodejs={nodejs}
+            <Box display="flex" width="50%" pl={0.6}>
+                <SkillsDropdown
+                    skills={skills}
+                    selectedSkill={selectedStack.currentKey}
+                    selectedValue={selectedValue[0]}
+                    setSelectedSkill={setSelectedStack}
                 />
+            </Box>
+
+            <Box height="fit-content" width="100%" display="flex" py={0.75}>
+                {isMERN ? (
+                    <StackChart
+                        mongodb={mongodb}
+                        expressjs={expressjs}
+                        reactjs={reactjs}
+                        nodejs={nodejs}
+                    />
+                ) : (
+                    <StackChart
+                        mongodb={mongodb}
+                        expressjs={expressjs}
+                        nextjs={nextjs}
+                        nodejs={nodejs}
+                    />
+                )}
             </Box>
             <Box flexGrow={1} display="flex" width="100%">
                 <Box

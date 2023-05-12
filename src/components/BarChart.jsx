@@ -2,40 +2,23 @@ import React from "react";
 import { Box, useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 
-const BarChart = ({ data }) => {
+const BarChart = ({ data, keys }) => {
     const theme = useTheme();
 
     return (
-        <Box height="calc(100vh - 64px)" width="99%" justifyContent="center">
+        <Box height="100%" width="100%" justifyContent="center">
             <ResponsiveBar
                 data={data}
-                keys={[
-                    "JavaScript",
-                    "Next JS",
-                    "Node JS",
-                    "React JS",
-                    "Express JS",
-                    "HTML",
-                    "CSS",
-                    "MUI5",
-                    "NextUI",
-                    "Antd",
-                    "Primereact",
-                    "Vercel",
-                    "MySQL",
-                    "MongoDB",
-                    "Firebase",
-                    "Amazon Web Services",
-                    "PostgreSQL",
-                ]}
+                keys={keys}
                 indexBy="skills"
-                margin={{ top: 50, right: 130, bottom: 50, left: 45 }}
+                margin={{ top: 12, right: 100, bottom: 60, left: 38 }}
                 padding={0.3}
                 valueScale={{ type: "linear" }}
                 borderWidth={2}
                 indexScale={{ type: "band", round: true }}
                 colors={{ scheme: "category10" }}
                 groupMode="stacked"
+                label={(d) => `${d.value}%`}
                 defs={[
                     {
                         id: "dots",
@@ -77,6 +60,12 @@ const BarChart = ({ data }) => {
                     },
                     {
                         match: {
+                            id: "NodeJS",
+                        },
+                        id: "dots",
+                    },
+                    {
+                        match: {
                             id: "Primereact",
                         },
                         id: "lines",
@@ -101,66 +90,66 @@ const BarChart = ({ data }) => {
                     },
                     {
                         match: {
-                            id: "JavaScript",
+                            id: "JS",
                         },
                         id: "lines",
                     },
                     {
                         match: {
-                            id: "Next JS",
+                            id: "NextJS",
                         },
                         id: "lines",
                     },
                     {
                         match: {
-                            id: "React JS",
+                            id: "ReactJS",
                         },
                         id: "lines",
                     },
                 ]}
                 borderColor={{
                     from: "color",
-                    modifiers: [["darker", 1.6]],
+                    modifiers: [["darker", 0.5]],
                 }}
                 axisTop={null}
                 axisRight={null}
                 axisBottom={{
                     tickSize: 5,
-                    tickPadding: 10,
-                    tickRotation: 0,
+                    tickPadding: 5,
+                    tickRotation: -30,
                     legend: "skills",
                     legendPosition: "middle",
                     legendOffset: 45,
                 }}
                 axisLeft={{
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legend: "food",
+                    tickSize: 0,
+                    tickPadding: 0,
+                    tickRotation: -45,
+                    legend: "Proficiency",
                     legendPosition: "middle",
-                    legendOffset: -40,
+                    legendOffset: -20,
                 }}
                 labelSkipWidth={12}
                 labelSkipHeight={12}
                 labelTextColor={{
                     from: "color",
-                    modifiers: [["darker", 1.6]],
+                    modifiers: [["brighter", 3]],
                 }}
                 legends={[
                     {
                         dataFrom: "keys",
-                        anchor: "bottom-right",
+                        anchor: "right",
                         direction: "column",
                         justify: false,
-                        translateX: 120,
+                        translateX: 80,
                         translateY: 0,
                         itemsSpacing: 2,
-                        itemWidth: 100,
+                        itemWidth: 70,
                         itemHeight: 20,
                         itemDirection: "left-to-right",
                         itemTextColor: theme.palette.secondary.text,
                         itemOpacity: 0.85,
-                        symbolSize: 20,
+                        symbolSize: 15,
                         effects: [
                             {
                                 on: "hover",
@@ -181,6 +170,9 @@ const BarChart = ({ data }) => {
                         " in skills: " +
                         e.indexValue
                     );
+                }}
+                onClick={(node, e) => {
+                    console.log(node);
                 }}
                 theme={{
                     tooltip: {

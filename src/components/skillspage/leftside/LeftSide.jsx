@@ -1,19 +1,18 @@
 import React from "react";
 import { Box, useMediaQuery } from "@mui/material";
-import { SidebarContext } from "../contexts/SidebarContext";
+import { SidebarContext } from "../../contexts/SidebarContext";
 import Stack from "./Stack";
 
 const LeftSide = () => {
     const { isSidebarOpen } = React.useContext(SidebarContext);
-    const is1075px = useMediaQuery("(max-width:1075px)");
+    const is1050px = useMediaQuery("(max-width:1050px)");
 
     return (
         <Box
-            height="100%"
-            width={is1075px && isSidebarOpen ? "100%" : "50%"}
-            boxSizing="border-box"
+            height={is1050px && isSidebarOpen ? "fit-content" : "100%"}
+            width={is1050px && isSidebarOpen ? "100%" : "50%"}
+            pr={0.75}
             display="flex"
-            p={0.75}
         >
             <Stack
                 mongodb={[

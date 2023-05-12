@@ -3,7 +3,7 @@ import { ResponsivePie } from "@nivo/pie";
 import { Box, useTheme, useMediaQuery } from "@mui/material";
 import { SidebarContext } from "./contexts/SidebarContext";
 
-const PieChart = ({ data }) => {
+const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
     const theme = useTheme();
     const is1366px = useMediaQuery("(max-width:1366px)");
     const { isSidebarOpen } = React.useContext(SidebarContext);
@@ -12,16 +12,16 @@ const PieChart = ({ data }) => {
         <Box height="100%" width="100%">
             <ResponsivePie
                 data={data}
-                margin={{ top: 20, right: 50, bottom: 80, left: 80 }}
-                innerRadius={0.3}
-                padAngle={6}
-                cornerRadius={7}
-                activeOuterRadiusOffset={4}
-                endAngle={275}
-                borderWidth={5}
+                margin={{ top: 18, right: 50, bottom: 80, left: 30 }}
+                innerRadius={innerRadius}
+                padAngle={4}
+                cornerRadius={5}
+                activeOuterRadiusOffset={2}
+                endAngle={endAngle}
+                borderWidth={3}
                 borderColor={{
                     from: "color",
-                    modifiers: [["darker", 1]],
+                    modifiers: [["darker", 2]],
                 }}
                 colors={{ scheme: "category10" }}
                 arcLinkLabelsSkipAngle={10}
@@ -32,7 +32,7 @@ const PieChart = ({ data }) => {
                 arcLinkLabelsDiagonalLength={10}
                 arcLabelsTextColor={{
                     from: "color",
-                    modifiers: [["darker", 2]],
+                    modifiers: [["brighter", 3]],
                 }}
                 arcLinkLabelsOffset={8}
                 arcLinkLabelsTextOffset={5}
@@ -125,17 +125,17 @@ const PieChart = ({ data }) => {
                         anchor: "bottom",
                         direction: "row",
                         justify: false,
-                        translateX: is1366px && is1366px ? -30 : 1,
-                        translateY: 80,
+                        translateX: 20,
+                        translateY: 60,
                         itemsSpacing: -8,
-                        itemWidth: is1366px ? 80 : 100,
+                        itemWidth: 80,
                         itemHeight: 18,
                         itemTextColor: theme.palette.secondary.text,
                         itemDirection: "left-to-right",
                         itemOpacity: 1,
                         symbolBorderColor: data[0].color,
-                        symbolSize: 15,
-                        symbolShape: "diamond", // "circle" | "square" | "diamond" | "triangle" | "star"
+                        symbolSize: 8,
+                        symbolShape: "circle", // "circle" | "square" | "diamond" | "triangle" | "star"
                         effects: [
                             {
                                 on: "hover",

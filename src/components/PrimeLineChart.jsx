@@ -87,6 +87,7 @@ const LineChart = ({ javascript, css, database, github }) => {
         const options = {
             maintainAspectRatio: false,
             aspectRatio: 0.6,
+            responsive: true,
             plugins: {
                 legend: {
                     labels: {
@@ -125,11 +126,12 @@ const LineChart = ({ javascript, css, database, github }) => {
         <Chart
             type="line"
             width="100%"
-            height="80%"
+            height="100%"
             data={chartData}
             options={chartOptions}
             style={{
                 fontFamily: "inherit",
+                padding: "0.5rem",
             }}
         />
     );
