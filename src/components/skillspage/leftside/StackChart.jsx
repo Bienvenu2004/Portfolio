@@ -81,7 +81,7 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
         <Chart
             type="line"
             width="100%"
-            height="100%"
+            height="280px"
             data={chartData}
             options={chartOptions}
             style={{

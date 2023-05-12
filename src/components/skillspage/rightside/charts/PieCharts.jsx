@@ -1,10 +1,11 @@
 import React from "react";
 import { pieDataJS, pieDataDB, pieDataCSS } from "@/data/charts";
 import PieChart from "../../../PieChart";
+import { Box } from "@mui/material";
 
 const PieCharts = ({ selectedValue, selectedChartValue }) => {
     return (
-        <React.Fragment>
+        <Box width="100%">
             {selectedChartValue === "Pie" && selectedValue === "JavaScript" && (
                 <PieChart data={pieDataJS} />
             )}
@@ -42,7 +43,7 @@ const PieCharts = ({ selectedValue, selectedChartValue }) => {
                         ]}
                     />
                 )}
-        </React.Fragment>
+        </Box>
     );
 };
 

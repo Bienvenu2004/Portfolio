@@ -17,76 +17,74 @@ const RightSide = ({
     charts,
     selectedChart,
 }) => {
-    const is1075px = useMediaQuery("(max-width:1075px)");
+    const is1050px = useMediaQuery("(max-width:1050px)");
     const { isSidebarOpen } = React.useContext(SidebarContext);
     const theme = useTheme();
 
     return (
         <Box
-            height="100%"
-            width={is1075px && isSidebarOpen ? "100%" : "50%"}
-            display="block"
-            boxSizing="border-box"
-            p={0.85}
-            pr={1.8}
+            height={is1050px && isSidebarOpen ? "fit-content" : "100%"}
+            width={is1050px && isSidebarOpen ? "100%" : "50%"}
+            pl={0.75}
+            pt={1.5}
         >
-            <Box width="100%" display="flex" boxSizing="border-box">
-                <Box
-                    display="flex"
-                    // border="1px solid red"
-                    width="50%"
-                    justifyContent="flex-start"
-                    boxSizing="border-box"
-                >
-                    <SkillsDropdown
-                        selectedValue={selectedValue}
-                        selectedSkill={selectedSkill}
-                        setSelectedSkill={setSelectedSkill}
-                        skills={skills}
-                    />
-                </Box>
-                <Box
-                    display="flex"
-                    // border="1px solid green"
-                    width="50%"
-                    justifyContent="flex-end"
-                    boxSizing="border-box"
-                    px={1.2}
-                >
-                    <ChartsDropdown
-                        selectedChartValue={selectedChartValue}
-                        selectedChart={selectedChart}
-                        setSelectedChart={setSelectedChart}
-                        charts={charts}
-                    />
-                </Box>
-            </Box>
             <Box
                 width="100%"
-                height={"320px"}
+                height={"330px"}
                 m="auto"
-                boxSizing="border-box"
-                textAlign="center"
+                pb={1}
+                justifyContent="center"
                 elevation={3}
+                display="flex"
+                flexDirection={"column"}
                 sx={{
-                    background:
-                        theme.palette.mode === "light" &&
-                        theme.palette.background.alt,
+                    background: theme.palette.background.paper,
                     borderRadius: "5px",
                 }}
             >
-                <PieCharts
-                    selectedChartValue={selectedChartValue}
-                    selectedValue={selectedValue}
-                />
-                <LineCharts
-                    selectedChartValue={selectedChartValue}
-                    selectedValue={selectedValue}
-                />
-                <BarCharts
-                    selectedChartValue={selectedChartValue}
-                    selectedValue={selectedValue}
-                />
+                <Box width="100%" height="fit-content" display="flex">
+                    <Box
+                        display="flex"
+                        width="50%"
+                        height={"fit-content"}
+                        justifyContent="flex-start"
+                    >
+                        <SkillsDropdown
+                            selectedValue={selectedValue}
+                            selectedSkill={selectedSkill}
+                            setSelectedSkill={setSelectedSkill}
+                            skills={skills}
+                        />
+                    </Box>
+                    <Box display="flex" width="50%" justifyContent="flex-end">
+                        <ChartsDropdown
+                            selectedChartValue={selectedChartValue}
+                            selectedChart={selectedChart}
+                            setSelectedChart={setSelectedChart}
+                            charts={charts}
+                        />
+                    </Box>
+                </Box>
+                <Box display="flex" flexGrow={1} width="100%" height="90%">
+                    {selectedChartValue === "Pie" && (
+                        <PieCharts
+                            selectedChartValue={selectedChartValue}
+                            selectedValue={selectedValue}
+                        />
+                    )}
+                    {selectedChartValue === "Line" && (
+                        <LineCharts
+                            selectedChartValue={selectedChartValue}
+                            selectedValue={selectedValue}
+                        />
+                    )}
+                    {selectedChartValue === "Bar" && (
+                        <BarCharts
+                            selectedChartValue={selectedChartValue}
+                            selectedValue={selectedValue}
+                        />
+                    )}
+                </Box>
             </Box>
         </Box>
     );

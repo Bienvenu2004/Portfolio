@@ -18,7 +18,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
         new Set(["JavaScript"])
     );
     const [selectedChart, setSelectedChart] = React.useState(new Set(["Bar"]));
-    const is1075px = useMediaQuery("(max-width:1075px)");
+    const is1050px = useMediaQuery("(max-width:1050px)");
 
     const selectedValue = React.useMemo(
         () => Array.from(selectedSkill).join(", ").replaceAll("_", " "),
@@ -36,12 +36,12 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
             style={{
                 color: theme.palette.secondary.text,
                 height: "98%",
-                display: "flex",
-                flexDirection: "column",
+                display: "block",
                 overflowX: "hidden",
+                padding: "0.75rem",
             }}
         >
-            <Box height="fit-content">
+            <Box height="fit-content" display="block">
                 {!javascript || !css || !database ? (
                     <Skeleton
                         variant="rounded"
@@ -63,12 +63,10 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 )}
             </Box>
             <Box
-                height={is1075px && isSidebarOpen ? "fit-content" : "100%"}
+                height={"100%"}
                 width="100%"
-                display="flex"
-                flexDirection={is1075px && isSidebarOpen ? "column" : "row"}
-                flexWrap={is1075px && isSidebarOpen ? "nowrap" : "wrap"}
-                boxSizing="border-box"
+                display={isSidebarOpen && is1050px ? "block" : "flex"}
+                flexDirection={isSidebarOpen && is1050px ? "column" : "row"}
             >
                 {/**Left side */}
                 <LeftSide />

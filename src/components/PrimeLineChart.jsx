@@ -87,6 +87,7 @@ const LineChart = ({ javascript, css, database, github }) => {
         const options = {
             maintainAspectRatio: false,
             aspectRatio: 0.6,
+            responsive: true,
             plugins: {
                 legend: {
                     labels: {

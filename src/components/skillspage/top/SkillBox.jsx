@@ -32,7 +32,6 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
             <Box
                 width={"100%"}
                 height="inherit"
-                m={0.75}
                 borderRadius={3}
                 backgroundColor="transparent"
                 display="flex"
@@ -121,8 +120,8 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                             >
                                                 <Image
                                                     src={image}
-                                                    height={isMedium ? 70 : 100}
-                                                    width={isMedium ? 70 : 100}
+                                                    height={70}
+                                                    width={70}
                                                     alt={label}
                                                     style={{
                                                         filter:
@@ -204,7 +203,7 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                         "100%": item.color,
                                                     }}
                                                     strokeWidth={
-                                                        isMedium ? 4 : 8
+                                                        isMedium ? 4 : 6
                                                     }
                                                     style={{
                                                         width: "94%",

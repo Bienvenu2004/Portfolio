@@ -1,9 +1,10 @@
 import React from "react";
 import LineChart from "@/components/PrimeLineChart";
+import { Box } from "@mui/material";
 
 const LineCharts = ({ selectedChartValue, selectedValue }) => {
     return (
-        <React.Fragment>
+        <Box display="flex" width="100%">
             {selectedChartValue === "Line" &&
                 selectedValue === "JavaScript" && (
                     <LineChart
@@ -98,7 +99,7 @@ const LineCharts = ({ selectedChartValue, selectedValue }) => {
                         ]}
                     />
                 )}
-        </React.Fragment>
+        </Box>
     );
 };
 

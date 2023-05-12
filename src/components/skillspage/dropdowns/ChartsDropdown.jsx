@@ -16,13 +16,13 @@ const ChartsDropdown = ({
                 bordered
                 animated={false}
                 css={{
-                    padding: "5px",
-                    fontSize: "1rem",
+                    fontSize: "0.8rem",
                     fontFamily: "inherit",
                     backgroundColor: "transparent",
                     borderColor: "transparent",
                     borderRadius: "6px",
                     px: "2rem",
+                    mt: "1rem",
                     "& .nextui-button-text": {
                         color: theme.palette.secondary.text,
                     },
@@ -39,10 +39,13 @@ const ChartsDropdown = ({
                 onSelectionChange={setSelectedChart}
                 containerCss={{
                     backgroundColor: "transparent",
-                    borderRadius: "15px",
+                    borderRadius: "8px",
                     boxShadow: "none",
                     "& .nextui-dropdown-menu": {
-                        backgroundColor: theme.palette.background.alt,
+                        bgBlur:
+                            theme.palette.mode === "dark"
+                                ? "rgba(0, 30, 60, 0.6)"
+                                : "rgb(255,255,255,0.3)",
                     },
                 }}
             >
@@ -51,17 +54,18 @@ const ChartsDropdown = ({
                         <Dropdown.Item
                             css={{
                                 color:
-                                    skill === selectedValue
+                                    chart === selectedChartValue
                                         ? "#FFF"
                                         : theme.palette.secondary.text,
                                 backgroundColor:
                                     chart === selectedChartValue
                                         ? theme.palette.secondary.main
                                         : "transparent",
-                                borderRadius: "25px",
+                                borderRadius: "8px",
                                 "&:hover": {
                                     backgroundColor:
-                                        theme.palette.secondary.main,
+                                        chart !== selectedChartValue &&
+                                        " rgba(0, 0, 00, 0.5)",
                                     color: "#FFF",
                                 },
                             }}

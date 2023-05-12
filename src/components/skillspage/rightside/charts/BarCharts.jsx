@@ -1,9 +1,10 @@
 import React from "react";
 import BarChart from "@/components/BarChart";
+import { Box } from "@mui/material";
 
 const BarCharts = ({ selectedValue, selectedChartValue }) => {
     return (
-        <React.Fragment>
+        <Box width="100%">
             {selectedChartValue === "Bar" && selectedValue === "JavaScript" && (
                 <BarChart
                     data={[
@@ -123,7 +124,7 @@ const BarCharts = ({ selectedValue, selectedChartValue }) => {
                         keys={["Git", "GitHub", "Vercel"]}
                     />
                 )}
-        </React.Fragment>
+        </Box>
     );
 };
 

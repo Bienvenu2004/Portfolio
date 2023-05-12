@@ -109,7 +109,7 @@ const BarChart = ({ data, keys }) => {
                 ]}
                 borderColor={{
                     from: "color",
-                    modifiers: [["darker", 2]],
+                    modifiers: [["darker", 0.5]],
                 }}
                 axisTop={null}
                 axisRight={null}
