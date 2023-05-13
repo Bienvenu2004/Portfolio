@@ -7,6 +7,13 @@ body,
     width: 100%;
     font-family: "Alkatra", cursive, "PT Sans Caption", sans-serif;
 }
+canvas {
+    width: 100% !important;
+}
+.bar-chart > div > div > svg,
+.pie-chart > div > div > svg {
+    width: 100% !important;
+}
 
 /* width */
 ::-webkit-scrollbar {

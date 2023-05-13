@@ -1,32 +1,47 @@
 import axios from "axios";
-import { useContext } from "react";
-import { useTheme, Box, Skeleton } from "@mui/material";
-import SkillCards from "@/components/skillspage/SkillCards";
+import React, { useContext } from "react";
+import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
+import SkillCards from "@/components/skillspage/top/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
+
 //database helpers
 import { getAllDocuments } from "@/lib/mongodbHelper";
+import RightSide from "@/components/skillspage/rightside/RightSide";
+import LeftSide from "@/components/skillspage/leftside/LeftSide";
+const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
+const charts = ["Pie", "Bar", "Line"];
 
 const Index = ({ javascript = 1, css = 1, database = 1 }) => {
     const theme = useTheme();
     const { isSidebarOpen } = useContext(SidebarContext);
+    const [selectedSkill, setSelectedSkill] = React.useState(
+        new Set(["JavaScript"])
+    );
+    const [selectedChart, setSelectedChart] = React.useState(new Set(["Bar"]));
+    const is1050px = useMediaQuery("(max-width:1050px)");
+
+    const selectedValue = React.useMemo(
+        () => Array.from(selectedSkill).join(", ").replaceAll("_", " "),
+        [selectedSkill]
+    );
+
+    const selectedChartValue = React.useMemo(
+        () => Array.from(selectedChart).join(", ").replaceAll("_", " "),
+        [selectedChart]
+    );
 
     return (
         <div
             className="app"
             style={{
-                padding: "0",
                 color: theme.palette.secondary.text,
-                height: "100%",
+                height: "98%",
+                display: "block",
+                overflowX: "hidden",
+                padding: "0.75rem",
             }}
         >
-            <Box
-                height="100%"
-                borderRadius={3}
-                boxShadow={
-                    theme.palette.mode === "light" &&
-                    "0px 0px 2px 0px rgba(0,0,0,0.2)"
-                }
-            >
+            <Box height="fit-content" display="block">
                 {!javascript || !css || !database ? (
                     <Skeleton
                         variant="rounded"
@@ -46,6 +61,26 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                         database={database}
                     />
                 )}
+            </Box>
+            <Box
+                height={"100%"}
+                width="100%"
+                display={isSidebarOpen && is1050px ? "block" : "flex"}
+                flexDirection={isSidebarOpen && is1050px ? "column" : "row"}
+            >
+                {/**Left side */}
+                <LeftSide />
+                {/**Right side */}
+                <RightSide
+                    selectedSkill={selectedSkill}
+                    setSelectedSkill={setSelectedSkill}
+                    selectedChart={selectedChart}
+                    setSelectedChart={setSelectedChart}
+                    selectedValue={selectedValue}
+                    selectedChartValue={selectedChartValue}
+                    skills={skills}
+                    charts={charts}
+                />
             </Box>
         </div>
     );

@@ -27,7 +27,7 @@ const Sidebar = () => {
     const autoCloseSideBar = useMediaQuery("(max-width: 660px)");
 
     //sidebar context
-    const { isSidebarOpen, setIsSidebarOpen, setIsPersistent } =
+    const { isSidebarOpen, setIsSidebarOpen, setIsPersistent, isPersistent } =
         useContext(SidebarContext);
     const drawerWidth = "250px";
     useEffect(() => {
@@ -72,8 +72,10 @@ const Sidebar = () => {
                     borderBottomRightRadius: "12px",
                     justifyItems: "center",
                     background: theme.palette.background.alt,
+                    transition: "all 0.3s ease-in-out",
                     boxShadow: "none",
                     pr: "0.5rem",
+                    border: theme.palette.mode === "dark" && "none",
                 },
             }}
             style={{
@@ -166,6 +168,7 @@ const Sidebar = () => {
                                               `/${item.name.toLowerCase()}`
                                           );
                                     setActiveUrl(item.name.toLowerCase());
+                                    !isPersistent && setIsSidebarOpen(false);
                                 }}
                                 sx={{
                                     borderTopRightRadius: "25px",

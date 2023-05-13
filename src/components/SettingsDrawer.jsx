@@ -51,6 +51,9 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
                         background: "transparent",
                         boxShadow: "none",
                     },
+                    "& .MuiBackdrop-root": {
+                        backdropFilter: "blur(5px)",
+                    },
                 }}
             >
                 <Box
