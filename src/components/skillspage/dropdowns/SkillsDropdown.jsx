@@ -43,11 +43,12 @@ const SkillsDropdown = ({
                     backgroundColor: "transparent",
                     borderRadius: "8px",
                     boxShadow: "none",
+                    backdropFilter: "blur(10px)",
                     "& .nextui-dropdown-menu": {
                         bgBlur:
                             theme.palette.mode === "dark"
                                 ? "rgba(0, 30, 60, 0.6)"
-                                : "rgb(255,255,255,0.3)",
+                                : "rgb(255,255,255,0.6)",
                     },
                 }}
             >
@@ -64,11 +65,13 @@ const SkillsDropdown = ({
                                         ? theme.palette.secondary.main
                                         : "transparent",
                                 borderRadius: "8px",
+                                transition: "all 0.3s ease-in-out",
                                 "&:hover": {
                                     backgroundColor:
                                         skill !== selectedValue &&
                                         " rgba(0, 0, 00, 0.5)",
                                     color: "#FFF",
+                                    transition: "all 0.3s ease-in-out",
                                 },
                             }}
                             key={skill}

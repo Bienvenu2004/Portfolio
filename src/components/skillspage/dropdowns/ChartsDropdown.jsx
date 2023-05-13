@@ -21,10 +21,15 @@ const ChartsDropdown = ({
                     backgroundColor: "transparent",
                     borderColor: "transparent",
                     borderRadius: "6px",
+
                     px: "2rem",
                     mt: "1rem",
                     "& .nextui-button-text": {
                         color: theme.palette.secondary.text,
+                    },
+                    "& .nextui-dropdown-button": {
+                        border: "1px solid green",
+                        height: "40px",
                     },
                 }}
             >
@@ -39,13 +44,17 @@ const ChartsDropdown = ({
                 onSelectionChange={setSelectedChart}
                 containerCss={{
                     backgroundColor: "transparent",
-                    borderRadius: "8px",
+                    borderRadius: "10px",
                     boxShadow: "none",
+                    transition: "all 0.3s ease-in-out",
+                    backdropFilter: "blur(8px)",
                     "& .nextui-dropdown-menu": {
                         bgBlur:
                             theme.palette.mode === "dark"
                                 ? "rgba(0, 30, 60, 0.6)"
-                                : "rgb(255,255,255,0.3)",
+                                : "rgb(255,255,255,0.5)",
+
+                        transition: "all 0.3s ease-in-out",
                     },
                 }}
             >

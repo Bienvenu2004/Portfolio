@@ -187,7 +187,20 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         ]}
                     />
                 </Box>
-                <Box width="100%" ml={!is950px && 0.75} mt={is950px && 1.25}>
+                <Box
+                    width="100%"
+                    ml={
+                        (!is950px && 0.75) ||
+                        (is950px &&
+                            !isSidebarOpen &&
+                            !(isMedium && !isSidebarOpen) &&
+                            0.75)
+                    }
+                    mt={
+                        (is950px && isSidebarOpen && 1.25) ||
+                        (isMedium && !isSidebarOpen && 1.25)
+                    }
+                >
                     <SkillBox
                         label="Others"
                         value={Math.round(((85 + 80 + 82) / 300) * 100)}
