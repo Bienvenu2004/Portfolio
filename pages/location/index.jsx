@@ -1,10 +1,10 @@
 import { useTheme, Typography, Box } from "@mui/material";
-import { geographyData } from "@/data/charts";
-import { features } from "@/data/geographyFeatures";
+import { geographyData } from "../../data/charts";
+import { features } from "../../data/geographyFeatures";
 import dynamic from "next/dynamic";
 
 const DynamicGeographyChart = dynamic(
-    () => import("@/components/GeographyChart"),
+    () => import("../../components/charts/GeographyChart"),
     {
         ssr: false,
     }

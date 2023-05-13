@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useContext } from "react";
 import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
-import SkillCards from "@/components/skillspage/top/SkillCards";
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import SkillCards from "../../components/skillspage/top/SkillCards";
+import { SidebarContext } from "../../components/contexts/SidebarContext";
 
 //database helpers
-import { getAllDocuments } from "@/lib/mongodbHelper";
-import RightSide from "@/components/skillspage/rightside/RightSide";
-import LeftSide from "@/components/skillspage/leftside/LeftSide";
+import { getAllDocuments } from "@/components/lib/mongodbHelper";
+import RightSide from "../../components/skillspage/rightside/RightSide";
+import LeftSide from "../../components/skillspage/leftside/LeftSide";
 const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
 const charts = ["Pie", "Bar", "Line"];
 

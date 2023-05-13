@@ -6,8 +6,7 @@ import Layout from "../components/layout/Layout";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
-
-import { SidebarProvider } from "@/components/contexts/SidebarContext";
+import { SidebarProvider } from "../components/contexts/SidebarContext";
 
 import "../styles/globals.css";
 
