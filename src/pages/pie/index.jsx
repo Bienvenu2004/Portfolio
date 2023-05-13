@@ -1,6 +1,6 @@
 import { Box, useTheme, Typography } from "@mui/material";
-import { pieDataJS, pieDataCSS, pieDataDB } from "../../data/charts";
-import PieChart from "../../components/charts/PieChart";
+import { pieDataJS, pieDataCSS, pieDataDB } from "@/data/charts";
+import PieChart from "@/components/PieChart";
 
 const Index = () => {
     const theme = useTheme();

@@ -4,7 +4,7 @@ import SettingsDrawer from "./SettingsDrawer";
 import SearchModal from "./SearchModal";
 import LeftSide from "./navbarcomponents/LeftSide";
 import RightSide from "./navbarcomponents/RightSide";
-import { SidebarContext } from "./contexts/SidebarContext";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 const Navbar = ({ setMode, prefersDarkMode }) => {
     const settingsDrawerRef = useRef();

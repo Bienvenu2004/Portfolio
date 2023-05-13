@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import SkillBox from "./SkillBox";
 //images
-
 import js from "@/public/images/js.png";
 import css3 from "@/public/images/css.png";
 import mongodb from "@/public/images/mongodb.png";

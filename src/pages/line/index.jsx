@@ -1,6 +1,6 @@
 import { useTheme, Box, Typography } from "@mui/material";
-import { lineDataJS, lineDataCSS, lineDataDB } from "../../data/charts";
-import LineChart from "../../components/charts/LineChart";
+import { lineDataJS, lineDataCSS, lineDataDB } from "@/data/charts";
+import LineChart from "@/components/LineChart";
 import { useState } from "react";
 
 const Index = () => {

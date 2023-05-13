@@ -1,6 +1,6 @@
 import { useTheme, Box, Typography } from "@mui/material";
-import { barData } from "../../data/charts";
-import BarChart from "../../components/charts/BarChart";
+import { barData } from "@/data/charts";
+import BarChart from "@/components/BarChart";
 
 const Index = () => {
     const theme = useTheme();

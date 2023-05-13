@@ -4,8 +4,8 @@ import {
     connectDatabase,
     insertDocument,
     getAllDocuments,
-} from "../../components/lib/mongodb";
-import initMiddleware from "../../components/lib/initMiddleware";
+} from "@/lib/mongodb";
+import initMiddleware from "@/lib/initMiddleware";
 
 // Initialize the cors middleware
 const cors = initMiddleware(
