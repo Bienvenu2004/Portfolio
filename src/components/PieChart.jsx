@@ -9,24 +9,24 @@ const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
     const { isSidebarOpen } = React.useContext(SidebarContext);
 
     return (
-        <Box height="100%" width="100%">
+        <Box height="100%" className="pie-chart" width="100%">
             <ResponsivePie
                 data={data}
                 margin={{ top: 18, right: 50, bottom: 80, left: 30 }}
                 innerRadius={innerRadius}
-                padAngle={4}
-                cornerRadius={5}
+                padAngle={3}
+                cornerRadius={2}
                 activeOuterRadiusOffset={2}
                 endAngle={endAngle}
                 borderWidth={3}
                 borderColor={{
                     from: "color",
-                    modifiers: [["darker", 2]],
+                    modifiers: [["darker", 0.3]],
                 }}
                 colors={{ scheme: "category10" }}
                 arcLinkLabelsSkipAngle={10}
                 arcLinkLabelsTextColor={theme.palette.secondary.text}
-                arcLinkLabelsThickness={4}
+                arcLinkLabelsThickness={2.5}
                 arcLinkLabelsColor={{ from: "color" }}
                 arcLabelsSkipAngle={2}
                 arcLinkLabelsDiagonalLength={10}
@@ -34,7 +34,7 @@ const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
                     from: "color",
                     modifiers: [["brighter", 3]],
                 }}
-                arcLinkLabelsOffset={8}
+                arcLinkLabelsOffset={4}
                 arcLinkLabelsTextOffset={5}
                 arcLinkLabelsStraightLength={10}
                 defs={[
@@ -126,7 +126,7 @@ const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
                         direction: "row",
                         justify: false,
                         translateX: 20,
-                        translateY: 60,
+                        translateY: 70,
                         itemsSpacing: -8,
                         itemWidth: 80,
                         itemHeight: 18,

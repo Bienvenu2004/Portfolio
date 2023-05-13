@@ -6,7 +6,12 @@ const BarChart = ({ data, keys }) => {
     const theme = useTheme();
 
     return (
-        <Box height="100%" width="100%" justifyContent="center">
+        <Box
+            height="100%"
+            width="100%"
+            className="bar-chart"
+            justifyContent="center"
+        >
             <ResponsiveBar
                 data={data}
                 keys={keys}
@@ -109,7 +114,7 @@ const BarChart = ({ data, keys }) => {
                 ]}
                 borderColor={{
                     from: "color",
-                    modifiers: [["darker", 0.5]],
+                    modifiers: [["darker", 0.3]],
                 }}
                 axisTop={null}
                 axisRight={null}
@@ -119,7 +124,7 @@ const BarChart = ({ data, keys }) => {
                     tickRotation: -30,
                     legend: "skills",
                     legendPosition: "middle",
-                    legendOffset: 45,
+                    legendOffset: 50,
                 }}
                 axisLeft={{
                     tickSize: 0,

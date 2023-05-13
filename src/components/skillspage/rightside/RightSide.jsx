@@ -42,11 +42,18 @@ const RightSide = ({
                     borderRadius: "5px",
                 }}
             >
-                <Box width="100%" height="fit-content" display="flex">
+                <Box
+                    width="100%"
+                    height="40px"
+                    display="flex"
+                    alignContent="center"
+                    alignItems="center"
+                >
                     <Box
                         display="flex"
                         width="50%"
-                        height={"fit-content"}
+                        height={"30px"}
+                        alignItems="center"
                         justifyContent="flex-start"
                     >
                         <SkillsDropdown
@@ -56,7 +63,13 @@ const RightSide = ({
                             skills={skills}
                         />
                     </Box>
-                    <Box display="flex" width="50%" justifyContent="flex-end">
+                    <Box
+                        display="flex"
+                        height={"30px"}
+                        alignItems="center"
+                        width="50%"
+                        justifyContent="flex-end"
+                    >
                         <ChartsDropdown
                             selectedChartValue={selectedChartValue}
                             selectedChart={selectedChart}
@@ -65,7 +78,13 @@ const RightSide = ({
                         />
                     </Box>
                 </Box>
-                <Box display="flex" flexGrow={1} width="100%" height="90%">
+                <Box
+                    display="flex"
+                    className="charts"
+                    flexGrow={1}
+                    width="100%"
+                    height="90%"
+                >
                     {selectedChartValue === "Pie" && (
                         <PieCharts
                             selectedChartValue={selectedChartValue}
