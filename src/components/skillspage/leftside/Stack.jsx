@@ -46,7 +46,16 @@ const Stack = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                 />
             </Box>
 
-            <Box height="fit-content" width="100%" display="flex" py={0.75}>
+            <Box
+                height="fit-content"
+                width="100%"
+                display="flex"
+                py={0.75}
+                sx={{
+                    background: theme.palette.background.paper,
+                    borderRadius: "5px",
+                }}
+            >
                 {isMERN ? (
                     <StackChart
                         mongodb={mongodb}

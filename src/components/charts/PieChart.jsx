@@ -1,7 +1,7 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { Box, useTheme, useMediaQuery } from "@mui/material";
-import { SidebarContext } from "./contexts/SidebarContext";
+import { SidebarContext } from "../contexts/SidebarContext";
 
 const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
     const theme = useTheme();

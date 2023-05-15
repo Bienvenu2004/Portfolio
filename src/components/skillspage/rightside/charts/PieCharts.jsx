@@ -1,6 +1,6 @@
 import React from "react";
 import { pieDataJS, pieDataDB, pieDataCSS } from "@/data/charts";
-import PieChart from "../../../PieChart";
+import PieChart from "@/components/charts/PieChart";
 import { Box } from "@mui/material";
 
 const PieCharts = ({ selectedValue, selectedChartValue }) => {

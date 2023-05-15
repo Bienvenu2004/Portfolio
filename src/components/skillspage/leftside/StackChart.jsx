@@ -67,8 +67,8 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                     },
                     grid: {
                         color: reactjs
-                            ? "rgb(0, 126, 253, 0.3)"
-                            : "hsl(262, 70%, 50%,0.3)",
+                            ? "rgb(0, 126, 253, 0.1)"
+                            : "hsl(262, 70%, 50%,0.1)",
                     },
                 },
             },

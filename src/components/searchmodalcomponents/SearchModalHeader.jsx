@@ -115,7 +115,7 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                             margin: "0px",
                         },
                     }}
-                    rounded={false}
+                    rounded="false"
                     onClick={closeSearchModal}
                 />
             ) : (

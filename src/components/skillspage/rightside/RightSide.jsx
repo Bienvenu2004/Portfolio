@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import SkillsDropdown from "@/components/skillspage/dropdowns/SkillsDropdown";
-import ChartsDropdown from "@/components/skillspage/dropdowns/ChartsDropdown";
-import { SidebarContext } from "../../contexts/SidebarContext";
+import SkillsDropdown from "../dropdowns/SkillsDropdown";
+import ChartsDropdown from "../dropdowns/ChartsDropdown";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 import PieCharts from "./charts/PieCharts";
 import LineCharts from "./charts/LineCharts";
 import BarCharts from "./charts/BarCharts";
