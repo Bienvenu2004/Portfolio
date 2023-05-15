@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import SkillsDropdown from "@/components/skillspage/dropdowns/SkillsDropdown";
-import ChartsDropdown from "@/components/skillspage/dropdowns/ChartsDropdown";
-import { SidebarContext } from "../../contexts/SidebarContext";
+import SkillsDropdown from "../dropdowns/SkillsDropdown";
+import ChartsDropdown from "../dropdowns/ChartsDropdown";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 import PieCharts from "./charts/PieCharts";
 import LineCharts from "./charts/LineCharts";
 import BarCharts from "./charts/BarCharts";
@@ -23,8 +23,9 @@ const RightSide = ({
 
     return (
         <Box
-            height={is1050px && isSidebarOpen ? "fit-content" : "100%"}
-            width={is1050px && isSidebarOpen ? "100%" : "50%"}
+            height={"100%"}
+            width={"100%"}
+            border="1px solid blue"
             pl={0.75}
             pt={1.5}
         >
@@ -37,6 +38,7 @@ const RightSide = ({
                 elevation={3}
                 display="flex"
                 flexDirection={"column"}
+                alignItems="center"
                 sx={{
                     background: theme.palette.background.paper,
                     borderRadius: "5px",

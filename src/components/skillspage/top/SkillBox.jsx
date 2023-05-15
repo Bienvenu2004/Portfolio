@@ -60,11 +60,12 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                         <Card
                             style={{ height: "100%" }}
                             sx={{
-                                backgroundColor: theme.palette.background.alt,
-                                border:
-                                    theme.palette.mode === "dark" &&
-                                    "1px solid #1E4976",
+                                backgroundColor: theme.palette.background.paper,
+                                borderBottom: `3px solid ${styles.backgroundColor}`,
+
                                 borderRadius: 1.5,
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 0,
 
                                 display: "flex",
                                 flexDirection: "row",
@@ -180,7 +181,7 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                     {skill &&
                                         skill.map((item) => (
                                             <Box
-                                                key={item.name}
+                                                key={item.label}
                                                 mb={-1}
                                                 p="0px"
                                             >

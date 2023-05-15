@@ -1,11 +1,7 @@
 import { useContext } from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import SkillBox from "./SkillBox";
-//images
-import js from "@/public/images/js.png";
-import css3 from "@/public/images/css.png";
-import mongodb from "@/public/images/mongodb.png";
-import github from "@/public/images/github.png";
+
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
@@ -56,7 +52,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         label="JavaScript"
                         value={Math.round(((65 + 80 + 70) / 300) * 100)}
                         backgroundColor="#E8C825"
-                        image={js}
+                        image={"/images/js.png"}
                         trailColor="rgb(232, 200, 37, 0.4)"
                         strokeColor="rgb(232, 200, 37)"
                         skill={[
@@ -98,7 +94,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         backgroundColor="#007EFD"
                         trailColor="rgb(0, 126, 253, 0.4)"
                         strokeColor="rgb(0, 126, 253)"
-                        image={css3}
+                        image={"/images/css.png"}
                         skill={[
                             {
                                 label: "Material UI",
@@ -164,7 +160,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         backgroundColor="#01EC64"
                         strokeColor="#01EC64"
                         trailColor="rgb(1, 236, 100, 0.4)"
-                        image={mongodb}
+                        image={"/images/mongodb.png"}
                         skill={[
                             {
                                 label: "MongoDB",
@@ -207,7 +203,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         backgroundColor="#9500ae"
                         strokeColor="rgb(149, 0, 174)"
                         trailColor="rgb(149, 0, 174,0.4)"
-                        image={github}
+                        image={"/images/github.png"}
                         skill={[
                             {
                                 id: "GitHub",

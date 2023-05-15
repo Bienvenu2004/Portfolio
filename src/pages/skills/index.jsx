@@ -35,10 +35,10 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
             className="app"
             style={{
                 color: theme.palette.secondary.text,
-                height: "98%",
-                display: "block",
-                overflowX: "hidden",
+                display: "flex",
                 padding: "0.75rem",
+                flexDirection: "column",
+                border: "1px solid red",
             }}
         >
             <Box height="fit-content" display="block">
@@ -65,8 +65,8 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
             <Box
                 height={"100%"}
                 width="100%"
-                display={isSidebarOpen && is1050px ? "block" : "flex"}
-                flexDirection={isSidebarOpen && is1050px ? "column" : "row"}
+                display={"flex"}
+                flexDirection={"row"}
             >
                 {/**Left side */}
                 <LeftSide />

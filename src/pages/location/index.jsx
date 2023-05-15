@@ -4,7 +4,7 @@ import { features } from "@/data/geographyFeatures";
 import dynamic from "next/dynamic";
 
 const DynamicGeographyChart = dynamic(
-    () => import("@/components/GeographyChart"),
+    () => import("@/components/charts/GeographyChart"),
     {
         ssr: false,
     }

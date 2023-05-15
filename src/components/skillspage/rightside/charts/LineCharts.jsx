@@ -1,5 +1,5 @@
 import React from "react";
-import LineChart from "@/components/PrimeLineChart";
+import LineChart from "@/components/charts/PrimeLineChart";
 import { Box } from "@mui/material";
 
 const LineCharts = ({ selectedChartValue, selectedValue }) => {

@@ -25,7 +25,7 @@ const LeftSide = ({ setIsSidebarOpen, isSidebarOpen, isMobile }) => {
                 >
                     {/* <MenuIcon /> */}
                     <User
-                        src="/images/me.png"
+                        src="/images/me.jpg"
                         name={!isMobile && "Abdulrahim"}
                         description={!isMobile && "Web Developer @Neema"}
                         bordered

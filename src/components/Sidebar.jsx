@@ -87,7 +87,7 @@ const Sidebar = () => {
                     <FlexBetween>
                         <Box display="flex" alignItems="center" mr="1rem">
                             <User
-                                src="/images/me.png"
+                                src="/images/me.jpg"
                                 name="Abdulrahim"
                                 description="Web Developer @Neema"
                                 bordered
@@ -105,11 +105,7 @@ const Sidebar = () => {
                                     },
                                     p: 0,
                                 }}
-                            >
-                                <User.Link href="https://github.com/Abdulrahim2567/">
-                                    @abdulrahim2567
-                                </User.Link>
-                            </User>
+                            />
                         </Box>
                         {isSidebarOpen && (
                             <IconButton
