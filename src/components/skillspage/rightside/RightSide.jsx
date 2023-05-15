@@ -37,6 +37,7 @@ const RightSide = ({
                 elevation={3}
                 display="flex"
                 flexDirection={"column"}
+                alignItems="center"
                 sx={{
                     background: theme.palette.background.paper,
                     borderRadius: "5px",

@@ -21,15 +21,10 @@ const ChartsDropdown = ({
                     backgroundColor: "transparent",
                     borderColor: "transparent",
                     borderRadius: "6px",
-
                     px: "2rem",
                     mt: "1rem",
                     "& .nextui-button-text": {
                         color: theme.palette.secondary.text,
-                    },
-                    "& .nextui-dropdown-button": {
-                        border: "1px solid green",
-                        height: "40px",
                     },
                 }}
             >
@@ -44,17 +39,14 @@ const ChartsDropdown = ({
                 onSelectionChange={setSelectedChart}
                 containerCss={{
                     backgroundColor: "transparent",
-                    borderRadius: "10px",
+                    borderRadius: "8px",
                     boxShadow: "none",
-                    transition: "all 0.3s ease-in-out",
-                    backdropFilter: "blur(8px)",
+                    backdropFilter: "blur(10px)",
                     "& .nextui-dropdown-menu": {
                         bgBlur:
                             theme.palette.mode === "dark"
                                 ? "rgba(0, 30, 60, 0.6)"
-                                : "rgb(255,255,255,0.5)",
-
-                        transition: "all 0.3s ease-in-out",
+                                : "rgb(255,255,255,0.6)",
                     },
                 }}
             >
@@ -71,11 +63,13 @@ const ChartsDropdown = ({
                                         ? theme.palette.secondary.main
                                         : "transparent",
                                 borderRadius: "8px",
+                                transition: "all 0.3s ease-in-out",
                                 "&:hover": {
                                     backgroundColor:
                                         chart !== selectedChartValue &&
                                         " rgba(0, 0, 00, 0.5)",
                                     color: "#FFF",
+                                    transition: "all 0.3s ease-in-out",
                                 },
                             }}
                             key={chart}

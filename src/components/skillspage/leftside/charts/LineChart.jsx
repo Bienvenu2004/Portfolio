@@ -45,6 +45,7 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
         const options = {
             maintainAspectRatio: false,
             aspectRatio: 0.6,
+            responsive: true,
             plugins: {
                 legend: {
                     labels: {
@@ -86,6 +87,7 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
             options={chartOptions}
             style={{
                 fontFamily: "inherit",
+                padding: "0.5rem",
             }}
         />
     );
