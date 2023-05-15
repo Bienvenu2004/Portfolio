@@ -2,14 +2,69 @@ import React from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { SidebarContext } from "../../contexts/SidebarContext";
 import SkillsDropdown from "../dropdowns/SkillsDropdown";
-import StackChart from "./charts/LineChart";
+import PolarChart from "./charts/PolarChart";
+import PieChart from "@/components/charts/PieChart";
 
 const LeftSide = () => {
     const [isMERN, setIsMERN] = React.useState(true);
     const [selectedStack, setSelectedStack] = React.useState(new Set(["MERN"]));
+    const [pieData, setPieData] = React.useState([]);
     const { isSidebarOpen } = React.useContext(SidebarContext);
     const is1050px = useMediaQuery("(max-width:1050px)");
     const theme = useTheme();
+    const ReactJS = [
+        {
+            id: "Node JS",
+            label: "Node JS",
+            value: 70,
+            color: "hsl(134, 70%, 50%)",
+        },
+
+        {
+            id: "React JS",
+            label: "React JS",
+            value: 70,
+            color: "hsl(216, 70%, 50%)",
+        },
+        {
+            id: "Express JS",
+            label: "Express JS",
+            value: 65,
+            color: "hsl(107, 70%, 50%)",
+        },
+        {
+            id: "MongoDB",
+            label: "MongoDB",
+            value: 80,
+            color: "#00C853",
+        },
+    ];
+    const NextJS = [
+        {
+            id: "NextJS",
+            label: "NextJS",
+            value: 80,
+            color: "hsl(310, 70%, 50%)",
+        },
+        {
+            id: "Node JS",
+            label: "Node JS",
+            value: 70,
+            color: "hsl(134, 70%, 50%)",
+        },
+        {
+            id: "Express JS",
+            label: "Express JS",
+            value: 65,
+            color: "hsl(40, 70%, 50%)",
+        },
+        {
+            id: "MongoDB",
+            label: "MongoDB",
+            value: 80,
+            color: "hsl(134, 70%, 50%)",
+        },
+    ];
 
     const skills = ["MERN", "MENN"];
 
@@ -24,6 +79,14 @@ const LeftSide = () => {
     const selectedValue = React.useMemo(() => {
         return Array.from(selectedStack);
     }, [selectedStack]);
+
+    React.useEffect(() => {
+        if (isMERN) {
+            setPieData(ReactJS);
+        } else {
+            setPieData(NextJS);
+        }
+    }, [isMERN]);
 
     return (
         <Box
@@ -57,61 +120,14 @@ const LeftSide = () => {
                         setSelectedSkill={setSelectedStack}
                     />
                 </Box>
-                {isMERN ? (
-                    <StackChart
-                        mongodb={[
-                            {
-                                label: "MongoDB",
-                                value: 80,
-                            },
-                        ]}
-                        expressjs={[
-                            {
-                                label: "Express JS",
-                                value: 65,
-                            },
-                        ]}
-                        reactjs={[
-                            {
-                                label: "ReactJS",
-                                value: 75,
-                            },
-                        ]}
-                        nodejs={[
-                            {
-                                label: "NodeJS",
-                                value: 80,
-                            },
-                        ]}
+                <Box display="flex" width="100%" height="300px">
+                    <PieChart
+                        data={pieData}
+                        innerRadius={0.4}
+                        showLegend={false}
+                        bottom={50}
                     />
-                ) : (
-                    <StackChart
-                        mongodb={[
-                            {
-                                label: "MongoDB",
-                                value: 80,
-                            },
-                        ]}
-                        expressjs={[
-                            {
-                                label: "Express JS",
-                                value: 65,
-                            },
-                        ]}
-                        nextjs={[
-                            {
-                                label: "NextJS",
-                                value: 70,
-                            },
-                        ]}
-                        nodejs={[
-                            {
-                                label: "NodeJS",
-                                value: 80,
-                            },
-                        ]}
-                    />
-                )}
+                </Box>
             </Box>
         </Box>
     );

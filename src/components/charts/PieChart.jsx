@@ -3,7 +3,17 @@ import { ResponsivePie } from "@nivo/pie";
 import { Box, useTheme, useMediaQuery } from "@mui/material";
 import { SidebarContext } from "../contexts/SidebarContext";
 
-const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
+const PieChart = ({
+    data,
+    endAngle = 275,
+    innerRadius = 0.3,
+    showLegend = true,
+    top = 18,
+    right = 50,
+    bottom = 80,
+    left = 30,
+    ...props
+}) => {
     const theme = useTheme();
     const is1366px = useMediaQuery("(max-width:1366px)");
     const { isSidebarOpen } = React.useContext(SidebarContext);
@@ -12,7 +22,7 @@ const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
         <Box height="100%" className="pie-chart" width="100%">
             <ResponsivePie
                 data={data}
-                margin={{ top: 18, right: 50, bottom: 80, left: 30 }}
+                margin={{ top: top, right: right, bottom: bottom, left: left }}
                 innerRadius={innerRadius}
                 padAngle={3}
                 cornerRadius={2}
@@ -120,32 +130,34 @@ const PieChart = ({ data, endAngle = 275, innerRadius = 0.3 }) => {
                         id: "dots",
                     },
                 ]}
-                legends={[
-                    {
-                        anchor: "bottom",
-                        direction: "row",
-                        justify: false,
-                        translateX: 20,
-                        translateY: 70,
-                        itemsSpacing: -8,
-                        itemWidth: 80,
-                        itemHeight: 18,
-                        itemTextColor: theme.palette.secondary.text,
-                        itemDirection: "left-to-right",
-                        itemOpacity: 1,
-                        symbolBorderColor: data[0].color,
-                        symbolSize: 8,
-                        symbolShape: "circle", // "circle" | "square" | "diamond" | "triangle" | "star"
-                        effects: [
-                            {
-                                on: "hover",
-                                style: {
-                                    itemTextColor: theme.palette.secondary.text,
+                legends={
+                    showLegend && [
+                        {
+                            anchor: "bottom",
+                            direction: "row",
+                            justify: false,
+                            translateX: 20,
+                            translateY: 70,
+                            itemsSpacing: -8,
+                            itemWidth: 80,
+                            itemHeight: 18,
+                            itemTextColor: theme.palette.secondary.text,
+                            itemDirection: "left-to-right",
+                            itemOpacity: 1,
+                            symbolSize: 8,
+                            symbolShape: "circle", // "circle" | "square" | "diamond" | "triangle" | "star"
+                            effects: [
+                                {
+                                    on: "hover",
+                                    style: {
+                                        itemTextColor:
+                                            theme.palette.secondary.text,
+                                    },
                                 },
-                            },
-                        ],
-                    },
-                ]}
+                            ],
+                        },
+                    ]
+                }
                 theme={{
                     tooltip: {
                         container: {

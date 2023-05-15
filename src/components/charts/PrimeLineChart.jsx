@@ -99,6 +99,10 @@ const LineChart = ({ javascript, css, database, github }) => {
                 x: {
                     ticks: {
                         color: theme.palette.secondary.text,
+                        font: {
+                            size: 12,
+                            family: theme.typography.fontFamily,
+                        },
                     },
                     grid: {
                         color: "transparent",
@@ -107,6 +111,10 @@ const LineChart = ({ javascript, css, database, github }) => {
                 y: {
                     ticks: {
                         color: theme.palette.secondary.text,
+                        font: {
+                            size: 12,
+                            family: theme.typography.fontFamily,
+                        },
                     },
                     grid: {
                         color:

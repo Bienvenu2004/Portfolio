@@ -57,6 +57,10 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                 x: {
                     ticks: {
                         color: theme.palette.secondary.text,
+                        font: {
+                            size: 12,
+                            family: theme.typography.fontFamily,
+                        },
                     },
                     grid: {
                         color: "transparent",
@@ -65,6 +69,10 @@ const StackChart = ({ mongodb, expressjs, reactjs, nextjs, nodejs }) => {
                 y: {
                     ticks: {
                         color: theme.palette.secondary.text,
+                        font: {
+                            size: 12,
+                            family: theme.typography.fontFamily,
+                        },
                     },
                     grid: {
                         color: reactjs

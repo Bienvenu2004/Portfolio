@@ -7,6 +7,7 @@ import {
     IconButton,
 } from "@mui/material";
 import { Loading } from "@nextui-org/react";
+import { Oval } from "react-loader-spinner";
 import { Search, CloseRounded } from "@mui/icons-material";
 
 let detectedOS;
@@ -44,6 +45,20 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                     }}
                 />
             ) : (
+                // <Oval
+                //     height={20}
+                //     width={20}
+                //     color="#0091ea"
+                //     wrapperStyle={{
+                //         marginRight: "16px",
+                //     }}
+                //     wrapperClass=""
+                //     visible={true}
+                //     ariaLabel="oval-loading"
+                //     secondaryColor="#0091ea"
+                //     strokeWidth={2}
+                //     strokeWidthSecondary={2}
+                // />
                 <Search
                     sx={{
                         fontSize: "25px",

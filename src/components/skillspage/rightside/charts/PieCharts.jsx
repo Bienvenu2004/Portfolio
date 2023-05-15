@@ -7,13 +7,13 @@ const PieCharts = ({ selectedValue, selectedChartValue }) => {
     return (
         <Box width="100%">
             {selectedChartValue === "Pie" && selectedValue === "JavaScript" && (
-                <PieChart data={pieDataJS} />
+                <PieChart data={pieDataJS} endAngle={360} />
             )}
             {selectedChartValue === "Pie" && selectedValue === "CSS" && (
-                <PieChart data={pieDataCSS} />
+                <PieChart data={pieDataCSS} endAngle={360} />
             )}
             {selectedChartValue === "Pie" && selectedValue === "Database" && (
-                <PieChart data={pieDataDB} />
+                <PieChart data={pieDataDB} endAngle={360} />
             )}
             {selectedChartValue === "Pie" &&
                 selectedValue === "Git & GitHub" && (
@@ -41,6 +41,7 @@ const PieCharts = ({ selectedValue, selectedChartValue }) => {
                                 trailColor: "rgb(149, 0, 174, 0.4)",
                             },
                         ]}
+                        endAngle={360}
                     />
                 )}
         </Box>
