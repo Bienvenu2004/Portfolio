@@ -52,14 +52,14 @@ const Layout = ({ children }) => {
             <Box display={"flex"} width="100vw" height="100vh">
                 <Sidebar />
                 <Box flexGrow={1} display="flex" flexDirection="column">
-                    <Box display="flex">
+                    <Box display="flex" height="fit-content">
                         <Navbar
                             setMode={setMode}
                             prefersDarkMode={prefersDarkMode}
                         />
                     </Box>
                     {/** content of page*/}
-                    <Box flexGrow={1} display="flex" height="100%">
+                    <Box flexGrow={1} display="flex">
                         {children}
                     </Box>
                 </Box>

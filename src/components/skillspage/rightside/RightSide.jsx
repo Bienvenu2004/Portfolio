@@ -23,8 +23,9 @@ const RightSide = ({
 
     return (
         <Box
-            height={is1050px && isSidebarOpen ? "fit-content" : "100%"}
-            width={is1050px && isSidebarOpen ? "100%" : "50%"}
+            height={"100%"}
+            width={"100%"}
+            border="1px solid blue"
             pl={0.75}
             pt={1.5}
         >

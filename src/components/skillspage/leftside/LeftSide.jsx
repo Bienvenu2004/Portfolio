@@ -1,14 +1,9 @@
 import React from "react";
-import { Box, useMediaQuery, useTheme, Typography } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { SidebarContext } from "../../contexts/SidebarContext";
 import SkillsDropdown from "../dropdowns/SkillsDropdown";
 import PieChart from "@/components/charts/PieChart";
 import Image from "next/image";
-import reactjs from "@/public/images/reactjs.png";
-import nextjs from "@/public/images/nextjs.png";
-import nodejs from "@/public/images/nodejs.png";
-import expressjs from "@/public/images/expressjs.png";
-import mongodb from "@/public/images/mongodb.png";
 
 const LeftSide = () => {
     const [isMERN, setIsMERN] = React.useState(true);
@@ -19,6 +14,7 @@ const LeftSide = () => {
     const is900px = useMediaQuery("(max-width:900px)");
     const is768px = useMediaQuery("(max-width:768px)");
     const is1050px = useMediaQuery("(max-width:1050px)");
+    const is1100px = useMediaQuery("(max-width:1100px)");
     const theme = useTheme();
     const ReactJS = [
         {
@@ -112,7 +108,7 @@ const LeftSide = () => {
 
     return (
         <Box
-            height={is1050px && isSidebarOpen ? "fit-content" : "100%"}
+            height={"100%"}
             width={is1050px && isSidebarOpen ? "100%" : "50%"}
             pr={0.75}
             pt={1.5}
@@ -148,138 +144,6 @@ const LeftSide = () => {
                         showLegend={false}
                         bottom={50}
                     />
-                </Box>
-            </Box>
-            <Box display="flex" py={1.5} flexWrap="wrap" flex={1}>
-                {/**Top */}
-                <Box
-                    display="flex"
-                    width="100%"
-                    height="50%"
-                    alignItems="center"
-                    justifyContent="center"
-                    boxSizing="border-box"
-                    mb={0.75}
-                >
-                    <Box
-                        display="flex"
-                        width="50%"
-                        height="100%"
-                        alignItems="center"
-                        justifyContent="center"
-                        flexDirection="column"
-                        sx={{
-                            background: theme.palette.background.paper,
-                            mr: 0.75,
-                            borderRadius: "5px",
-                            borderBottom: "5px solid hsl(134, 70%, 50%)",
-                            borderBottomLeftRadius: "0px",
-                            borderBottomRightRadius: "0px",
-                        }}
-                    >
-                        <Image
-                            src={mongodb}
-                            alt="MongoDB"
-                            width={100}
-                            height={100}
-                            style={{ ...imageStyles[0] }}
-                        />
-                        <Typography
-                            variant="h3"
-                            sx={{
-                                color: theme.palette.secondary.text,
-                                fontWeight: 400,
-                                fontSize: "1rem",
-                                mt: 5,
-                            }}
-                        >
-                            MongoDB
-                        </Typography>
-                    </Box>
-                    <Box
-                        display="flex"
-                        width="50%"
-                        height="100%"
-                        alignItems="center"
-                        justifyContent="center"
-                        sx={{
-                            background: theme.palette.background.paper,
-                            ml: 0.75,
-                            borderRadius: "5px",
-                            borderBottom: "5px solid hsl(40, 70%, 50%)",
-                            borderBottomLeftRadius: "0px",
-                            borderBottomRightRadius: "0px",
-                        }}
-                    >
-                        <Image
-                            src={expressjs}
-                            alt="ExpressJS"
-                            width={100}
-                            height={100}
-                            style={{ ...imageStyles[0] }}
-                        />
-                    </Box>
-                </Box>
-                {/**Bottom */}
-                <Box
-                    display="flex"
-                    width="100%"
-                    height="50%"
-                    alignItems="center"
-                    justifyContent="center"
-                    mt={0.75}
-                    boxSizing="border-box"
-                >
-                    <Box
-                        display="flex"
-                        width="50%"
-                        height="100%"
-                        alignItems="center"
-                        justifyContent="center"
-                        sx={{
-                            background: theme.palette.background.paper,
-                            mr: 0.75,
-                            borderRadius: "5px",
-                            borderBottom: isMERN
-                                ? "5px solid hsl(216, 70%, 50%)"
-                                : "5px solid hsl(310, 70%, 50%)",
-                            borderBottomLeftRadius: "0px",
-                            borderBottomRightRadius: "0px",
-                        }}
-                    >
-                        <Image
-                            src={isMERN ? reactjs : nextjs}
-                            alt={isMERN ? "ReactJS" : "NextJS"}
-                            width={100}
-                            height={100}
-                            style={{
-                                ...imageStyles[0],
-                            }}
-                        />
-                    </Box>
-                    <Box
-                        display="flex"
-                        width="50%"
-                        height="100%"
-                        alignItems="center"
-                        justifyContent="center"
-                        sx={{
-                            background: theme.palette.background.paper,
-                            ml: 0.75,
-                            borderRadius: "5px",
-                            borderBottom: "5px solid hsl(134, 70%, 50%)",
-                            borderBottomLeftRadius: "0px",
-                            borderBottomRightRadius: "0px",
-                        }}
-                    >
-                        <Image
-                            src={nodejs}
-                            alt="NodeJS"
-                            width={100}
-                            height={100}
-                            style={{ ...imageStyles[0] }}
-                        />
-                    </Box>
                 </Box>
             </Box>
         </Box>
