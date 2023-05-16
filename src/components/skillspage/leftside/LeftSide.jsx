@@ -10,11 +10,8 @@ const LeftSide = () => {
     const [selectedStack, setSelectedStack] = React.useState(new Set(["MERN"]));
     const [pieData, setPieData] = React.useState([]);
     const { isSidebarOpen } = React.useContext(SidebarContext);
-    const is300px = useMediaQuery("(max-width:300px)");
-    const is900px = useMediaQuery("(max-width:900px)");
-    const is768px = useMediaQuery("(max-width:768px)");
-    const is1050px = useMediaQuery("(max-width:1050px)");
-    const is1100px = useMediaQuery("(max-width:1100px)");
+    const is600px = useMediaQuery("(max-width:600px)");
+    const is950px = useMediaQuery("(max-width:950px)");
     const theme = useTheme();
     const ReactJS = [
         {
@@ -70,20 +67,6 @@ const LeftSide = () => {
         },
     ];
 
-    const imageStyles = [
-        {
-            transition: "all 0.3s ease-in-out",
-            height:
-                (is300px && "50px") ||
-                (is900px && !isSidebarOpen && "50px") ||
-                (isSidebarOpen && is768px && "50px"),
-            width:
-                (is300px && "50px") ||
-                (is900px && !isSidebarOpen && "50px") ||
-                (isSidebarOpen && is768px && "50px"),
-        },
-    ];
-
     const skills = ["MERN", "MENN"];
 
     React.useEffect(() => {
@@ -108,12 +91,13 @@ const LeftSide = () => {
 
     return (
         <Box
-            height={"100%"}
-            width={is1050px && isSidebarOpen ? "100%" : "50%"}
-            pr={0.75}
-            pt={1.5}
+            height={"fit-content"}
+            width={(is950px && isSidebarOpen) || is600px ? "100%" : "50%"}
+            pr={!(is950px && isSidebarOpen) && 0.75}
+            pt={(!(is950px && isSidebarOpen) && 1.5) || 0.75}
             display="flex"
-            flexDirection="column"
+            flexDirection={is950px && isSidebarOpen ? "column" : "row"}
+            border={1}
         >
             <Box
                 sx={{

@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500&family=PT+Sans+Caption:wght@400;700&display=swap");
 
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 html,
 body,
 .app {

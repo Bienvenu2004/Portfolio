@@ -18,7 +18,8 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
         new Set(["JavaScript"])
     );
     const [selectedChart, setSelectedChart] = React.useState(new Set(["Bar"]));
-    const is1050px = useMediaQuery("(max-width:1050px)");
+    const is600px = useMediaQuery("(max-width:600px)");
+    const is950px = useMediaQuery("(max-width:950px)");
 
     const selectedValue = React.useMemo(
         () => Array.from(selectedSkill).join(", ").replaceAll("_", " "),
@@ -31,14 +32,15 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
     );
 
     return (
-        <div
-            className="app"
-            style={{
+        <Box
+            sx={{
                 color: theme.palette.secondary.text,
                 display: "flex",
                 padding: "0.75rem",
+                height: "100%",
+                width: "100%",
                 flexDirection: "column",
-                border: "1px solid red",
+                boxSizing: "border-box",
             }}
         >
             <Box height="fit-content" display="block">
@@ -63,10 +65,15 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                 )}
             </Box>
             <Box
-                height={"100%"}
-                width="100%"
-                display={"flex"}
-                flexDirection={"row"}
+                sx={{
+                    height: "100%",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection:
+                        (is950px && isSidebarOpen) || is600px
+                            ? "column"
+                            : "row",
+                }}
             >
                 {/**Left side */}
                 <LeftSide />
@@ -82,7 +89,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                     charts={charts}
                 />
             </Box>
-        </div>
+        </Box>
     );
 };
 

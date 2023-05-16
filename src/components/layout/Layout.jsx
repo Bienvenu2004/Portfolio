@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Box display={"flex"} width="100vw" height="100vh">
+            <Box display={"flex"} width="100%" height="100vh">
                 <Sidebar />
                 <Box flexGrow={1} display="flex" flexDirection="column">
                     <Box display="flex" height="fit-content">
@@ -59,7 +59,7 @@ const Layout = ({ children }) => {
                         />
                     </Box>
                     {/** content of page*/}
-                    <Box flexGrow={1} display="flex">
+                    <Box flexGrow={1} display="block">
                         {children}
                     </Box>
                 </Box>
