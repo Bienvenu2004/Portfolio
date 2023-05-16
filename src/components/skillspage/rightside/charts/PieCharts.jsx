@@ -1,48 +1,29 @@
 import React from "react";
-import { pieDataJS, pieDataDB, pieDataCSS } from "@/data/charts";
 import PieChart from "@/components/charts/PieChart";
 import { Box } from "@mui/material";
 
-const PieCharts = ({ selectedValue, selectedChartValue }) => {
+const PieCharts = ({
+    selectedValue,
+    selectedChartValue,
+    javascript,
+    css,
+    database,
+    github,
+}) => {
     return (
         <Box width="100%">
             {selectedChartValue === "Pie" && selectedValue === "JavaScript" && (
-                <PieChart data={pieDataJS} endAngle={360} />
+                <PieChart data={javascript} endAngle={360} />
             )}
             {selectedChartValue === "Pie" && selectedValue === "CSS" && (
-                <PieChart data={pieDataCSS} endAngle={360} />
+                <PieChart data={css} endAngle={360} />
             )}
             {selectedChartValue === "Pie" && selectedValue === "Database" && (
-                <PieChart data={pieDataDB} endAngle={360} />
+                <PieChart data={database} endAngle={360} />
             )}
             {selectedChartValue === "Pie" &&
                 selectedValue === "Git & GitHub" && (
-                    <PieChart
-                        data={[
-                            {
-                                id: "GitHub",
-                                label: "GitHub",
-                                value: 85,
-                                color: "rgb(0,0,0)",
-                                trailColor: "rgb(0, 0, 0, 0.4)",
-                            },
-                            {
-                                id: "Git",
-                                label: "Git",
-                                value: 80,
-                                color: "rgb(233, 78, 49)",
-                                trailColor: "rgb(233, 78, 49,0.4)",
-                            },
-                            {
-                                id: "Vercel",
-                                label: "Vercel",
-                                value: 82,
-                                color: "rgb(149, 0, 174)",
-                                trailColor: "rgb(149, 0, 174, 0.4)",
-                            },
-                        ]}
-                        endAngle={360}
-                    />
+                    <PieChart data={github} endAngle={360} />
                 )}
         </Box>
     );

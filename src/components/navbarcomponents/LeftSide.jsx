@@ -20,14 +20,15 @@ const LeftSide = ({ setIsSidebarOpen, isSidebarOpen, isMobile }) => {
                         borderRadius: "0.8rem",
                         "&:hover": {
                             transition: "all 0.5s ease-in-out",
+                            backgroundColor: "transparent",
                         },
                     }}
                 >
                     {/* <MenuIcon /> */}
                     <User
                         src="/images/me.jpg"
-                        name={!isMobile && "Abdulrahim"}
-                        description={!isMobile && "Web Developer @Neema"}
+                        name={"Abdulrahim"}
+                        description={"Web Developer @Neema"}
                         bordered
                         color="primary"
                         size={isMobile ? "md" : "lg"}
@@ -35,9 +36,11 @@ const LeftSide = ({ setIsSidebarOpen, isSidebarOpen, isMobile }) => {
                             p: 0,
                             "& .nextui-user-name": {
                                 color: theme.palette.secondary.main,
+                                fontFamily: theme.typography.fontFamily,
                             },
                             "& .nextui-user-description": {
                                 color: theme.palette.secondary.text,
+                                fontFamily: theme.typography.fontFamily,
                             },
                             "& .nextui-avatar-img": {
                                 border: "none",

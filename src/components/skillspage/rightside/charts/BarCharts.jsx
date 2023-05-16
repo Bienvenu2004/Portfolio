@@ -1,7 +1,14 @@
 import React from "react";
 import BarChart from "@/components/charts/BarChart";
 
-const BarCharts = ({ selectedValue, selectedChartValue }) => {
+const BarCharts = ({
+    selectedValue,
+    selectedChartValue,
+    javascript,
+    css,
+    database,
+    github,
+}) => {
     return (
         <>
             {selectedChartValue === "Bar" && selectedValue === "JavaScript" && (
