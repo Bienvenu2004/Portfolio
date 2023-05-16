@@ -18,6 +18,7 @@ const RightSide = ({
     selectedChart,
 }) => {
     const is600px = useMediaQuery("(max-width:600px)");
+    const is660px = useMediaQuery("(max-width:660px)");
     const is950px = useMediaQuery("(max-width:950px)");
     const { isSidebarOpen } = React.useContext(SidebarContext);
     const theme = useTheme();
@@ -25,9 +26,17 @@ const RightSide = ({
     return (
         <Box
             height={"fit-content"}
-            width={(is950px && isSidebarOpen) || (is600px && "100%") || "50%"}
+            width={
+                (is950px && isSidebarOpen) ||
+                is600px ||
+                (is660px && !isSidebarOpen && "100%") ||
+                "50%"
+            }
             border="1px solid blue"
-            pl={!(is950px && isSidebarOpen) && 0.75}
+            pl={
+                (!is950px && isSidebarOpen && 0.75) ||
+                (is660px && !isSidebarOpen && 0)
+            }
             pt={(!(is950px && isSidebarOpen) && 1.5) || 0.75}
         >
             <Box

@@ -19,6 +19,7 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
     );
     const [selectedChart, setSelectedChart] = React.useState(new Set(["Bar"]));
     const is600px = useMediaQuery("(max-width:600px)");
+    const is660px = useMediaQuery("(max-width:660px)");
     const is950px = useMediaQuery("(max-width:950px)");
 
     const selectedValue = React.useMemo(
@@ -70,7 +71,9 @@ const Index = ({ javascript = 1, css = 1, database = 1 }) => {
                     width: "100%",
                     display: "flex",
                     flexDirection:
-                        (is950px && isSidebarOpen) || is600px
+                        (is950px && isSidebarOpen) ||
+                        is600px ||
+                        (is660px && !isSidebarOpen)
                             ? "column"
                             : "row",
                 }}
