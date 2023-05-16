@@ -197,18 +197,16 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                 <Progress
                                                     percent={item.value}
                                                     status="active"
-                                                    size="small"
+                                                    size={[
+                                                        "96%",
+                                                        isMedium ? 4 : 6,
+                                                    ]}
                                                     trailColor={item.trailColor}
                                                     strokeColor={{
                                                         "0%": item.trailColor,
                                                         "100%": item.color,
                                                     }}
-                                                    strokeWidth={
-                                                        isMedium ? 4 : 6
-                                                    }
                                                     style={{
-                                                        width: "94%",
-
                                                         transition:
                                                             "all 0.3s ease-in-out",
                                                     }}

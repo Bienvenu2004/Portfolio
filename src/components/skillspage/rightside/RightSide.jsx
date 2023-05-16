@@ -6,6 +6,7 @@ import { SidebarContext } from "@/components/contexts/SidebarContext";
 import PieCharts from "./charts/PieCharts";
 import LineCharts from "./charts/LineCharts";
 import BarCharts from "./charts/BarCharts";
+import DataGrid from "./datagrid/DataGrid";
 
 const RightSide = ({
     selectedValue,
@@ -16,41 +17,47 @@ const RightSide = ({
     setSelectedChart,
     charts,
     selectedChart,
+    ...data
 }) => {
-    const is1050px = useMediaQuery("(max-width:1050px)");
+    const { javascript, css, database, github } = data;
+    const is600px = useMediaQuery("(max-width:600px)");
+    const is660px = useMediaQuery("(max-width:660px)");
+    const is950px = useMediaQuery("(max-width:950px)");
     const { isSidebarOpen } = React.useContext(SidebarContext);
     const theme = useTheme();
 
     return (
         <Box
             height={"100%"}
-            width={"100%"}
-            border="1px solid blue"
-            pl={0.75}
-            pt={1.5}
+            width={
+                (is950px && isSidebarOpen) ||
+                is600px ||
+                (is660px && !isSidebarOpen && "100%") ||
+                "50%"
+            }
+            pl={
+                (!is950px && isSidebarOpen && 0.75) ||
+                (is660px && !isSidebarOpen && 0)
+            }
+            pt={(!(is950px && isSidebarOpen) && 1.5) || 0.75}
+            pb={0.5}
+            flexDirection="column"
+            display={"flex"}
         >
             <Box
                 width="100%"
                 height={"330px"}
                 m="auto"
                 pb={1}
-                justifyContent="center"
                 elevation={3}
                 display="flex"
                 flexDirection={"column"}
-                alignItems="center"
                 sx={{
                     background: theme.palette.background.paper,
                     borderRadius: "5px",
                 }}
             >
-                <Box
-                    width="100%"
-                    height="40px"
-                    display="flex"
-                    alignContent="center"
-                    alignItems="center"
-                >
+                <Box width="100%" height="40px" display="flex">
                     <Box
                         display="flex"
                         width="50%"
@@ -91,22 +98,41 @@ const RightSide = ({
                         <PieCharts
                             selectedChartValue={selectedChartValue}
                             selectedValue={selectedValue}
+                            javascript={javascript}
+                            css={css}
+                            database={database}
+                            github={github}
                         />
                     )}
                     {selectedChartValue === "Line" && (
                         <LineCharts
                             selectedChartValue={selectedChartValue}
                             selectedValue={selectedValue}
+                            javascript={javascript}
+                            css={css}
+                            database={database}
+                            github={github}
                         />
                     )}
                     {selectedChartValue === "Bar" && (
                         <BarCharts
                             selectedChartValue={selectedChartValue}
                             selectedValue={selectedValue}
+                            javascript={javascript}
+                            css={css}
+                            database={database}
+                            github={github}
                         />
                     )}
                 </Box>
             </Box>
+            <DataGrid
+                javascript={javascript}
+                css={css}
+                database={database}
+                github={github}
+                selectedValue={selectedValue}
+            />
         </Box>
     );
 };

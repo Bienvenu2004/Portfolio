@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500&family=PT+Sans+Caption:wght@400;700&display=swap");
 
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Alkatra", cursive, "PT Sans Caption", sans-serif !important;
+}
+
 html,
 body,
 .app {
     height: 100%;
     width: 100%;
-    font-family: "Alkatra", cursive, "PT Sans Caption", sans-serif;
 }
 canvas {
     width: 100% !important;
@@ -31,7 +36,12 @@ canvas {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: transparent;
+    background: rgba(1, 87, 155, 0.2);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 /* Handle on hover */
