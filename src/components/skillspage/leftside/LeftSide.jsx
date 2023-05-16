@@ -110,7 +110,6 @@ const LeftSide = () => {
             pt={(!(is950px && isSidebarOpen) && 1.5) || 0.75}
             display="flex"
             flexDirection={"column"}
-            border={1}
         >
             <Box
                 sx={{

@@ -85,7 +85,6 @@ const RightSide = ({ handleClick, isMobile, searchModalRef }) => {
                                     margin: "0px",
                                 },
                             }}
-                            rounded={false}
                         />
                     }
                     sx={{

@@ -26,6 +26,9 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                 (isSidebarOpen && is1100px && "wrap") ||
                 (!isSidebarOpen && is815px && "wrap")
             }
+            sx={{
+                transition: "all 0.3s ease-in-out",
+            }}
         >
             <Box
                 display="flex"
@@ -43,6 +46,9 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                     !(!isSidebarOpen && is815px && "wrap") &&
                     0.75
                 }
+                sx={{
+                    transition: "all 0.3s ease-in-out",
+                }}
             >
                 <Box
                     width="100%"
@@ -143,6 +149,9 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         (!isSidebarOpen && is815px)) &&
                     1.25
                 }
+                sx={{
+                    transition: "all 0.3s ease-in-out",
+                }}
             >
                 <Box
                     width="100%"

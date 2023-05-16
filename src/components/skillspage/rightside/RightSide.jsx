@@ -25,7 +25,7 @@ const RightSide = ({
 
     return (
         <Box
-            height={"fit-content"}
+            height={"100%"}
             width={
                 (is950px && isSidebarOpen) ||
                 is600px ||

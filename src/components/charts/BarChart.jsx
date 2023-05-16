@@ -184,6 +184,7 @@ const BarChart = ({ data, keys }) => {
                         container: {
                             background: theme.palette.primary.main,
                             color: theme.palette.secondary.text,
+                            display: "none",
                         },
                     },
                     axis: {

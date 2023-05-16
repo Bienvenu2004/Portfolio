@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
                     ariaLabel="triangle-loading"
                     wrapperStyle={{}}
                     wrapperClassName=""
-                    visible={true}
+                    visible="true"
                 />
             </Box>
         );
