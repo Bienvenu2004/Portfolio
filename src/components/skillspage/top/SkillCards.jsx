@@ -4,7 +4,7 @@ import SkillBox from "./SkillBox";
 
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
-const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
+const SkillCards = ({ javascript, css, database, github }) => {
     const isMobile = useMediaQuery("(max-width: 480px)");
     const is600px = useMediaQuery("(max-width: 600px)");
     const isMedium = useMediaQuery("(max-width: 720px)");
@@ -12,6 +12,13 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
     const is950px = useMediaQuery("(max-width: 950px)");
     const is1100px = useMediaQuery("(max-width: 1100px)");
     const { isSidebarOpen } = useContext(SidebarContext);
+
+    javascript = javascript?.filter((skill) => skill.showOnSkillCard === true);
+    css = css?.filter((skill) => skill.showOnSkillCard === true);
+    database = database?.filter((skill) => skill.showOnSkillCard === true);
+    github = github?.filter((skill) => skill.showOnSkillCard === true);
+
+    console.log("javascript", javascript);
 
     return (
         <Box
@@ -61,26 +68,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         image={"/images/js.png"}
                         trailColor="rgb(232, 200, 37, 0.4)"
                         strokeColor="rgb(232, 200, 37)"
-                        skill={[
-                            {
-                                label: "Express JS",
-                                value: 65,
-                                trailColor: "rgb(232, 200, 37, 0.4)",
-                                color: "rgb(232, 200, 37)",
-                            },
-                            {
-                                label: "NextJS",
-                                value: 80,
-                                trailColor: "rgb(0, 0, 0, 0.3)",
-                                color: "rgb(0, 0, 0)",
-                            },
-                            {
-                                label: "NodeJS",
-                                value: 70,
-                                trailColor: "rgb(1, 236, 100, 0.4)",
-                                color: "rgb(1, 236, 100)",
-                            },
-                        ]}
+                        skill={javascript}
                     />
                 </Box>
                 <Box
@@ -101,26 +89,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         trailColor="rgb(0, 126, 253, 0.4)"
                         strokeColor="rgb(0, 126, 253)"
                         image={"/images/css.png"}
-                        skill={[
-                            {
-                                label: "Material UI",
-                                value: 75,
-                                trailColor: "hsl(216, 70%, 50%, 0.4)",
-                                color: "hsl(216, 70%, 50%)",
-                            },
-                            {
-                                label: "Antd",
-                                value: 70,
-                                trailColor: "rgb(84, 84, 197, 0.4)",
-                                color: "rgb(84, 84, 197)",
-                            },
-                            {
-                                label: "Primereact",
-                                value: 70,
-                                trailColor: "rgb(212, 171, 220, 0.4)",
-                                color: "rgb(212, 171, 220)",
-                            },
-                        ]}
+                        skill={css}
                     />
                 </Box>
             </Box>
@@ -170,26 +139,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         strokeColor="#01EC64"
                         trailColor="rgb(1, 236, 100, 0.4)"
                         image={"/images/mongodb.png"}
-                        skill={[
-                            {
-                                label: "MongoDB",
-                                value: 72,
-                                trailColor: "rgb(1, 236, 100, 0.4)",
-                                color: "rgb(1, 236, 100)",
-                            },
-                            {
-                                label: "AWS",
-                                value: 50,
-                                trailColor: "hsl(38, 70%, 50%, 0.4)",
-                                color: "hsl(38, 70%, 50%)",
-                            },
-                            {
-                                label: "PostgreSQL",
-                                value: 78,
-                                trailColor: "hsl(134, 70%, 50%, 0.4)",
-                                color: "hsl(134, 70%, 50%)",
-                            },
-                        ]}
+                        skill={database}
                     />
                 </Box>
                 <Box
@@ -213,29 +163,7 @@ const SkillCards = ({ javascript = 1, css = 1, database = 1 }) => {
                         strokeColor="rgb(149, 0, 174)"
                         trailColor="rgb(149, 0, 174,0.4)"
                         image={"/images/github.png"}
-                        skill={[
-                            {
-                                id: "GitHub",
-                                label: "GitHub",
-                                value: 85,
-                                color: "rgb(0,0,0)",
-                                trailColor: "rgb(0, 0, 0, 0.4)",
-                            },
-                            {
-                                id: "Git",
-                                label: "Git",
-                                value: 80,
-                                color: "rgb(233, 78, 49)",
-                                trailColor: "rgb(233, 78, 49,0.4)",
-                            },
-                            {
-                                id: "Vercel",
-                                label: "Vercel",
-                                value: 82,
-                                color: "rgb(149, 0, 174)",
-                                trailColor: "rgb(149, 0, 174, 0.4)",
-                            },
-                        ]}
+                        skill={github}
                     />
                 </Box>
             </Box>
