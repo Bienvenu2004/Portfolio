@@ -18,8 +18,6 @@ const SkillCards = ({ javascript, css, database, github }) => {
     database = database?.filter((skill) => skill.showOnSkillCard === true);
     github = github?.filter((skill) => skill.showOnSkillCard === true);
 
-    console.log("javascript", javascript);
-
     return (
         <Box
             width="100%"

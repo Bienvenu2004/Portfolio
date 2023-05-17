@@ -5,7 +5,7 @@ import SkillCards from "@/components/skillspage/top/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 //database helpers
-import { getAllDocuments } from "@/lib/mongodbHelper";
+import { getAllDocuments } from "../../../lib/mongodbHelper";
 import RightSide from "@/components/skillspage/rightside/RightSide";
 import LeftSide from "@/components/skillspage/leftside/LeftSide";
 import CustomHead from "@/components/head/Head";
