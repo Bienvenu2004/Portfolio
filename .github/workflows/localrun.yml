@@ -30,5 +30,4 @@ jobs:
               run: pnpm test --if-present
             - name: building production build...
               run: pnpm run build --if-present
-              env: ${{secrets.MONGODB_URI}}
-          
+              env: ${{vars.MONGODB_URI}}
