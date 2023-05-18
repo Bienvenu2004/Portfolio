@@ -1,6 +1,7 @@
 import React from "react";
 import LineChart from "@/components/charts/PrimeLineChart";
 import { Box } from "@mui/material";
+import { Triangle } from "react-loader-spinner";
 
 const LineCharts = ({
     selectedChartValue,
@@ -10,6 +11,28 @@ const LineCharts = ({
     database,
     github,
 }) => {
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, [mounted]);
+
+    if (!mounted) {
+        return (
+            <Box display="flex" width="100%">
+                <Triangle
+                    height="80"
+                    width="80"
+                    color="#0091ea"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible="true"
+                />
+            </Box>
+        );
+    }
+
     return (
         <Box display="flex" width="100%">
             {selectedChartValue === "Line" &&
@@ -24,22 +47,7 @@ const LineCharts = ({
             )}
             {selectedChartValue === "Line" &&
                 selectedValue === "Git & GitHub" && (
-                    <LineChart
-                        github={[
-                            {
-                                label: "Git",
-                                value: 75,
-                            },
-                            {
-                                label: "GitHub",
-                                value: 84,
-                            },
-                            {
-                                label: "Vercel",
-                                value: 78,
-                            },
-                        ]}
-                    />
+                    <LineChart github={github} />
                 )}
         </Box>
     );

@@ -1,11 +1,11 @@
 name: PortFolio CI
 
 on:
-  push:
-    branches: ["_dev", "raju"]
+    push:
+        branches: ["_dev", "raju"]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
 
 jobs:
   build:
@@ -31,3 +31,4 @@ jobs:
     - name: building production build...
       run: pnpm run build --if-present
       env: ${{vars.MONGODB_URI}}
+

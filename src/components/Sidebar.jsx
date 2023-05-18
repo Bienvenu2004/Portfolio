@@ -80,6 +80,7 @@ const Sidebar = () => {
             }}
             style={{
                 background: "transparent",
+                transition: "all 0.3s ease-in-out",
             }}
         >
             <Box>

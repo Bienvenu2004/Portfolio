@@ -1,5 +1,6 @@
 import React from "react";
 import BarChart from "@/components/charts/BarChart";
+import { Triangle } from "react-loader-spinner";
 
 const BarCharts = ({
     selectedValue,
@@ -9,6 +10,28 @@ const BarCharts = ({
     database,
     github,
 }) => {
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, [mounted]);
+
+    if (!mounted) {
+        return (
+            <Box display="flex" width="100%">
+                <Triangle
+                    height="80"
+                    width="80"
+                    color="#0091ea"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible="true"
+                />
+            </Box>
+        );
+    }
+
     return (
         <>
             {selectedChartValue === "Bar" && selectedValue === "JavaScript" && (
