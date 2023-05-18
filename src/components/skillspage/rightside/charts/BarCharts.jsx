@@ -1,5 +1,6 @@
 import React from "react";
 import BarChart from "@/components/charts/BarChart";
+import { Box } from "@mui/material";
 import { Triangle } from "react-loader-spinner";
 
 const BarCharts = ({
