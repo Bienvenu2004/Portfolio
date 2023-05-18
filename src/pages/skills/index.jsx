@@ -5,7 +5,7 @@ import SkillCards from "@/components/skillspage/top/SkillCards";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 //database helpers
-import { getAllDocuments } from "../../../lib/mongodbHelper";
+import { getAllDocuments } from "../api/portfolioapi";
 import RightSide from "@/components/skillspage/rightside/RightSide";
 import LeftSide from "@/components/skillspage/leftside/LeftSide";
 import CustomHead from "@/components/head/Head";
@@ -108,20 +108,21 @@ const Index = ({ javascript, css, database, github }) => {
 
 export const getStaticProps = async () => {
     try {
-        let result = await getAllDocuments("javascript");
-        const javascript = (await result.data) || null;
-        result = await getAllDocuments("css");
-        const css = (await result.data) || null;
-        result = await getAllDocuments("database");
-        const database = (await result.data) || null;
-        result = await getAllDocuments("others");
-        const github = (await result.data) || null;
+        let result = await getAllDocuments(null, "javascript");
+        const javascript = JSON.parse(JSON.stringify(await result)) || null;
+        result = await getAllDocuments(null, "css");
+        const css = JSON.parse(JSON.stringify(await result)) || null;
+        result = await getAllDocuments(null, "database");
+        const database = JSON.parse(JSON.stringify(await result)) || null;
+        result = await getAllDocuments(null, "others");
+        const github = JSON.parse(JSON.stringify(await result)) || null;
+
         return {
             props: {
-                javascript: javascript.documents,
-                css: css.documents,
-                database: database.documents,
-                github: github.documents,
+                javascript,
+                css,
+                database,
+                github,
             },
             revalidate: 5,
         };

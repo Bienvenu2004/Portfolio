@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import Cors from "cors";
-import {
-    connectDatabase,
-    insertDocument,
-    getAllDocuments,
-} from "../../../lib/mongodb";
-import initMiddleware from "../../../lib/initMiddleware";
+
+import clientPromise from "@/lib/mongodb";
+
+import initMiddleware from "@/lib/initMiddleware";
+
+const database = "Portfolio";
 
 // Initialize the cors middleware
 const cors = initMiddleware(
@@ -19,9 +19,28 @@ const cors = initMiddleware(
     })
 );
 
+export const insertDocument = async (client, collection, document) => {
+    const db = await client.db(database);
+
+    const result = await db.collection(collection).insertMany(document, {
+        ordered: true,
+    });
+
+    return result;
+};
+
+export const getAllDocuments = async (_client = null, collection = null) => {
+    const client = _client ? _client : await clientPromise;
+    const db = await client.db(database);
+
+    const documents = await db.collection(collection).find({}).toArray();
+
+    return documents;
+};
+
 export default async function handler(req, res) {
     await cors(req, res);
-    const client = await connectDatabase();
+    const client = await clientPromise;
     let documents = [];
     const { collection, document } = req.body;
     const { getCollection } = req.query;
