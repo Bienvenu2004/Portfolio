@@ -13,7 +13,7 @@ const DataGrid = (props) => {
 
     React.useEffect(() => {
         if (selectedValue === "JavaScript") {
-            javascript.map((item) => {
+            javascript?.map((item) => {
                 setDataGridRowsJS((prev) => [
                     ...prev,
                     {
@@ -29,7 +29,7 @@ const DataGrid = (props) => {
             setDataGridRowsGithub([]);
         }
         if (selectedValue === "CSS") {
-            css.map((item) => {
+            css?.map((item) => {
                 setDataGridRowsCSS((prev) => [
                     ...prev,
                     {
@@ -45,7 +45,7 @@ const DataGrid = (props) => {
             setDataGridRowsJS([]);
         }
         if (selectedValue === "Database") {
-            database.map((item) => {
+            database?.map((item) => {
                 setDataGridRowsDatabase((prev) => [
                     ...prev,
                     {
@@ -61,7 +61,7 @@ const DataGrid = (props) => {
             setDataGridRowsJS([]);
         }
         if (selectedValue === "Git & GitHub") {
-            github.map((item) => {
+            github?.map((item) => {
                 setDataGridRowsGithub((prev) => [
                     ...prev,
                     {

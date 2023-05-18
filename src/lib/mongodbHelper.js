@@ -1,10 +1,9 @@
 import axios from "axios";
+const SERVER = process.env.SERVER;
 
-const getAllDocuments = async (collection) => {
-    const data = await axios
-        .get(
-            `http://localhost:${process.env.PORT}/api/portfolioapi?getCollection=${collection}`
-        )
+const getAllDocuments = (collection) => {
+    const data = axios
+        .get(`${SERVER}/api/portfolioapi?getCollection=${collection}`)
         .catch((error) => {
             if (axios.isCancel(error)) {
                 return { isCancelled: true, documents: [] };
@@ -14,9 +13,9 @@ const getAllDocuments = async (collection) => {
     return data;
 };
 
-const insertDocuments = async (collection, document) => {
-    const data = await axios
-        .post(`http://localhost:${process.env.PORT}/api/portfolioapi`, {
+const insertDocuments = (collection, document) => {
+    const data = axios
+        .post(`${SERVER}/api/portfolioapi`, {
             collection,
             document,
         })
