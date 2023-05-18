@@ -19,10 +19,18 @@ const BarCharts = ({
 
     if (!mounted) {
         return (
-            <Box display="flex" width="100%">
+            <Box
+                display="flex"
+                height="100%"
+                width="100%"
+                sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
                 <Triangle
-                    height="80"
-                    width="80"
+                    height="50"
+                    width="50"
                     color="#0091ea"
                     ariaLabel="triangle-loading"
                     wrapperStyle={{}}
