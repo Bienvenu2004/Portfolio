@@ -51,7 +51,7 @@ const Sidebar = () => {
     }, [isMobile]);
 
     if (activeUrl === "") {
-        setActiveUrl("skills");
+        setActiveUrl("dashboard");
     }
 
     return (
