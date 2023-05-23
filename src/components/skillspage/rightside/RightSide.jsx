@@ -36,6 +36,7 @@ const RightSide = ({
                 "50%"
             }
             pl={
+                (!isSidebarOpen && 0.75) ||
                 (!is950px && isSidebarOpen && 0.75) ||
                 (is660px && !isSidebarOpen && 0)
             }
