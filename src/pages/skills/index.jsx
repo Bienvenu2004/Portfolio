@@ -84,7 +84,7 @@ const Index = ({ javascript, css, database, github }) => {
                     }}
                 >
                     {/**Left side */}
-                    <LeftSide />
+                    <LeftSide javascript={javascript} database={database} />
                     {/**Right side */}
                     <RightSide
                         selectedSkill={selectedSkill}

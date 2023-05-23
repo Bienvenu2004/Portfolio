@@ -5,71 +5,72 @@ import SkillsDropdown from "../dropdowns/SkillsDropdown";
 import PieChart from "@/components/charts/PieChart";
 import Image from "next/image";
 
-const LeftSide = () => {
+const LeftSide = ({ javascript, database }) => {
+    const theme = useTheme();
     const [isMERN, setIsMERN] = React.useState(true);
     const [selectedStack, setSelectedStack] = React.useState(new Set(["MERN"]));
     const [pieData, setPieData] = React.useState([]);
-    const { isSidebarOpen, isPersistent } = React.useContext(SidebarContext);
+    const { isSidebarOpen } = React.useContext(SidebarContext);
+
     const is480px = useMediaQuery("(max-width:480px)");
     const is600px = useMediaQuery("(max-width:600px)");
     const is660px = useMediaQuery("(max-width:660px)");
     const is710px = useMediaQuery("(max-width:710px)");
     const is950px = useMediaQuery("(max-width:950px)");
     const is1100px = useMediaQuery("(max-width:1100px)");
-    const theme = useTheme();
-    const ReactJS = [
-        {
-            id: "Node JS",
-            label: "Node JS",
-            value: 70,
-            color: "hsl(134, 70%, 50%)",
-        },
 
+    let MongoDB = [];
+    let ReactJS = [];
+    let NextJS = [];
+    let data;
+
+    let dataTemplate = (...data) => [
         {
-            id: "React JS",
-            label: "React JS",
-            value: 70,
-            color: "hsl(216, 70%, 50%)",
-        },
-        {
-            id: "Express JS",
-            label: "Express JS",
-            value: 65,
-            color: "hsl(107, 70%, 50%)",
-        },
-        {
-            id: "MongoDB",
-            label: "MongoDB",
-            value: 80,
-            color: "#00C853",
+            id: data[0],
+            label: data[1],
+            value: data[2],
+            color: data[3],
         },
     ];
-    const NextJS = [
-        {
-            id: "NextJS",
-            label: "NextJS",
-            value: 80,
-            color: "hsl(310, 70%, 50%)",
-        },
-        {
-            id: "Node JS",
-            label: "Node JS",
-            value: 70,
-            color: "hsl(134, 70%, 50%)",
-        },
-        {
-            id: "Express JS",
-            label: "Express JS",
-            value: 65,
-            color: "hsl(40, 70%, 50%)",
-        },
-        {
-            id: "MongoDB",
-            label: "MongoDB",
-            value: 80,
-            color: "hsl(134, 70%, 50%)",
-        },
-    ];
+    database?.forEach((item) => {
+        if (item.label === "MongoDB") {
+            data = dataTemplate(item.id, item.label, item.value, item.color);
+            MongoDB.push(data[0]);
+        }
+    });
+
+    javascript?.forEach((item) => {
+        if (item.label === "ReactJS") {
+            data = dataTemplate(item.id, item.label, item.value, item.color);
+            ReactJS.push(data[0]);
+        }
+        if (item.label === "NodeJS") {
+            data = dataTemplate(item.id, item.label, item.value, item.color);
+            ReactJS.push(data[0]);
+        }
+        if (item.label === "ExpressJS") {
+            data = dataTemplate(item.id, item.label, item.value, item.color);
+            ReactJS.push(data[0]);
+        }
+    });
+
+    javascript?.forEach((item) => {
+        if (item.label === "NextJS") {
+            data = dataTemplate(item.id, item.label, item.value, item.color);
+            NextJS.push(data[0]);
+        }
+        if (item.label === "NodeJS") {
+            data = dataTemplate(item.id, item.label, item.value, item.color);
+            NextJS.push(data[0]);
+        }
+        if (item.label === "ExpressJS") {
+            data = dataTemplate(item.id, item.label, item.value, item.color);
+            NextJS.push(data[0]);
+        }
+    });
+
+    ReactJS.push(MongoDB[0]);
+    NextJS.push(MongoDB[0]);
 
     const skills = ["MERN", "MENN"];
 
@@ -104,6 +105,7 @@ const LeftSide = () => {
                     : "50%"
             }
             pr={
+                (!isSidebarOpen && 0.75) ||
                 (!is950px && isSidebarOpen && 0.75) ||
                 (is660px && !isSidebarOpen && 0)
             }
