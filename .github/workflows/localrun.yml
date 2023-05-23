@@ -6,6 +6,8 @@ on:
 
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
+env:
+    MONGODB_URI: ${{vars.MONGODB_URI}}
 
 jobs:
     build:
@@ -28,6 +30,7 @@ jobs:
               run: pnpm install
             - name: starting project test...
               run: pnpm test --if-present
+            - name: test variable
+              run: echo ${{env.MONGODB_URI}}
             - name: building production build...
               run: pnpm run build --if-present
-              #env: ${{vars.MONGODB_URI}}
