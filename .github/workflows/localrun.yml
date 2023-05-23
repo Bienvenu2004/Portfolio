@@ -28,8 +28,6 @@ jobs:
               run: pnpm install
             - name: starting project test...
               run: pnpm test --if-present
-            - name: test variable
-              run: echo ${{vars.MONGODB_URI}}
             - name: building production build...
               run: pnpm run build --if-present
               env:
