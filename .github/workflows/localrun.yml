@@ -24,14 +24,12 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
-            - name: Installing package/app dependencies...
+            - name: Installing dependencies...
               run: pnpm install
             - name: starting project test...
               run: pnpm test --if-present
             - name: test variable
-              run: echo ${{env.MONGODB_URI}}
-              env:
-                  MONGODB_URI: ${{vars.MONGODB_URI}}
+              run: echo ${{vars.MONGODB_URI}}
             - name: building production build...
               run: pnpm run build --if-present
               env:
