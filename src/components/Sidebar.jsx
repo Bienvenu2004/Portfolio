@@ -10,7 +10,7 @@ import {
     ListItemIcon,
     useMediaQuery,
 } from "@mui/material";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useLayoutEffect } from "react";
 import FlexBetween from "./FlexBetween";
 import { useRouter } from "next/router";
 import { navItems } from "../data/data";
@@ -40,7 +40,7 @@ const Sidebar = () => {
         }
     }, [autoCloseSideBar]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (isMobile) {
             setIsSidebarOpen(false);
             setIsPersistent(false);
