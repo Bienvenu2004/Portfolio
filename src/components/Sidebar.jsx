@@ -193,11 +193,7 @@ const Sidebar = () => {
                                 </ListItemIcon>
                                 <ListItemText primary={item.name} />
                                 {activeUrl === item.name.toLowerCase() && (
-                                    <ArrowRightOutlined
-                                        sx={{
-                                            ml: "auto",
-                                        }}
-                                    />
+                                    <ArrowRightOutlined sx={{ ml: "auto" }} />
                                 )}
                             </ListItemButton>
                         </ListItem>
