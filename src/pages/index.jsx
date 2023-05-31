@@ -1,9 +1,11 @@
 import { useTheme, useMediaQuery, Box } from "@mui/material";
 
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const App = ({ document }) => {
     const theme = useTheme();
+    const router = useRouter();
 
     return (
         <div
@@ -24,7 +26,7 @@ const App = ({ document }) => {
                     "0px 0px 2px 0px rgba(0,0,0,0.2)"
                 }
             >
-                Dashboard
+                {router.push("/skills")}
             </Box>
         </div>
     );
