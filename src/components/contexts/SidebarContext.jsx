@@ -1,9 +1,13 @@
 import React, { useMemo } from "react";
+import { useMediaQuery } from "@mui/material";
 
 const SidebarContext = React.createContext({});
 
 const SidebarProvider = ({ children }) => {
-    const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+    const isMobile = useMediaQuery("(max-width: 600px)");
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(
+        isMobile ? false : true
+    );
     const [isPersistent, setIsPersistent] = React.useState(true);
 
     const sideBarState = useMemo(
