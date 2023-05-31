@@ -4,7 +4,7 @@ import Head from "next/head";
 const CustomHead = ({ title }) => {
     return (
         <Head>
-            <title>{`Abdulrahim - ${title}`}</title>
+            <title>{`Abdulrahim - ${title} | Portfolio`}</title>
             <meta charset="UTF-8" />
             <meta
                 name="viewport"
