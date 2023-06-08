@@ -21,7 +21,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        progress: item.value,
                     },
                 ]);
             });
@@ -37,7 +36,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        progress: item.value,
                     },
                 ]);
             });
@@ -53,7 +51,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        progress: item.value,
                     },
                 ]);
             });
@@ -69,7 +66,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        progress: item.value,
                     },
                 ]);
             });
@@ -83,12 +79,6 @@ const DataGrid = (props) => {
         {
             field: "proficiency",
             headerName: "Proficiency",
-            type: "number",
-            editable: false,
-        },
-        {
-            field: "progress",
-            headerName: "Progress",
             renderCell: renderProgress,
             type: "number",
             width: 120,

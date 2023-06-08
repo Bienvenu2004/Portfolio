@@ -29,7 +29,7 @@ const useStyles = makeStyles(
                     backgroundColor: "#f44336",
                 },
                 "&.medium": {
-                    backgroundColor: "#efbb5aa3",
+                    backgroundColor: "hsl(38, 70%, 50%)",
                 },
                 "&.high": {
                     backgroundColor: "#088208a3",
@@ -44,9 +44,7 @@ const ProgressBar = React.memo(function ProgressBar(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <div
-                className={classes.value}
-            >{`${valueInPercent.toLocaleString()} %`}</div>
+            <div className={classes.value}>{`${value.toLocaleString()} %`}</div>
             <div
                 className={clsx(classes.bar, {
                     low: value < 30,
