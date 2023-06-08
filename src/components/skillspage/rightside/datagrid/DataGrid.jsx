@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { DataGrid as MuiDataGrid, GridToolbar } from "@mui/x-data-grid";
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import { renderProgress } from "./renderProgress";
+
 const DataGrid = (props) => {
     const { javascript, css, database, github, selectedValue } = props;
     const [dataGridRowsJS, setDataGridRowsJS] = React.useState([]);
@@ -20,7 +21,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        dateCreated: new Date("2021-10-10"),
                     },
                 ]);
             });
@@ -36,7 +36,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        dateCreated: new Date("2021-10-10"),
                     },
                 ]);
             });
@@ -52,7 +51,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        dateCreated: new Date("2021-10-10"),
                     },
                 ]);
             });
@@ -68,7 +66,6 @@ const DataGrid = (props) => {
                         id: item.label,
                         skill: item.label,
                         proficiency: item.value,
-                        dateCreated: new Date("2021-10-10"),
                     },
                 ]);
             });
@@ -82,15 +79,9 @@ const DataGrid = (props) => {
         {
             field: "proficiency",
             headerName: "Proficiency",
+            renderCell: renderProgress,
             type: "number",
-            editable: false,
-        },
-        {
-            field: "dateCreated",
-            headerName: "Date Created",
-            type: "date",
-            width: 100,
-            editable: false,
+            width: 120,
         },
     ];
     return (
@@ -139,6 +130,9 @@ const DataGrid = (props) => {
                     borderRadius: "5px",
                 }}
                 slots={{ toolbar: GridToolbar }}
+                checkboxSelection
+                disableSelectionOnClick
+                pagination
             />
         </Box>
     );
