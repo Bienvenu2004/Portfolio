@@ -10,13 +10,15 @@ import { Loading } from "@nextui-org/react";
 import { Oval } from "react-loader-spinner";
 import { Search, CloseRounded } from "@mui/icons-material";
 
-let detectedOS;
+let detectedOS = null;
 
 const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
     const theme = useTheme();
     if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
     if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
     if (navigator.userAgent.indexOf("Windows") != -1) detectedOS = "Windows";
+    if (navigator.userAgent.indexOf("Android") != -1) detectedOS = "Android";
+    if (navigator.userAgent.indexOf("like Mac") != -1) detectedOS = "iOS";
 
     return (
         <Box
@@ -55,8 +57,8 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                     visible={true}
                     ariaLabel="loading"
                     secondaryColor="#0091ea"
-                    strokeWidth={4}
-                    strokeWidthSecondary={4}
+                    strokeWidth={6}
+                    strokeWidthSecondary={6}
                 />
             ) : (
                 <Search
@@ -96,7 +98,9 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                     }
                 }}
             />
-            {detectedOS ? (
+            {detectedOS === "Windows" ||
+            detectedOS === "MacOS" ||
+            detectedOS === "Linux" ? (
                 <Chip
                     variant="outlined"
                     label={

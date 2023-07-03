@@ -17,9 +17,10 @@ import CustomIconButton from "../UI/CustomIconButton";
 
 let detectedOS;
 
-const RightSide = ({ handleClick, isMobile, searchModalRef }) => {
+const RightSide = ({ handleClick, searchModalRef }) => {
     const theme = useTheme();
     const isExtraSmall = useMediaQuery("(max-width: 400px)");
+    const isMobile = useMediaQuery("(max-width: 539px)");
 
     //add event listener for ctrl+k for Linux and Windows
     document.addEventListener("keydown", (event) => {
