@@ -62,7 +62,7 @@ const SearchDialogue = ({}, ref) => {
     let marginRight = "0px";
 
     isMobile ? (maxHeight = screenHeight) : (maxHeight = 504);
-    isMobile && !isLandScape && (maxWidth = "92vw");
+    isMobile && !isLandScape && (maxWidth = screenWidth * 0.92 + "px");
     isLandScape && screenHeight < 720 && (maxHeight = screenHeight);
     isLandScape && screenHeight < 720
         ? (maxWidth = screenWidth)
@@ -124,7 +124,7 @@ const SearchDialogue = ({}, ref) => {
                             p: "0px",
                             top: !isMobile && !isLandScape && "64px",
                             transition: "all 0.3s ease-in-out",
-                            borderRadius: !isMobile && "10px",
+                            borderRadius: "10px",
                             display: "flex",
                             marginRight: marginRight,
                             flexDirection: "column",
