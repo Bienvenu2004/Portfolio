@@ -145,6 +145,7 @@ const LeftSide = ({ javascript, database }) => {
                         innerRadius={0.4}
                         showLegend={false}
                         bottom={50}
+                        endAngle = {360}
                     />
                 </Box>
             </Box>
