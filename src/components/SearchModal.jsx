@@ -122,7 +122,7 @@ const SearchDialogue = ({}, ref) => {
                             width: maxWidth,
                             height: maxHeight,
                             p: "0px",
-                            top: !isMobile && !isLandScape && "64px",
+                            top: !isMobile && screenHeight > 720 && "64px",
                             transition: "all 0.3s ease-in-out",
                             borderRadius: "10px",
                             display: "flex",
