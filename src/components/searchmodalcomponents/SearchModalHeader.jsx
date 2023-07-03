@@ -36,27 +36,27 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
             }}
         >
             {isTyping ? (
-               /* <Loading
-                    size="sm"
-                    color="primary"
-                    type="default"
-                    css={{
-                        mr: "16px",
+                /* <Loading
+                        size="sm"
+                        color="primary"
+                        type="default"
+                        css={{
+                            mr: "16px",
+                        }}
+                    />*/
+                <Oval
+                    height={20}
+                    width={20}
+                    color="#0091ea"
+                    wrapperStyle={{
+                        marginRight: "16px",
                     }}
-                />*/
-                 <Oval
-                     height={20}
-                     width={20}
-                     color="#0091ea"
-                     wrapperStyle={{
-                         marginRight: "16px",
-                     }}
-                     wrapperClass=""
-                     visible={true}
-                     ariaLabel="oval-loading"
-                     secondaryColor="#0091ea"
-                     strokeWidth={2}
-                     strokeWidthSecondary={2}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="oval-loading"
+                    secondaryColor="#0091ea"
+                    strokeWidth={4}
+                    strokeWidthSecondary={4}
                 />
             ) : (
                 <Search
