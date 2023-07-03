@@ -53,7 +53,7 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                     }}
                     wrapperClass=""
                     visible={true}
-                    ariaLabel="oval-loading"
+                    ariaLabel="loading"
                     secondaryColor="#0091ea"
                     strokeWidth={4}
                     strokeWidthSecondary={4}

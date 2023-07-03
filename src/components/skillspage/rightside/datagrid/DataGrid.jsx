@@ -92,8 +92,8 @@ const DataGrid = (props) => {
             width={"100%"}
             sx={{
                 "& .MuiDataGrid-toolbarContainer": {
-                    backgroundColor: theme.palette.background.alt,
-                    color: theme.palette.secondary.text,
+                    backgroundColor: "#2ca02c",
+                    color: "#FFF",
                     width: "95%",
                     margin: "auto",
                     mt: 1,
