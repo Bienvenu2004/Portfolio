@@ -24,8 +24,8 @@ const App = ({ Component, pageProps }) => {
                     </Head>
                     <NextNProgress
                         color="#0072F5"
-                        startPosition={0.3}
-                        stopDelayMs={200}
+                        startPosition={0.75}
+                        stopDelayMs={300}
                         showOnSShallow={true}
                         height={3}
                         options={{
