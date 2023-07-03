@@ -3,6 +3,18 @@ import { Box, Typography, useTheme, Skeleton } from "@mui/material";
 
 const SearchModalContent = ({ searchValue, isTyping }) => {
     const theme = useTheme();
+
+    const screenWidth =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const screenHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+
+    const isLandScape = screenWidth > screenHeight;
+
     return (
         <Box
             sx={{
@@ -33,7 +45,10 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                 <Fragment>
                     <Typography
                         sx={{
-                            fontSize: "14px",
+                            fontSize:
+                                isLandScape && screenHeight < 720
+                                    ? "12px"
+                                    : "14px",
                             color: theme.palette.secondary.text,
                         }}
                     >
@@ -49,7 +64,10 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                     >
                         <Typography
                             sx={{
-                                fontSize: "14px",
+                                fontSize:
+                                    isLandScape && screenHeight < 720
+                                        ? "12px"
+                                        : "14px",
                                 color: theme.palette.secondary.text,
                             }}
                         >
@@ -57,7 +75,10 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                         </Typography>
                         <Typography
                             sx={{
-                                fontSize: "14px",
+                                fontSize:
+                                    isLandScape && screenHeight < 720
+                                        ? "12px"
+                                        : "14px",
                                 color: theme.palette.secondary.text,
                             }}
                         >

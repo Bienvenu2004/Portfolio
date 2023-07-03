@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
         padding: "0px",
         transition: "top 0.3s ease-in-out",
         zIndex: 100,
-        width: "683px",
-        height: "504px",
+        //width: "851px",
+        //height: "504px",
         position: "relative",
     },
     open: {
@@ -43,7 +43,38 @@ const SearchDialogue = ({}, ref) => {
     const [searchValue, setSearchValue] = useState(null);
     const [isTyping, setIsTyping] = useState(false);
 
+    const screenWidth =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const screenHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+
+    const isLandScape = screenWidth > screenHeight;
+
     const handleClick = () => setOpen(!open);
+
+    let maxHeight;
+    let maxWidth;
+    let overHeight = 0;
+    let marginRight = "0px";
+
+    isMobile ? (maxHeight = screenHeight) : (maxHeight = 504);
+    isMobile && !isLandScape && (maxWidth = screenWidth * 0.92 + "px");
+    isLandScape && screenHeight < 720 && (maxHeight = screenHeight);
+    isLandScape && screenHeight < 720
+        ? (maxWidth = screenWidth)
+        : (maxWidth = "683px");
+    !isMobile && !isLandScape
+        ? (overHeight = maxHeight - 504)
+        : (overHeight = 0);
+
+    maxHeight -= overHeight;
+    maxHeight += "px";
+
+    //isLandScape && (marginRight = "75px");
 
     useImperativeHandle(
         ref,
@@ -88,13 +119,14 @@ const SearchDialogue = ({}, ref) => {
                     <Box
                         className={classes.paper}
                         sx={{
-                            width: isMobile && "92vw",
-                            minHeight: isMobile && "100vh",
+                            width: maxWidth,
+                            height: maxHeight,
                             p: "0px",
-                            top: !isMobile && "64px",
+                            top: !isMobile && screenHeight > 720 && "64px",
                             transition: "all 0.3s ease-in-out",
-                            borderRadius: !isMobile && "10px",
+                            borderRadius: "10px",
                             display: "flex",
+                            marginRight: marginRight,
                             flexDirection: "column",
                             "&:focus": {
                                 outline: "none",

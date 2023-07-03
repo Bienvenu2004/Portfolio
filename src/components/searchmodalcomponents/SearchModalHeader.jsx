@@ -5,18 +5,36 @@ import {
     Chip,
     Typography,
     IconButton,
+    useMediaQuery,
 } from "@mui/material";
 import { Loading } from "@nextui-org/react";
 import { Oval } from "react-loader-spinner";
 import { Search, CloseRounded } from "@mui/icons-material";
 
-let detectedOS;
+let detectedOS = null;
 
 const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
     const theme = useTheme();
     if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
     if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
     if (navigator.userAgent.indexOf("Windows") != -1) detectedOS = "Windows";
+    if (navigator.userAgent.indexOf("Android") != -1) detectedOS = "Android";
+    if (navigator.userAgent.indexOf("like Mac") != -1) detectedOS = "iOS";
+
+    const isMobile = useMediaQuery("(max-width: 600px)");
+
+    const screenWidth =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const screenHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+
+    const isLandScape = screenWidth > screenHeight;
+
+    console.log(isLandScape, isMobile);
 
     return (
         <Box
@@ -29,6 +47,7 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                 backgroundColor:
                     theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.3)",
                 width: "100%",
+                height: isLandScape && !isMobile ? "40px" : "60px",
                 "& svg": {
                     color:
                         theme.palette.mode === "dark" && "rgba(1, 80, 155, 1)",
@@ -55,8 +74,8 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                     visible={true}
                     ariaLabel="loading"
                     secondaryColor="#0091ea"
-                    strokeWidth={4}
-                    strokeWidthSecondary={4}
+                    strokeWidth={6}
+                    strokeWidthSecondary={6}
                 />
             ) : (
                 <Search
@@ -76,7 +95,8 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                     border: "none",
                     margin: "0px",
                     pt: "5px",
-                    fontSize: "16px",
+                    fontSize:
+                        isLandScape && screenHeight < 720 ? "12px" : "16px",
                     letterSpacing: "1px",
                     "&:focus": {
                         outline: "none",
@@ -96,7 +116,9 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                     }
                 }}
             />
-            {detectedOS ? (
+            {detectedOS === "Windows" ||
+            detectedOS === "MacOS" ||
+            detectedOS === "Linux" ? (
                 <Chip
                     variant="outlined"
                     label={
@@ -152,6 +174,8 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                                 color: "#FFF",
                             },
                         },
+                        height: "30px",
+                        width: "30px",
                     }}
                     onClick={closeSearchModal}
                 >
