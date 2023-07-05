@@ -20,6 +20,7 @@ import { SidebarContext } from "./contexts/SidebarContext";
 
 const Sidebar = () => {
     const theme = useTheme();
+    const backupTheme = useTheme();
     const router = useRouter();
     const { pathname } = router;
     const [activeUrl, setActiveUrl] = useState(pathname.substring(1));
@@ -53,7 +54,6 @@ const Sidebar = () => {
     if (activeUrl === "") {
         setActiveUrl("dashboard");
     }
-
     return (
         <Drawer
             open={isSidebarOpen}

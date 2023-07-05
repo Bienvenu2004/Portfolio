@@ -7,7 +7,6 @@ import {
     IconButton,
     useMediaQuery,
 } from "@mui/material";
-import { Loading } from "@nextui-org/react";
 import { Oval } from "react-loader-spinner";
 import { Search, CloseRounded } from "@mui/icons-material";
 
@@ -34,8 +33,6 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
 
     const isLandScape = screenWidth > screenHeight;
 
-    console.log(isLandScape, isMobile);
-
     return (
         <Box
             sx={{
@@ -55,14 +52,6 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
             }}
         >
             {isTyping ? (
-                /* <Loading
-                        size="sm"
-                        color="primary"
-                        type="default"
-                        css={{
-                            mr: "16px",
-                        }}
-                    />*/
                 <Oval
                     height={20}
                     width={20}
@@ -90,7 +79,7 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                 id="search"
                 label="Search..."
                 variant="standard"
-                placeholder="Search..."
+                placeholder="Type to search..."
                 sx={{
                     border: "none",
                     margin: "0px",
