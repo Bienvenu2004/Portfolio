@@ -142,10 +142,11 @@ const LeftSide = ({ javascript, database }) => {
                 >
                     <PieChart
                         data={pieData}
-                        innerRadius={0.4}
+                        innerRadius={0.45}
                         showLegend={false}
                         bottom={50}
-                        endAngle = {360}
+                        endAngle={360}
+                        borderWidth={5}
                     />
                 </Box>
             </Box>
@@ -162,6 +163,7 @@ const LeftSide = ({ javascript, database }) => {
                     (is660px && !isSidebarOpen && "320px") ||
                     (is660px && isSidebarOpen && "250px")
                 }
+                border={is710px && "1px solid yellow"}
                 flexDirection={"column"}
                 pt={0.5}
             >

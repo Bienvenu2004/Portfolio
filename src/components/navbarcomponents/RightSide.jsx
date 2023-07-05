@@ -15,7 +15,7 @@ import {
 } from "@mui/icons-material";
 import CustomIconButton from "../UI/CustomIconButton";
 
-let detectedOS;
+let detectedOS = "Windows";
 
 const RightSide = ({ handleClick, searchModalRef }) => {
     const theme = useTheme();
@@ -65,7 +65,7 @@ const RightSide = ({ handleClick, searchModalRef }) => {
                                     }}
                                 >
                                     {detectedOS === "MacOS" && "⌘ + K"}
-                                    {detectedOS !== "MacOS" && "Ctrl+K"}
+                                    {detectedOS === "Windows" && "Ctrl+K"}
                                 </Typography>
                             }
                             size="small"
