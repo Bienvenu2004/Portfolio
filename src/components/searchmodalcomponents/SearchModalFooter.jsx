@@ -49,7 +49,7 @@ const SearchFooter = () => {
                 <CustomIconButton
                     href="https://www.github.com/Abdulrahim2567"
                     target="_blank"
-                    height="30px"
+                    height={isLandScape && screenHeight < 720 ? "30px" : "45px"}
                 >
                     <Typography
                         sx={{
