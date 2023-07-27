@@ -12,7 +12,7 @@ import { Search, CloseRounded } from "@mui/icons-material";
 
 let detectedOS = null;
 
-const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
+const SearchHeader = ({ isTyping, searchValue,setSearchValue, closeSearchModal }) => {
     const theme = useTheme();
     const inputRef = useRef(null);
 
@@ -85,6 +85,7 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                 variant="standard"
                 placeholder="Type something..."
                 inputRef={inputRef}
+                value = {searchValue}
                 sx={{
                     border: "none",
                     margin: "0px",
