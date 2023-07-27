@@ -1,9 +1,9 @@
 import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
 import { Box, useMediaQuery, Modal, Slide, Backdrop } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import SearchModalFooter from "./searchmodalcomponents/SearchModalFooter";
-import SearchModalContent from "./searchmodalcomponents/SearchModalContent";
-import SearchModalHeader from "./searchmodalcomponents/SearchModalHeader";
+import SearchModalFooter from "./searchmodal/ModalFooter";
+import SearchModalContent from "./searchmodal/ModalContent";
+import SearchModalHeader from "./searchmodal/ModalHeader";
 import CustomDivider from "./UI/CustomDivider";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,8 +63,8 @@ const SearchDialogue = ({}, ref) => {
 
     isMobile ? (maxHeight = screenHeight) : (maxHeight = 504);
     isMobile && !isLandScape && (maxWidth = screenWidth * 0.92 + "px");
-    isLandScape && screenHeight < 720 && (maxHeight = screenHeight);
-    isLandScape && screenHeight < 720
+    isLandScape && screenHeight < 720 && isMobile && (maxHeight = screenHeight);
+    isLandScape && screenHeight < 720 && isMobile
         ? (maxWidth = screenWidth)
         : (maxWidth = "683px");
     !isMobile && !isLandScape
@@ -73,7 +73,6 @@ const SearchDialogue = ({}, ref) => {
 
     maxHeight -= overHeight;
     maxHeight += "px";
-
     //isLandScape && (marginRight = "75px");
 
     useImperativeHandle(
@@ -122,7 +121,7 @@ const SearchDialogue = ({}, ref) => {
                             width: maxWidth,
                             height: maxHeight,
                             p: "0px",
-                            top: !isMobile && screenHeight > 720 && "64px",
+                            top: !isMobile && screenHeight > 504 && "64px",
                             transition: "all 0.3s ease-in-out",
                             borderRadius: "10px",
                             display: "flex",

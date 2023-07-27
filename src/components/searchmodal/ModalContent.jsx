@@ -1,0 +1,53 @@
+import React, { Fragment } from "react";
+import { Box, Typography, useTheme, Skeleton } from "@mui/material";
+import NoData from "./NoData";
+
+const SearchModalContent = ({ searchValue, isTyping }) => {
+    const theme = useTheme();
+
+    const screenWidth =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const screenHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+
+    const isLandScape = screenWidth > screenHeight;
+
+    return (
+        <Box
+            sx={{
+                width: "100%",
+                flexGrow: 1,
+                overflowY: "scroll",
+                p: "0",
+                m: "0",
+                backgroundColor:
+                    theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.1)",
+            }}
+        >
+            {
+                <Fragment>
+                    <Box
+                        sx={{
+                            mt: 2,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                        }}
+                    >
+                        <NoData
+                            isTyping={isTyping}
+                            isLandScape={isLandScape}
+                            screenHeight={screenHeight}
+                        />
+                    </Box>
+                </Fragment>
+            }
+        </Box>
+    );
+};
+
+export default SearchModalContent;

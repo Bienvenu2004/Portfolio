@@ -1,12 +1,10 @@
 import React from "react";
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { GitHub } from "@mui/icons-material";
 import CustomIconButton from "../UI/CustomIconButton";
 
 const SearchFooter = () => {
     const theme = useTheme();
-    const isMobile = useMediaQuery("(max-width: 600px)");
-
     const screenWidth =
         window.innerWidth ||
         document.documentElement.clientWidth ||
@@ -28,7 +26,7 @@ const SearchFooter = () => {
                 backgroundColor:
                     theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.3)",
                 width: "100%",
-                height: isLandScape && !isMobile ? "40px" : "60px",
+                height: "56px",
             }}
         >
             {/** Left side*/}
@@ -36,7 +34,7 @@ const SearchFooter = () => {
             <Typography
                 sx={{
                     fontSize:
-                        isLandScape && screenHeight < 720 ? "12px" : "14px",
+                        isLandScape && screenHeight < 504 ? "12px" : "14px",
                     color: theme.palette.secondary.text,
                 }}
             >
@@ -49,12 +47,12 @@ const SearchFooter = () => {
                 <CustomIconButton
                     href="https://www.github.com/Abdulrahim2567"
                     target="_blank"
-                    height={isLandScape && screenHeight < 720 ? "30px" : "45px"}
+                    height={"40px"}
                 >
                     <Typography
                         sx={{
                             fontSize:
-                                isLandScape && screenHeight < 720
+                                isLandScape && screenHeight < 504
                                     ? "12px"
                                     : "14px",
                             color: theme.palette.secondary.text,
@@ -66,7 +64,7 @@ const SearchFooter = () => {
                     <GitHub
                         sx={{
                             fontSize:
-                                isLandScape && screenHeight < 720
+                                isLandScape && screenHeight < 504
                                     ? "15px"
                                     : "25px",
                             display: "flex",

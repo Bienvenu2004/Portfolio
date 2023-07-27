@@ -10,7 +10,7 @@ import Drawer from "@mui/material/Drawer";
 import { Box, useTheme, Typography, IconButton } from "@mui/material";
 import { CloseRounded, SettingsOutlined } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
-import SettingsItems from "./settingsdrawercomponents/SettingsItems";
+import SettingsItems from "./settingsdrawer/SettingsItems";
 
 const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
     const [isSystem, setIsSystem] = useState(true);

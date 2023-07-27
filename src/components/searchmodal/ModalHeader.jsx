@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import {
     Box,
     InputBase,
@@ -5,7 +6,6 @@ import {
     Chip,
     Typography,
     IconButton,
-    useMediaQuery,
 } from "@mui/material";
 import { Oval } from "react-loader-spinner";
 import { Search, CloseRounded } from "@mui/icons-material";
@@ -14,13 +14,13 @@ let detectedOS = null;
 
 const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
     const theme = useTheme();
+    const inputRef = useRef(null);
+
     if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
     if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
     if (navigator.userAgent.indexOf("Windows") != -1) detectedOS = "Windows";
     if (navigator.userAgent.indexOf("Android") != -1) detectedOS = "Android";
     if (navigator.userAgent.indexOf("like Mac") != -1) detectedOS = "iOS";
-
-    const isMobile = useMediaQuery("(max-width: 600px)");
 
     const screenWidth =
         window.innerWidth ||
@@ -33,6 +33,10 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
 
     const isLandScape = screenWidth > screenHeight;
 
+    useEffect(() => {
+        inputRef?.current.focus();
+    }, []);
+
     return (
         <Box
             sx={{
@@ -44,7 +48,7 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                 backgroundColor:
                     theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.3)",
                 width: "100%",
-                height: isLandScape && !isMobile ? "40px" : "60px",
+                height: "55px",
                 "& svg": {
                     color:
                         theme.palette.mode === "dark" && "rgba(1, 80, 155, 1)",
@@ -79,13 +83,14 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                 id="search"
                 label="Search..."
                 variant="standard"
-                placeholder="Type to search..."
+                placeholder="Type something..."
+                inputRef={inputRef}
                 sx={{
                     border: "none",
                     margin: "0px",
                     pt: "5px",
                     fontSize:
-                        isLandScape && screenHeight < 720 ? "12px" : "16px",
+                        isLandScape && screenHeight < 504 ? "12px" : "16px",
                     letterSpacing: "1px",
                     "&:focus": {
                         outline: "none",
@@ -117,7 +122,7 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                                 fontSize: "12px",
                                 fontWeight: "bold",
                                 color: theme.palette.secondary.text,
-                                letterSpacing: "3px",
+                                letterSpacing: "1.55px",
                             }}
                         >
                             esc
