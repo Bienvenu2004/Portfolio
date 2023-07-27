@@ -20,6 +20,22 @@ canvas {
     width: 100% !important;
 }
 
+.noData {
+    animation: opacitySwitch 2s infinite cubic-bezier(0.3, 0.8, 0.5, 0.1)
+        alternate;
+    -webkit-animation: opacitySwitch 2s infinite
+        cubic-bezier(0.3, 0.8, 0.5, 0.1) alternate;
+}
+
+@keyframes opacitySwitch {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 5px;

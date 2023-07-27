@@ -1,9 +1,9 @@
 import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
 import { Box, useMediaQuery, Modal, Slide, Backdrop } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import SearchModalFooter from "./searchmodalcomponents/SearchModalFooter";
-import SearchModalContent from "./searchmodalcomponents/SearchModalContent";
-import SearchModalHeader from "./searchmodalcomponents/SearchModalHeader";
+import SearchModalFooter from "./searchmodal/ModalFooter";
+import SearchModalContent from "./searchmodal/ModalContent";
+import SearchModalHeader from "./searchmodal/ModalHeader";
 import CustomDivider from "./UI/CustomDivider";
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +73,6 @@ const SearchDialogue = ({}, ref) => {
 
     maxHeight -= overHeight;
     maxHeight += "px";
-    console.log("screen height", overHeight);
     //isLandScape && (marginRight = "75px");
 
     useImperativeHandle(

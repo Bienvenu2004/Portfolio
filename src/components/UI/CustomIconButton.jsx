@@ -9,8 +9,6 @@ const Index = ({ children, onClick, href, target, ...styles }) => {
                 display: "flex",
                 transition: "all 0.5s ease-in-out",
                 color: theme.palette.secondary.main,
-                backgroundColor:
-                    theme.palette.mode === "dark" && "rgba(69, 90, 100, 0.1)",
                 borderRadius: "0.8rem",
                 border:
                     theme.palette.mode === "dark"

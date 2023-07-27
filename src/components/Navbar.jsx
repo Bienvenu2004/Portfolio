@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import { AppBar, Toolbar, useMediaQuery } from "@mui/material";
 import SettingsDrawer from "./SettingsDrawer";
 import SearchModal from "./SearchModal";
-import LeftSide from "./navbarcomponents/LeftSide";
-import RightSide from "./navbarcomponents/RightSide";
+import LeftSide from "./navbar/LeftSide";
+import RightSide from "./navbar/RightSide";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 const Navbar = ({ setMode, prefersDarkMode }) => {

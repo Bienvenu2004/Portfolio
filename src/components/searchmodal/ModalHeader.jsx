@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import {
     Box,
     InputBase,
@@ -13,6 +14,8 @@ let detectedOS = null;
 
 const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
     const theme = useTheme();
+    const inputRef = useRef(null);
+
     if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
     if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
     if (navigator.userAgent.indexOf("Windows") != -1) detectedOS = "Windows";
@@ -29,6 +32,10 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
         document.body.clientHeight;
 
     const isLandScape = screenWidth > screenHeight;
+
+    useEffect(() => {
+        inputRef?.current.focus();
+    }, []);
 
     return (
         <Box
@@ -76,7 +83,8 @@ const SearchHeader = ({ isTyping, setSearchValue, closeSearchModal }) => {
                 id="search"
                 label="Search..."
                 variant="standard"
-                placeholder="Type to search..."
+                placeholder="Type something..."
+                inputRef={inputRef}
                 sx={{
                     border: "none",
                     margin: "0px",
