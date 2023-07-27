@@ -46,7 +46,7 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                     <Typography
                         sx={{
                             fontSize:
-                                isLandScape && screenHeight < 720
+                                isLandScape && screenHeight < 504
                                     ? "12px"
                                     : "14px",
                             color: theme.palette.secondary.text,
@@ -65,24 +65,13 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                         <Typography
                             sx={{
                                 fontSize:
-                                    isLandScape && screenHeight < 720
+                                    isLandScape && screenHeight < 504
                                         ? "12px"
                                         : "14px",
                                 color: theme.palette.secondary.text,
                             }}
                         >
-                            No results found
-                        </Typography>
-                        <Typography
-                            sx={{
-                                fontSize:
-                                    isLandScape && screenHeight < 720
-                                        ? "12px"
-                                        : "14px",
-                                color: theme.palette.secondary.text,
-                            }}
-                        >
-                            Try searching for something else
+                            Type to search...
                         </Typography>
                     </Box>
                 </Fragment>
