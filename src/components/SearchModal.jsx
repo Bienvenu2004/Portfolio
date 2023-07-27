@@ -63,8 +63,8 @@ const SearchDialogue = ({}, ref) => {
 
     isMobile ? (maxHeight = screenHeight) : (maxHeight = 504);
     isMobile && !isLandScape && (maxWidth = screenWidth * 0.92 + "px");
-    isLandScape && screenHeight < 720 && (maxHeight = screenHeight);
-    isLandScape && screenHeight < 720
+    isLandScape && screenHeight < 720 && isMobile && (maxHeight = screenHeight);
+    isLandScape && screenHeight < 720 && isMobile
         ? (maxWidth = screenWidth)
         : (maxWidth = "683px");
     !isMobile && !isLandScape
@@ -73,7 +73,7 @@ const SearchDialogue = ({}, ref) => {
 
     maxHeight -= overHeight;
     maxHeight += "px";
-
+    console.log("screen height", overHeight);
     //isLandScape && (marginRight = "75px");
 
     useImperativeHandle(
@@ -122,7 +122,7 @@ const SearchDialogue = ({}, ref) => {
                             width: maxWidth,
                             height: maxHeight,
                             p: "0px",
-                            top: !isMobile && screenHeight > 720 && "64px",
+                            top: !isMobile && screenHeight > 504 && "64px",
                             transition: "all 0.3s ease-in-out",
                             borderRadius: "10px",
                             display: "flex",
