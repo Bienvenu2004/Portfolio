@@ -135,6 +135,7 @@ const SearchDialogue = ({}, ref) => {
                         {/**Search Modal Header */}
                         <SearchModalHeader
                             isTyping={isTyping}
+                            searchValue={searchValue}
                             setSearchValue={setSearchValue}
                             closeSearchModal={handleClick}
                         />
