@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme, Box } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { Chart } from "primereact/chart";
 
 const LineChart = ({ javascript, css, database, github }) => {

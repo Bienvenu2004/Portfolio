@@ -18,6 +18,7 @@ const Navbar = ({ setMode, prefersDarkMode }) => {
     return (
         <AppBar
             sx={{
+                position: "-webkit-sticky",
                 position: "sticky",
                 margin: "0",
                 background: "none",
