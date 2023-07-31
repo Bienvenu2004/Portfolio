@@ -163,7 +163,6 @@ const LeftSide = ({ javascript, database }) => {
                     (is660px && !isSidebarOpen && "320px") ||
                     (is660px && isSidebarOpen && "250px")
                 }
-                border={is710px && "1px solid "}
                 flexDirection={"column"}
                 pt={0.5}
             >
