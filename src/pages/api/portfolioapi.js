@@ -26,7 +26,7 @@ export const insertDocument = async (client, collection, document) => {
         ordered: true,
     });
 
-    return result;
+    return await result;
 };
 
 export const getAllDocuments = async (_client = null, collection = null) => {
@@ -35,7 +35,7 @@ export const getAllDocuments = async (_client = null, collection = null) => {
 
     const documents = await db.collection(collection).find({}).toArray();
 
-    return documents;
+    return await documents;
 };
 
 export default async function handler(req, res) {
