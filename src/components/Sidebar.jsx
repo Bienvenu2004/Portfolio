@@ -61,7 +61,9 @@ const Sidebar = () => {
             if (url === "dashboard" && currentPath !== "/") {
                 router?.push(`/`);
             }
-            router?.push(`/${url}`);
+            if (url !== "dashboard" && currentPath !== `/${url}`) {
+                router?.push(`/${url}`);
+            }
         }
     };
 
