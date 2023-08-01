@@ -54,6 +54,17 @@ const Sidebar = () => {
     if (activeUrl === "") {
         setActiveUrl("dashboard");
     }
+
+    const handleClickedUrl = (url) => {
+        const currentPath = router?.pathname;
+        if (currentPath !== `/${url}`) {
+            if (url === "dashboard" && currentPath !== "/") {
+                router?.push(`/`);
+            }
+            router?.push(`/${url}`);
+        }
+    };
+
     return (
         <Drawer
             open={isSidebarOpen}
@@ -159,11 +170,7 @@ const Sidebar = () => {
                         <ListItem key={item.name} disablePadding>
                             <ListItemButton
                                 onClick={() => {
-                                    item.name === "Dashboard"
-                                        ? router.push("/")
-                                        : router.push(
-                                              `/${item.name.toLowerCase()}`
-                                          );
+                                    handleClickedUrl(item.name.toLowerCase());
                                     setActiveUrl(item.name.toLowerCase());
                                     !isPersistent && setIsSidebarOpen(false);
                                 }}
