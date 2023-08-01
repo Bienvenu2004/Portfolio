@@ -73,8 +73,9 @@ const ChartsDropdown = ({
                                 },
                             }}
                             key={chart}
-                            textValue={chart}
-                        />
+                        >
+                            <Typography>{chart}</Typography>
+                        </Dropdown.Item>
                     ))}
                 </Dropdown.Section>
             </Dropdown.Menu>
