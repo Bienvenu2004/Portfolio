@@ -48,7 +48,7 @@ const BarCharts = ({
                     data={[
                         {
                             skills: "JS",
-                            JS: 75,
+                            javascript: 75,
                             color: "hsl(40, 70%, 50%)",
                         },
                         {

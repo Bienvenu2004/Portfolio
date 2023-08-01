@@ -75,9 +75,8 @@ const SkillsDropdown = ({
                                 },
                             }}
                             key={skill}
-                        >
-                            <Typography>{skill}</Typography>
-                        </Dropdown.Item>
+                            textValue={skill}
+                        />
                     ))}
                 </Dropdown.Section>
             </Dropdown.Menu>

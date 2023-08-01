@@ -19,26 +19,25 @@ const LineChart = ({ javascript, css, database, github }) => {
     let databaseData = [];
     let githubData = [];
 
-    javascript &&
-        javascript.forEach((item) => {
-            javascriptLabels.push(item.label);
-            javascriptData.push(item.value);
-        });
-    css &&
-        css.forEach((item) => {
-            cssLabels.push(item.label);
-            cssData.push(item.value);
-        });
-    database &&
-        database.forEach((item) => {
-            databaseLabels.push(item.label);
-            databaseData.push(item.value);
-        });
-    github &&
-        github.forEach((item) => {
-            githubLabels.push(item.label);
-            githubData.push(item.value);
-        });
+    javascript?.forEach((item) => {
+        javascriptLabels.push(item.label);
+        javascriptData.push(item.value);
+    });
+
+    css?.forEach((item) => {
+        cssLabels.push(item.label);
+        cssData.push(item.value);
+    });
+
+    database?.forEach((item) => {
+        databaseLabels.push(item.label);
+        databaseData.push(item.value);
+    });
+
+    github?.forEach((item) => {
+        githubLabels.push(item.label);
+        githubData.push(item.value);
+    });
 
     React.useEffect(() => {
         javascript && setSelectedLabel(javascriptLabels);
