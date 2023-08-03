@@ -8,6 +8,10 @@ const App = ({ document }) => {
     const theme = useTheme();
     const router = useRouter();
 
+    useLayoutEffect(()=>{
+        router.push("/skills");
+    },[])    
+
     return (
         <div
             className="app"
