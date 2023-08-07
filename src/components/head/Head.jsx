@@ -11,7 +11,7 @@ const CustomHead = ({ title }) => {
                 content="width=device-width, initial-scale=1.0"
             />
             <meta property="og:title" content={title} key={title} />
-            <link rel="icon" href="/images/me.jpg" type="image/x-icon" />
+            <link rel="icon" href="/images/me.jpeg" type="image/x-icon" />
         </Head>
     );
 };
