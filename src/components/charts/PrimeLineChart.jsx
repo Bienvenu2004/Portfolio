@@ -75,7 +75,7 @@ const LineChart = ({ javascript, css, database, github }) => {
                         (css && "rgb(0, 126, 253)") ||
                         (database && "rgb(1, 236, 100)") ||
                         (github && "rgb(149, 0, 174)"),
-                    tension: 0.6,
+                    tension: 0,
                     hoverBackgroundColor:
                         (javascript && "rgb(232, 200, 37)") ||
                         (css && "rgb(0, 126, 253)") ||
