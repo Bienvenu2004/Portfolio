@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import PieChart from "@/components/charts/PieChart";
 import Loading from "@/components/loading/Loading";
+import { Box } from "@mui/material";
 
 const PieCharts = ({
     selectedValue,
