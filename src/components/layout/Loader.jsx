@@ -1,9 +1,10 @@
 import React from 'react'
 import { Triangle } from "react-loader-spinner";
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 
 
 const Loader = () => {
+    const theme = useTheme()
     return (
         <Box
             sx={{
