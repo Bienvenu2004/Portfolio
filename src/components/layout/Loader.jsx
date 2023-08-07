@@ -1,5 +1,6 @@
 import React from 'react'
 import { Triangle } from "react-loader-spinner";
+import { Box } from '@mui/material'
 
 
 const Loader = () => {
