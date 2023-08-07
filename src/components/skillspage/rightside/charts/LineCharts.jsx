@@ -1,7 +1,6 @@
 import React from "react";
 import LineChart from "@/components/charts/PrimeLineChart";
 import { Box } from "@mui/material";
-import { Triangle } from "react-loader-spinner";
 
 const LineCharts = ({
     selectedChartValue,
@@ -11,35 +10,6 @@ const LineCharts = ({
     database,
     github,
 }) => {
-    const [mounted, setMounted] = React.useState(false);
-
-    React.useEffect(() => {
-        setMounted(true);
-    }, [mounted]);
-
-    if (!mounted) {
-        return (
-            <Box
-                display="flex"
-                height="100%"
-                width="100%"
-                sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Triangle
-                    height="50"
-                    width="50"
-                    color="#0091ea"
-                    ariaLabel="triangle-loading"
-                    wrapperStyle={{}}
-                    wrapperClassName=""
-                    visible="true"
-                />
-            </Box>
-        );
-    }
 
     return (
         <Box display="flex" width="100%">

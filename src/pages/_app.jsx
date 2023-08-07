@@ -11,6 +11,7 @@ import { SidebarProvider } from "@/components/contexts/SidebarContext";
 
 import "../styles/globals.css";
 
+
 const App = ({ Component, pageProps }) => {
     return (
         <>

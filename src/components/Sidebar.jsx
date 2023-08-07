@@ -101,7 +101,7 @@ const Sidebar = () => {
                     <FlexBetween>
                         <Box display="flex" alignItems="center" mr="1rem">
                             <User
-                                src="/images/me.jpg"
+                                src="/images/me.jpeg"
                                 name="Abdulrahim"
                                 description="Web Developer @Neema"
                                 bordered

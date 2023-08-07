@@ -1,8 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import BarChart from "@/components/charts/BarChart";
-import { Box } from "@mui/material";
-import { Triangle } from "react-loader-spinner";
-
+import Loading from "@/components/loading/Loading";
 const BarCharts = ({
     selectedValue,
     selectedChartValue,
@@ -11,38 +9,13 @@ const BarCharts = ({
     database,
     github,
 }) => {
-    const [mounted, setMounted] = React.useState(false);
 
-    React.useEffect(() => {
-        setMounted(true);
-    }, [mounted]);
+    
 
-    if (!mounted) {
-        return (
-            <Box
-                display="flex"
-                height="100%"
-                width="100%"
-                sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Triangle
-                    height="50"
-                    width="50"
-                    color="#0091ea"
-                    ariaLabel="triangle-loading"
-                    wrapperStyle={{}}
-                    wrapperClassName=""
-                    visible="true"
-                />
-            </Box>
-        );
-    }
+
 
     return (
-        <>
+        <Suspense fallback={<Loading/>}>
             {selectedChartValue === "Bar" && selectedValue === "JavaScript" && (
                 <BarChart
                     data={[
@@ -162,7 +135,7 @@ const BarCharts = ({
                         keys={["Git", "GitHub", "Vercel"]}
                     />
                 )}
-        </>
+        </Suspense>
     );
 };
 
