@@ -6,11 +6,11 @@ import CustomIconButton from "../UI/CustomIconButton";
 const SearchFooter = () => {
     const theme = useTheme();
     const screenWidth =
-        window.innerWidth ||
+        window?.innerWidth ||
         document.documentElement.clientWidth ||
         document.body.clientWidth;
     const screenHeight =
-        window.innerHeight ||
+        window?.innerHeight ||
         document.documentElement.clientHeight ||
         document.body.clientHeight;
 
