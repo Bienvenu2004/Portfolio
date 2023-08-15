@@ -12,7 +12,12 @@ import { Search, CloseRounded } from "@mui/icons-material";
 
 let detectedOS = null;
 
-const SearchHeader = ({ isTyping, searchValue,setSearchValue, closeSearchModal }) => {
+const SearchHeader = ({
+    isTyping,
+    searchValue,
+    setSearchValue,
+    closeSearchModal,
+}) => {
     const theme = useTheme();
     const inputRef = useRef(null);
 
@@ -23,11 +28,11 @@ const SearchHeader = ({ isTyping, searchValue,setSearchValue, closeSearchModal }
     if (navigator.userAgent.indexOf("like Mac") != -1) detectedOS = "iOS";
 
     const screenWidth =
-        window.innerWidth ||
+        window?.innerWidth ||
         document.documentElement.clientWidth ||
         document.body.clientWidth;
     const screenHeight =
-        window.innerHeight ||
+        window?.innerHeight ||
         document.documentElement.clientHeight ||
         document.body.clientHeight;
 
@@ -85,7 +90,7 @@ const SearchHeader = ({ isTyping, searchValue,setSearchValue, closeSearchModal }
                 variant="standard"
                 placeholder="Type something..."
                 inputRef={inputRef}
-                value = {searchValue}
+                value={searchValue}
                 sx={{
                     border: "none",
                     margin: "0px",

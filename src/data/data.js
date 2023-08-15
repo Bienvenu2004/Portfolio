@@ -1,12 +1,9 @@
 import {
     HomeOutlined,
-    PieChart,
     TodayOutlined,
     VerifiedOutlined,
     CodeOutlined,
-    TimelineOutlined,
     NearMeOutlined,
-    SignalCellularAltOutlined,
     Person4Outlined,
     GitHub,
     LinkedIn,
@@ -34,20 +31,8 @@ export const navItems = [
         icon: <CodeOutlined />,
     },
     {
-        name: "Charts",
+        name: "Map",
         icon: null,
-    },
-    {
-        name: "Line",
-        icon: <TimelineOutlined />,
-    },
-    {
-        name: "Pie",
-        icon: <PieChart />,
-    },
-    {
-        name: "Bar",
-        icon: <SignalCellularAltOutlined />,
     },
     {
         name: "Location",

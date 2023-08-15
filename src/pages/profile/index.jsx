@@ -1,4 +1,5 @@
 import { useTheme, Box, useMediaQuery } from "@mui/material";
+import Top from "@/components/profilepage/top/Top";
 
 const Index = () => {
     const theme = useTheme();
@@ -7,7 +8,7 @@ const Index = () => {
         <div
             className="app"
             style={{
-                padding: "0 0.5rem",
+                padding: "0",
                 color: theme.palette.secondary.text,
                 height: "100%",
             }}
@@ -16,13 +17,12 @@ const Index = () => {
                 
                 height="100%"
                 borderRadius={3}
-                backgroundColor={theme.palette.background.alt}
                 boxShadow={
                     theme.palette.mode === "light" &&
                     "0px 0px 2px 0px rgba(0,0,0,0.2)"
                 }
             >
-                Profile
+                <Top/>
             </Box>
         </div>
     );

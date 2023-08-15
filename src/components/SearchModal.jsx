@@ -43,14 +43,19 @@ const SearchDialogue = ({}, ref) => {
     const [searchValue, setSearchValue] = useState(null);
     const [isTyping, setIsTyping] = useState(false);
 
-    const screenWidth =
-        window.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
-    const screenHeight =
-        window.innerHeight ||
-        document.documentElement.clientHeight ||
-        document.body.clientHeight;
+    let screenWidth, screenHeight = null
+
+
+    if (typeof window !== "undefined") {
+        screenWidth = window?.innerWidth ||
+        document?.documentElement.clientWidth ||
+        document?.body.clientWidth;
+        screenHeight =
+        window?.innerHeight ||
+        document?.documentElement.clientHeight ||
+        document?.body.clientHeight;
+    }
+        
 
     const isLandScape = screenWidth > screenHeight;
 
