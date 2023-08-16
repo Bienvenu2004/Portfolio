@@ -23,20 +23,22 @@ const RightSide = ({ handleClick, searchModalRef }) => {
     const isMobile = useMediaQuery("(max-width: 539px)");
 
     //add event listener for ctrl+k for Linux and Windows
-    document.addEventListener("keydown", (event) => {
-        if ((event.ctrlKey && event.key === "k") || event.key === "K") {
-            searchModalRef.current.alterSearchModalState();
-        }
-    });
-    //add event listener for cmd+k for MacOS
-    document.addEventListener("keydown", (event) => {
-        if ((event.metaKey && event.key === "k") || event.key === "K") {
-            searchModalRef.current.alterSearchModalState();
-        }
-    });
+    if(typeof document !== "undefined"){
+        document?.addEventListener("keydown", (event) => {
+            if ((event.ctrlKey && event.key === "k") || event.key === "K") {
+                searchModalRef.current.alterSearchModalState();
+            }
+        });
+        //add event listener for cmd+k for MacOS
+        document?.addEventListener("keydown", (event) => {
+            if ((event.metaKey && event.key === "k") || event.key === "K") {
+                searchModalRef.current.alterSearchModalState();
+            }
+        });
+    }
 
     //get OS type
-    if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
+    if (navigator?.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
 
     return (
         <FlexBetween gap="0.3rem">

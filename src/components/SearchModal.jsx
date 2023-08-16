@@ -46,7 +46,7 @@ const SearchDialogue = ({}, ref) => {
     let screenWidth, screenHeight = null
 
 
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
         screenWidth = window?.innerWidth ||
         document?.documentElement.clientWidth ||
         document?.body.clientWidth;
