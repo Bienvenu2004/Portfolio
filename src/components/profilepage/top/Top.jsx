@@ -5,16 +5,19 @@ import { SidebarContext } from "@/components/contexts/SidebarContext";
 const Top = ()=>{
 
     let coverPhotoWidth = "71%";
-    let screenWidth = 0;
+    let coverPhotoHeight = "350px";
     const {isSidebarOpen} = React.useContext(SidebarContext);
     const is1109px = useMediaQuery('(max-width:1109px)');
     const is1230px = useMediaQuery('(max-width:1232px)');
+    const is950px = useMediaQuery('(max-width:950px)');
+    const is670px = useMediaQuery('(max-width:670px)');
     
     is1230px && (coverPhotoWidth = (0.9 * 1230)+"px");
     is1109px && (coverPhotoWidth = "100%")
-    
 
-    console.log(screenWidth);
+    is950px && (coverPhotoHeight = "300px");
+    is670px && (coverPhotoHeight = "250px");
+    
 
     return(
         <Box
@@ -53,7 +56,6 @@ const Top = ()=>{
                             backgroundSize:"cover",
                             backgroundPosition:"center",
                             backgroundRepeat:"no-repeat",
-                            width:"100%",
                             borderLeft:"1px solid transparent",
                             borderBottom:"1px solid transparent",
                             borderRight:"1px solid transparent",
@@ -61,7 +63,7 @@ const Top = ()=>{
                             borderBottomLeftRadius:"10px",
                             width:isSidebarOpen?"83%":coverPhotoWidth,
                             maxHeight:isSidebarOpen ?  "330px":"350px",
-                            minHeight:isSidebarOpen ?  "330px":"350px",
+                            minHeight:isSidebarOpen ?  "330px":coverPhotoHeight,
                             margin:"auto",
                             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                             transition: "all 0.2s ease-in-out",
