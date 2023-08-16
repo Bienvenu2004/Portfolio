@@ -5,14 +5,19 @@ import NoData from "./NoData";
 const SearchModalContent = ({ searchValue, isTyping }) => {
     const theme = useTheme();
 
-    const screenWidth =
-        window.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
-    const screenHeight =
-        window.innerHeight ||
-        document.documentElement.clientHeight ||
-        document.body.clientHeight;
+
+    let screenWidth, screenHeight = null
+
+
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+        screenWidth = window?.innerWidth ||
+        document?.documentElement.clientWidth ||
+        document?.body.clientWidth;
+        screenHeight =
+        window?.innerHeight ||
+        document?.documentElement.clientHeight ||
+        document?.body.clientHeight;
+    }
 
     const isLandScape = screenWidth > screenHeight;
 

@@ -21,20 +21,27 @@ const SearchHeader = ({
     const theme = useTheme();
     const inputRef = useRef(null);
 
-    if (navigator.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
-    if (navigator.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
-    if (navigator.userAgent.indexOf("Windows") != -1) detectedOS = "Windows";
-    if (navigator.userAgent.indexOf("Android") != -1) detectedOS = "Android";
-    if (navigator.userAgent.indexOf("like Mac") != -1) detectedOS = "iOS";
+    
+    if (navigator?.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
+    if (navigator?.userAgent.indexOf("Linux") != -1) detectedOS = "Linux";
+    if (navigator?.userAgent.indexOf("Windows") != -1) detectedOS = "Windows";
+    if (navigator?.userAgent.indexOf("Android") != -1) detectedOS = "Android";
+    if (navigator?.userAgent.indexOf("like Mac") != -1) detectedOS = "iOS";
 
-    const screenWidth =
-        window?.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
-    const screenHeight =
+
+    let screenWidth, screenHeight = null
+
+
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+        screenWidth = window?.innerWidth ||
+        document?.documentElement.clientWidth ||
+        document?.body.clientWidth;
+        screenHeight =
         window?.innerHeight ||
-        document.documentElement.clientHeight ||
-        document.body.clientHeight;
+        document?.documentElement.clientHeight ||
+        document?.body.clientHeight;
+    }
+
 
     const isLandScape = screenWidth > screenHeight;
 

@@ -31,6 +31,7 @@ canvas {
     border-radius: 50%; /* This value makes the element round */
 }
 
+
 @keyframes opacitySwitch {
     0% {
         opacity: 0.1;

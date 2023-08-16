@@ -5,14 +5,19 @@ import CustomIconButton from "../UI/CustomIconButton";
 
 const SearchFooter = () => {
     const theme = useTheme();
-    const screenWidth =
-        window?.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
-    const screenHeight =
+
+    let screenWidth, screenHeight = null
+
+
+    if (typeof window !== "undefined") {
+        screenWidth = window?.innerWidth ||
+        document?.documentElement.clientWidth ||
+        document?.body.clientWidth;
+        screenHeight =
         window?.innerHeight ||
-        document.documentElement.clientHeight ||
-        document.body.clientHeight;
+        document?.documentElement.clientHeight ||
+        document?.body.clientHeight;
+    }
 
     const isLandScape = screenWidth > screenHeight;
 
