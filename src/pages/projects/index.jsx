@@ -1,5 +1,6 @@
 import { useTheme, Box, useMediaQuery } from "@mui/material";
 import CustomHead from "@/components/head/Head";
+import ComingSoon from "@/components/comingSoon/ComingSoon";
 
 const Index = () => {
     const theme = useTheme();
@@ -21,8 +22,9 @@ const Index = () => {
                     theme.palette.mode === "light" &&
                     "0px 0px 2px 0px rgba(0,0,0,0.2)"
                 }
+                display={"flex"}
             >
-                Projects Page
+                <ComingSoon/>
             </Box>
         </div>
     );
