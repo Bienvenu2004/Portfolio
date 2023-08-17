@@ -2,15 +2,15 @@ import { useTheme, useMediaQuery, Box } from "@mui/material";
 
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 const App = ({ document }) => {
     const theme = useTheme();
     const router = useRouter();
 
-    useLayoutEffect(()=>{
-        router.push("/skills");
-    },[])    
+    // useEffect(()=>{
+    //     router.push("/skills");
+    // },[])    
 
     return (
         <div
