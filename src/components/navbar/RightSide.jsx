@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FlexBetween from "../FlexBetween";
 import {
     Button,
@@ -38,7 +38,9 @@ const RightSide = ({ handleClick, searchModalRef }) => {
     }
 
     //get OS type
-    if (navigator?.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
+    useEffect(()=>{
+        if (navigator?.userAgent.indexOf("Mac") != -1) detectedOS = "MacOS";
+    },[])
 
     return (
         <FlexBetween gap="0.3rem">

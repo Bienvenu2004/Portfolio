@@ -23,6 +23,7 @@
         "@nivo/line": "^0.80.0",
         "@nivo/pie": "^0.80.0",
         "@nivo/tooltip": "^0.80.0",
+        "@react-aria/ssr": "^3.7.1",
         "antd": "^5.5.0",
         "axios": "^1.4.0",
         "bootstrap": "^5.2.3",

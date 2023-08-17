@@ -107,14 +107,22 @@ const Top = ()=>{
                     </Box>
                     <Box
                         sx={{
-                            width:isSidebarOpen?"83%":coverPhotoWidth,
-                            border:"1px solid white",
-                            margin:"auto",
+                            width:"100%",
                             display:"flex",
                         }}
                         flexGrow={1}
                     >
+                        <Box
+                            sx={{
+                                width:isSidebarOpen?"83%":coverPhotoWidth,
+                                border:"1px solid white",
+                                margin:"auto",
+                                display:"flex",
+                                height:'100%'
+                            }}
+                        >
 
+                        </Box>
                     </Box>
                 </Box>
             </Box>

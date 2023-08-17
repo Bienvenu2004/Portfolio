@@ -1,6 +1,8 @@
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
 import Layout from "../components/layout/Layout";
+import { SSRProvider } from "@react-aria/ssr";
+import { NextUIProvider } from "@nextui-org/react";
 
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -14,7 +16,7 @@ import "../styles/globals.css";
 
 const App = ({ Component, pageProps }) => {
     return (
-        <>
+        <NextUIProvider>
             <SidebarProvider>
                 <Layout>
                     <Head>
@@ -38,7 +40,7 @@ const App = ({ Component, pageProps }) => {
                     <Component {...pageProps} />
                 </Layout>
             </SidebarProvider>
-        </>
+        </NextUIProvider>
     );
 };
 

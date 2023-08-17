@@ -18,10 +18,17 @@ const PieChart = ({
     const is1366px = useMediaQuery("(max-width:1366px)");
     const { isSidebarOpen } = React.useContext(SidebarContext);
 
+    const [chartData, setChartData] = React.useState({});
+
+    React.useEffect(() => {
+        setChartData(data);
+    }, [data]);
+
     return (
+        
         <Box height="100%" className="pie-chart" width="100%">
             <ResponsivePie
-                data={data}
+                data={chartData}
                 margin={{ top: top, right: right, bottom: bottom, left: left }}
                 innerRadius={innerRadius}
                 padAngle={3}

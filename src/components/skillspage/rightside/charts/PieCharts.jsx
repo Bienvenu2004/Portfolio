@@ -13,7 +13,6 @@ const PieCharts = ({
 }) => {
 
     return (
-        <Suspense fallback={<Loading/>}>
             <Box width="100%">
                 {selectedChartValue === "Pie" && selectedValue === "JavaScript" && (
                     <PieChart data={javascript} endAngle={360} />
@@ -29,7 +28,6 @@ const PieCharts = ({
                         <PieChart data={github} endAngle={360} />
                         )}
             </Box>
-        </Suspense>
     );
 };
 
