@@ -1,28 +1,27 @@
-import React, { Component } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 
-class Optin extends Component {
-    modal() {
-        const modal = document.getElementById("modal");
-        modal.classList.toggle("is_open");
-    }
+const Optin = ()=>  {
 
-    render() {
-        return (
-        <div className="optin">
+    const router = useRouter()
+
+    const handleClick = ()=>{
+        router.push("/skills")
+    }   
+
+    return (
+        <div className="optin" style={{
+            marginTop: '7px',
+            "&.hover":{
+                cursor: "pointer"
+            }
+        }}>
             <p>Click the button below to visit an available page.</p>
-            <button style={{borderRadius:'8px'}} onClick={() => this.modal()}>Click Me</button>
+            <button  style={{borderRadius:'8px', textTransform:'none', marginTop: '7px'}} onClick={handleClick}>Visit Skills</button>
             <div id="modal">
-            <div className="wrapper">
-                <h3>Enter Your Email</h3>
-                <div className="clearfix">
-                <div className="col-8" />
-                <div className="col-3" />
-                </div>
-            </div>
             </div>
         </div>
-        );
-    }
+    );
 }
 
 export default Optin;

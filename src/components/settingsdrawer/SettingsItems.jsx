@@ -30,11 +30,12 @@ const SettingsItems = ({ isSystem, setIsSystem, prefersDarkMode, setMode }) => {
     return (
         <Box
             sx={{
-                backgroundColor: theme.palette.background.alt,
+                backgroundColor:  theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
                 borderTopLeftRadius: "20px",
                 borderTopRightRadius: "20px",
                 p: "16px",
                 flexGrow: 1,
+                backdropFilter: 'blur(20px)'
             }}
         >
             <Typography

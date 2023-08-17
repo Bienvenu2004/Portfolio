@@ -74,11 +74,12 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
                         width="100%"
                         height={180}
                         sx={{
-                            backgroundColor: theme.palette.background.alt,
+                            backgroundColor: theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
                             borderBottomLeftRadius: "20px",
                             borderBottomRightRadius: "20px",
                             mb: "10px",
                             p: "10px",
+                            backdropFilter: 'blur(20px)'
                         }}
                     >
                         <FlexBetween>
