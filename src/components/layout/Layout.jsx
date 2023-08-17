@@ -29,24 +29,26 @@ const Layout = ({ children }) => {
     if (!mounted) return <Preloader />;
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Box display={"flex"} width="100%" height="100vh">
-                <Sidebar />
-                <Box flexGrow={1} display="flex" flexDirection="column">
-                    <Box display="flex" height="fit-content">
-                        <Navbar
-                            setMode={setMode}
-                            prefersDarkMode={prefersDarkMode}
-                        />
-                    </Box>
-                    {/** content of page*/}
-                    <Box flexGrow={1} display="block">
-                        {children}
+        <Suspense fallback={<Preloader />}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Box display={"flex"} width="100%" height="100vh">
+                    <Sidebar />
+                    <Box flexGrow={1} display="flex" flexDirection="column">
+                        <Box display="flex" height="fit-content">
+                            <Navbar
+                                setMode={setMode}
+                                prefersDarkMode={prefersDarkMode}
+                            />
+                        </Box>
+                        {/** content of page*/}
+                        <Box flexGrow={1} display="block">
+                            {children}
+                        </Box>
                     </Box>
                 </Box>
-            </Box>
-        </ThemeProvider>
+            </ThemeProvider>
+        </Suspense>
     );
 };
 
