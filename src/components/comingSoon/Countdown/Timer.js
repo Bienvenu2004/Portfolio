@@ -49,7 +49,7 @@ class CountDown extends Component {
     render() {
         const { days, seconds, hours, minutes } = this.state;
         return (
-            <div id="countdown">
+            <div id="countdown" style={{borderRadius: '5px'}}>
                 <div className="col-4">
                     <div className="box">
                         <p id="day">{days}</p>

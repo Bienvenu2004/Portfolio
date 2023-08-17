@@ -47,13 +47,15 @@ const SearchHeader = ({
                 p: 2,
 
                 backgroundColor:
-                    theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.3)",
+                    theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
                 width: "100%",
                 height: "55px",
                 "& svg": {
                     color:
                         theme.palette.mode === "dark" && "rgba(1, 80, 155, 1)",
                 },
+                borderTopLeftRadius: "10px",
+                borderTopRightRadius: "10px"
             }}
         >
             {isTyping ? (
@@ -136,9 +138,7 @@ const SearchHeader = ({
                         transition: "all 0.2s ease-in-out",
                         cursor: "pointer",
                         backgroundColor:
-                            theme.palette.mode === "dark"
-                                ? "rgb(1, 10, 50, 0.5)"
-                                : "#FFF",
+                        theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
                         border:
                             theme.palette.mode === "dark"
                                 ? "1px solid rgba(1, 87, 155, 0.8)"
@@ -161,9 +161,7 @@ const SearchHeader = ({
                             "rgba(69, 90, 100, 0.1)",
                         "&:hover": {
                             backgroundColor:
-                                theme.palette.mode === "dark"
-                                    ? "rgba(1, 87, 155, 0.4)"
-                                    : theme.palette.secondary.main,
+                            theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
                             transition: "all 0.5s ease-in-out",
                             transform: "scale(0.8)",
                             "& svg": {

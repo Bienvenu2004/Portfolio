@@ -20,7 +20,7 @@ const SearchModalContent = ({ searchValue, isTyping }) => {
                 p: "0",
                 m: "0",
                 backgroundColor:
-                    theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.1)",
+                theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
             }}
         >
             {

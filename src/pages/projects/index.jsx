@@ -1,9 +1,16 @@
 import { useTheme, Box, useMediaQuery } from "@mui/material";
 import CustomHead from "@/components/head/Head";
 import ComingSoon from "@/components/comingSoon/ComingSoon";
+import { useContext } from "react";
+import { SidebarContext } from "@/components/contexts/SidebarContext";
 
 const Index = () => {
     const theme = useTheme();
+    const {isSidebarOpen} = useContext(SidebarContext)
+
+    // useEffect(()=>{
+    //     router.push("/skills");
+    // },[])    
 
     return (
         <div
@@ -14,7 +21,6 @@ const Index = () => {
                 height: "100%",
             }}
         >
-            <CustomHead title="Projects" />
             <Box
                 height="100%"
                 borderRadius={3}
@@ -23,8 +29,36 @@ const Index = () => {
                     "0px 0px 2px 0px rgba(0,0,0,0.2)"
                 }
                 display={"flex"}
+                backgroundSize="cover"
+                backgroundPosition="center"
+                sx={{
+                    backgroundImage: theme.palette.mode === "dark" && "url('/images/blur.jpg')",
+                    backdropFilter: "blur(60px)",
+                    height: "100vh",
+                    width: "100vw",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize:"cover",
+                    backgroundPosition:"center",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                }}
             >
-                <ComingSoon/>
+                <Box
+                    className="overlay"
+                    sx={{
+                        width:"100%",
+                        height:"100%",
+                        backgroundImage: 'linear-gradient(to bottom, transparent 100%, rgb(0,0,0,0.8) 100%)',
+                        zIndex:999,
+                        backdropFilter: "blur(30px)",
+                        pt: 23,
+                        pl: isSidebarOpen && 26,
+                        transition:"all 0.2s ease-in-out"
+                    }}
+                >
+                    <ComingSoon/>
+                </Box>
             </Box>
         </div>
     );

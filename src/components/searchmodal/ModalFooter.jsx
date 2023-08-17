@@ -19,9 +19,11 @@ const SearchFooter = () => {
                 alignItems: "center",
                 p: 2,
                 backgroundColor:
-                    theme.palette.mode === "dark" && "rgb(0, 30, 60, 0.3)",
+                    theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
                 width: "100%",
                 height: "56px",
+                borderBottomRightRadius: "10px",
+                borderBottomLeftRadius: "10px"
             }}
         >
             {/** Left side*/}

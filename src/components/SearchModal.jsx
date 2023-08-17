@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
             theme.palette.mode === "dark" && theme.palette.background.alt,
         boxShadow: 24,
         p: 4,
-        backdropFilter: "blur(5px)",
+        backdropFilter: "blur(30px)",
     },
     paper: {
         backgroundColor:
-            theme.palette.mode === "dark" ? "rgb(1, 20, 50, 1)" : "#fff",
+            theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
         border:
-            theme.palette.mode === "dark" && "1px solid rgba(1, 87, 155, 0.8)",
+        theme.palette.mode === "light" ? "rgb(255,255,255,0.5)":theme.palette.background.paper,
         boxShadow: theme.shadows[5],
         padding: "0px",
         transition: "top 0.3s ease-in-out",
@@ -104,7 +104,7 @@ const SearchDialogue = ({}, ref) => {
                     padding: "0px",
                     transition: "all 0.3s ease-in-out",
                     "& .MuiModal-backdrop": {
-                        backdropFilter: "blur(5px)",
+                        backdropFilter: "blur(20px)",
                     },
                 }}
             >
