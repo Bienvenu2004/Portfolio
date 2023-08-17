@@ -1,4 +1,4 @@
-import React, { Suspense }  from "react";
+import React  from "react";
 import { useTheme } from "@mui/material";
 import { Chart } from "primereact/chart";
 import Loading from "../loading/Loading";
@@ -131,19 +131,17 @@ const LineChart = ({ javascript, css, database, github }) => {
     }, [selectedLabel, selectedData]);
 
     return (
-        <Suspense fallback={<Loading/>}>
-            <Chart
-                type="line"
-                width="100%"
-                height="100%"
-                data={chartData}
-                options={chartOptions}
-                style={{
-                    fontFamily: "inherit",
-                    padding: "0.5rem",
-                }}
-            />
-        </Suspense>
+        <Chart
+            type="line"
+            width="100%"
+            height="100%"
+            data={chartData}
+            options={chartOptions}
+            style={{
+                fontFamily: "inherit",
+                padding: "0.5rem",
+            }}
+        />
     );
 };
 

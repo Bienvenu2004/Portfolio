@@ -2,22 +2,12 @@ import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { GitHub } from "@mui/icons-material";
 import CustomIconButton from "../UI/CustomIconButton";
+import useWindowDimensions from "@/hooks/useWindowDimentions";
 
 const SearchFooter = () => {
     const theme = useTheme();
-
-    let screenWidth, screenHeight = null
-
-
-    if (typeof window !== "undefined") {
-        screenWidth = window?.innerWidth ||
-        document?.documentElement.clientWidth ||
-        document?.body.clientWidth;
-        screenHeight =
-        window?.innerHeight ||
-        document?.documentElement.clientHeight ||
-        document?.body.clientHeight;
-    }
+    
+    const {screenHeight, screenWidth} = useWindowDimensions()
 
     const isLandScape = screenWidth > screenHeight;
 

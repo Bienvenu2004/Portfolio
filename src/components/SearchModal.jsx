@@ -5,6 +5,7 @@ import SearchModalFooter from "./searchmodal/ModalFooter";
 import SearchModalContent from "./searchmodal/ModalContent";
 import SearchModalHeader from "./searchmodal/ModalHeader";
 import CustomDivider from "./UI/CustomDivider";
+import useWindowDimensions from "@/hooks/useWindowDimentions";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -43,19 +44,7 @@ const SearchDialogue = ({}, ref) => {
     const [searchValue, setSearchValue] = useState(null);
     const [isTyping, setIsTyping] = useState(false);
 
-    let screenWidth, screenHeight = null
-
-
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
-        screenWidth = window?.innerWidth ||
-        document?.documentElement.clientWidth ||
-        document?.body.clientWidth;
-        screenHeight =
-        window?.innerHeight ||
-        document?.documentElement.clientHeight ||
-        document?.body.clientHeight;
-    }
-        
+    const {screenHeight, screenWidth} = useWindowDimensions()
 
     const isLandScape = screenWidth > screenHeight;
 

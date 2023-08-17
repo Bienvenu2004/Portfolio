@@ -15,7 +15,7 @@ const BarCharts = ({
 
 
     return (
-        <Suspense fallback={<Loading/>}>
+        <>
             {selectedChartValue === "Bar" && selectedValue === "JavaScript" && (
                 <BarChart
                     data={[
@@ -135,7 +135,7 @@ const BarCharts = ({
                         keys={["Git", "GitHub", "Vercel"]}
                     />
                 )}
-        </Suspense>
+        </>
     );
 };
 
