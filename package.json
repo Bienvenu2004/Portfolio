@@ -35,6 +35,8 @@
         "next": "13.3.0",
         "next-themes": "^0.2.1",
         "nextjs-progressbar": "^0.0.16",
+        "moment": "2.29.1",
+        "react-scripts": "3.0.1",
         "primeflex": "3.3.0",
         "primeicons": "^6.0.1",
         "primereact": "^9.4.0",
