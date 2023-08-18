@@ -130,6 +130,7 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
                             }}
                         >
                             <SettingsOutlined
+                                className="settingsIcon"
                                 sx={{
                                     fontSize: "60px",
                                     display: "flex",
@@ -142,7 +143,6 @@ const SettingsDrawer = ({ placement, setMode, prefersDarkMode }, ref) => {
                                     "&:hover": {
                                         transform: "scale(1.4)",
                                         transition: "all 1s ease-in-out",
-                                        rotate: "360deg",
                                     },
                                 }}
                             />
