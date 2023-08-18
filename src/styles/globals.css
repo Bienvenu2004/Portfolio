@@ -31,6 +31,19 @@ canvas {
     border-radius: 50%; /* This value makes the element round */
 }
 
+.settingsIcon{
+    animation: rotate 4s infinite linear;
+    -webkit-animation: rotate 4s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 @keyframes opacitySwitch {
     0% {
