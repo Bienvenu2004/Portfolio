@@ -5,6 +5,7 @@ import { themeSettings } from "../../theme/theme";
 import Sidebar from "../Sidebar";
 import Navbar from "../Navbar";
 import Preloader from "./Preloader/Preloader";
+import Loader from "./Loader";
 
 const Layout = ({ children }) => {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -26,8 +27,8 @@ const Layout = ({ children }) => {
         return () => clearTimeout(timeoutId);
     }, []);
 
-    if (!mounted) return <Preloader />;
-
+    if (!mounted) return <Loader theme={theme}/>
+    
     return (
         <Suspense fallback={<Preloader />}>
             <ThemeProvider theme={theme}>
