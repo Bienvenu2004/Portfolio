@@ -27,10 +27,8 @@ const Layout = ({ children }) => {
         return () => clearTimeout(timeoutId);
     }, []);
 
-    if (!mounted) return <ThemeProvider theme={theme}>
-        <Loader theme={theme}/>
-    </ThemeProvider>;
-
+    if (!mounted) return <Loader theme={theme}/>
+    
     return (
         <Suspense fallback={<Preloader />}>
             <ThemeProvider theme={theme}>

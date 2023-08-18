@@ -3,7 +3,7 @@ import { Triangle } from "react-loader-spinner";
 import { Box } from '@mui/material'
 
 
-const Loader = ({theme}) => {
+const Loader = () => {
     return (
         <Box
             sx={{
