@@ -6,6 +6,7 @@ import { Avatar } from "@nextui-org/react";
 import { VerifiedTwoTone } from "@mui/icons-material";
 import CustomIconButton from "@/components/UI/CustomIconButton";
 import { borderColor } from "@mui/system";
+import { DownloadTwoTone } from "@mui/icons-material";
 const Top = () => {
 
     const theme = useTheme()
@@ -31,12 +32,13 @@ const Top = () => {
         <Box
             sx={{
                 width: "100%",
-                height: "fir-content",
+                height: "fit-content",
                 backgroundImage: theme.palette.mode === 'dark' && "url(/images/me.jpg)",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 overflow: "hidden",
+                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
                 backgroundColor: theme.palette.mode === 'light' && theme.palette.background.alt
             }}
         >
@@ -125,10 +127,10 @@ const Top = () => {
                         <Box
                             sx={{
                                 width: isSidebarOpen ? "83%" : coverPhotoWidth,
-                                border: "1px solid white",
+                                borderBottom: "1px solid gray",
                                 margin: "auto",
                                 display: "flex",
-                                height: '230px'
+                                height: '140px',
                             }}
                         >
                             <Box display="flex" alignItems="center" mr="0.3rem"
@@ -138,7 +140,7 @@ const Top = () => {
                                     transition: 'all 0.2s ease-in-out',
                                     height: 'fit-content',
                                     width: 'fit-content',
-                                    border: '4px solid darkgray',
+                                    border: theme.palette.mode === 'dark' ? '4px solid darkgray' : '4px solid whitesmoke',
                                     borderRadius: '50%',
                                     display: 'flex'
                                 }}
@@ -156,13 +158,13 @@ const Top = () => {
                                 />
                             </Box>
                             <Box>
-                                <CustomIconButton 
+                                <CustomIconButton
                                     styles={{
-                                        borderColor: 'white', 
-                                        padding:2, 
+                                        borderColor: 'white',
+                                        padding: 2,
                                         borderRadius: '50%',
-                                        backgroundColor: 'gray',
-                                        color: 'whitesmoke',
+                                        backgroundColor: theme.palette.mode === 'dark' ? 'gray' : 'whitesmoke',
+                                        color: theme.palette.mode === 'dark' ? 'whitesmoke' : 'black',
                                         ml: '-45px',
                                         zIndex: '999',
                                         mt: '80px'
@@ -173,7 +175,7 @@ const Top = () => {
                             </Box>
 
                             {/** Name and Experience */}
-                            <Box>
+                            <Box display={'flex'} flexDirection={'column'}>
                                 <Typography
                                     sx={{
                                         fontSize: '35px',
@@ -184,20 +186,70 @@ const Top = () => {
 
                                     }}
                                 >
-                                    Kibuh Adou Rahim
+                                    Kibuh Abdou Rahim
                                 </Typography>
                                 <Typography
                                     sx={{
                                         fontSize: '14px',
                                         fontWeight: 'bold',
-                                        mt: '-0.7rem',
+                                        mt: '-0.3rem',
                                         ml: '0.6rem',
                                         color: theme.palette.secondary.text
                                     }}
                                 >
                                     1 Year Experience in Web Development
-                                    <VerifiedTwoTone sx={{ fontSize: '20px', ml: '1rem', position: 'absolute', mt:'-2px' }} />
+                                    <VerifiedTwoTone sx={{ fontSize: '20px', ml: '1rem', position: 'absolute', mt: '-2px' }} />
                                 </Typography>
+                            </Box>
+                            <Box
+                                display={'flex'}
+                                flexGrow={1}
+                                border={'1px solid red'}
+                                alignItems='end'
+                                pb='10px'
+                                justifyContent={'center'}
+                                pr='30px'
+                            >
+                                <Box
+                                    sx={{
+                                        height: "inherit",
+                                        minWidth: "150px",
+                                        display: "flex",
+                                        justifyContent: "end",
+                                        flexDirection: "column",
+                                    }}
+                                >
+                                    <Box sx={{
+                                        backgroundColor: theme.palette.secondary.main,
+                                        height: 'fit-content',
+                                        width: 'fit-content',
+                                        borderRadius: "6px",
+                                    }}>
+                                        <Button
+                                            className="download-button"
+                                            variant="contained"
+                                            startIcon={<DownloadTwoTone className="bounce" />}
+                                            sx={{
+                                                height: "fit-content",
+                                                width: "100%",
+                                                backgroundColor: 'transparent',
+                                                color: "whitesmoke",
+                                                py: "8px",
+                                                px: '28px',
+                                                borderRadius: "6px",
+                                                textTransform: "none",
+                                                transition: "all 0.2s ease-in-out",
+                                                zIndex: '99',
+                                                backgroundSize: '200% 100%',
+                                                "&:hover": {
+                                                    backgroundColor: "rgba(0,0,0,0.4)",
+                                                }
+                                            }}
+                                        >
+                                            Download CV
+                                        </Button>
+                                    </Box>
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
