@@ -1,12 +1,17 @@
 import React from "react";
-import { Box, Button, useMediaQuery } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { CameraAltRounded } from "@mui/icons-material";
 import { SidebarContext } from "@/components/contexts/SidebarContext";
 import { Avatar } from "@nextui-org/react";
+import { VerifiedTwoTone } from "@mui/icons-material";
+import CustomIconButton from "@/components/UI/CustomIconButton";
+import { borderColor } from "@mui/system";
 const Top = () => {
 
-    let coverPhotoWidth = "71%";
-    let coverPhotoHeight = "350px";
+    const theme = useTheme()
+
+    let coverPhotoWidth = "75%";
+    let coverPhotoHeight = "290px";
     const { isSidebarOpen } = React.useContext(SidebarContext);
     const is1109px = useMediaQuery('(max-width:1109px)');
     const is1230px = useMediaQuery('(max-width:1232px)');
@@ -27,11 +32,12 @@ const Top = () => {
             sx={{
                 width: "100%",
                 height: "fir-content",
-                backgroundImage: "url(/images/me.jpg)",
+                backgroundImage: theme.palette.mode === 'dark' && "url(/images/me.jpg)",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 overflow: "hidden",
+                backgroundColor: theme.palette.mode === 'light' && theme.palette.background.alt
             }}
         >
             <Box
@@ -39,7 +45,8 @@ const Top = () => {
                 sx={{
                     width: "100%",
                     height: "100%",
-                    backgroundImage: 'linear-gradient(to bottom, transparent 30%, rgb(0,0,0,0.6) 70%)',
+                    backgroundImage: theme.palette.mode === 'dark' && 'linear-gradient(to bottom, transparent,rgb(0,0,0,0.5), rgb(0,0,0))',
+                    backgroundColor: theme.palette.mode === 'light' && theme.palette.background.default,
                     zIndex: -1,
                 }}
             >
@@ -66,7 +73,7 @@ const Top = () => {
                             borderBottomLeftRadius: "10px",
                             width: isSidebarOpen ? "83%" : coverPhotoWidth,
                             maxHeight: isSidebarOpen ? "330px" : "350px",
-                            minHeight: isSidebarOpen ? "330px" : coverPhotoHeight,
+                            minHeight: isSidebarOpen ? "290px" : coverPhotoHeight,
                             margin: "auto",
                             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                             transition: "all 0.2s ease-in-out",
@@ -78,7 +85,7 @@ const Top = () => {
                     >
                         <Box
                             sx={{
-                                height: "100%",
+                                height: "inherit",
                                 minWidth: "170px",
                                 display: "flex",
                                 justifyContent: "end",
@@ -124,16 +131,74 @@ const Top = () => {
                                 height: '230px'
                             }}
                         >
-                            <Box display="flex" alignItems="center" mr="0.3rem">
+                            <Box display="flex" alignItems="center" mr="0.3rem"
+                                sx={{
+                                    mt: '-40px',
+                                    ml: '2rem',
+                                    transition: 'all 0.2s ease-in-out',
+                                    height: 'fit-content',
+                                    width: 'fit-content',
+                                    border: '4px solid darkgray',
+                                    borderRadius: '50%',
+                                    display: 'flex'
+                                }}
+                            >
                                 <Avatar
                                     src="/images/me.jpeg"
-                                    css={{ size: "$60", mt: '-120px', ml: '$15' }}
-                                    color={'gradient'}
-                                    bordered
+                                    css={{
+                                        size: "160px",
+                                        transition: 'all 0.2s ease-in-out',
+                                        "& .nextui-avatar-img": {
+                                            border: "none",
+                                        },
+                                    }}
                                     borderWeight={'bold'}
                                 />
                             </Box>
+                            <Box>
+                                <CustomIconButton 
+                                    styles={{
+                                        borderColor: 'white', 
+                                        padding:2, 
+                                        borderRadius: '50%',
+                                        backgroundColor: 'gray',
+                                        color: 'whitesmoke',
+                                        ml: '-45px',
+                                        zIndex: '999',
+                                        mt: '80px'
+                                    }}
+                                >
+                                    <CameraAltRounded sx={{ fontSize: '20px', position: 'absolute' }} />
+                                </CustomIconButton>
+                            </Box>
 
+                            {/** Name and Experience */}
+                            <Box>
+                                <Typography
+                                    sx={{
+                                        fontSize: '35px',
+                                        fontWeight: 'bold',
+                                        mt: '1.3rem',
+                                        ml: '0.6rem',
+                                        color: theme.palette.secondary.text
+
+                                    }}
+                                >
+                                    Kibuh Adou Rahim
+                                </Typography>
+                                <Typography
+                                    sx={{
+                                        fontSize: '14px',
+                                        fontWeight: 'bold',
+                                        mt: '-0.7rem',
+                                        ml: '0.6rem',
+                                        color: theme.palette.secondary.text
+                                    }}
+                                >
+                                    1 Year Experience in Web Development
+                                    <VerifiedTwoTone sx={{ fontSize: '20px', ml: '1rem', position: 'absolute', mt:'-2px' }} />
+                                </Typography>
+                            </Box>
                         </Box>
                     </Box>
                 </Box>

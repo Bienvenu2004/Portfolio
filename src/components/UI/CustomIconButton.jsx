@@ -1,7 +1,7 @@
 import React from "react";
 import { IconButton, useTheme } from "@mui/material";
 
-const Index = ({ children, onClick, href, target, ...styles }) => {
+const CustomIconButton = ({ children, onClick, href, target, styles }) => {
     const theme = useTheme();
     return (
         <IconButton
@@ -36,4 +36,4 @@ const Index = ({ children, onClick, href, target, ...styles }) => {
     );
 };
 
-export default Index;
+export default CustomIconButton;
