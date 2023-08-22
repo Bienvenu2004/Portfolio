@@ -42,8 +42,13 @@ canvas {
     background-color: inherit;
     border: none;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
     animation: stripeAnimation 3s linear infinite;
     -webkit-animation: stripeAnimation 3s linear infinite;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
 }
 @keyframes stripeAnimation {
     0% {

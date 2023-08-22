@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
 import SkillCards from "@/components/skillspage/top/SkillCards";
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
 
 //database helpers
 import { getAllDocuments } from "../api/portfolioapi";
@@ -77,8 +77,8 @@ const Index = ({ javascript, css, database, github }) => {
                         display: "flex",
                         flexDirection:
                             (is950px && isSidebarOpen) ||
-                            is600px ||
-                            (is660px && !isSidebarOpen)
+                                is600px ||
+                                (is660px && !isSidebarOpen)
                                 ? "column"
                                 : "row",
                     }}

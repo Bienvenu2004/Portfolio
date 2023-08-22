@@ -1,10 +1,10 @@
 import { useTheme, Box, useMediaQuery } from "@mui/material";
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
 import { useContext } from "react";
 import ComingSoon from "@/components/comingSoon/ComingSoon";
 const Index = () => {
     const theme = useTheme();
-    const {isSidebarOpen} = useContext(SidebarContext)
+    const { isSidebarOpen } = useContext(SidebarContext)
 
 
     return (
@@ -32,8 +32,8 @@ const Index = () => {
                     height: "100vh",
                     width: "100vw",
                     backgroundRepeat: "no-repeat",
-                    backgroundSize:"cover",
-                    backgroundPosition:"center",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     position: "absolute",
                     top: 0,
                     left: 0,
@@ -42,17 +42,17 @@ const Index = () => {
                 <Box
                     className="overlay"
                     sx={{
-                        width:"100%",
-                        height:"100%",
+                        width: "100%",
+                        height: "100%",
                         backgroundImage: 'linear-gradient(to bottom, transparent 100%, rgb(0,0,0,0.8) 100%)',
-                        zIndex:999,
+                        zIndex: 999,
                         backdropFilter: "blur(30px)",
                         pt: 23,
                         pl: isSidebarOpen && 26,
-                        transition:"all 0.2s ease-in-out"
+                        transition: "all 0.2s ease-in-out"
                     }}
                 >
-                    <ComingSoon/>
+                    <ComingSoon />
                 </Box>
             </Box>
         </div>

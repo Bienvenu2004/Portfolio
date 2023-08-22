@@ -1,12 +1,13 @@
 import React from "react";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { CameraAltRounded } from "@mui/icons-material";
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
 import { Avatar } from "@nextui-org/react";
 import { VerifiedTwoTone } from "@mui/icons-material";
 import CustomIconButton from "@/components/UI/CustomIconButton";
 import { borderColor } from "@mui/system";
 import { DownloadTwoTone } from "@mui/icons-material";
+import { BorderColor } from "@mui/icons-material";
 const Top = () => {
 
     const theme = useTheme()
@@ -127,7 +128,6 @@ const Top = () => {
                         <Box
                             sx={{
                                 width: isSidebarOpen ? "83%" : coverPhotoWidth,
-                                borderBottom: "1px solid gray",
                                 margin: "auto",
                                 display: "flex",
                                 height: '140px',
@@ -220,10 +220,9 @@ const Top = () => {
                                     }}
                                 >
                                     <Box sx={{
-                                        backgroundColor: theme.palette.secondary.main,
                                         height: 'fit-content',
                                         width: 'fit-content',
-                                        borderRadius: "6px",
+                                        display: "flex",
                                     }}>
                                         <Button
                                             className="download-button"
@@ -231,11 +230,12 @@ const Top = () => {
                                             startIcon={<DownloadTwoTone className="bounce" />}
                                             sx={{
                                                 height: "fit-content",
-                                                width: "100%",
-                                                backgroundColor: 'transparent',
+                                                width: "150px",
+                                                backgroundColor: theme.palette.secondary.main,
                                                 color: "whitesmoke",
                                                 py: "8px",
-                                                px: '28px',
+                                                px: '5px',
+                                                margin: '0.25rem',
                                                 borderRadius: "6px",
                                                 textTransform: "none",
                                                 transition: "all 0.2s ease-in-out",
@@ -247,6 +247,30 @@ const Top = () => {
                                             }}
                                         >
                                             Download CV
+                                        </Button>
+                                        <Button
+                                            className="download-button"
+                                            variant="contained"
+                                            startIcon={<BorderColor/>}
+                                            sx={{
+                                                height: "fit-content",
+                                                width: "120px",
+                                                backgroundColor: 'rgba(131,131,131,0.5)',
+                                                color: "whitesmoke",
+                                                py: "8px",
+                                                px: '5px',
+                                                margin: '0.25rem',
+                                                borderRadius: "6px",
+                                                textTransform: "none",
+                                                transition: "all 0.2s ease-in-out",
+                                                zIndex: '99',
+                                                backgroundSize: '200% 100%',
+                                                "&:hover": {
+                                                    backgroundColor: "rgba(0,0,0,0.4)",
+                                                }
+                                            }}
+                                        >
+                                            Edit Profile
                                         </Button>
                                     </Box>
                                 </Box>

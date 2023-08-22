@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Badge, Progress, ConfigProvider, theme as AntTheme } from "antd";
 import { VerifiedTwoTone } from "@mui/icons-material";
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
 import Image from "next/image";
 
 const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
@@ -128,9 +128,9 @@ const SkillBox = ({ children, label, value, skill, image, ...styles }) => {
                                                         filter:
                                                             theme.palette
                                                                 .mode ===
-                                                                "dark" &&
+                                                            "dark" &&
                                                             label ===
-                                                                "Others" &&
+                                                            "Others" &&
                                                             "invert(1)",
                                                         transition:
                                                             "all 0.3s ease-in-out",

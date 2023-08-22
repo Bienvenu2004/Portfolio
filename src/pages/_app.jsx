@@ -7,7 +7,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 
-import { SidebarProvider } from "@/components/contexts/SidebarContext";
+import { SidebarProvider } from "@/contexts/SidebarContext";
 
 import "../styles/globals.css";
 
@@ -20,7 +20,7 @@ const App = ({ Component, pageProps }) => {
                     <meta
                         name="viewport"
                         content="width=device-width, initial-scale=1"
-                        />
+                    />
                 </Head>
                 <NextNProgress
                     color="#0072F5"
@@ -34,7 +34,7 @@ const App = ({ Component, pageProps }) => {
                         speed: 500,
                     }}
                 />
-                    <Component {...pageProps} />
+                <Component {...pageProps} />
             </Layout>
         </SidebarProvider>
     );
