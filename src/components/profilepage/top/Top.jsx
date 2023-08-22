@@ -20,6 +20,7 @@ const Top = () => {
     const is950px = useMediaQuery('(max-width:950px)');
     const is670px = useMediaQuery('(max-width:670px)');
     const is450px = useMediaQuery('(max-width:450px)')
+    const is875px = useMediaQuery('(max-width:875px)')
 
     is1230px && (coverPhotoWidth = (0.9 * 1230) + "px");
     is1109px && (coverPhotoWidth = "100%")
@@ -34,11 +35,10 @@ const Top = () => {
             sx={{
                 width: "100%",
                 height: "fit-content",
-                backgroundImage: theme.palette.mode === 'dark' && "url(/images/me.jpg)",
+                backgroundImage: theme.palette.mode === 'dark' && !is950px && "url(/images/me.jpg)",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                overflow: "hidden",
                 boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
                 backgroundColor: theme.palette.mode === 'light' && theme.palette.background.alt
             }}
@@ -47,16 +47,17 @@ const Top = () => {
                 className="overlay"
                 sx={{
                     width: "100%",
-                    height: "100%",
-                    backgroundImage: theme.palette.mode === 'dark' && 'linear-gradient(to bottom, transparent,rgb(0,0,0,0.5), rgb(0,0,0))',
-                    backgroundColor: theme.palette.mode === 'light' && theme.palette.background.default,
-                    zIndex: -1,
+                    height: is950px && "500px",
+                    backgroundImage: theme.palette.mode === 'dark' && `linear-gradient(to bottom, transparent,rgb(0,0,0,0.5), rgb(0,0,0))`,
+                    backgroundColor: theme.palette.mode === 'light' && is950px
+                        && theme.palette.background.paper || is950px && theme.palette.background.alt,
+                    zIndex: 999,
                 }}
             >
                 <Box
                     sx={{
+                        height: "fit-content",
                         width: "100%",
-                        height: "100%",
                         backdropFilter: "blur(200px)",
                         WebkitBackdropFilter: "blur(200px)",
                         display: "flex",
@@ -82,7 +83,7 @@ const Top = () => {
                             transition: "all 0.2s ease-in-out",
                             display: "flex",
                             justifyContent: "right",
-                            paddingRight: "3%",
+                            pr: '30px'
 
                         }}
                     >
@@ -93,28 +94,29 @@ const Top = () => {
                                 display: "flex",
                                 justifyContent: "end",
                                 flexDirection: "column",
-                                pb: "30px",
+                                pb: "20px",
                             }}
                         >
                             <Button
                                 variant="contained"
-                                startIcon={<CameraAltRounded />}
+                                startIcon={!is875px && <CameraAltRounded />}
                                 sx={{
                                     height: "fit-content",
-                                    width: "100%",
-                                    backgroundColor: "rgba(0,0,0,0.5)",
+                                    width: is875px && '20px' || "100%",
+                                    backgroundColor: "rgba(0,0,0,0.8)",
                                     color: "white",
                                     mb: "5px",
                                     py: "8px",
+                                    px: '0px',
                                     borderRadius: "6px",
                                     textTransform: "none",
                                     transition: "all 0.2s ease-in-out",
                                     "&:hover": {
-                                        backgroundColor: "rgba(0,0,0,0.4)",
+                                        backgroundColor: "rgba(0,0,0,0.6)",
                                     }
                                 }}
                             >
-                                Edit Cover Photo
+                                {!is875px && "Edit Cover Photo" || <CameraAltRounded />}
                             </Button>
                         </Box>
                     </Box>
@@ -130,23 +132,28 @@ const Top = () => {
                                 width: isSidebarOpen ? "83%" : coverPhotoWidth,
                                 margin: "auto",
                                 display: "flex",
-                                height: '140px',
+                                height: is875px ? '270px' : '140px',
+                                flexDirection: is875px && "column",
+                                border: '1px solid blue',
                             }}
                         >
+                            {/**Avatar */}
                             <Box display="flex" alignItems="center" mr="0.3rem"
                                 sx={{
-                                    mt: '-40px',
-                                    ml: '2rem',
+                                    mt: is950px && !is875px && '15px' || is875px && '-80px' || '-40px',
+                                    ml: !is875px && '2rem',
                                     transition: 'all 0.2s ease-in-out',
                                     height: 'fit-content',
                                     width: 'fit-content',
                                     border: theme.palette.mode === 'dark' ? '4px solid darkgray' : '4px solid whitesmoke',
                                     borderRadius: '50%',
-                                    display: 'flex'
+                                    display: 'flex',
+                                    mx: 'auto',
                                 }}
                             >
                                 <Avatar
                                     src="/images/me.jpeg"
+
                                     css={{
                                         size: "160px",
                                         transition: 'all 0.2s ease-in-out',
@@ -156,31 +163,41 @@ const Top = () => {
                                     }}
                                     borderWeight={'bold'}
                                 />
-                            </Box>
-                            <Box>
-                                <CustomIconButton
-                                    styles={{
-                                        borderColor: 'white',
-                                        padding: 2,
-                                        borderRadius: '50%',
-                                        backgroundColor: theme.palette.mode === 'dark' ? 'gray' : 'whitesmoke',
-                                        color: theme.palette.mode === 'dark' ? 'whitesmoke' : 'black',
-                                        ml: '-45px',
-                                        zIndex: '999',
-                                        mt: '80px'
-                                    }}
-                                >
-                                    <CameraAltRounded sx={{ fontSize: '20px', position: 'absolute' }} />
-                                </CustomIconButton>
+                                <CameraAltRounded 
+                                    sx={{ 
+                                        fontSize: '32px', 
+                                        position: 'absolute', 
+                                        zIndex: 999, 
+                                        border: '1px solid white', 
+                                        p: '5px', 
+                                        borderRadius: '50%', 
+                                        ml: '125px',
+                                        mt: '100px',
+                                        backgroundColor: theme.palette.mode === 'dark' ? 'gray' : 'whitesmoke', color: theme.palette.mode === 'dark' ? 'whitesmoke' : 'black',
+                                        transition: 'all 0.2s ease-in-out',
+                                        '&:hover': {
+                                            backgroundColor:theme.palette.background.alt,
+                                            cursor: 'pointer',
+                                        }
+                                    }} 
+                                />
+
                             </Box>
 
                             {/** Name and Experience */}
-                            <Box display={'flex'} flexDirection={'column'}>
+                            <Box
+                                display={'flex'}
+                                flexDirection={'column'}
+                                sx={{
+                                    m: is875px && 'auto',
+                                    mt: is875px && '-35px'
+                                }}
+                            >
                                 <Typography
                                     sx={{
                                         fontSize: '35px',
                                         fontWeight: 'bold',
-                                        mt: '1.3rem',
+                                        mt: is950px ? "4rem" : '1.3rem',
                                         ml: '0.6rem',
                                         color: theme.palette.secondary.text
 
@@ -190,6 +207,7 @@ const Top = () => {
                                 </Typography>
                                 <Typography
                                     sx={{
+                                        pl: is875px && '17px',
                                         fontSize: '14px',
                                         fontWeight: 'bold',
                                         mt: '-0.3rem',
@@ -201,14 +219,15 @@ const Top = () => {
                                     <VerifiedTwoTone sx={{ fontSize: '20px', ml: '1rem', position: 'absolute', mt: '-2px' }} />
                                 </Typography>
                             </Box>
+                            {/**Download and Edit profile Buttons */}
                             <Box
                                 display={'flex'}
                                 flexGrow={1}
                                 border={'1px solid red'}
-                                alignItems='end'
-                                pb='10px'
-                                justifyContent={'center'}
-                                pr='30px'
+                                alignItems={is875px && 'center' || 'end'}
+                                pb={!is875px && '10px'}
+                                justifyContent={is875px && 'center' || 'end'}
+                                pr={!is875px && '30px'}
                             >
                                 <Box
                                     sx={{
@@ -216,63 +235,57 @@ const Top = () => {
                                         minWidth: "150px",
                                         display: "flex",
                                         justifyContent: "end",
-                                        flexDirection: "column",
+                                        flexDirection: "row",
                                     }}
                                 >
-                                    <Box sx={{
-                                        height: 'fit-content',
-                                        width: 'fit-content',
-                                        display: "flex",
-                                    }}>
-                                        <Button
-                                            className="download-button"
-                                            variant="contained"
-                                            startIcon={<DownloadTwoTone className="bounce" />}
-                                            sx={{
-                                                height: "fit-content",
-                                                width: "150px",
-                                                backgroundColor: theme.palette.secondary.main,
-                                                color: "whitesmoke",
-                                                py: "8px",
-                                                px: '5px',
-                                                margin: '0.25rem',
-                                                borderRadius: "6px",
-                                                textTransform: "none",
-                                                transition: "all 0.2s ease-in-out",
-                                                zIndex: '99',
-                                                backgroundSize: '200% 100%',
-                                                "&:hover": {
-                                                    backgroundColor: "rgba(0,0,0,0.4)",
-                                                }
-                                            }}
-                                        >
-                                            Download CV
-                                        </Button>
-                                        <Button
-                                            className="download-button"
-                                            variant="contained"
-                                            startIcon={<BorderColor/>}
-                                            sx={{
-                                                height: "fit-content",
-                                                width: "120px",
-                                                backgroundColor: 'rgba(131,131,131,0.5)',
-                                                color: "whitesmoke",
-                                                py: "8px",
-                                                px: '5px',
-                                                margin: '0.25rem',
-                                                borderRadius: "6px",
-                                                textTransform: "none",
-                                                transition: "all 0.2s ease-in-out",
-                                                zIndex: '99',
-                                                backgroundSize: '200% 100%',
-                                                "&:hover": {
-                                                    backgroundColor: "rgba(0,0,0,0.4)",
-                                                }
-                                            }}
-                                        >
-                                            Edit Profile
-                                        </Button>
-                                    </Box>
+                                    <Button
+                                        className="download-button"
+                                        variant="contained"
+                                        startIcon={<DownloadTwoTone className="bounce" />}
+                                        sx={{
+                                            height: "fit-content",
+                                            width: "150px",
+                                            backgroundColor: theme.palette.secondary.main,
+                                            color: "whitesmoke",
+                                            py: "8px",
+                                            px: '5px',
+                                            margin: '0.25rem',
+                                            borderRadius: "6px",
+                                            textTransform: "none",
+                                            transition: "all 0.2s ease-in-out",
+                                            zIndex: '99',
+                                            backgroundSize: '200% 100%',
+                                            "&:hover": {
+                                                backgroundColor: "rgba(0,0,0,0.4)",
+                                            }
+                                        }}
+                                    >
+                                        Download CV
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<BorderColor />}
+                                        sx={{
+                                            height: "fit-content",
+                                            width: "120px",
+                                            backgroundColor: 'rgba(131,131,131,0.8)',
+                                            color: "whitesmoke",
+                                            py: "8px",
+                                            px: '5px',
+                                            margin: '0.25rem',
+                                            borderRadius: "6px",
+                                            textTransform: "none",
+                                            transition: "all 0.2s ease-in-out",
+                                            zIndex: '99',
+                                            backgroundSize: '200% 100%',
+                                            "&:hover": {
+                                                opacity: '0.8',
+                                                backgroundColor: 'rgba(131,131,131,0.8)',
+                                            }
+                                        }}
+                                    >
+                                        Edit Profile
+                                    </Button>
                                 </Box>
                             </Box>
                         </Box>
