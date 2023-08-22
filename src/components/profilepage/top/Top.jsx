@@ -27,7 +27,7 @@ const Top = () => {
 
     is950px && (coverPhotoHeight = "300px");
     is670px && (coverPhotoHeight = "250px");
-    is450px && (coverPhotoHeight = "210px")
+    is450px && (coverPhotoHeight = "170px")
 
 
     return (
@@ -40,17 +40,18 @@ const Top = () => {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-                backgroundColor: theme.palette.mode === 'light' && theme.palette.background.alt
+                backgroundColor: theme.palette.mode === 'light' && theme.palette.background.default
             }}
         >
             <Box
                 className="overlay"
                 sx={{
                     width: "100%",
-                    height: is950px && "500px",
+                    height: is950px && !is450px && "500px" || '200px',
                     backgroundImage: theme.palette.mode === 'dark' && `linear-gradient(to bottom, transparent,rgb(0,0,0,0.5), rgb(0,0,0))`,
                     backgroundColor: theme.palette.mode === 'light' && is950px
                         && theme.palette.background.paper || is950px && theme.palette.background.alt,
+                    transition: "all 0.2s ease-in-out",
                     zIndex: 999,
                 }}
             >
@@ -132,16 +133,19 @@ const Top = () => {
                                 width: isSidebarOpen ? "83%" : coverPhotoWidth,
                                 margin: "auto",
                                 display: "flex",
-                                height: is875px ? '270px' : '140px',
+                                pl: !is875px && '2rem',
+                                height: is875px && !is450px && '250px' || is450px && '235px' || '140px',
                                 flexDirection: is875px && "column",
-                                border: '1px solid blue',
+                                backgroundColor: is875px && theme.palette.mode === 'dark' && theme.palette.background.default,
+                                // border: '1px solid blue',
+                                borderBottomLeftRadius: '10px',
+                                borderBottomRightRadius: '10px',
                             }}
                         >
                             {/**Avatar */}
                             <Box display="flex" alignItems="center" mr="0.3rem"
                                 sx={{
                                     mt: is950px && !is875px && '15px' || is875px && '-80px' || '-40px',
-                                    ml: !is875px && '2rem',
                                     transition: 'all 0.2s ease-in-out',
                                     height: 'fit-content',
                                     width: 'fit-content',
@@ -190,7 +194,7 @@ const Top = () => {
                                 flexDirection={'column'}
                                 sx={{
                                     m: is875px && 'auto',
-                                    mt: is875px && '-35px'
+                                    mt: is875px && '-57px'
                                 }}
                             >
                                 <Typography
@@ -223,7 +227,8 @@ const Top = () => {
                             <Box
                                 display={'flex'}
                                 flexGrow={1}
-                                border={'1px solid red'}
+                                // border={'1px solid red'}
+                                mt = {is875px && '-20px'}
                                 alignItems={is875px && 'center' || 'end'}
                                 pb={!is875px && '10px'}
                                 justifyContent={is875px && 'center' || 'end'}
