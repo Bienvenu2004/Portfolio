@@ -2,7 +2,7 @@ import React from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import SkillsDropdown from "../dropdowns/SkillsDropdown";
 import ChartsDropdown from "../dropdowns/ChartsDropdown";
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
 import PieCharts from "./charts/PieCharts";
 import LineCharts from "./charts/LineCharts";
 import BarCharts from "./charts/BarCharts";

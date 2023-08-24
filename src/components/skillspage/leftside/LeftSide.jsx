@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import { SidebarContext } from "../../contexts/SidebarContext";
+import { SidebarContext } from "../../../contexts/SidebarContext";
 import SkillsDropdown from "../dropdowns/SkillsDropdown";
 import PieChart from "@/components/charts/PieChart";
 import Image from "next/image";
@@ -99,8 +99,8 @@ const LeftSide = ({ javascript, database }) => {
             height={"100%"}
             width={
                 (is950px && isSidebarOpen) ||
-                is600px ||
-                (is660px && !isSidebarOpen)
+                    is600px ||
+                    (is660px && !isSidebarOpen)
                     ? "100%"
                     : "50%"
             }

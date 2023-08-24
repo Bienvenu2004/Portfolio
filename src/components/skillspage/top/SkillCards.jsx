@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import SkillBox from "./SkillBox";
 
-import { SidebarContext } from "@/components/contexts/SidebarContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
 
 const SkillCards = ({ javascript, css, database, github }) => {
     const isMobile = useMediaQuery("(max-width: 480px)");

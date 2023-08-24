@@ -21,20 +21,62 @@ canvas {
 }
 
 .noData {
-    animation: opacitySwitch 2s infinite cubic-bezier(0.3, 0.8, 0.5, 0.1)
-        alternate;
-    -webkit-animation: opacitySwitch 2s infinite
-        cubic-bezier(0.3, 0.8, 0.5, 0.1) alternate;
+    animation: opacitySwitch 2s infinite cubic-bezier(0.3, 0.8, 0.5, 0.1)        alternate;
+    -webkit-animation: opacitySwitch 2s infinite cubic-bezier(0.3, 0.8, 0.5, 0.1);
 }
 
 #favicon {
     border-radius: 50%; /* This value makes the element round */
 }
 
+
 .settingsIcon{
     animation: rotate 4s infinite linear;
     -webkit-animation: rotate 4s infinite linear;
 }
+
+
+.download-button:hover{
+    background: linear-gradient(135deg, #f97794 10%, #623aa2 100%);
+    background-size: 200% 100%;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    animation: stripeAnimation 3s linear infinite;
+    -webkit-animation: stripeAnimation 3s linear infinite;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+@keyframes stripeAnimation {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes bounceAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+        /*Adjustthebounceheightasneeded*/
+        -webkit-transform: translateY(-8px);
+        -moz-transform: translateY(-8px);
+        -ms-transform: translateY(-8px);
+        -o-transform: translateY(-8px);
+}
+}
+
+.bounce {
+    animation: bounceAnimation 1s cubic-bezier(0.25, 1, 0.5, 1) infinite; /* Adjust the animation duration and cubic bezier as needed */
+}
+
 
 @keyframes rotate {
     0% {

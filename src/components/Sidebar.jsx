@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import { navItems } from "../data/data";
 import { User } from "@nextui-org/react";
 import { ArrowRightOutlined, ArrowBackOutlined } from "@mui/icons-material";
-import { SidebarContext } from "./contexts/SidebarContext";
+import { SidebarContext } from "../contexts/SidebarContext";
 
 const Sidebar = () => {
     const theme = useTheme();
@@ -193,7 +193,7 @@ const Sidebar = () => {
                                     sx={{
                                         color:
                                             activeUrl ===
-                                            item.name.toLowerCase()
+                                                item.name.toLowerCase()
                                                 ? theme.palette.secondary[100]
                                                 : theme.palette.secondary.text,
                                     }}
