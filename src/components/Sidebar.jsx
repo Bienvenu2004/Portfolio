@@ -67,6 +67,10 @@ const Sidebar = () => {
         }
     };
 
+    const handleCloseSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     return (
         <Drawer
             open={isSidebarOpen}
