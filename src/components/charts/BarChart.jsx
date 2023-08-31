@@ -2,7 +2,7 @@ import React from "react";
 import { Box, useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 
-const BarChart = ({ data, keys }) => {
+const BarChart = ({ data, keys, showLegend }) => {
     const theme = useTheme();
 
     return (

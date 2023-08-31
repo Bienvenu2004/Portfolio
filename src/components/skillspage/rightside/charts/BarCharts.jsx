@@ -1,6 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
 import BarChart from "@/components/charts/BarChart";
-import Loading from "@/components/loading/Loading";
+
 const BarCharts = ({
     selectedValue,
     selectedChartValue,
@@ -59,7 +59,7 @@ const BarCharts = ({
 
 
     return (
-        <>
+        <React.Fragment>
             {selectedChartValue === "Bar" && selectedValue === "JavaScript" && (
                 <BarChart
                     data={javascriptData}
@@ -85,7 +85,7 @@ const BarCharts = ({
                         keys={githubKeys}
                     />
                 )}
-        </>
+        </React.Fragment>
     );
 };
 
