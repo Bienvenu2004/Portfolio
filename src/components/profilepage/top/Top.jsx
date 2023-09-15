@@ -4,17 +4,15 @@ import { CameraAltRounded } from "@mui/icons-material";
 import { SidebarContext } from "@/contexts/SidebarContext";
 import { Avatar } from "@nextui-org/react";
 import { VerifiedTwoTone } from "@mui/icons-material";
-import CustomIconButton from "@/components/UI/CustomIconButton";
-import { borderColor } from "@mui/system";
 import { DownloadTwoTone } from "@mui/icons-material";
 import { BorderColor } from "@mui/icons-material";
 const Top = () => {
 
     const theme = useTheme()
+    const { isSidebarOpen } = React.useContext(SidebarContext);
 
     let coverPhotoWidth = "75%";
     let coverPhotoHeight = "290px";
-    const { isSidebarOpen } = React.useContext(SidebarContext);
     const is1109px = useMediaQuery('(max-width:1109px)');
     const is1230px = useMediaQuery('(max-width:1232px)');
     const is950px = useMediaQuery('(max-width:950px)');
@@ -22,12 +20,36 @@ const Top = () => {
     const is450px = useMediaQuery('(max-width:450px)')
     const is875px = useMediaQuery('(max-width:875px)')
 
-    is1230px && (coverPhotoWidth = (0.9 * 1230) + "px");
-    is1109px && (coverPhotoWidth = "100%")
+    //When sidebar is open
 
-    is950px && (coverPhotoHeight = "300px");
-    is670px && (coverPhotoHeight = "250px");
-    is450px && (coverPhotoHeight = "170px")
+    const is1500px = useMediaQuery('(max-width:1500px)');
+
+
+
+    is1230px && !isSidebarOpen && (coverPhotoWidth = (0.9 * 1230) + "px");
+    is1109px && !isSidebarOpen && (coverPhotoWidth = "100%")
+
+    is950px && !isSidebarOpen &&  (coverPhotoHeight = "300px");
+    is670px && !isSidebarOpen && (coverPhotoHeight = "250px");
+    is450px && !isSidebarOpen && (coverPhotoHeight = "170px")
+
+    isSidebarOpen && is1500px && (coverPhotoWidth =(0.9 * (1500-250)) + "px");
+
+    const handleDownloadCV = async () => {
+        try {
+            const response = await fetch('/api/downloadCV');
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'RahimCV-Latest.pdf');
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+        } catch (error) {
+            console.error('Error downloading CV:', error);
+        }
+    };
 
 
     return (
@@ -48,9 +70,9 @@ const Top = () => {
                 sx={{
                     width: "100%",
                     height: is950px && !is450px && "500px" || '200px',
-                    backgroundImage: theme.palette.mode === 'dark' && `linear-gradient(to bottom, transparent,rgb(0,0,0,0.5), rgb(0,0,0))`,
+                    backgroundImage: theme.palette.mode === 'dark' && `linear-gradient(to bottom, rgb(0,0,0,0.3),rgb(0,0,0), rgb(0,0,0))`,
                     backgroundColor: theme.palette.mode === 'light' && is950px
-                        && theme.palette.background.paper || is950px && theme.palette.background.alt,
+                        && theme.palette.background.paper,
                     transition: "all 0.2s ease-in-out",
                     zIndex: 999,
                 }}
@@ -76,9 +98,9 @@ const Top = () => {
                             borderRight: "1px solid transparent",
                             borderBottomRightRadius: "10px",
                             borderBottomLeftRadius: "10px",
-                            width: isSidebarOpen ? "83%" : coverPhotoWidth,
+                            width: coverPhotoWidth,
                             maxHeight: isSidebarOpen ? "330px" : "350px",
-                            minHeight: isSidebarOpen ? "290px" : coverPhotoHeight,
+                            height: isSidebarOpen ? "300px" : coverPhotoHeight,
                             margin: "auto",
                             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                             transition: "all 0.2s ease-in-out",
@@ -133,7 +155,7 @@ const Top = () => {
                                 width: isSidebarOpen ? "83%" : coverPhotoWidth,
                                 margin: "auto",
                                 display: "flex",
-                                pl: !is875px && '2rem',
+                                pl: !is875px && !isSidebarOpen && '2rem' || isSidebarOpen && !is1500px && '6rem',
                                 height: is875px && !is450px && '250px' || is450px && '235px' || '140px',
                                 flexDirection: is875px && "column",
                                 backgroundColor: is875px && theme.palette.mode === 'dark' && theme.palette.background.default,
@@ -149,7 +171,7 @@ const Top = () => {
                                     transition: 'all 0.2s ease-in-out',
                                     height: 'fit-content',
                                     width: 'fit-content',
-                                    border: theme.palette.mode === 'dark' ? '4px solid darkgray' : '4px solid whitesmoke',
+                                    border: theme.palette.mode === 'dark' ? `4px solid ${theme.palette.secondary.main}` : '4px solid whitesmoke',
                                     borderRadius: '50%',
                                     display: 'flex',
                                     mx: 'auto',
@@ -202,7 +224,7 @@ const Top = () => {
                                         fontSize: '35px',
                                         fontWeight: 'bold',
                                         mt: is950px ? "4rem" : '1.3rem',
-                                        ml: '0.6rem',
+                                        ml: '0.8rem',
                                         color: theme.palette.secondary.text
 
                                     }}
@@ -215,7 +237,7 @@ const Top = () => {
                                         fontSize: '14px',
                                         fontWeight: 'bold',
                                         mt: '-0.3rem',
-                                        ml: '0.6rem',
+                                        ml: '0.8rem',
                                         color: theme.palette.secondary.text
                                     }}
                                 >
@@ -241,6 +263,7 @@ const Top = () => {
                                         display: "flex",
                                         justifyContent: "end",
                                         flexDirection: "row",
+                                        mr: isSidebarOpen && '3.5rem',
                                     }}
                                 >
                                     <Button
@@ -264,6 +287,7 @@ const Top = () => {
                                                 backgroundColor: "rgba(0,0,0,0.4)",
                                             }
                                         }}
+                                        onClick={handleDownloadCV}
                                     >
                                         Download CV
                                     </Button>
