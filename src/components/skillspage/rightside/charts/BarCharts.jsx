@@ -22,7 +22,7 @@ const BarCharts = ({
 
     let dataTemplate = (skills) =>{
         let data = [];
-        skills.map((skill) => {
+        skills?.map((skill) => {
             data.push({
                 skills: skill.label,
                 [skill.label]: skill.value,
@@ -33,7 +33,7 @@ const BarCharts = ({
     }
     let keysTemplate = (skills) =>{
         let keys = [];
-        skills.map((skill) => {
+        skills?.map((skill) => {
             keys.push(skill.label);
         });
         return keys;
