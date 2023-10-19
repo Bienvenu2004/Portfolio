@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setMounted(true);
-        }, 4000); // Set the timeout interval to 3000 milliseconds (3 seconds)
+        }, 4000); // Set the timeout interval to 4000 milliseconds (4 seconds)
     
         // Clean up the timeout when the component unmounts or when the effect changes
         return () => clearTimeout(timeoutId);

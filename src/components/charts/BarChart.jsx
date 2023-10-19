@@ -176,9 +176,7 @@ const BarChart = ({ data, keys, showLegend }) => {
                         e.indexValue
                     );
                 }}
-                onClick={(node, e) => {
-                    console.log(node);
-                }}
+                onClick={(node, event)=>{}}
                 theme={{
                     tooltip: {
                         container: {
