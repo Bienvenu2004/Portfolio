@@ -12,7 +12,7 @@ const DataGrid = (props) => {
 
     const theme = useTheme();
 
-    let toolbarBgColor = ""
+    let toolbarBgColor = "rgb(232, 200, 37)"
 
     React.useEffect(() => {
         if (selectedValue === "JavaScript") {
