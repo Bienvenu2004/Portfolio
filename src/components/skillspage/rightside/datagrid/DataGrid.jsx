@@ -12,6 +12,8 @@ const DataGrid = (props) => {
 
     const theme = useTheme();
 
+    let toolbarBgColor = ""
+
     React.useEffect(() => {
         if (selectedValue === "JavaScript") {
             javascript?.map((item) => {
@@ -27,6 +29,7 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsDatabase([]);
             setDataGridRowsGithub([]);
+            toolbarBgColor = "rgb(232, 200, 37)"
         }
         if (selectedValue === "CSS") {
             css?.map((item) => {
@@ -42,6 +45,7 @@ const DataGrid = (props) => {
             setDataGridRowsDatabase([]);
             setDataGridRowsGithub([]);
             setDataGridRowsJS([]);
+            toolbarBgColor = "rgb(0, 126, 253)"
         }
         if (selectedValue === "Database") {
             database?.map((item) => {
@@ -57,6 +61,7 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsGithub([]);
             setDataGridRowsJS([]);
+            toolbarBgColor = "rgb(1, 236, 100)"
         }
         if (selectedValue === "Git & GitHub") {
             github?.map((item) => {
@@ -72,8 +77,12 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsDatabase([]);
             setDataGridRowsJS([]);
+            toolbarBgColor = "rgb(149, 0, 174)"
         }
     }, [selectedValue]);
+
+
+
     const columns = [
         { field: "skill", headerName: "Skill", width: 80, editable: false },
         {
@@ -92,7 +101,7 @@ const DataGrid = (props) => {
             width={"100%"}
             sx={{
                 "& .MuiDataGrid-toolbarContainer": {
-                    backgroundColor: "#2ca02c",
+                    backgroundColor: toolbarBgColor,
                     color: "#FFF",
                     width: "95%",
                     margin: "auto",
