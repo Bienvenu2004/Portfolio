@@ -29,7 +29,6 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsDatabase([]);
             setDataGridRowsGithub([]);
-            toolbarBgColor = "rgb(232, 200, 37)"
         }
         if (selectedValue === "CSS") {
             css?.map((item) => {
@@ -45,7 +44,6 @@ const DataGrid = (props) => {
             setDataGridRowsDatabase([]);
             setDataGridRowsGithub([]);
             setDataGridRowsJS([]);
-            toolbarBgColor = "rgb(0, 126, 253)"
         }
         if (selectedValue === "Database") {
             database?.map((item) => {
@@ -61,7 +59,6 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsGithub([]);
             setDataGridRowsJS([]);
-            toolbarBgColor = "rgb(1, 236, 100)"
         }
         if (selectedValue === "Git & GitHub") {
             github?.map((item) => {
@@ -77,11 +74,11 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsDatabase([]);
             setDataGridRowsJS([]);
-            toolbarBgColor = "rgb(149, 0, 174)"
         }
     }, [selectedValue]);
 
     console.log("ToolbarColor: ", toolbarBgColor)
+    console.log("SelectedValue: ", selectedValue)
 
     const columns = [
         { field: "skill", headerName: "Skill", width: 80, editable: false },
@@ -101,7 +98,11 @@ const DataGrid = (props) => {
             width={"100%"}
             sx={{
                 "& .MuiDataGrid-toolbarContainer": {
-                    backgroundColor: toolbarBgColor,
+                    backgroundColor:
+                        selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
+                            : selectedValue === "CSS" ? "rgb(0, 126, 253)"
+                                : selectedValue === "Database" ? "rgb(1, 236, 100)"
+                                    : "rgb(149, 0, 174)",
                     color: "#FFF",
                     width: "95%",
                     margin: "auto",
@@ -119,10 +120,10 @@ const DataGrid = (props) => {
                     selectedValue === "JavaScript"
                         ? dataGridRowsJS
                         : selectedValue === "CSS"
-                        ? dataGridRowsCSS
-                        : selectedValue === "Database"
-                        ? dataGridRowsDatabase
-                        : dataGridRowsGithub
+                            ? dataGridRowsCSS
+                            : selectedValue === "Database"
+                                ? dataGridRowsDatabase
+                                : dataGridRowsGithub
                 }
                 columns={columns}
                 rowCount={5}
