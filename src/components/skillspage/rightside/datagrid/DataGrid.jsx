@@ -12,8 +12,6 @@ const DataGrid = (props) => {
 
     const theme = useTheme();
 
-    let toolbarBgColor = "rgb(232, 200, 37)"
-
     React.useEffect(() => {
         if (selectedValue === "JavaScript") {
             javascript?.map((item) => {
@@ -128,6 +126,13 @@ const DataGrid = (props) => {
                     borderColor: theme.palette.background.alt,
                     "& .MuiDataGrid-cell": {
                         borderColor: theme.palette.background.alt,
+                    },
+                    "& .Mui-selected": {
+                        backgroundColor: 
+                            selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
+                                : selectedValue === "CSS" ? "rgb(0, 126, 253)"
+                                    : selectedValue === "Database" ? "rgb(1, 236, 100)"
+                                        : "rgb(149, 0, 174)",
                     },
                 }}
                 style={{
