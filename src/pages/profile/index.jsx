@@ -1,3 +1,4 @@
+import React from "react";
 import { useTheme, Box, useMediaQuery } from "@mui/material";
 import Top from "@/components/profilepage/top/Top";
 import CustomHead from "@/components/head/Head";
