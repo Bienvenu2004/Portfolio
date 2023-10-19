@@ -77,17 +77,6 @@ const DataGrid = (props) => {
         }
     }, [selectedValue]);
 
-    React.useEffect(()=>{
-        if(selectedValue === "JavaScript")
-            toolbarBgColor = "rgb(232, 200, 37)"
-        if(selectedValue === "CSS")
-            toolbarBgColor = "rgb(0, 126, 253)"
-        if(selectedValue === "Database")
-            toolbarBgColor = "rgb(1, 236, 100)"
-        if(selectedValue === "Git & Github")
-            toolbarBgColor = "rgb(149, 0, 174)"
-    },[selectedValue])
-
     console.log("ToolbarColor: ", toolbarBgColor)
     console.log("SelectedValue: ", selectedValue)
 
@@ -109,7 +98,11 @@ const DataGrid = (props) => {
             width={"100%"}
             sx={{
                 "& .MuiDataGrid-toolbarContainer": {
-                    backgroundColor: toolbarBgColor,
+                    backgroundColor:
+                        selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
+                            : selectedValue === "CSS" ? "rgb(0, 126, 253)"
+                                : selectedValue === "Database" ? "rgb(1, 236, 100)"
+                                    : "rgb(149, 0, 174)",
                     color: "#FFF",
                     width: "95%",
                     margin: "auto",
@@ -127,10 +120,10 @@ const DataGrid = (props) => {
                     selectedValue === "JavaScript"
                         ? dataGridRowsJS
                         : selectedValue === "CSS"
-                        ? dataGridRowsCSS
-                        : selectedValue === "Database"
-                        ? dataGridRowsDatabase
-                        : dataGridRowsGithub
+                            ? dataGridRowsCSS
+                            : selectedValue === "Database"
+                                ? dataGridRowsDatabase
+                                : dataGridRowsGithub
                 }
                 columns={columns}
                 rowCount={5}
