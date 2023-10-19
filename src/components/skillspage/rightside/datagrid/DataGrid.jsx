@@ -77,9 +77,6 @@ const DataGrid = (props) => {
         }
     }, [selectedValue]);
 
-    console.log("ToolbarColor: ", toolbarBgColor)
-    console.log("SelectedValue: ", selectedValue)
-
     const columns = [
         { field: "skill", headerName: "Skill", width: 80, editable: false },
         {
