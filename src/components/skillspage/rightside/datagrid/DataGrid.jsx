@@ -29,7 +29,6 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsDatabase([]);
             setDataGridRowsGithub([]);
-            toolbarBgColor = "rgb(232, 200, 37)"
         }
         if (selectedValue === "CSS") {
             css?.map((item) => {
@@ -45,7 +44,6 @@ const DataGrid = (props) => {
             setDataGridRowsDatabase([]);
             setDataGridRowsGithub([]);
             setDataGridRowsJS([]);
-            toolbarBgColor = "rgb(0, 126, 253)"
         }
         if (selectedValue === "Database") {
             database?.map((item) => {
@@ -61,7 +59,6 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsGithub([]);
             setDataGridRowsJS([]);
-            toolbarBgColor = "rgb(1, 236, 100)"
         }
         if (selectedValue === "Git & GitHub") {
             github?.map((item) => {
@@ -77,11 +74,22 @@ const DataGrid = (props) => {
             setDataGridRowsCSS([]);
             setDataGridRowsDatabase([]);
             setDataGridRowsJS([]);
-            toolbarBgColor = "rgb(149, 0, 174)"
         }
     }, [selectedValue]);
 
+    React.useEffect(()=>{
+        if(selectedValue === "JavaScript")
+            toolbarBgColor = "rgb(232, 200, 37)"
+        if(selectedValue === "CSS")
+            toolbarBgColor = "rgb(0, 126, 253)"
+        if(selectedValue === "Database")
+            toolbarBgColor = "rgb(1, 236, 100)"
+        if(selectedValue === "Git & Github")
+            toolbarBgColor = "rgb(149, 0, 174)"
+    },[selectedValue])
+
     console.log("ToolbarColor: ", toolbarBgColor)
+    console.log("SelectedValue: ", selectedValue)
 
     const columns = [
         { field: "skill", headerName: "Skill", width: 80, editable: false },
