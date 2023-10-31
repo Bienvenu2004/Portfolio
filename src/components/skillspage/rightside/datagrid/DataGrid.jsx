@@ -104,8 +104,7 @@ const DataGrid = (props) => {
                     mt: 1,
                     borderBottomLeftRadius: '8px',
                     borderBottomRightRadius: '8px',
-                    paddingY: "5px",
-                    paddingX: '4px',
+                    padding: "5px 13px",
                     "& .MuiButton-root": {
                         color:'#FFF' /*theme.palette.secondary.text*/,
                         fontWeight: 'bold',
