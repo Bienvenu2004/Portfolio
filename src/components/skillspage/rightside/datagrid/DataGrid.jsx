@@ -110,7 +110,6 @@ const DataGrid = (props) => {
                         fontWeight: 'bold',
                         "& span > svg":{
                             color:"#FFF",
-                            background: "#FFF"
                         }
                     },
                 },
