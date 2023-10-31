@@ -127,12 +127,21 @@ const DataGrid = (props) => {
                     "& .MuiDataGrid-cell": {
                         borderColor: theme.palette.background.alt,
                     },
+                    "& .MuiDataGrid-columnHeaderTitleContainer > div > span > input": {
+                        backgroundColor: theme.palette.background.alt,
+                        transition: "background-color 0.3s ease-in-out"
+                    },
+                    "& .MuiDataGrid-columnHeaderTitleContainer > div > span > svg": {
+                        backgroundColor: theme.palette.background.alt,
+                        transition: "background-color 0.3s ease-in-out"
+                    },
                     "& .Mui-selected > div > span > input": {
-                        backgroundColor: 
+                        backgroundColor:
                             selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
                                 : selectedValue === "CSS" ? "rgb(0, 126, 253)"
                                     : selectedValue === "Database" ? "rgb(1, 236, 100)"
                                         : "rgb(149, 0, 174)",
+                        transition: "background-color 0.3s ease-in-out",
                     },
                     "& .Mui-selected > div > span > svg": {
                         backgroundColor:
@@ -140,6 +149,7 @@ const DataGrid = (props) => {
                                 : selectedValue === "CSS" ? "rgb(0, 126, 253)"
                                     : selectedValue === "Database" ? "rgb(1, 236, 100)"
                                         : "rgb(149, 0, 174)",
+                        transition: "background-color 0.3s ease-in-out",
                     },
                 }}
                 style={{
