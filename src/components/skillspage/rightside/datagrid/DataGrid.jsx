@@ -99,13 +99,15 @@ const DataGrid = (props) => {
                                 : selectedValue === "Database" ? "rgb(1, 236, 100)"
                                     : "rgb(149, 0, 174)",
                     color: "#FFF",
-                    width: "95%",
+                    width: "100%" /* 95% */,
                     margin: "auto",
                     mt: 1,
-                    borderRadius: "5px",
-                    padding: "5px",
+                    borderBottomLeftRadius: '8px',
+                    borderBottomRightRadius: '8px',
+                    padding: "0px" /* 5p */,
                     "& .MuiButton-root": {
-                        color: theme.palette.secondary.text,
+                        color:'#FFF' /*theme.palette.secondary.text*/,
+                        fontWeight: 'bold'
                     },
                 },
             }}
@@ -126,14 +128,17 @@ const DataGrid = (props) => {
                     borderColor: theme.palette.background.alt,
                     "& .MuiDataGrid-cell": {
                         borderColor: theme.palette.background.alt,
+                        transition: 'all 0.3s ease-in-out'
                     },
                     "& .MuiDataGrid-columnHeaderTitleContainer > div > span > input": {
                         backgroundColor: theme.palette.background.alt,
-                        transition: "background-color 0.3s ease-in-out"
+                        transition: "background-color 0.3s ease-in-out",
+                        borderRadius: '3px'
                     },
                     "& .MuiDataGrid-columnHeaderTitleContainer > div > span > svg": {
                         backgroundColor: theme.palette.background.alt,
-                        transition: "background-color 0.3s ease-in-out"
+                        transition: "background-color 0.3s ease-in-out",
+                        borderRadius: '3px'
                     },
                     "& .Mui-selected > div > span > input": {
                         backgroundColor:
@@ -142,6 +147,7 @@ const DataGrid = (props) => {
                                     : selectedValue === "Database" ? "rgb(1, 236, 100)"
                                         : "rgb(149, 0, 174)",
                         transition: "background-color 0.3s ease-in-out",
+                        borderRadius: '3px'
                     },
                     "& .Mui-selected > div > span > svg": {
                         backgroundColor:
@@ -150,6 +156,7 @@ const DataGrid = (props) => {
                                     : selectedValue === "Database" ? "rgb(1, 236, 100)"
                                         : "rgb(149, 0, 174)",
                         transition: "background-color 0.3s ease-in-out",
+                        borderRadius: '3px'
                     },
                 }}
                 style={{
