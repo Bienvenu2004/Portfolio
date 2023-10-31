@@ -89,7 +89,7 @@ const DataGrid = (props) => {
         <Box
             flexGrow={1}
             display={"flex"}
-            pt={1.25}
+            pt={0} //1.25
             width={"100%"}
             sx={{
                 "& .MuiDataGrid-toolbarContainer": {
