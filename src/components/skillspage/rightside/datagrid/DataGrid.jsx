@@ -107,7 +107,11 @@ const DataGrid = (props) => {
                     padding: "0px" /* 5p */,
                     "& .MuiButton-root": {
                         color:'#FFF' /*theme.palette.secondary.text*/,
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        "& span > svg":{
+                            color:"#FFF",
+                            background: "#FFF"
+                        }
                     },
                 },
             }}
@@ -129,11 +133,6 @@ const DataGrid = (props) => {
                     "& .MuiDataGrid-cell": {
                         borderColor: theme.palette.background.alt,
                         transition: 'all 0.3s ease-in-out'
-                    },
-                    "& .MuiDataGrid-columnHeaderTitleContainer > div > span > input": {
-                        backgroundColor: theme.palette.background.alt,
-                        transition: "background-color 0.3s ease-in-out",
-                        borderRadius: '3px'
                     },
                     "& .MuiDataGrid-columnHeaderTitleContainer > div > span > svg": {
                         backgroundColor: theme.palette.background.alt,
