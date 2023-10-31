@@ -127,8 +127,15 @@ const DataGrid = (props) => {
                     "& .MuiDataGrid-cell": {
                         borderColor: theme.palette.background.alt,
                     },
-                    "& .Mui-selected": {
+                    "& .Mui-selected > div > span > input": {
                         backgroundColor: 
+                            selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
+                                : selectedValue === "CSS" ? "rgb(0, 126, 253)"
+                                    : selectedValue === "Database" ? "rgb(1, 236, 100)"
+                                        : "rgb(149, 0, 174)",
+                    },
+                    "& .Mui-selected > div > span > svg": {
+                        backgroundColor:
                             selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
                                 : selectedValue === "CSS" ? "rgb(0, 126, 253)"
                                     : selectedValue === "Database" ? "rgb(1, 236, 100)"
