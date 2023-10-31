@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext } from "react";
 import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
 import SkillCards from "@/components/skillspage/top/SkillCards";
@@ -11,7 +10,7 @@ import LeftSide from "@/components/skillspage/leftside/LeftSide";
 import CustomHead from "@/components/head/Head";
 const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
 const charts = ["Pie", "Bar", "Line"];
-// import { javascript, css, database, github } from "@/data/skills";
+//import { javascript, css, database, github } from "@/data/skills";
 
 const Index = ({ javascript, css, database, github }) => {
     const theme = useTheme();
