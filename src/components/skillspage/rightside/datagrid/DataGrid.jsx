@@ -140,15 +140,6 @@ const DataGrid = (props) => {
                         transition: "background-color 0.3s ease-in-out",
                         borderRadius: '3px'
                     },
-                    "& .Mui-selected > div > span > input": {
-                        backgroundColor:
-                            selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
-                                : selectedValue === "CSS" ? "rgb(0, 126, 253)"
-                                    : selectedValue === "Database" ? "rgb(1, 236, 100)"
-                                        : "rgb(149, 0, 174)",
-                        transition: "background-color 0.3s ease-in-out",
-                        borderRadius: '3px'
-                    },
                     "& .Mui-selected > div > span > svg": {
                         backgroundColor:
                             selectedValue === "JavaScript" ? "rgb(232, 200, 37)"
