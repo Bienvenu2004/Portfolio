@@ -89,7 +89,7 @@ const DataGrid = (props) => {
         <Box
             flexGrow={1}
             display={"flex"}
-            pt={0} //1.25
+            pt={1.25}
             width={"100%"}
             sx={{
                 "& .MuiDataGrid-toolbarContainer": {
@@ -104,7 +104,7 @@ const DataGrid = (props) => {
                     mt: 1,
                     borderBottomLeftRadius: '8px',
                     borderBottomRightRadius: '8px',
-                    padding: "5px 13px",
+                    padding: "0px 13px 5px",
                     "& .MuiButton-root": {
                         color:'#FFF' /*theme.palette.secondary.text*/,
                         fontWeight: 'bold',
