@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext } from "react";
 import { useTheme, Box, Skeleton, useMediaQuery } from "@mui/material";
 import SkillCards from "@/components/skillspage/top/SkillCards";
