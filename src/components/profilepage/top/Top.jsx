@@ -35,20 +35,11 @@ const Top = () => {
 
     isSidebarOpen && is1500px && (coverPhotoWidth =(0.9 * (1500-250)) + "px");
 
-    const handleDownloadCV = async () => {
-        try {
-            const response = await fetch('/api/downloadCV');
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(new Blob([blob]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'RahimCV-Latest.pdf');
-            document.body.appendChild(link);
-            link.click();
-            link.parentNode.removeChild(link);
-        } catch (error) {
-            console.error('Error downloading CV:', error);
-        }
+    const handleDownloadCV = () => {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = '/cv/RahimCV-Latest.pdf'; // Update the path to include the "cv" subfolder.
+        downloadLink.download = 'RahimCV-Latest.pdf'; // Specify the file name for download.
+        downloadLink.click();
     };
 
 
