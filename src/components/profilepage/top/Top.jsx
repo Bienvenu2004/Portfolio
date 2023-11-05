@@ -8,6 +8,7 @@ import { DownloadTwoTone } from "@mui/icons-material";
 import { BorderColor } from "@mui/icons-material";
 const Top = () => {
 
+    const [downloadInProgress, setDownloadInProgress] = React.useState(false);
     const theme = useTheme()
     const { isSidebarOpen } = React.useContext(SidebarContext);
 
@@ -29,17 +30,27 @@ const Top = () => {
     is1230px && !isSidebarOpen && (coverPhotoWidth = (0.9 * 1230) + "px");
     is1109px && !isSidebarOpen && (coverPhotoWidth = "100%")
 
-    is950px && !isSidebarOpen &&  (coverPhotoHeight = "300px");
+    is950px && !isSidebarOpen && (coverPhotoHeight = "300px");
     is670px && !isSidebarOpen && (coverPhotoHeight = "250px");
     is450px && !isSidebarOpen && (coverPhotoHeight = "170px")
 
-    isSidebarOpen && is1500px && (coverPhotoWidth =(0.9 * (1500-250)) + "px");
+    isSidebarOpen && is1500px && (coverPhotoWidth = (0.9 * (1500 - 250)) + "px");
 
     const handleDownloadCV = () => {
-        const downloadLink = document.createElement('a');
-        downloadLink.href = '/cv/RahimCV-Latest.pdf'; // Update the path to include the "cv" subfolder.
-        downloadLink.download = 'RahimCV-Latest.pdf'; // Specify the file name for download.
-        downloadLink.click();
+        try {
+            const downloadLink = document.createElement('a');
+            downloadLink.href = '/cv/RahimCV-Latest.pdf'; // Update the path to include the "cv" subfolder.
+            downloadLink.download = 'RahimCV-Latest.pdf'; // Specify the file name for download.
+            downloadLink.click();
+            setDownloadInProgress(true);
+            // Re-enable the button after a delay (e.g., 3 seconds)
+            setTimeout(() => {
+                setDownloadInProgress(false);
+            }, 3000);
+        } catch (error) {
+            // Optionally, you can show an error message to the user
+            alert('An error occurred while downloading the CV. Please try again later.');
+        }
     };
 
 
@@ -57,7 +68,6 @@ const Top = () => {
             }}
         >
             <Box
-                className="overlay"
                 sx={{
                     width: "100%",
                     height: is950px && !is450px && "500px" || '200px',
@@ -180,23 +190,23 @@ const Top = () => {
                                     }}
                                     borderWeight={'bold'}
                                 />
-                                <CameraAltRounded 
-                                    sx={{ 
-                                        fontSize: '32px', 
-                                        position: 'absolute', 
-                                        zIndex: 999, 
-                                        border: '1px solid white', 
-                                        p: '5px', 
-                                        borderRadius: '50%', 
+                                <CameraAltRounded
+                                    sx={{
+                                        fontSize: '32px',
+                                        position: 'absolute',
+                                        zIndex: 999,
+                                        border: '1px solid white',
+                                        p: '5px',
+                                        borderRadius: '50%',
                                         ml: '125px',
                                         mt: '100px',
                                         backgroundColor: theme.palette.mode === 'dark' ? 'gray' : 'whitesmoke', color: theme.palette.mode === 'dark' ? 'whitesmoke' : 'black',
                                         transition: 'all 0.2s ease-in-out',
                                         '&:hover': {
-                                            backgroundColor:theme.palette.background.alt,
+                                            backgroundColor: theme.palette.background.alt,
                                             cursor: 'pointer',
                                         }
-                                    }} 
+                                    }}
                                 />
 
                             </Box>
@@ -241,7 +251,7 @@ const Top = () => {
                                 display={'flex'}
                                 flexGrow={1}
                                 // border={'1px solid red'}
-                                mt = {is875px && '-20px'}
+                                mt={is875px && '-20px'}
                                 alignItems={is875px && 'center' || 'end'}
                                 pb={!is875px && '10px'}
                                 justifyContent={is875px && 'center' || 'end'}
@@ -260,27 +270,38 @@ const Top = () => {
                                     <Button
                                         className="download-button"
                                         variant="contained"
-                                        startIcon={<DownloadTwoTone className="bounce" />}
+                                        startIcon={ !downloadInProgress && <DownloadTwoTone className="bounce" />}
                                         sx={{
                                             height: "fit-content",
                                             width: "150px",
-                                            backgroundColor: theme.palette.secondary.main,
+                                            backgroundColor: downloadInProgress ? 'gray' : theme.palette.secondary.main,
                                             color: "whitesmoke",
                                             py: "8px",
                                             px: '5px',
                                             margin: '0.25rem',
                                             borderRadius: "6px",
                                             textTransform: "none",
-                                            transition: "all 0.2s ease-in-out",
+                                            transition: "all 0.3s ease-in-out",
                                             zIndex: '99',
                                             backgroundSize: '200% 100%',
                                             "&:hover": {
                                                 backgroundColor: "rgba(0,0,0,0.4)",
-                                            }
+                                            },
+                                            opacity: downloadInProgress && '0.8',
                                         }}
+                                        disabled={downloadInProgress}
                                         onClick={handleDownloadCV}
                                     >
-                                        Download CV
+                                        <span
+                                            style={{
+                                                padding: downloadInProgress && '2px 0px',
+                                                marginTop: downloadInProgress && '-5px',
+                                                transition: 'opacity 0.5s, transform 0.5s',
+                                                transform: downloadInProgress ? 'translateY(5px)' : 'translateY(0)',
+                                            }}
+                                        >
+                                            {downloadInProgress ? "Downloading..." : "Download CV"}
+                                        </span>
                                     </Button>
                                     <Button
                                         variant="contained"
