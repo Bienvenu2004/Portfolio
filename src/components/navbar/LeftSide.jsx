@@ -60,7 +60,7 @@ const LeftSide = ({ setIsSidebarOpen, isSidebarOpen, isMobile }) => {
                         <User
                             src="/images/me.jpeg"
                             name={"Abdulrahim"}
-                            description={"Web Developer @Neema"}
+                            description={"Web Developer | Next.js"}
                             bordered
                             color="primary"
                             size={isMobile ? "md" : "lg"}

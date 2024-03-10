@@ -1,6 +1,7 @@
 import React from 'react'
 import { Triangle } from "react-loader-spinner";
 import { Box } from '@mui/material'
+import LoadingV2 from '../loading/LoadingV2';
 
 
 const Loader = () => {
@@ -16,7 +17,7 @@ const Loader = () => {
                 flexDirection: "column",
             }}
         >
-            <Triangle
+            {/* <Triangle
                 height="60"
                 width="60"
                 color="#0091ea"
@@ -24,7 +25,8 @@ const Loader = () => {
                 wrapperStyle={{}}
                 wrapperClassName=""
                 visible="true"
-            />
+            /> */}
+            <LoadingV2/>
             <div 
                 style={{
                     color: '#fff',
