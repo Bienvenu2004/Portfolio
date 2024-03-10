@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './LoadingV2.module.css'
+import classes from './loadingV2.module.css'
 import { Box } from '@mui/material'
 
 const LoadingV2 = ({theme}) => {
