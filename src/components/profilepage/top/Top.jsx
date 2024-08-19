@@ -242,7 +242,7 @@ const Top = () => {
                                         color: theme.palette.secondary.text
                                     }}
                                 >
-                                    1 Year Experience in Web Development
+                                    1.5 Years Experience in Web Development
                                     <VerifiedTwoTone sx={{ fontSize: '20px', ml: '1rem', position: 'absolute', mt: '-2px' }} />
                                 </Typography>
                             </Box>
