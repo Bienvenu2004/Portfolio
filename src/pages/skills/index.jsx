@@ -105,7 +105,7 @@ const Index = ({ javascript, css, database, github }) => {
     );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     try {
         let result = await getAllDocuments(null, "javascript");
         const javascript = JSON.parse(JSON.stringify(await result)) || null;
@@ -123,6 +123,7 @@ export const getServerSideProps = async () => {
                 database,
                 github,
             },
+            revalidate: 5,
         };
     } catch {
         return {
