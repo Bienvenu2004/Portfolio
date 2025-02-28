@@ -10,7 +10,7 @@ import LeftSide from "@/components/skillspage/leftside/LeftSide";
 import CustomHead from "@/components/head/Head";
 const skills = ["JavaScript", "CSS", "Database", "Git & GitHub"];
 const charts = ["Pie", "Bar", "Line"];
-// import { javascript, css, database, github } from "@/data/skills";
+import { javascript, css, database, github } from "@/data/skills";
 
 const Index = ({ javascript, css, database, github }) => {
     const theme = useTheme();
@@ -105,7 +105,7 @@ const Index = ({ javascript, css, database, github }) => {
     );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     try {
         let result = await getAllDocuments(null, "javascript");
         const javascript = JSON.parse(JSON.stringify(await result)) || null;
@@ -123,6 +123,7 @@ export const getServerSideProps = async () => {
                 database,
                 github,
             },
+            revalidate: 5,
         };
     } catch {
         return {
