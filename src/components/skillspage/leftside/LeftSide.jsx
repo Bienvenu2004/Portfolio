@@ -40,30 +40,30 @@ const LeftSide = ({ javascript, database }) => {
     });
 
     javascript?.forEach((item) => {
-        if (item.label === "ReactJS") {
+        if (item?.label === "ReactJS") {
             data = dataTemplate(item.id, item.label, item.value, item.color);
             ReactJS.push(data[0]);
         }
-        if (item.label === "NodeJS") {
+        if (item?.label === "NodeJS") {
             data = dataTemplate(item.id, item.label, item.value, item.color);
             ReactJS.push(data[0]);
         }
-        if (item.label === "ExpressJS") {
+        if (item?.label === "ExpressJS") {
             data = dataTemplate(item.id, item.label, item.value, item.color);
             ReactJS.push(data[0]);
         }
     });
 
     javascript?.forEach((item) => {
-        if (item.label === "NextJS") {
+        if (item?.label === "NextJS") {
             data = dataTemplate(item.id, item.label, item.value, item.color);
             NextJS.push(data[0]);
         }
-        if (item.label === "NodeJS") {
+        if (item?.label === "NodeJS") {
             data = dataTemplate(item.id, item.label, item.value, item.color);
             NextJS.push(data[0]);
         }
-        if (item.label === "ExpressJS") {
+        if (item?.label === "ExpressJS") {
             data = dataTemplate(item.id, item.label, item.value, item.color);
             NextJS.push(data[0]);
         }
