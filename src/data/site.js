@@ -137,7 +137,7 @@ export const projects = [
     description:
       'The site you’re looking at — a zero-UI-library rebuild on Next.js and CSS Modules, sharing design tokens with WATCH. Lighthouse-fast by design.',
     stack: ['Next.js', 'CSS Modules', 'next-themes'],
-    images: ['/images/projects/portfolio.svg'],
+    images: ['/images/projects/images/portfolio-hero-dark.png', '/images/projects/images/portfolio-hero-light.png'],
     link: null,
     repo: 'https://github.com/Abdulrahim2567/my-portfolio',
     featured: false,

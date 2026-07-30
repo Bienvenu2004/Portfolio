@@ -5,6 +5,7 @@ import Reveal from '@/components/motion/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { projects } from '@/data/site';
 import styles from './projects.module.css';
+import Image from 'next/image';
 
 /* If a project ships theme variants (`*-dark.*` / `*-light.*`), prefer the
    one matching the active theme; otherwise the first image. */
@@ -111,7 +112,7 @@ export default function Projects() {
 
                         {/* mobile-only inline preview */}
                         <div className={styles.inlineMedia}>
-                          <img
+                          <Image
                             src={p.images[0]}
                             alt={`${p.title} preview`}
                             width={720}
@@ -154,7 +155,7 @@ export default function Projects() {
             <div className={styles.preview}>
               {projects.map((p, i) =>
                 p.images.map((src, j) => (
-                  <img
+                  <Image
                     key={src}
                     src={src}
                     alt=""
