@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { FiArrowRight, FiDownload, FiMapPin, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiArrowRight, FiMapPin, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import DownloadCv from '@/components/cv/DownloadCv';
 import { site } from '@/data/site';
 import styles from './hero.module.css';
 
@@ -51,9 +52,7 @@ export default function Hero() {
             <a className={styles.cta} href="#work">
               View my work <FiArrowRight aria-hidden="true" />
             </a>
-            <a className={styles.cta} href={site.cv} download>
-              <FiDownload aria-hidden="true" /> Download CV
-            </a>
+            <DownloadCv className={styles.cta} />
           </div>
         </div>
 

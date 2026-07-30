@@ -398,6 +398,98 @@
 
 .previewScale {
   transform-origin: top left;
+  width: 210mm;
+}
+
+/* natural flowing sheet — hidden on screen (measures page count),
+   and the copy the browser prints */
+.measure {
+  position: absolute;
+  left: -300vw;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* one clipped 297mm window per page of the same sheet */
+.pageWindow {
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: var(--shadow-pop);
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+.pageWindow .sheet {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ---- document structure pane ---- */
+
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.orderRow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  list-style: none;
+  padding: 0.45rem 0.45rem 0.45rem 0.8rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.orderRow[data-off='true'] .orderName {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(240, 168, 36, 0.5);
+}
+
+.orderIndex {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  color: rgba(240, 168, 36, 0.6);
+}
+
+.orderName {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.orderBtns {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.orderBtns button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-s);
+  color: var(--muted);
+  transition: color var(--t-micro) var(--ease-out), background-color var(--t-micro) var(--ease-out);
+}
+
+.orderBtns button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .orderBtns button:hover:not(:disabled) {
+    color: var(--accent);
+    background: var(--surface-2);
+  }
 }
 
 /* ================== the A4 sheet ================== */
@@ -872,7 +964,9 @@
 
   .toolbar,
   .form,
-  .previewLabel {
+  .previewLabel,
+  .previewScale,
+  .modalOverlay {
     display: none;
   }
 
@@ -886,9 +980,11 @@
     position: static;
   }
 
-  .previewScale {
-    transform: none !important;
-    height: auto !important;
+  /* print the natural flowing sheet — the browser handles page breaks */
+  .measure {
+    position: static;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .sheet {

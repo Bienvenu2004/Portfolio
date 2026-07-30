@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   FiArrowLeft,
+  FiArrowUp,
+  FiArrowDown,
   FiPrinter,
   FiPlus,
   FiTrash2,
@@ -27,9 +29,13 @@ const SECTION_OPTIONS = [
   ['education', 'Education'],
 ];
 const allSections = () => Object.fromEntries(SECTION_OPTIONS.map(([k]) => [k, true]));
+const defaultOrder = () => SECTION_OPTIONS.map(([k]) => k);
+const SECTION_LABEL = Object.fromEntries(SECTION_OPTIONS);
 
 const STORAGE_KEY = 'cv-builder-v1';
 const A4_WIDTH_PX = 794; // 210mm at 96dpi
+const A4_HEIGHT_PX = 1123; // 297mm at 96dpi
+const PAGE_GAP_PX = 20; // gap between preview pages
 
 const plain = (t) => t.replaceAll('**', '');
 
@@ -75,6 +81,7 @@ function defaults() {
       description: p.description,
     })),
     sections: allSections(),
+    sectionOrder: defaultOrder(),
     education: education.map((d, i) => ({
       id: `edu-${i}`,
       degree: d.degree,
@@ -191,7 +198,9 @@ export default function CvBuilder() {
   const [loaded, setLoaded] = useState(false);
   const [showDownload, setShowDownload] = useState(false);
   const previewRef = useRef(null);
+  const measureRef = useRef(null);
   const [scale, setScale] = useState(0.75);
+  const [pageCount, setPageCount] = useState(1);
 
   const presetRef = useRef(false);
 
@@ -203,8 +212,20 @@ export default function CvBuilder() {
     const preset = new URLSearchParams(window.location.search).get('preset');
     if (preset === 'download') {
       presetRef.current = true;
-      setCv({ ...defaults(), template: 'sidebar' });
+      const q = new URLSearchParams(window.location.search);
+      const base = { ...defaults(), template: 'sidebar' };
+      // ?sections=profile,skills,… narrows what the sheet includes
+      const secParam = q.get('sections');
+      if (secParam) {
+        const chosen = secParam.split(',');
+        base.sections = Object.fromEntries(
+          SECTION_OPTIONS.map(([k]) => [k, chosen.includes(k)])
+        );
+      }
+      setCv(base);
       setLoaded(true);
+      // ?print=1 opens the print dialog once the sheet (incl. photo) is ready
+      if (q.get('print') === '1') setTimeout(() => window.print(), 900);
       return;
     }
     try {
@@ -236,6 +257,19 @@ export default function CvBuilder() {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
+
+  // paginate the preview: measure the natural sheet, one window per A4 page
+  useEffect(() => {
+    const sheet = measureRef.current?.firstElementChild;
+    if (!sheet) return;
+    const update = () =>
+      setPageCount(Math.max(1, Math.ceil((sheet.scrollHeight - 4) / A4_HEIGHT_PX)));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(sheet);
+    return () => ro.disconnect();
+    // template switches replace the measured element — re-observe
+  }, [cv.template]);
 
   const set = (patch) => setCv((c) => ({ ...c, ...patch }));
   const setItem = (list, id, patch) =>
@@ -283,6 +317,15 @@ export default function CvBuilder() {
 
   const toggleSection = (key) =>
     set({ sections: { ...(cv.sections ?? allSections()), [key]: !(cv.sections ?? allSections())[key] } });
+
+  const moveSection = (key, dir) => {
+    const order = [...(cv.sectionOrder ?? defaultOrder())];
+    const i = order.indexOf(key);
+    const j = i + dir;
+    if (i === -1 || j < 0 || j >= order.length) return;
+    [order[i], order[j]] = [order[j], order[i]];
+    set({ sectionOrder: order });
+  };
 
   const printWith = (sections) => {
     set({ sections });
@@ -395,6 +438,42 @@ export default function CvBuilder() {
                 ))}
               </div>
             </div>
+          </Section>
+
+          <Section title="Document Structure">
+            <p className={styles.hint}>
+              The generated PDF follows this order — move sections up or down.
+            </p>
+            <ol className={styles.orderList}>
+              {(cv.sectionOrder ?? defaultOrder()).map((key, i, arr) => (
+                <li
+                  key={key}
+                  className={styles.orderRow}
+                  data-off={!(cv.sections ?? allSections())[key]}
+                >
+                  <span className={styles.orderIndex}>{i + 1}</span>
+                  <span className={styles.orderName}>{SECTION_LABEL[key]}</span>
+                  <span className={styles.orderBtns}>
+                    <button
+                      type="button"
+                      onClick={() => moveSection(key, -1)}
+                      disabled={i === 0}
+                      aria-label={`Move ${SECTION_LABEL[key]} up`}
+                    >
+                      <FiArrowUp />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => moveSection(key, 1)}
+                      disabled={i === arr.length - 1}
+                      aria-label={`Move ${SECTION_LABEL[key]} down`}
+                    >
+                      <FiArrowDown />
+                    </button>
+                  </span>
+                </li>
+              ))}
+            </ol>
           </Section>
 
           <Section
@@ -650,14 +729,32 @@ export default function CvBuilder() {
           </Section>
         </div>
 
-        {/* ---- live preview pane ---- */}
+        {/* ---- live preview pane: one window per A4 page ---- */}
         <div className={styles.preview} ref={previewRef}>
-          <p className={styles.previewLabel}>Live Preview · A4 210 × 297 mm</p>
+          <p className={styles.previewLabel}>
+            Live Preview · A4 210 × 297 mm · {pageCount} page{pageCount > 1 ? 's' : ''}
+          </p>
+
+          {/* natural flowing sheet: hidden on screen (used to measure page
+              count), and the copy the browser actually prints */}
+          <div className={styles.measure} ref={measureRef} aria-hidden="true">
+            <Template cv={applySections(cv)} />
+          </div>
+
           <div
             className={styles.previewScale}
-            style={{ transform: `scale(${scale})`, height: `calc(297mm * ${scale})` }}
+            style={{
+              transform: `scale(${scale})`,
+              height: pageCount * (A4_HEIGHT_PX + PAGE_GAP_PX) * scale,
+            }}
           >
-            <Template cv={applySections(cv)} />
+            {Array.from({ length: pageCount }, (_, i) => (
+              <div key={i} className={styles.pageWindow}>
+                <div style={{ transform: `translateY(${-i * A4_HEIGHT_PX}px)` }}>
+                  <Template cv={applySections(cv)} />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

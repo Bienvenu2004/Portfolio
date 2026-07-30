@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { FiMail, FiGithub, FiLinkedin, FiDownload, FiArrowUpRight, FiFileText } from 'react-icons/fi';
+import { FiMail, FiGithub, FiLinkedin, FiArrowUpRight, FiFileText } from 'react-icons/fi';
 import Reveal from '@/components/motion/Reveal';
+import DownloadCv from '@/components/cv/DownloadCv';
 import { site, footer } from '@/data/site';
 import styles from './contact.module.css';
 
@@ -30,9 +31,7 @@ export default function Contact() {
               <a className={styles.solidPill} href={`mailto:${site.email}`}>
                 <FiMail aria-hidden="true" /> Contact me <FiArrowUpRight aria-hidden="true" />
               </a>
-              <a className={styles.outlinePill} href={site.cv} download>
-                <FiDownload aria-hidden="true" /> Download CV
-              </a>
+              <DownloadCv className={styles.outlinePill} />
               <Link className={styles.outlinePill} href="/cv">
                 <FiFileText aria-hidden="true" /> Create CV
               </Link>

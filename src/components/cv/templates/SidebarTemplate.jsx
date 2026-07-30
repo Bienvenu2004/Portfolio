@@ -3,11 +3,120 @@ import { CV_LABELS } from '../labels';
 import styles from '../cv.module.css';
 
 const splitList = (s) => s.split(',').map((x) => x.trim()).filter(Boolean);
+const DEFAULT_ORDER = ['profile', 'skills', 'languages', 'experience', 'projects', 'education'];
 
-/* Sidebar: dark 68mm column (photo, contact, skills, languages) with the
-   main content — name, profile, experience, education — on the right. */
+/* Sidebar: dark 68mm column (photo, contact, then skills/languages in the
+   user's order) with profile / experience / projects / education on the
+   right — main column also follows the user's section order. */
 export default function SidebarTemplate({ cv }) {
   const L = CV_LABELS[cv.cvLanguage] ?? CV_LABELS.en;
+  const order = cv.sectionOrder ?? DEFAULT_ORDER;
+
+  const sideRenderers = {
+    skills: () =>
+      cv.skillGroups.length > 0 && (
+        <div key="skills" className={styles.sideSection}>
+          <h2 className={styles.sideTitle}>{L.skills}</h2>
+          {cv.skillGroups.map((g) => (
+            <div key={g.id} className={styles.sideSkillGroup}>
+              <h3>{g.label}</h3>
+              <ul className={styles.sideTags}>
+                {splitList(g.skills).map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ),
+    languages: () =>
+      cv.languages.length > 0 && (
+        <div key="languages" className={styles.sideSection}>
+          <h2 className={styles.sideTitle}>{L.languages}</h2>
+          {cv.languages.map((l) => (
+            <div key={l.id} className={styles.sideLang}>
+              <span>
+                {l.name} — {l.level}
+              </span>
+              <span className={styles.sideLangBar} aria-hidden="true">
+                <span style={{ width: `${l.pct}%` }} />
+              </span>
+            </div>
+          ))}
+        </div>
+      ),
+  };
+
+  const mainRenderers = {
+    profile: () =>
+      cv.profile ? (
+        <section key="profile" className={styles.section}>
+          <h2 className={styles.sectionTitle}>{L.profile}</h2>
+          <p className={styles.body}>{cv.profile}</p>
+        </section>
+      ) : null,
+    experience: () =>
+      cv.experiences.length > 0 && (
+        <section key="experience" className={styles.section}>
+          <h2 className={styles.sectionTitle}>{L.experience}</h2>
+          {cv.experiences.map((e) => (
+            <div key={e.id} className={styles.block}>
+              <div className={styles.blockHead}>
+                <h3 className={styles.blockTitle}>{e.role}</h3>
+                <span className={styles.blockPeriod}>{e.period}</span>
+              </div>
+              <p className={styles.blockMeta}>
+                {[e.company, e.location].filter(Boolean).join(' · ')}
+              </p>
+              <ul className={styles.bullets}>
+                {e.bullets.map((b, i) => (
+                  <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      ),
+    projects: () =>
+      cv.projects?.length > 0 && (
+        <section key="projects" className={styles.section}>
+          <h2 className={styles.sectionTitle}>{L.projects}</h2>
+          {cv.projects.map((p) => (
+            <div key={p.id} className={styles.block}>
+              <div className={styles.blockHead}>
+                <h3 className={styles.blockTitle}>{p.name}</h3>
+                {p.link ? <span className={styles.blockPeriod}>{p.link}</span> : null}
+              </div>
+              {p.tech ? <p className={styles.blockMeta}>{p.tech}</p> : null}
+              {p.description ? <p className={styles.body}>{p.description}</p> : null}
+            </div>
+          ))}
+        </section>
+      ),
+    education: () =>
+      cv.education.length > 0 && (
+        <section key="education" className={styles.section}>
+          <h2 className={styles.sectionTitle}>{L.education}</h2>
+          {cv.education.map((d) => (
+            <div key={d.id} className={styles.block}>
+              <div className={styles.blockHead}>
+                <h3 className={styles.blockTitle}>{d.degree}</h3>
+                <span className={styles.blockPeriod}>{d.period}</span>
+              </div>
+              <p className={styles.blockMeta}>
+                {d.school}
+                {d.gpa ? ` · ${L.gpa} ${d.gpa}` : ''}
+              </p>
+              <ul className={styles.bullets}>
+                {d.bullets.map((b, i) => (
+                  <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      ),
+  };
 
   return (
     <div
@@ -54,37 +163,7 @@ export default function SidebarTemplate({ cv }) {
           </ul>
         </div>
 
-        {cv.skillGroups.length > 0 && (
-          <div className={styles.sideSection}>
-            <h2 className={styles.sideTitle}>{L.skills}</h2>
-            {cv.skillGroups.map((g) => (
-              <div key={g.id} className={styles.sideSkillGroup}>
-                <h3>{g.label}</h3>
-                <ul className={styles.sideTags}>
-                  {splitList(g.skills).map((s) => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {cv.languages.length > 0 && (
-          <div className={styles.sideSection}>
-            <h2 className={styles.sideTitle}>{L.languages}</h2>
-            {cv.languages.map((l) => (
-              <div key={l.id} className={styles.sideLang}>
-                <span>
-                  {l.name} — {l.level}
-                </span>
-                <span className={styles.sideLangBar} aria-hidden="true">
-                  <span style={{ width: `${l.pct}%` }} />
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
+        {order.filter((k) => k in sideRenderers).map((k) => sideRenderers[k]())}
       </aside>
 
       <div className={styles.main}>
@@ -93,73 +172,7 @@ export default function SidebarTemplate({ cv }) {
           <p className={styles.role}>{cv.role}</p>
         </header>
 
-        {cv.profile ? (
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{L.profile}</h2>
-            <p className={styles.body}>{cv.profile}</p>
-          </section>
-        ) : null}
-
-        {cv.experiences.length > 0 && (
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{L.experience}</h2>
-            {cv.experiences.map((e) => (
-              <div key={e.id} className={styles.block}>
-                <div className={styles.blockHead}>
-                  <h3 className={styles.blockTitle}>{e.role}</h3>
-                  <span className={styles.blockPeriod}>{e.period}</span>
-                </div>
-                <p className={styles.blockMeta}>
-                  {[e.company, e.location].filter(Boolean).join(' · ')}
-                </p>
-                <ul className={styles.bullets}>
-                  {e.bullets.map((b, i) => (
-                    <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </section>
-        )}
-
-        {cv.projects?.length > 0 && (
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{L.projects}</h2>
-            {cv.projects.map((p) => (
-              <div key={p.id} className={styles.block}>
-                <div className={styles.blockHead}>
-                  <h3 className={styles.blockTitle}>{p.name}</h3>
-                  {p.link ? <span className={styles.blockPeriod}>{p.link}</span> : null}
-                </div>
-                {p.tech ? <p className={styles.blockMeta}>{p.tech}</p> : null}
-                {p.description ? <p className={styles.body}>{p.description}</p> : null}
-              </div>
-            ))}
-          </section>
-        )}
-
-        {cv.education.length > 0 && (
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>{L.education}</h2>
-            {cv.education.map((d) => (
-              <div key={d.id} className={styles.block}>
-                <div className={styles.blockHead}>
-                  <h3 className={styles.blockTitle}>{d.degree}</h3>
-                  <span className={styles.blockPeriod}>{d.period}</span>
-                </div>
-                <p className={styles.blockMeta}>
-                  {d.school}
-                  {d.gpa ? ` · ${L.gpa} ${d.gpa}` : ''}
-                </p>
-                <ul className={styles.bullets}>
-                  {d.bullets.map((b, i) => (
-                    <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </section>
-        )}
+        {order.filter((k) => k in mainRenderers).map((k) => mainRenderers[k]())}
       </div>
     </div>
   );
