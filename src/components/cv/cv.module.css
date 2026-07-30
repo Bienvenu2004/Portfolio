@@ -227,11 +227,18 @@
   gap: 0.6rem;
 }
 
+/* grid/flex children may not shrink below content size by default —
+   without this, long values push inputs out of their cards */
+.fieldGrid > * {
+  min-width: 0;
+}
+
 .field {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   margin-bottom: 0.6rem;
+  min-width: 0;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -242,6 +249,8 @@
 .field input[type='text'],
 .field input[type='email'],
 .field textarea {
+  width: 100%;
+  min-width: 0;
   font: inherit;
   font-size: 0.9rem;
   font-weight: 400;
@@ -266,7 +275,16 @@
 }
 
 .field input[type='range'] {
+  width: 100%;
+  min-width: 0;
   accent-color: var(--accent);
+}
+
+/* bottom "Add …" row so long lists don't force a scroll back up */
+.addRow {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.25rem;
 }
 
 /* ---- list items ---- */
@@ -403,6 +421,22 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 6mm;
+}
+
+.headerId {
+  display: flex;
+  align-items: center;
+  gap: 5mm;
+  min-width: 0;
+}
+
+.headerPhoto {
+  width: 24mm;
+  height: 24mm;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 0.8mm solid var(--cv-accent, #b97a10);
 }
 
 .name {

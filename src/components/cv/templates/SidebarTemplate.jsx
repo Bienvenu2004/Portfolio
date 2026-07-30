@@ -114,7 +114,7 @@ export default function SidebarTemplate({ cv }) {
                 </p>
                 <ul className={styles.bullets}>
                   {e.bullets.map((b, i) => (
-                    <li key={i}>{b}</li>
+                    <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
                   ))}
                 </ul>
               </div>
@@ -137,7 +137,7 @@ export default function SidebarTemplate({ cv }) {
                 </p>
                 <ul className={styles.bullets}>
                   {d.bullets.map((b, i) => (
-                    <li key={i}>{b}</li>
+                    <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
                   ))}
                 </ul>
               </div>

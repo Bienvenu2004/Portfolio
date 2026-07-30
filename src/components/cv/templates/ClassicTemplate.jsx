@@ -12,9 +12,12 @@ export default function ClassicTemplate({ cv }) {
   return (
     <div className={styles.sheet} style={{ '--cv-accent': cv.accentColor }}>
       <header className={styles.header}>
-        <div>
-          <h1 className={styles.name}>{cv.name}</h1>
-          <p className={styles.role}>{cv.role}</p>
+        <div className={styles.headerId}>
+          {cv.photo ? <img src={cv.photo} alt="" className={styles.headerPhoto} /> : null}
+          <div>
+            <h1 className={styles.name}>{cv.name}</h1>
+            <p className={styles.role}>{cv.role}</p>
+          </div>
         </div>
         <ul className={styles.contact}>
           {cv.email ? (
@@ -63,7 +66,7 @@ export default function ClassicTemplate({ cv }) {
                   </p>
                   <ul className={styles.bullets}>
                     {e.bullets.map((b, i) => (
-                      <li key={i}>{b}</li>
+                      <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
                     ))}
                   </ul>
                 </div>
@@ -120,7 +123,7 @@ export default function ClassicTemplate({ cv }) {
                   </p>
                   <ul className={styles.bullets}>
                     {d.bullets.map((b, i) => (
-                      <li key={i}>{b}</li>
+                      <li key={`${i}-${b.slice(0, 16)}`}>{b}</li>
                     ))}
                   </ul>
                 </div>

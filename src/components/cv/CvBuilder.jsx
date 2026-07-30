@@ -202,9 +202,30 @@ export default function CvBuilder() {
       return;
     }
     const reader = new FileReader();
-    reader.onload = () => set({ photo: reader.result, template: 'sidebar' });
+    reader.onload = () => set({ photo: reader.result });
     reader.readAsDataURL(file);
   };
+
+  /* shared add-handlers — used by both the section header and the
+     bottom "Add …" row, so long lists never force a scroll back up */
+  const addSkillGroup = () =>
+    set({ skillGroups: [...cv.skillGroups, { id: newId('sg'), label: '', skills: '' }] });
+  const addLanguage = () =>
+    set({ languages: [...cv.languages, { id: newId('lang'), name: '', level: '', pct: 80 }] });
+  const addExperience = () =>
+    set({
+      experiences: [
+        ...cv.experiences,
+        { id: newId('exp'), role: '', company: '', period: '', location: '', bullets: [] },
+      ],
+    });
+  const addEducation = () =>
+    set({
+      education: [
+        ...cv.education,
+        { id: newId('edu'), degree: '', school: '', period: '', gpa: '', bullets: [] },
+      ],
+    });
 
   const Template = cv.template === 'sidebar' ? SidebarTemplate : ClassicTemplate;
 
@@ -342,7 +363,7 @@ export default function CvBuilder() {
                 </button>
               ) : null}
             </div>
-            <p className={styles.hint}>Used on the Sidebar template. PNG, JPG or WebP · max 2 MB.</p>
+            <p className={styles.hint}>Shown on the generated CV. PNG, JPG or WebP · max 2 MB.</p>
 
             <div className={styles.fieldGrid}>
               <Field label="Full Name" value={cv.name} onChange={(v) => set({ name: v })} />
@@ -366,20 +387,7 @@ export default function CvBuilder() {
             />
           </Section>
 
-          <Section
-            title="Skills"
-            action={
-              <AddBtn
-                onClick={() =>
-                  set({
-                    skillGroups: [...cv.skillGroups, { id: newId('sg'), label: '', skills: '' }],
-                  })
-                }
-              >
-                Add Category
-              </AddBtn>
-            }
-          >
+          <Section title="Skills" action={<AddBtn onClick={addSkillGroup}>Add Category</AddBtn>}>
             {cv.skillGroups.map((g) => (
               <div key={g.id} className={styles.itemCard}>
                 <RemoveBtn onClick={() => removeItem('skillGroups', g.id)} label="Remove category" />
@@ -398,25 +406,14 @@ export default function CvBuilder() {
                 />
               </div>
             ))}
+            {cv.skillGroups.length > 0 && (
+              <div className={styles.addRow}>
+                <AddBtn onClick={addSkillGroup}>Add Category</AddBtn>
+              </div>
+            )}
           </Section>
 
-          <Section
-            title="Languages"
-            action={
-              <AddBtn
-                onClick={() =>
-                  set({
-                    languages: [
-                      ...cv.languages,
-                      { id: newId('lang'), name: '', level: '', pct: 80 },
-                    ],
-                  })
-                }
-              >
-                Add Language
-              </AddBtn>
-            }
-          >
+          <Section title="Languages" action={<AddBtn onClick={addLanguage}>Add Language</AddBtn>}>
             {cv.languages.map((l) => (
               <div key={l.id} className={styles.itemCard}>
                 <RemoveBtn onClick={() => removeItem('languages', l.id)} label="Remove language" />
@@ -446,31 +443,16 @@ export default function CvBuilder() {
                 </label>
               </div>
             ))}
+            {cv.languages.length > 0 && (
+              <div className={styles.addRow}>
+                <AddBtn onClick={addLanguage}>Add Language</AddBtn>
+              </div>
+            )}
           </Section>
 
           <Section
             title="Experience"
-            action={
-              <AddBtn
-                onClick={() =>
-                  set({
-                    experiences: [
-                      ...cv.experiences,
-                      {
-                        id: newId('exp'),
-                        role: '',
-                        company: '',
-                        period: '',
-                        location: '',
-                        bullets: [],
-                      },
-                    ],
-                  })
-                }
-              >
-                Add Experience
-              </AddBtn>
-            }
+            action={<AddBtn onClick={addExperience}>Add Experience</AddBtn>}
           >
             {cv.experiences.map((e) => (
               <div key={e.id} className={styles.itemCard}>
@@ -510,24 +492,16 @@ export default function CvBuilder() {
                 />
               </div>
             ))}
+            {cv.experiences.length > 0 && (
+              <div className={styles.addRow}>
+                <AddBtn onClick={addExperience}>Add Experience</AddBtn>
+              </div>
+            )}
           </Section>
 
           <Section
             title="Education"
-            action={
-              <AddBtn
-                onClick={() =>
-                  set({
-                    education: [
-                      ...cv.education,
-                      { id: newId('edu'), degree: '', school: '', period: '', gpa: '', bullets: [] },
-                    ],
-                  })
-                }
-              >
-                Add Education
-              </AddBtn>
-            }
+            action={<AddBtn onClick={addEducation}>Add Education</AddBtn>}
           >
             {cv.education.map((d) => (
               <div key={d.id} className={styles.itemCard}>
@@ -567,6 +541,11 @@ export default function CvBuilder() {
                 />
               </div>
             ))}
+            {cv.education.length > 0 && (
+              <div className={styles.addRow}>
+                <AddBtn onClick={addEducation}>Add Education</AddBtn>
+              </div>
+            )}
           </Section>
         </div>
 
