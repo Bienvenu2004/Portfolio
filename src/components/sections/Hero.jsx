@@ -17,6 +17,7 @@ export default function Hero() {
           priority
           className={styles.photo}
         />
+        <div className={styles.fadeTop} />
         <div className={styles.fadeBottom} />
       </div>
 
