@@ -14,8 +14,19 @@ import {
 import ClassicTemplate from './templates/ClassicTemplate';
 import SidebarTemplate from './templates/SidebarTemplate';
 import { ACCENT_COLORS, SIDEBAR_COLORS } from './labels';
-import { site, about, skillGroups, timeline, education } from '@/data/site';
+import { site, about, skillGroups, timeline, education, projects } from '@/data/site';
 import styles from './cv.module.css';
+
+/* every printable section — drives the download modal checkboxes */
+const SECTION_OPTIONS = [
+  ['profile', 'Profile Summary'],
+  ['skills', 'Skills'],
+  ['languages', 'Languages'],
+  ['experience', 'Experience'],
+  ['projects', 'Projects'],
+  ['education', 'Education'],
+];
+const allSections = () => Object.fromEntries(SECTION_OPTIONS.map(([k]) => [k, true]));
 
 const STORAGE_KEY = 'cv-builder-v1';
 const A4_WIDTH_PX = 794; // 210mm at 96dpi
@@ -56,6 +67,14 @@ function defaults() {
       location: t.place,
       bullets: [t.description],
     })),
+    projects: projects.map((p, i) => ({
+      id: `proj-${i}`,
+      name: p.title,
+      tech: p.stack.join(', '),
+      link: p.link ? p.link.replace(/^https?:\/\//, '') : p.repo ? p.repo.replace(/^https?:\/\//, '') : '',
+      description: p.description,
+    })),
+    sections: allSections(),
     education: education.map((d, i) => ({
       id: `edu-${i}`,
       degree: d.degree,
@@ -85,7 +104,22 @@ function blank() {
     skillGroups: [],
     languages: [],
     experiences: [],
+    projects: [],
     education: [],
+  };
+}
+
+/* apply the section selection — templates hide empty sections */
+function applySections(cv) {
+  const s = cv.sections ?? allSections();
+  return {
+    ...cv,
+    profile: s.profile ? cv.profile : '',
+    skillGroups: s.skills ? cv.skillGroups : [],
+    languages: s.languages ? cv.languages : [],
+    experiences: s.experience ? cv.experiences : [],
+    projects: s.projects ? cv.projects : [],
+    education: s.education ? cv.education : [],
   };
 }
 
@@ -155,6 +189,7 @@ function RemoveBtn({ onClick, label }) {
 export default function CvBuilder() {
   const [cv, setCv] = useState(defaults);
   const [loaded, setLoaded] = useState(false);
+  const [showDownload, setShowDownload] = useState(false);
   const previewRef = useRef(null);
   const [scale, setScale] = useState(0.75);
 
@@ -226,6 +261,23 @@ export default function CvBuilder() {
         { id: newId('edu'), degree: '', school: '', period: '', gpa: '', bullets: [] },
       ],
     });
+  const addProject = () =>
+    set({
+      projects: [
+        ...cv.projects,
+        { id: newId('proj'), name: '', tech: '', link: '', description: '' },
+      ],
+    });
+
+  const toggleSection = (key) =>
+    set({ sections: { ...(cv.sections ?? allSections()), [key]: !(cv.sections ?? allSections())[key] } });
+
+  const printWith = (sections) => {
+    set({ sections });
+    setShowDownload(false);
+    // let the preview re-render with the selection before the print dialog opens
+    setTimeout(() => window.print(), 150);
+  };
 
   const Template = cv.template === 'sidebar' ? SidebarTemplate : ClassicTemplate;
 
@@ -246,7 +298,7 @@ export default function CvBuilder() {
           >
             <FiRotateCcw aria-hidden="true" /> Reset
           </button>
-          <button type="button" className={styles.printBtn} onClick={() => window.print()}>
+          <button type="button" className={styles.printBtn} onClick={() => setShowDownload(true)}>
             <FiPrinter aria-hidden="true" /> Print / Save PDF
           </button>
         </div>
@@ -499,6 +551,43 @@ export default function CvBuilder() {
             )}
           </Section>
 
+          <Section title="Projects" action={<AddBtn onClick={addProject}>Add Project</AddBtn>}>
+            {cv.projects.map((p) => (
+              <div key={p.id} className={styles.itemCard}>
+                <RemoveBtn onClick={() => removeItem('projects', p.id)} label="Remove project" />
+                <div className={styles.fieldGrid}>
+                  <Field
+                    label="Project Name"
+                    value={p.name}
+                    onChange={(v) => setItem('projects', p.id, { name: v })}
+                  />
+                  <Field
+                    label="Tech (comma separated)"
+                    value={p.tech}
+                    onChange={(v) => setItem('projects', p.id, { tech: v })}
+                  />
+                </div>
+                <Field
+                  label="Link"
+                  value={p.link}
+                  placeholder="myproject.com"
+                  onChange={(v) => setItem('projects', p.id, { link: v })}
+                />
+                <Area
+                  label="Description"
+                  rows={2}
+                  value={p.description}
+                  onChange={(v) => setItem('projects', p.id, { description: v })}
+                />
+              </div>
+            ))}
+            {cv.projects.length > 0 && (
+              <div className={styles.addRow}>
+                <AddBtn onClick={addProject}>Add Project</AddBtn>
+              </div>
+            )}
+          </Section>
+
           <Section
             title="Education"
             action={<AddBtn onClick={addEducation}>Add Education</AddBtn>}
@@ -556,10 +645,68 @@ export default function CvBuilder() {
             className={styles.previewScale}
             style={{ transform: `scale(${scale})`, height: `calc(297mm * ${scale})` }}
           >
-            <Template cv={cv} />
+            <Template cv={applySections(cv)} />
           </div>
         </div>
       </div>
+
+      {/* ---- download modal: full CV or selected sections ---- */}
+      {showDownload && (
+        <div
+          className={styles.modalOverlay}
+          onClick={(e) => e.target === e.currentTarget && setShowDownload(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Download CV"
+        >
+          <div className={styles.modal}>
+            <button
+              type="button"
+              className={styles.modalClose}
+              onClick={() => setShowDownload(false)}
+              aria-label="Close"
+            >
+              <FiX />
+            </button>
+
+            <p className={styles.modalEyebrow}>Download CV</p>
+            <h2 className={styles.modalTitle}>What should it include?</h2>
+            <p className={styles.hint}>
+              Untick anything you want to leave out — the preview updates to match.
+            </p>
+
+            <div className={styles.modalChecks}>
+              {SECTION_OPTIONS.map(([key, label]) => (
+                <label key={key} className={styles.check}>
+                  <input
+                    type="checkbox"
+                    checked={(cv.sections ?? allSections())[key]}
+                    onChange={() => toggleSection(key)}
+                  />
+                  <span>{label}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className={styles.modalActions}>
+              <button
+                type="button"
+                className={styles.addBtn}
+                onClick={() => printWith(allSections())}
+              >
+                Full CV
+              </button>
+              <button
+                type="button"
+                className={styles.printBtn}
+                onClick={() => printWith(cv.sections ?? allSections())}
+              >
+                <FiPrinter aria-hidden="true" /> Print selection
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

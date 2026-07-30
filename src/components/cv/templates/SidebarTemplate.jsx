@@ -122,6 +122,22 @@ export default function SidebarTemplate({ cv }) {
           </section>
         )}
 
+        {cv.projects?.length > 0 && (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>{L.projects}</h2>
+            {cv.projects.map((p) => (
+              <div key={p.id} className={styles.block}>
+                <div className={styles.blockHead}>
+                  <h3 className={styles.blockTitle}>{p.name}</h3>
+                  {p.link ? <span className={styles.blockPeriod}>{p.link}</span> : null}
+                </div>
+                {p.tech ? <p className={styles.blockMeta}>{p.tech}</p> : null}
+                {p.description ? <p className={styles.body}>{p.description}</p> : null}
+              </div>
+            ))}
+          </section>
+        )}
+
         {cv.education.length > 0 && (
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>{L.education}</h2>
