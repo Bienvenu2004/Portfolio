@@ -83,65 +83,71 @@ export const skillGroups = [
    preview panel. Name theme variants `*-dark.*` / `*-light.*` and the
    preview auto-picks the one matching the active theme. */
 export const projects = [
-  {
-    title: 'LandlordNde24',
-    description:
-      'Property management software for landlords and tenants — listings, rent tracking and day-to-day property administration, live in production at landlordnde24.com.',
-    stack: ['React', 'Antd', 'Tailwind CSS', 'Node.js'],
-    images: [
-      '/images/projects/landlordnde24-dark.webp',
-      '/images/projects/landlordnde24-light.webp',
-    ],
-    link: 'https://landlordnde24.com',
-    repo: null,
-    featured: true,
-  },
-  {
-    title: 'Caasitech Academy',
-    description:
-      'Web platform for Caasitech’s skills-development division — training programs, course information and student applications for learners across Cameroon.',
-    stack: ['HTML5', 'JavaScript', 'CSS3'],
-    images: [
-      '/images/projects/caasitech-academy.webp',
-      '/images/projects/caasitech-academy-2.webp',
-    ],
-    link: null,
-    repo: null,
-    featured: true,
-  },
-  {
-    title: 'Perform by Caasitech',
-    description:
-      'An employee performance and engagement platform — modular tools for tracking productivity and workforce improvement, built to make people enjoy working again.',
-    stack: ['Next.js', 'Node.js', 'REST API'],
-    images: [
-      '/images/projects/performbycaasitech.webp',
-      '/images/projects/performbycaasitech-2.webp',
-    ],
-    link: null,
-    repo: null,
-    featured: true,
-  },
-  {
-    title: 'WATCH — Movie Streaming',
-    description:
-      'A cinematic movie discovery and streaming app. Server-rendered catalog, debrid-powered streams, custom player, and the same gold-on-black design system this portfolio uses and built with a Zero-UI library approach.',
-    stack: ['Next.js', 'CSS Modules', 'TMDB API'],
-    images: ['/images/projects/watch-dark.webp', '/images/projects/watch-light.webp'],
-    link: null,
-    repo: null,
-    featured: true,
-  },
-  {
-    title: 'This Portfolio',
-    description:
-      'The site you’re looking at — a zero-UI-library rebuild on Next.js and CSS Modules, sharing design tokens with WATCH. Lighthouse-fast by design.',
-    stack: ['Next.js', 'CSS Modules', 'next-themes'],
-    images: ['/images/projects/images/portfolio-hero-dark.png', '/images/projects/images/portfolio-hero-light.png'],
-    link: null,
-    repo: 'https://github.com/Abdulrahim2567/my-portfolio',
-    featured: false,
-  },
+	{
+		title: 'LandlordNde24',
+		description:
+			'Property management software for landlords and tenants — listings, rent tracking and day-to-day property administration, live in production at landlordnde24.com.',
+		stack: ['React', 'Antd', 'Tailwind CSS', 'Node.js'],
+		images: [
+			'/images/projects/landlordnde24-dark.webp',
+			'/images/projects/landlordnde24-light.webp',
+		],
+		link: 'https://landlordnde24.com',
+		repo: null,
+		featured: true,
+	},
+	{
+		title: 'Caasitech Academy',
+		description:
+			'Web platform for Caasitech’s skills-development division — training programs, course information and student applications for learners across Cameroon.',
+		stack: ['HTML5', 'JavaScript', 'CSS3'],
+		images: [
+			'/images/projects/caasitech-academy.webp',
+			'/images/projects/caasitech-academy-2.webp',
+		],
+		link: null,
+		repo: null,
+		featured: true,
+	},
+	{
+		title: 'Perform by Caasitech',
+		description:
+			'An employee performance and engagement platform — modular tools for tracking productivity and workforce improvement, built to make people enjoy working again.',
+		stack: ['Next.js', 'Node.js', 'REST API'],
+		images: [
+			'/images/projects/performbycaasitech.webp',
+			'/images/projects/performbycaasitech-2.webp',
+		],
+		link: null,
+		repo: null,
+		featured: true,
+	},
+	{
+		title: 'WATCH — Movie Streaming',
+		description:
+			'A cinematic movie discovery and streaming app. Server-rendered catalog, debrid-powered streams, custom player, and the same gold-on-black design system this portfolio uses and built with a Zero-UI library approach.',
+		stack: ['Next.js', 'CSS Modules', 'TMDB API'],
+		images: [
+			'/images/projects/watch-dark.webp',
+			'/images/projects/watch-light.webp',
+		],
+		link: 'https://next-js-movie-site-three.vercel.app/',
+		repo: 'https://gitlab.com/kar73/NextJS-Movie-Site',
+		featured: true,
+	},
+	{
+		title: 'This Portfolio',
+		description:
+			'The site you’re looking at — a zero-UI-library rebuild on Next.js and CSS Modules, sharing design tokens with WATCH. Lighthouse-fast by design.',
+		stack: ['Next.js', 'CSS Modules', 'next-themes'],
+		images: [
+			'/images/projects/images/portfolio-hero-dark.png',
+			'/images/projects/images/portfolio-hero-light.png',
+		],
+		link: null,
+		repo: 'https://github.com/Abdulrahim2567/my-portfolio',
+		featured: false,
+	},
 ];
 
 /* npm packages — shown in the "Packages I publish" section */
