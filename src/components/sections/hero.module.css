@@ -5,9 +5,10 @@
   min-height: var(--hero-height);
   display: flex;
   overflow: hidden;
-  /* the hero stays "screening room" dark in both themes — the photo needs it */
-  background: #0b0d10;
-  color: #f2f0ea;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color var(--t-standard) var(--ease-out),
+    color var(--t-standard) var(--ease-out);
 }
 
 /* ---- right-half portrait: transparent cutout over an amber glow ---- */
@@ -53,7 +54,7 @@
   z-index: 2;
   inset: auto 0 0 0;
   height: 55%;
-  background: linear-gradient(to top, #0b0d10 20%, transparent);
+  background: linear-gradient(to top, var(--bg) 20%, transparent);
 }
 
 /* ---- left column ---- */
@@ -112,7 +113,7 @@
   line-height: 0.95;
   letter-spacing: var(--tracking-display);
   text-transform: uppercase;
-  color: #fff;
+  color: var(--text-strong);
   margin-bottom: 1.25rem;
 }
 
@@ -132,14 +133,14 @@
 .rolePill {
   display: inline-block;
   padding: 0.4rem 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  background: var(--surface-2);
   border-radius: 999px;
   font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #d5d2ca;
+  color: var(--text);
 }
 
 .location {
@@ -147,7 +148,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.8rem;
-  color: #8b93a0;
+  color: var(--muted);
 }
 
 .taglineBlock {
@@ -159,7 +160,7 @@
   font-size: clamp(1.1rem, 2vw, 1.3rem);
   font-weight: 500;
   line-height: 1.45;
-  color: #f2f0ea;
+  color: var(--text);
   margin-bottom: 1rem;
 }
 
@@ -175,7 +176,7 @@
   max-width: 26rem;
   font-size: 0.92rem;
   line-height: 1.7;
-  color: #8b93a0;
+  color: var(--muted);
 }
 
 .ctas {
@@ -191,15 +192,16 @@
   gap: 0.55rem;
   min-height: 48px;
   padding: 0.8rem 1.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #fff;
+  color: var(--text-strong);
   transition: border-color var(--t-standard) var(--ease-out),
     background-color var(--t-standard) var(--ease-out),
+    color var(--t-standard) var(--ease-out),
     transform var(--t-micro) var(--ease-out);
 }
 
@@ -233,7 +235,7 @@
   height: 44px;
   border-radius: 50%;
   font-size: 1.15rem;
-  color: #8b93a0;
+  color: var(--muted);
   transition: color var(--t-standard) var(--ease-out), transform var(--t-micro) var(--ease-out);
 }
 
@@ -258,7 +260,7 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #8b93a0;
+  color: var(--muted);
 }
 
 /* ---- mobile: figure becomes a dimmed backdrop, text bottom-aligned ---- */
