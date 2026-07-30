@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- screening-room tile: near-black with marquee-amber monogram -->
+  <rect width="64" height="64" rx="14" fill="#0b0d10"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#f0a824" stroke-opacity="0.25" stroke-width="3"/>
+  <!-- A -->
+  <path d="M13 46 L23.5 18 L34 46 L28.6 46 L23.5 30.5 L18.4 46 Z" fill="#f2f0ea"/>
+  <!-- R -->
+  <path d="M36 18 L47 18 Q53 18 53 26 Q53 32.2 48 33.5 L53.5 46 L48 46 L43 34 L41 34 L41 46 L36 46 Z
+           M41 22.5 L41 29.5 L45.8 29.5 Q48 29.5 48 26 Q48 22.5 45.8 22.5 Z" fill="#f0a824"/>
+</svg>
