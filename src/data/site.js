@@ -87,7 +87,7 @@ export const projects = [
     title: 'LandlordNde24',
     description:
       'Property management software for landlords and tenants — listings, rent tracking and day-to-day property administration, live in production at landlordnde24.com.',
-    stack: ['Next.js', 'React', 'Node.js'],
+    stack: ['React', 'Antd', 'Tailwind CSS', 'Node.js'],
     images: [
       '/images/projects/landlordnde24-dark.webp',
       '/images/projects/landlordnde24-light.webp',
@@ -100,7 +100,7 @@ export const projects = [
     title: 'Caasitech Academy',
     description:
       'Web platform for Caasitech’s skills-development division — training programs, course information and student applications for learners across Cameroon.',
-    stack: ['React', 'Node.js', 'CSS'],
+    stack: ['HTML5', 'JavaScript', 'CSS3'],
     images: [
       '/images/projects/caasitech-academy.webp',
       '/images/projects/caasitech-academy-2.webp',
@@ -113,7 +113,7 @@ export const projects = [
     title: 'Perform by Caasitech',
     description:
       'An employee performance and engagement platform — modular tools for tracking productivity and workforce improvement, built to make people enjoy working again.',
-    stack: ['React', 'Node.js', 'REST API'],
+    stack: ['Next.js', 'Node.js', 'REST API'],
     images: [
       '/images/projects/performbycaasitech.webp',
       '/images/projects/performbycaasitech-2.webp',
@@ -125,7 +125,7 @@ export const projects = [
   {
     title: 'WATCH — Movie Streaming',
     description:
-      'A cinematic movie discovery and streaming app. Server-rendered catalog, debrid-powered streams, custom player, and the same gold-on-black design system this portfolio uses.',
+      'A cinematic movie discovery and streaming app. Server-rendered catalog, debrid-powered streams, custom player, and the same gold-on-black design system this portfolio uses and built with a Zero-UI library approach.',
     stack: ['Next.js', 'CSS Modules', 'TMDB API'],
     images: ['/images/projects/watch-dark.webp', '/images/projects/watch-light.webp'],
     link: null,
