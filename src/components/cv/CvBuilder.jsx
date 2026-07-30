@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   FiArrowLeft,
@@ -13,6 +13,7 @@ import {
   FiUpload,
   FiX,
 } from 'react-icons/fi';
+import { MdDragIndicator } from 'react-icons/md';
 import ClassicTemplate from './templates/ClassicTemplate';
 import SidebarTemplate from './templates/SidebarTemplate';
 import { ACCENT_COLORS, SIDEBAR_COLORS } from './labels';
@@ -31,6 +32,18 @@ const SECTION_OPTIONS = [
 const allSections = () => Object.fromEntries(SECTION_OPTIONS.map(([k]) => [k, true]));
 const defaultOrder = () => SECTION_OPTIONS.map(([k]) => k);
 const SECTION_LABEL = Object.fromEntries(SECTION_OPTIONS);
+
+/* editor tabs — one panel visible at a time, scrollable bar on overflow */
+const TABS = [
+  ['appearance', 'Appearance'],
+  ['personal', 'Personal Info'],
+  ['profile', 'Profile'],
+  ['skills', 'Skills'],
+  ['languages', 'Languages'],
+  ['experience', 'Experience'],
+  ['projects', 'Projects'],
+  ['education', 'Education'],
+];
 
 const STORAGE_KEY = 'cv-builder-v1';
 const A4_WIDTH_PX = 794; // 210mm at 96dpi
@@ -93,11 +106,10 @@ function defaults() {
   };
 }
 
-/* Blank sheet for "Clear all". */
-function blank() {
-  const d = defaults();
+/* Blank sheet for "Clear all" — keeps the appearance choices. */
+function blank(current) {
   return {
-    ...d,
+    ...current,
     photo: null,
     name: '',
     initials: '',
@@ -327,6 +339,110 @@ export default function CvBuilder() {
     set({ sectionOrder: order });
   };
 
+  /* ---- structure pane: drag-to-reorder with FLIP animations ----
+     FLIP also animates arrow-button moves: any order change measures
+     old vs new row positions and springs rows into place. */
+  const rowRefs = useRef({});
+  const prevTopsRef = useRef({});
+  const dragRef = useRef(null); // { key, startY, lastY, baseTop }
+  const [dragKey, setDragKey] = useState(null);
+  const orderKeys = cv.sectionOrder ?? defaultOrder();
+  const orderSignature = orderKeys.join(',');
+
+  useLayoutEffect(() => {
+    const tops = {};
+    for (const k of orderKeys) {
+      const el = rowRefs.current[k];
+      if (el) tops[k] = el.offsetTop;
+    }
+    for (const k of orderKeys) {
+      const el = rowRefs.current[k];
+      const prev = prevTopsRef.current[k];
+      if (!el || prev == null || dragRef.current?.key === k) continue;
+      const delta = prev - tops[k];
+      if (delta) {
+        el.animate(
+          [{ transform: `translateY(${delta}px)` }, { transform: 'translateY(0)' }],
+          { duration: 220, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' }
+        );
+      }
+    }
+    prevTopsRef.current = tops;
+    // keep the dragged row glued to the pointer across live reorders
+    const d = dragRef.current;
+    if (d && tops[d.key] != null && tops[d.key] !== d.baseTop) {
+      d.startY += tops[d.key] - d.baseTop;
+      d.baseTop = tops[d.key];
+      const el = rowRefs.current[d.key];
+      if (el) el.style.transform = `translateY(${d.lastY - d.startY}px)`;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderSignature]);
+
+  const onDragStart = (key) => (e) => {
+    e.preventDefault();
+    const el = rowRefs.current[key];
+    if (!el) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    dragRef.current = { key, startY: e.clientY, lastY: e.clientY, baseTop: el.offsetTop };
+    setDragKey(key);
+  };
+
+  const onDragMove = (key) => (e) => {
+    const d = dragRef.current;
+    if (!d || d.key !== key) return;
+    d.lastY = e.clientY;
+    const dy = e.clientY - d.startY;
+    const el = rowRefs.current[key];
+    if (el) el.style.transform = `translateY(${dy}px)`;
+    // desired slot = rows whose centre sits above the dragged row's centre
+    const rowH = el?.offsetHeight ?? 48;
+    const centre = d.baseTop + dy + rowH / 2;
+    let target = 0;
+    for (const k of orderKeys) {
+      if (k === key) continue;
+      const other = rowRefs.current[k];
+      if (other && other.offsetTop + other.offsetHeight / 2 < centre) target++;
+    }
+    const current = orderKeys.indexOf(key);
+    if (target !== current) {
+      const next = [...orderKeys];
+      next.splice(current, 1);
+      next.splice(target, 0, key);
+      set({ sectionOrder: next });
+    }
+  };
+
+  const onDragEnd = (key) => () => {
+    const d = dragRef.current;
+    if (!d || d.key !== key) return;
+    dragRef.current = null;
+    setDragKey(null);
+    const el = rowRefs.current[key];
+    if (el) {
+      const dy = d.lastY - d.startY;
+      el.style.transform = '';
+      if (dy) {
+        el.animate(
+          [{ transform: `translateY(${dy}px)` }, { transform: 'translateY(0)' }],
+          { duration: 200, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' }
+        );
+      }
+    }
+  };
+
+  /* ---- editor tabs: sliding gold indicator, panel rise-in ---- */
+  const [activeTab, setActiveTab] = useState('appearance');
+  const tabRefs = useRef({});
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
+  useLayoutEffect(() => {
+    const el = tabRefs.current[activeTab];
+    if (!el) return;
+    setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
+    el.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+  }, [activeTab]);
+
   const printWith = (sections) => {
     set({ sections });
     setShowDownload(false);
@@ -360,8 +476,34 @@ export default function CvBuilder() {
       </div>
 
       <div className={styles.panes}>
-        {/* ---- form pane ---- */}
+        {/* ---- form pane: scrollable tabs + one editor panel ---- */}
         <div className={styles.form}>
+          <div className={styles.tabBar}>
+            <div className={styles.tabTrack}>
+              {TABS.map(([k, label]) => (
+                <button
+                  key={k}
+                  ref={(el) => {
+                    tabRefs.current[k] = el;
+                  }}
+                  type="button"
+                  className={styles.tab}
+                  data-active={activeTab === k}
+                  onClick={() => setActiveTab(k)}
+                >
+                  {label}
+                </button>
+              ))}
+              <span
+                className={styles.tabIndicator}
+                style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width }}
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+
+          {activeTab === 'appearance' && (
+            <div className={styles.tabPanel}>
           <Section title="Appearance">
             <div className={styles.segRow}>
               <span className={styles.segLabel}>Template</span>
@@ -439,47 +581,15 @@ export default function CvBuilder() {
               </div>
             </div>
           </Section>
+            </div>
+          )}
 
-          <Section title="Document Structure">
-            <p className={styles.hint}>
-              The generated PDF follows this order — move sections up or down.
-            </p>
-            <ol className={styles.orderList}>
-              {(cv.sectionOrder ?? defaultOrder()).map((key, i, arr) => (
-                <li
-                  key={key}
-                  className={styles.orderRow}
-                  data-off={!(cv.sections ?? allSections())[key]}
-                >
-                  <span className={styles.orderIndex}>{i + 1}</span>
-                  <span className={styles.orderName}>{SECTION_LABEL[key]}</span>
-                  <span className={styles.orderBtns}>
-                    <button
-                      type="button"
-                      onClick={() => moveSection(key, -1)}
-                      disabled={i === 0}
-                      aria-label={`Move ${SECTION_LABEL[key]} up`}
-                    >
-                      <FiArrowUp />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => moveSection(key, 1)}
-                      disabled={i === arr.length - 1}
-                      aria-label={`Move ${SECTION_LABEL[key]} down`}
-                    >
-                      <FiArrowDown />
-                    </button>
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </Section>
-
+          {activeTab === 'personal' && (
+            <div className={styles.tabPanel}>
           <Section
             title="Personal Info"
             action={
-              <button type="button" className={styles.clearBtn} onClick={() => setCv(blank())}>
+              <button type="button" className={styles.clearBtn} onClick={() => setCv(blank(cv))}>
                 <FiX aria-hidden="true" /> Clear all
               </button>
             }
@@ -519,7 +629,11 @@ export default function CvBuilder() {
               <Field label="Website" value={cv.website} onChange={(v) => set({ website: v })} />
             </div>
           </Section>
+            </div>
+          )}
 
+          {activeTab === 'profile' && (
+            <div className={styles.tabPanel}>
           <Section title="Profile Summary">
             <Area
               label="Summary"
@@ -529,7 +643,11 @@ export default function CvBuilder() {
               onChange={(v) => set({ profile: v })}
             />
           </Section>
+            </div>
+          )}
 
+          {activeTab === 'skills' && (
+            <div className={styles.tabPanel}>
           <Section title="Skills" action={<AddBtn onClick={addSkillGroup}>Add Category</AddBtn>}>
             {cv.skillGroups.map((g) => (
               <div key={g.id} className={styles.itemCard}>
@@ -555,7 +673,11 @@ export default function CvBuilder() {
               </div>
             )}
           </Section>
+            </div>
+          )}
 
+          {activeTab === 'languages' && (
+            <div className={styles.tabPanel}>
           <Section title="Languages" action={<AddBtn onClick={addLanguage}>Add Language</AddBtn>}>
             {cv.languages.map((l) => (
               <div key={l.id} className={styles.itemCard}>
@@ -592,7 +714,11 @@ export default function CvBuilder() {
               </div>
             )}
           </Section>
+            </div>
+          )}
 
+          {activeTab === 'experience' && (
+            <div className={styles.tabPanel}>
           <Section
             title="Experience"
             action={<AddBtn onClick={addExperience}>Add Experience</AddBtn>}
@@ -641,7 +767,11 @@ export default function CvBuilder() {
               </div>
             )}
           </Section>
+            </div>
+          )}
 
+          {activeTab === 'projects' && (
+            <div className={styles.tabPanel}>
           <Section title="Projects" action={<AddBtn onClick={addProject}>Add Project</AddBtn>}>
             {cv.projects.map((p) => (
               <div key={p.id} className={styles.itemCard}>
@@ -678,7 +808,11 @@ export default function CvBuilder() {
               </div>
             )}
           </Section>
+            </div>
+          )}
 
+          {activeTab === 'education' && (
+            <div className={styles.tabPanel}>
           <Section
             title="Education"
             action={<AddBtn onClick={addEducation}>Add Education</AddBtn>}
@@ -727,6 +861,8 @@ export default function CvBuilder() {
               </div>
             )}
           </Section>
+            </div>
+          )}
         </div>
 
         {/* ---- live preview pane: one window per A4 page ---- */}
@@ -757,6 +893,63 @@ export default function CvBuilder() {
             ))}
           </div>
         </div>
+
+        {/* ---- structure pane: drag (or arrow) to reorder the PDF ---- */}
+        <aside className={styles.structureCol}>
+          <div className={styles.formSection}>
+            <div className={styles.formSectionHead}>
+              <h2>Structure</h2>
+            </div>
+            <p className={styles.hint}>
+              The generated PDF follows this order — drag, or use the arrows.
+            </p>
+            <ol className={styles.orderList}>
+              {orderKeys.map((key, i, arr) => (
+                <li
+                  key={key}
+                  ref={(el) => {
+                    rowRefs.current[key] = el;
+                  }}
+                  className={styles.orderRow}
+                  data-off={!(cv.sections ?? allSections())[key]}
+                  data-dragging={dragKey === key}
+                >
+                  <button
+                    type="button"
+                    className={styles.dragHandle}
+                    onPointerDown={onDragStart(key)}
+                    onPointerMove={onDragMove(key)}
+                    onPointerUp={onDragEnd(key)}
+                    onPointerCancel={onDragEnd(key)}
+                    aria-label={`Drag to reorder ${SECTION_LABEL[key]}`}
+                  >
+                    <MdDragIndicator />
+                  </button>
+                  <span className={styles.orderIndex}>{i + 1}</span>
+                  <span className={styles.orderName}>{SECTION_LABEL[key]}</span>
+                  <span className={styles.orderBtns}>
+                    <button
+                      type="button"
+                      onClick={() => moveSection(key, -1)}
+                      disabled={i === 0}
+                      aria-label={`Move ${SECTION_LABEL[key]} up`}
+                    >
+                      <FiArrowUp />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => moveSection(key, 1)}
+                      disabled={i === arr.length - 1}
+                      aria-label={`Move ${SECTION_LABEL[key]} down`}
+                    >
+                      <FiArrowDown />
+                    </button>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </aside>
       </div>
 
       {/* ---- download modal: full CV or selected sections ---- */}
