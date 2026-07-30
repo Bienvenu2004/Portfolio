@@ -4,7 +4,6 @@ import {
   SiJavascript,
   SiTypescript,
   SiHtml5,
-  SiCss3,
   SiBootstrap,
   SiMui,
   SiAntdesign,
@@ -15,10 +14,11 @@ import {
   SiMysql,
   SiPostgresql,
   SiFirebase,
-  SiAmazonaws,
   SiVercel,
   SiGit,
 } from 'react-icons/si';
+/* CSS3 and AWS were dropped from simple-icons — Font Awesome fills in */
+import { FaCss3Alt, FaAws } from 'react-icons/fa';
 import { FiServer } from 'react-icons/fi';
 import Reveal from '@/components/motion/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -31,7 +31,7 @@ const ICONS = {
   javascript: SiJavascript,
   typescript: SiTypescript,
   html: SiHtml5,
-  css: SiCss3,
+  css: FaCss3Alt,
   bootstrap: SiBootstrap,
   mui: SiMui,
   antd: SiAntdesign,
@@ -43,7 +43,7 @@ const ICONS = {
   mysql: SiMysql,
   postgresql: SiPostgresql,
   firebase: SiFirebase,
-  aws: SiAmazonaws,
+  aws: FaAws,
   vercel: SiVercel,
   git: SiGit,
 };

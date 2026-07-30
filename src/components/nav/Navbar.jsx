@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { FiGithub, FiLinkedin, FiMenu, FiX } from 'react-icons/fi';
 import { site } from '@/data/site';
