@@ -1,4 +1,5 @@
-import { FiMail, FiGithub, FiLinkedin, FiDownload, FiArrowUpRight } from 'react-icons/fi';
+import Link from 'next/link';
+import { FiMail, FiGithub, FiLinkedin, FiDownload, FiArrowUpRight, FiFileText } from 'react-icons/fi';
 import Reveal from '@/components/motion/Reveal';
 import { site, footer } from '@/data/site';
 import styles from './contact.module.css';
@@ -32,6 +33,9 @@ export default function Contact() {
               <a className={styles.outlinePill} href={site.cv} download>
                 <FiDownload aria-hidden="true" /> Download CV
               </a>
+              <Link className={styles.outlinePill} href="/cv">
+                <FiFileText aria-hidden="true" /> Create CV
+              </Link>
             </div>
 
             <div className={styles.socialRow}>

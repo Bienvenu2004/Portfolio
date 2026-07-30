@@ -1,0 +1,281 @@
+/* ------------------------------------------------------------------
+   CV generator — dark chrome around a white A4 sheet on screen;
+   pure paper when printing (source-style: window.print → Save as PDF).
+   ------------------------------------------------------------------ */
+
+.wrap {
+  min-height: 100svh;
+  background: var(--bg);
+  padding: 5.5rem 1rem 3rem;
+}
+
+/* ---- screen-only toolbar ---- */
+
+.toolbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem var(--gutter);
+  background: var(--chrome);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border-bottom: 1px solid var(--line);
+}
+
+.toolbarBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: color var(--t-micro) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .toolbarBtn:hover {
+    color: var(--accent);
+  }
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toolbarHint {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.printBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  transition: background-color var(--t-standard) var(--ease-out),
+    transform var(--t-micro) var(--ease-out);
+}
+
+.printBtn:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .printBtn:hover {
+    background: var(--accent-strong);
+  }
+}
+
+/* ---- the A4 sheet ---- */
+
+.sheet {
+  width: 210mm;
+  max-width: 100%;
+  min-height: 297mm;
+  margin-inline: auto;
+  background: #fff;
+  color: #222;
+  padding: 14mm 12mm;
+  border-radius: 6px;
+  box-shadow: var(--shadow-pop);
+  font-size: 9.5pt;
+  line-height: 1.5;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6mm;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 26pt;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.role {
+  margin-top: 2mm;
+  font-size: 10.5pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #b97a10; /* matinee gold — brand accent that prints well */
+}
+
+.contact {
+  font-size: 8.5pt;
+  color: #444;
+}
+
+.contact li {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  margin-bottom: 1.2mm;
+}
+
+.contact svg {
+  color: #b97a10;
+  flex-shrink: 0;
+}
+
+.rule {
+  height: 2px;
+  background: linear-gradient(to right, #b97a10, rgba(185, 122, 16, 0.15));
+  margin-block: 5mm 6mm;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 62mm;
+  gap: 0 8mm;
+  align-items: start;
+}
+
+.section {
+  margin-bottom: 6mm;
+  break-inside: avoid;
+}
+
+.sectionTitle {
+  font-size: 10pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #111;
+  border-bottom: 1.5px solid #e2ddd2;
+  padding-bottom: 1.5mm;
+  margin-bottom: 3mm;
+}
+
+.body {
+  font-size: 9pt;
+  color: #333;
+  margin-bottom: 2mm;
+}
+
+.block {
+  margin-bottom: 4mm;
+  break-inside: avoid;
+}
+
+.blockHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4mm;
+}
+
+.blockTitle {
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #111;
+}
+
+.blockPeriod {
+  flex-shrink: 0;
+  font-size: 8pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #b97a10;
+}
+
+.blockMeta {
+  font-size: 8.2pt;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #777;
+  margin: 0.6mm 0 1.4mm;
+}
+
+.skillGroup {
+  margin-bottom: 3mm;
+  break-inside: avoid;
+}
+
+.skillLabel {
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.8mm;
+}
+
+.skillList {
+  font-size: 8.5pt;
+  color: #555;
+}
+
+.inlineIcon {
+  vertical-align: -1px;
+  color: #b97a10;
+}
+
+/* ---- small screens: sheet scales down, single column ---- */
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sheet {
+    min-height: 0;
+    padding: 8mm 6mm;
+  }
+
+  .toolbarHint {
+    display: none;
+  }
+}
+
+/* ---- print: paper only ---- */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  .wrap {
+    padding: 0;
+    background: #fff;
+  }
+
+  .toolbar {
+    display: none;
+  }
+
+  .sheet {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
