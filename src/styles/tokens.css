@@ -1,0 +1,84 @@
+/* ------------------------------------------------------------------
+   ABDULRAHIM — design tokens
+   Ported from the WATCH "screening room" system: the UI recedes to
+   near-black with warm projection-white text and a single marquee-
+   amber (gold) accent. Light theme is the "matinee" variant.
+   ------------------------------------------------------------------ */
+
+:root {
+  /* color — screening room (default, dark) */
+  --bg: #0b0d10;
+  --bg-raised: #12151a;
+  --surface: #171b21;
+  --surface-2: #1f242c;
+  --text: #f2f0ea;
+  --text-strong: #ffffff;
+  --muted: #9aa2ad;
+  --line: rgba(255, 255, 255, 0.08);
+  --accent: #f0a824;          /* marquee amber */
+  --accent-strong: #ffc14d;
+  --accent-ink: #1a1204;      /* text on amber */
+  --glow: rgba(240, 168, 36, 0.16);
+  --scrim: rgba(4, 5, 7, 0.62);
+  --chrome: rgba(11, 13, 16, 0.72);   /* translucent nav material */
+  --danger: #e5533d;
+
+  /* type */
+  --font-display: 'Bebas Neue', 'Oswald', system-ui, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --tracking-display: 0.02em;  /* Bebas wants a little air */
+  --tracking-caps: 0.14em;     /* eyebrows / labels */
+
+  /* shape + depth */
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 40px var(--glow);
+  --shadow-pop: 0 16px 48px rgba(0, 0, 0, 0.55);
+
+  /* motion — transform/opacity only, springs approximated with beziers */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1); /* gentle overshoot */
+  --t-micro: 120ms;
+  --t-standard: 240ms;
+  --t-slow: 420ms;
+  --t-reveal: 640ms;
+
+  /* layout — near-full-viewport canvas, narrow measure for long text */
+  --container: 96rem;
+  --container-narrow: 68rem;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --section-gap: clamp(5rem, 12vh, 8.5rem);
+}
+
+[data-theme='light'] {
+  /* matinee */
+  --bg: #f6f4ef;
+  --bg-raised: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #efece5;
+  --text: #191a1c;
+  --text-strong: #000000;
+  --muted: #6a707a;
+  --line: rgba(0, 0, 0, 0.09);
+  --accent: #b97a10;
+  --accent-strong: #96620a;
+  --accent-ink: #ffffff;
+  --glow: rgba(185, 122, 16, 0.14);
+  --scrim: rgba(20, 18, 12, 0.45);
+  --chrome: rgba(246, 244, 239, 0.78);
+  --shadow-card: 0 2px 8px rgba(24, 20, 10, 0.12);
+  --shadow-lift: 0 12px 32px rgba(24, 20, 10, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 0 40px var(--glow);
+  --shadow-pop: 0 16px 48px rgba(24, 20, 10, 0.22);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root { --chrome: #0b0d10; }
+  [data-theme='light'] { --chrome: #f6f4ef; }
+}

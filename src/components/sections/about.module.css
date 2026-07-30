@@ -1,0 +1,102 @@
+.section {
+  position: relative;
+  padding-block: var(--section-gap);
+  overflow: hidden;
+}
+
+.locationLine {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin: -1.5rem 0 2.5rem;
+}
+
+.locationLine svg {
+  color: var(--accent);
+}
+
+.copy {
+  max-width: 46rem;
+}
+
+.paragraph {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.paragraph strong {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.footerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  border-top: 1px solid var(--line);
+  margin-top: 2.75rem;
+  padding-top: 2rem;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse; /* value above label, valid dt/dd order in DOM */
+  gap: 0.2rem;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: var(--accent);
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* outlined rounded-full uppercase CTA, matching the hero */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.8rem 1.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-strong);
+  transition: border-color var(--t-standard) var(--ease-out),
+    background-color var(--t-standard) var(--ease-out),
+    transform var(--t-micro) var(--ease-out);
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover {
+    border-color: var(--accent);
+    background: var(--glow);
+  }
+}

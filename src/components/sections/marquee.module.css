@@ -1,0 +1,48 @@
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--bg-raised);
+  padding: 1.1rem 0;
+  /* fade the edges so items materialize instead of popping */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 28s linear infinite;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@keyframes scroll {
+  to {
+    /* track holds two copies — moving one copy's width loops seamlessly */
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

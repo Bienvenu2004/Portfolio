@@ -1,0 +1,189 @@
+/* the footer stays dark in both themes, like the source */
+.section {
+  position: relative;
+  overflow: hidden;
+  background: #0e1013;
+  color: #f2f0ea;
+  padding-block: clamp(4rem, 10vh, 6.5rem) 0;
+}
+
+.ghost {
+  position: absolute;
+  right: 1.5rem;
+  bottom: -1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 16vw, 12rem);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.inner {
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 2.5rem;
+  align-items: end;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgba(240, 168, 36, 0.8);
+  margin-bottom: 1rem;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.headlineAccent {
+  color: var(--accent);
+}
+
+.description {
+  max-width: 30rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #9aa2ad;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+/* solid white pill flipping amber on hover, reference-style */
+.solidPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.8rem 1.8rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #101215;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  transition: background-color var(--t-standard) var(--ease-out),
+    color var(--t-standard) var(--ease-out),
+    transform var(--t-micro) var(--ease-out);
+}
+
+.solidPill:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .solidPill:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+.outlinePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.8rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  transition: border-color var(--t-standard) var(--ease-out),
+    background-color var(--t-standard) var(--ease-out),
+    transform var(--t-micro) var(--ease-out);
+}
+
+.outlinePill:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .outlinePill:hover {
+    border-color: var(--accent);
+    background: rgba(240, 168, 36, 0.1);
+  }
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.socialRow a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.15rem;
+  color: #8b93a0;
+  transition: color var(--t-standard) var(--ease-out), transform var(--t-micro) var(--ease-out);
+}
+
+.socialRow a:active {
+  transform: scale(0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .socialRow a:hover {
+    color: var(--accent);
+  }
+}
+
+.copyright {
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: clamp(2.5rem, 6vh, 3.5rem);
+  padding-block: 2rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #6a707a;
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .right {
+    align-items: flex-start;
+  }
+
+  .ctas {
+    justify-content: flex-start;
+  }
+}

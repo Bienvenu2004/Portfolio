@@ -1,79 +1,49 @@
-import { useTheme, useMediaQuery, Box } from "@mui/material";
+import Head from 'next/head';
+import Navbar from '@/components/nav/Navbar';
+import Hero from '@/components/sections/Hero';
+import Marquee from '@/components/sections/Marquee';
+import About from '@/components/sections/About';
+import Skills from '@/components/sections/Skills';
+import Projects from '@/components/sections/Projects';
+import Packages from '@/components/sections/Packages';
+import Timeline from '@/components/sections/Timeline';
+import Education from '@/components/sections/Education';
+import Contact from '@/components/sections/Contact';
+import { site } from '@/data/site';
 
-import axios from "axios";
-import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
-import ComingSoon from "@/components/comingSoon/ComingSoon";
-import { SidebarContext } from "@/contexts/SidebarContext";
+export default function Home() {
+  const title = `${site.name} — ${site.role}`;
+  const description = site.tagline;
 
-const App = ({ document }) => {
-    const theme = useTheme();
-    const router = useRouter();
-    const { isSidebarOpen } = useContext(SidebarContext)
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={site.portrait} />
+      </Head>
 
-    // useEffect(()=>{
-    //     router.push("/skills");
-    // },[])    
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
 
-    return (
-        <div
-            className="app"
-            style={{
-                padding: "0 0.5rem",
-                color: theme.palette.secondary.text,
-                height: "100%",
-            }}
-        >
-            <Box
-                height="100%"
-                borderRadius={3}
-                boxShadow={
-                    theme.palette.mode === "light" &&
-                    "0px 0px 2px 0px rgba(0,0,0,0.2)"
-                }
-                display={"flex"}
-                backgroundSize="cover"
-                backgroundPosition="center"
-                sx={{
-                    backgroundImage: theme.palette.mode === "dark" && "url('/images/blur.jpg')",
-                    backdropFilter: "blur(60px)",
-                    height: "100vh",
-                    width: "100vw",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                }}
-            >
-                <Box
-                    className="overlay"
-                    sx={{
-                        width: "100%",
-                        height: "100%",
-                        backgroundImage: 'linear-gradient(to bottom, transparent 100%, rgb(0,0,0,0.8) 100%)',
-                        zIndex: 999,
-                        backdropFilter: "blur(30px)",
-                        pt: 23,
-                        pl: isSidebarOpen && 26,
-                        transition: "all 0.2s ease-in-out"
-                    }}
-                >
-                    <ComingSoon />
-                </Box>
-            </Box>
-        </div>
-    );
-};
+      <Navbar />
 
-export const getStaticProps = async () => {
-    return {
-        props: {
-            document: null,
-        },
-        revalidate: 10,
-    };
-};
+      <main id="main">
+        <Hero />
+        <Marquee />
+        <About />
+        <Skills />
+        <Projects />
+        <Packages />
+        <Timeline />
+        <Education />
+      </main>
 
-export default App;
+      <Contact />
+    </>
+  );
+}

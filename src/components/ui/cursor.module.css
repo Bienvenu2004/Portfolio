@@ -1,0 +1,69 @@
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms var(--ease-out);
+  will-change: transform;
+}
+
+.dot {
+  z-index: 9999;
+}
+
+.ring {
+  z-index: 9998;
+}
+
+.root[data-visible='true'] .dot,
+.root[data-visible='true'] .ring {
+  opacity: 1;
+}
+
+/* the visual lives on the inner span so position (outer transform)
+   and scale/color (inner) never fight */
+.dot span {
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 120ms var(--ease-out), background-color 150ms var(--ease-out);
+}
+
+.ring span {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 168, 36, 0.5);
+  background: transparent;
+  transition: transform 180ms var(--ease-out), border-color 150ms var(--ease-out),
+    background-color 150ms var(--ease-out);
+}
+
+/* hovering anything interactive: dot collapses, ring grows with a faint fill */
+.root[data-state='interactive'] .dot span {
+  transform: scale(0);
+}
+
+.root[data-state='interactive'] .ring span {
+  transform: scale(1.5);
+  border-color: rgba(240, 168, 36, 0.6);
+  background: rgba(240, 168, 36, 0.07);
+}
+
+/* over display text marked data-cursor-accent: white variant */
+.root[data-state='accent'] .dot span {
+  background: #fff;
+}
+
+.root[data-state='accent'] .ring span {
+  transform: scale(1.35);
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+}

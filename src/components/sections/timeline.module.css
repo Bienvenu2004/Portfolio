@@ -1,0 +1,133 @@
+.section {
+  position: relative;
+  padding-block: var(--section-gap);
+  background: var(--bg-raised);
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.list {
+  max-width: var(--container-narrow);
+}
+
+/* hairline-divided numbered rows, matching the work section */
+.row {
+  display: flex;
+  gap: 1.1rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.index {
+  flex-shrink: 0;
+  padding-top: 0.55rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  color: rgba(240, 168, 36, 0.5); /* fallback for pre-color-mix browsers */
+  color: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.logoBox {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.logoBox img {
+  width: 2.4rem;
+  height: 2.4rem;
+  object-fit: contain;
+}
+
+.body {
+  min-width: 0;
+}
+
+.period {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.currentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--glow);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.currentDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  color: var(--text-strong);
+  transition: color var(--t-standard) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover .title {
+    color: var(--accent);
+  }
+}
+
+.company {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 0.2rem;
+}
+
+.place {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin: 0.25rem 0 0.6rem;
+}
+
+.description {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 0.95rem;
+  max-width: 40rem;
+}
+
+@media (max-width: 560px) {
+  .index {
+    display: none;
+  }
+}

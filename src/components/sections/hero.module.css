@@ -1,0 +1,293 @@
+.hero {
+  position: relative;
+  /* leave room for the marquee to peek into the first viewport */
+  --hero-height: calc(100svh - 63px);
+  min-height: var(--hero-height);
+  display: flex;
+  overflow: hidden;
+  /* the hero stays "screening room" dark in both themes — the photo needs it */
+  background: #0b0d10;
+  color: #f2f0ea;
+}
+
+/* ---- right-half portrait: transparent cutout over an amber glow ---- */
+
+.media {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 50%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* projection glow behind the figure */
+.mediaGlow {
+  position: absolute;
+  bottom: -12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42rem;
+  height: 42rem;
+  max-width: 90vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow) 0%, rgba(240, 168, 36, 0.05) 40%, transparent 68%);
+}
+
+/* bust portrait: anchored to the hero's bottom edge */
+.photo {
+  position: relative;
+  z-index: 1;
+  height: min(72svh, 660px);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.55));
+}
+
+.fadeBottom {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0 0;
+  height: 55%;
+  background: linear-gradient(to top, #0b0d10 20%, transparent);
+}
+
+/* ---- left column ---- */
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* height comes from .hero via flex stretch — no own min-height,
+     or it would push the section back to full viewport */
+  min-height: var(--hero-height);
+  padding-top: 5.5rem;
+  padding-bottom: 6.5rem;
+}
+
+.content {
+  max-width: 36rem;
+}
+
+/* load-in choreography: each block rises on its own beat */
+.eyebrow,
+.title,
+.metaRow,
+.taglineBlock,
+.ctas,
+.socials {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 550ms var(--ease-out-strong) forwards;
+  animation-delay: calc(var(--i) * 110ms);
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgba(240, 168, 36, 0.7); /* fallback for pre-color-mix browsers */
+  color: color-mix(in srgb, var(--accent) 70%, transparent);
+  margin-bottom: 0.9rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.6rem, 9vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.titleAccent {
+  color: var(--accent);
+  text-shadow: 0 0 60px var(--glow);
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.rolePill {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #d5d2ca;
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #8b93a0;
+}
+
+.taglineBlock {
+  margin-bottom: 2.25rem;
+}
+
+.tagline {
+  max-width: 28rem;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: #f2f0ea;
+  margin-bottom: 1rem;
+}
+
+/* short amber hairline, fading out — straight from the reference */
+.hairline {
+  width: 3.5rem;
+  height: 1px;
+  background: linear-gradient(to right, rgba(240, 168, 36, 0.7), transparent);
+  margin-bottom: 1rem;
+}
+
+.subtext {
+  max-width: 26rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #8b93a0;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* outlined rounded-full uppercase CTA, amber on hover */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.8rem 1.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #fff;
+  transition: border-color var(--t-standard) var(--ease-out),
+    background-color var(--t-standard) var(--ease-out),
+    transform var(--t-micro) var(--ease-out);
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover {
+    border-color: var(--accent);
+    background: rgba(240, 168, 36, 0.1); /* fallback for pre-color-mix browsers */
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+}
+
+/* ---- bottom-left socials ---- */
+
+.socials {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 2.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.15rem;
+  color: #8b93a0;
+  transition: color var(--t-standard) var(--ease-out), transform var(--t-micro) var(--ease-out);
+}
+
+.socials a:active {
+  transform: scale(0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .socials a:hover {
+    color: var(--accent);
+  }
+}
+
+.socialRule {
+  width: 1px;
+  height: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  margin-inline: 0.5rem;
+}
+
+.socialHint {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #8b93a0;
+}
+
+/* ---- mobile: figure becomes a dimmed backdrop, text bottom-aligned ---- */
+
+@media (max-width: 900px) {
+  .media {
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 5vw;
+  }
+
+  .photo {
+    height: min(62svh, 520px);
+    opacity: 0.4;
+  }
+
+  .mediaFloor {
+    display: none;
+  }
+
+  .fadeBottom {
+    display: block;
+  }
+
+  .inner {
+    justify-content: flex-end;
+  }
+
+  .subtext {
+    display: none;
+  }
+}

@@ -1,0 +1,43 @@
+.wrap {
+  margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  max-width: 40rem;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--accent);
+  margin-bottom: 0.9rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-display);
+  color: var(--text-strong);
+  text-transform: uppercase;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.lede {
+  margin-top: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+}

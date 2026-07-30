@@ -1,0 +1,233 @@
+.section {
+  position: relative;
+  padding-block: var(--section-gap);
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+/* ---- degrees ---- */
+
+.degree {
+  display: flex;
+  gap: 1.1rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.degree:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.schoolLogo {
+  flex-shrink: 0;
+  width: 3.25rem;
+  height: 2.5rem;
+  object-fit: contain;
+  /* the logo is dark ink — lift it on the dark theme */
+  filter: brightness(0) invert(0.92);
+}
+
+[data-theme='light'] .schoolLogo {
+  filter: none;
+}
+
+.degreeBody {
+  min-width: 0;
+}
+
+.degreeTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-strong);
+}
+
+.institution {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+.meta {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-top: 0.45rem;
+}
+
+.gpa {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: var(--glow);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.description {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-top: 0.75rem;
+}
+
+.courses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.course {
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: border-color var(--t-micro) var(--ease-out), color var(--t-micro) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .course:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+/* ---- certifications ---- */
+
+.certsEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.certsEyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+.cert {
+  position: relative;
+  display: flex;
+  gap: 1.1rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.cert:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.badgeBox {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+
+.badgeBox img {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: contain;
+}
+
+.certBody {
+  min-width: 0;
+  flex: 1;
+}
+
+.certTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-strong);
+  padding-right: 1.5rem;
+}
+
+.issuer {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+.status[data-active='true'] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.certLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.certLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 40px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: color var(--t-micro) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .certLink:hover {
+    color: var(--accent-strong);
+  }
+}
+
+.certArrow {
+  position: absolute;
+  top: 1.85rem;
+  right: 0;
+  font-size: 1rem;
+  color: var(--muted);
+  opacity: 0.5;
+  transition: color var(--t-standard) var(--ease-out), opacity var(--t-standard) var(--ease-out);
+}
+
+.cert:first-child .certArrow {
+  top: 0.1rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cert:hover .certArrow {
+    color: var(--accent);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,43 +1,30 @@
-import Head from "next/head";
-import NextNProgress from "nextjs-progressbar";
-import Layout from "../components/layout/Layout";
+import Head from 'next/head';
+import { ThemeProvider } from 'next-themes';
+import { Bebas_Neue } from 'next/font/google';
+import Cursor from '@/components/ui/Cursor';
+import '@/styles/globals.css';
 
-//theme
-import "primereact/resources/themes/lara-light-indigo/theme.css";
-//core
-import "primereact/resources/primereact.min.css";
+// Display face only — body copy stays on the system stack for speed.
+const display = Bebas_Neue({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+});
 
-import { SidebarProvider } from "@/contexts/SidebarContext";
-
-import "../styles/globals.css";
-
-
-const App = ({ Component, pageProps }) => {
-    return (
-        <SidebarProvider>
-            <Layout>
-                <Head>
-                    <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1"
-                    />
-                </Head>
-                <NextNProgress
-                    color="#0072F5"
-                    startPosition={0.75}
-                    stopDelayMs={300}
-                    showOnSShallow={true}
-                    height={3}
-                    options={{
-                        showSpinner: false,
-                        easing: "ease",
-                        speed: 500,
-                    }}
-                />
-                <Component {...pageProps} />
-            </Layout>
-        </SidebarProvider>
-    );
-};
-
-export default App;
+export default function App({ Component, pageProps }) {
+  return (
+    <ThemeProvider defaultTheme="dark" attribute="data-theme">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      {/* expose the display face as a CSS variable for the token system */}
+      <style jsx global>{`
+        :root {
+          --font-display: ${display.style.fontFamily}, system-ui, sans-serif;
+        }
+      `}</style>
+      <Cursor />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
