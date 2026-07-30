@@ -1,33 +1,9 @@
-import { useState } from 'react';
-import { FiGithub, FiCopy, FiCheck, FiArrowUpRight } from 'react-icons/fi';
+import { FiGithub, FiArrowUpRight } from 'react-icons/fi';
 import Reveal from '@/components/motion/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
+import InstallBar from '@/components/ui/InstallBar';
 import { site, packages } from '@/data/site';
 import styles from './packages.module.css';
-
-function InstallBar({ cmd }) {
-  const [copied, setCopied] = useState(false);
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(cmd);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* clipboard unavailable — the command is still selectable */
-    }
-  };
-
-  return (
-    <div className={styles.installBar}>
-      <code className={styles.installCmd}>{cmd}</code>
-      <button type="button" className={styles.copyBtn} onClick={copy} data-copied={copied}>
-        {copied ? <FiCheck aria-hidden="true" /> : <FiCopy aria-hidden="true" />}
-        {copied ? 'Copied' : 'Copy'}
-      </button>
-    </div>
-  );
-}
 
 function PackageCard({ pkg, index }) {
   return (

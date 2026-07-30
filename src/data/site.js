@@ -13,7 +13,7 @@ export const site = {
   availability: 'Open to freelance & full-time roles',
   email: 'abdulrahim.kibuh@gmail.com',
   cv: '/cv/RahimCV-Latest.pdf',
-  portrait: '/images/me.jpeg',
+  portrait: '/images/me-hero.jpeg',
   social: {
     github: 'https://github.com/Abdulrahim2567',
     linkedin: 'https://www.linkedin.com/in/abdou-rahim-729411246',
@@ -141,8 +141,8 @@ export const projects = [
 			'The site you’re looking at — a zero-UI-library rebuild on Next.js and CSS Modules, sharing design tokens with WATCH. Lighthouse-fast by design.',
 		stack: ['Next.js', 'CSS Modules', 'next-themes'],
 		images: [
-			'/images/projects/images/portfolio-hero-dark.png',
-			'/images/projects/images/portfolio-hero-light.png',
+			'/images/projects/portfolio-dark.webp',
+			'/images/projects/portfolio-light.webp',
 		],
 		link: null,
 		repo: 'https://github.com/Abdulrahim2567/my-portfolio',

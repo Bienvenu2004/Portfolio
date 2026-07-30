@@ -111,15 +111,17 @@ img {
 }
 
 /* ---- scroll reveal (added by <Reveal/>) ----
-   transform + opacity only; children can stagger with --d */
-.reveal {
+   transform + opacity only; children can stagger with --d.
+   Gated on html[data-js] (stamped by an inline script in the layout)
+   so content stays visible when JavaScript is unavailable. */
+html[data-js] .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity var(--t-reveal) var(--ease-out-strong) var(--d, 0ms),
     transform var(--t-reveal) var(--ease-out-strong) var(--d, 0ms);
 }
 
-.reveal.is-visible {
+html[data-js] .reveal.is-visible {
   opacity: 1;
   transform: none;
 }

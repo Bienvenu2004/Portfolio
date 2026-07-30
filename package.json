@@ -1,22 +1,19 @@
 {
-	"name": "portfolio",
-	"version": "2.0.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
-	},
-	"engines": {
-		"node": "24.x"
-	},
-	"dependencies": {
-		"next": "^14.2.32",
-		"next-themes": "^0.2.1",
-		"react": "18.2.0",
-		"react-dom": "18.2.0",
-		"react-icons": "^4.12.0",
-		"sharp": "^0.32.6"
-	}
+    "name": "portfolio",
+    "version": "2.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "next": "^15.5.0",
+        "next-themes": "^0.4.6",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-icons": "^5.5.0",
+        "sharp": "^0.34.0"
+    }
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { FiGithub, FiArrowUpRight, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
