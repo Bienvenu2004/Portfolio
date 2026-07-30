@@ -40,7 +40,7 @@ function defaults() {
     accentColor: ACCENT_COLORS[0],
     sidebarBg: SIDEBAR_COLORS[0],
     cvLanguage: 'en',
-    photo: null,
+    photo: '/images/me-hero.jpeg',
     name: `${site.name} Kibuh`,
     initials: 'AK',
     role: site.role,
@@ -193,8 +193,20 @@ export default function CvBuilder() {
   const previewRef = useRef(null);
   const [scale, setScale] = useState(0.75);
 
-  // restore a saved draft after mount (SSR-safe)
+  const presetRef = useRef(false);
+
+  // restore a saved draft after mount (SSR-safe).
+  // ?preset=download renders the canonical config (sidebar template,
+  // gold accent, first sidebar color, portfolio photo) — used to
+  // generate the static PDF behind the site's Download CV button.
   useEffect(() => {
+    const preset = new URLSearchParams(window.location.search).get('preset');
+    if (preset === 'download') {
+      presetRef.current = true;
+      setCv({ ...defaults(), template: 'sidebar' });
+      setLoaded(true);
+      return;
+    }
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) setCv({ ...defaults(), ...JSON.parse(saved) });
@@ -204,9 +216,9 @@ export default function CvBuilder() {
     setLoaded(true);
   }, []);
 
-  // autosave drafts
+  // autosave drafts (never overwrite the user's draft from preset mode)
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || presetRef.current) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(cv));
     } catch {

@@ -12,7 +12,8 @@ export const site = {
   location: 'Cameroon',
   availability: 'Open to freelance & full-time roles',
   email: 'abdulrahim.kibuh@gmail.com',
-  cv: '/cv/RahimCV-Latest.pdf',
+  /* generated from /cv?preset=download (sidebar · gold · me-hero photo) */
+  cv: '/cv/Abdulrahim-Kibuh-CV.pdf',
   portrait: '/images/me-hero.jpeg',
   social: {
     github: 'https://github.com/Abdulrahim2567',
