@@ -896,10 +896,9 @@ export default function CvBuilder() {
 
         {/* ---- structure pane: drag (or arrow) to reorder the PDF ---- */}
         <aside className={styles.structureCol}>
+          {/* mirrors the preview label so both columns start on the same line */}
+          <p className={styles.previewLabel}>Document Structure</p>
           <div className={styles.formSection}>
-            <div className={styles.formSectionHead}>
-              <h2>Structure</h2>
-            </div>
             <p className={styles.hint}>
               The generated PDF follows this order — drag, or use the arrows.
             </p>
