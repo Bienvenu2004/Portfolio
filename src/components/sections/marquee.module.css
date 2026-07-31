@@ -27,6 +27,19 @@
   white-space: nowrap;
 }
 
+.itemInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.icon {
+  font-size: 1.15rem;
+  color: var(--text);
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
 .dot {
   width: 5px;
   height: 5px;
