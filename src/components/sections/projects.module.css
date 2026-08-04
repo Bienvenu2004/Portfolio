@@ -257,6 +257,32 @@
   transform: none;
 }
 
+/* stand-in tile for projects that ship no screenshots */
+.previewEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: radial-gradient(circle at 50% 40%, var(--glow), transparent 65%),
+    var(--surface-2);
+}
+
+.previewEmpty span {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: var(--accent);
+}
+
+.previewEmpty p {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .previewBar {
   position: absolute;
   inset: auto 0 0 0;

@@ -5,9 +5,13 @@ import {
   SiExpress,
   SiMongodb,
   SiMysql,
+  SiPostgresql,
   SiFirebase,
+  SiSpringboot,
+  SiLaravel,
+  SiCucumber,
 } from 'react-icons/si';
-import { FaAws } from 'react-icons/fa';
+import { FaAws, FaJava } from 'react-icons/fa';
 import { about } from '@/data/site';
 import styles from './marquee.module.css';
 
@@ -15,10 +19,15 @@ import styles from './marquee.module.css';
 const ICONS = {
   'Next.js': SiNextdotjs,
   React: SiReact,
+  Java: FaJava,
+  'Spring Boot': SiSpringboot,
   'Node.js': SiNodedotjs,
   Express: SiExpress,
+  Laravel: SiLaravel,
+  Cucumber: SiCucumber,
   MongoDB: SiMongodb,
   MySQL: SiMysql,
+  PostgreSQL: SiPostgresql,
   Firebase: SiFirebase,
   AWS: FaAws,
 };

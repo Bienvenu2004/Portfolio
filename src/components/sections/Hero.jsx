@@ -10,16 +10,16 @@ export default function Hero() {
       {/* right half: background-free portrait over an amber glow */}
       <div className={styles.media} aria-hidden="true">
         <div className={styles.mediaGlow} />
-        <Image
-          src="/images/me-hero-cutout.webp"
-          alt=""
-          width={753}
-          height={670}
-          priority
-          className={styles.photo}
-        />
-        <div className={styles.fadeTop} />
-        <div className={styles.fadeBottom} />
+        <div className={styles.frame}>
+          <Image
+            src="/images/me-hero-cutout.webp"
+            alt=""
+            width={1024}
+            height={1390}
+            priority
+            className={styles.photo}
+          />
+        </div>
       </div>
 
       <div className={`container ${styles.inner}`}>

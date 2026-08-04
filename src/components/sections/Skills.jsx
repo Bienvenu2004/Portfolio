@@ -16,10 +16,15 @@ import {
   SiFirebase,
   SiVercel,
   SiGit,
+  SiSpringboot,
+  SiLaravel,
+  SiCucumber,
+  SiJunit5,
+  SiPostman,
 } from 'react-icons/si';
-/* CSS3 and AWS were dropped from simple-icons — Font Awesome fills in */
-import { FaCss3Alt, FaAws } from 'react-icons/fa';
-import { FiServer } from 'react-icons/fi';
+/* CSS3, AWS and Java were dropped from simple-icons — Font Awesome fills in */
+import { FaCss3Alt, FaAws, FaJava } from 'react-icons/fa';
+import { FiServer, FiGrid, FiCheckSquare } from 'react-icons/fi';
 import Reveal from '@/components/motion/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { skillGroups } from '@/data/site';
@@ -39,6 +44,10 @@ const ICONS = {
   express: SiExpress,
   api: FiServer,
   php: SiPhp,
+  java: FaJava,
+  springboot: SiSpringboot,
+  laravel: SiLaravel,
+  microservices: FiGrid,
   mongodb: SiMongodb,
   mysql: SiMysql,
   postgresql: SiPostgresql,
@@ -46,6 +55,11 @@ const ICONS = {
   aws: FaAws,
   vercel: SiVercel,
   git: SiGit,
+  cucumber: SiCucumber,
+  junit: SiJunit5,
+  postman: SiPostman,
+  /* Mockito has no brand icon — a neutral check mark stands in */
+  mockito: FiCheckSquare,
 };
 
 export default function Skills() {

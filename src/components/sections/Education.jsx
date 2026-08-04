@@ -1,10 +1,13 @@
-import { FiArrowUpRight, FiDownload, FiExternalLink } from 'react-icons/fi';
+import { FiArrowUpRight, FiAward, FiDownload, FiExternalLink } from 'react-icons/fi';
 import Reveal from '@/components/motion/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { education, certifications } from '@/data/site';
 import styles from './education.module.css';
 
 export default function Education() {
+  // with no certifications the degrees take the full width
+  const hasCerts = certifications.length > 0;
+
   return (
     <section id="education" className={styles.section}>
       <span className="watermark" aria-hidden="true">
@@ -16,25 +19,30 @@ export default function Education() {
           Academic foundation in software engineering and systems design.
         </SectionHeading>
 
-        <div className={styles.grid}>
+        <div className={styles.grid} data-single={!hasCerts}>
           {/* ---- left: degrees ---- */}
           <div className={styles.degrees}>
             {education.map((d, i) => (
               <Reveal as="article" key={d.degree} delay={i * 80} className={styles.degree}>
-                <img
-                  src={d.logo}
-                  alt={`${d.institution} logo`}
-                  className={styles.schoolLogo}
-                  loading="lazy"
-                  decoding="async"
-                />
+                <span className={styles.schoolLogo}>
+                  {d.logo ? (
+                    <img
+                      src={d.logo}
+                      alt={`${d.institution} logo`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <FiAward aria-hidden="true" />
+                  )}
+                </span>
                 <div className={styles.degreeBody}>
                   <h3 className={styles.degreeTitle}>{d.degree}</h3>
                   <p className={styles.institution}>{d.institution}</p>
                   <p className={styles.meta}>
                     {d.period} · {d.location}
                   </p>
-                  <span className={styles.gpa}>GPA: {d.gpa}</span>
+                  {d.gpa ? <span className={styles.gpa}>GPA: {d.gpa}</span> : null}
                   <p className={styles.description}>{d.description}</p>
                   <ul className={styles.courses}>
                     {d.courses.map((c) => (
@@ -49,6 +57,7 @@ export default function Education() {
           </div>
 
           {/* ---- right: certifications ---- */}
+          {hasCerts ? (
           <div>
             <Reveal as="p" className={styles.certsEyebrow}>
               Certifications
@@ -94,6 +103,7 @@ export default function Education() {
               ))}
             </div>
           </div>
+          ) : null}
         </div>
       </div>
     </section>

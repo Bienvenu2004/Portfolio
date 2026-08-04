@@ -11,6 +11,11 @@
   align-items: start;
 }
 
+/* no certifications column — degrees take the full width */
+.grid[data-single='true'] {
+  grid-template-columns: 1fr;
+}
+
 /* ---- degrees ---- */
 
 .degree {
@@ -27,14 +32,27 @@
 
 .schoolLogo {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 3.25rem;
-  height: 2.5rem;
+  /* square so portrait crests get usable height; landscape marks stay
+     width-constrained and render exactly as before */
+  height: 3.25rem;
+  /* schools without a logo fall back to an icon */
+  color: var(--accent);
+  font-size: 1.4rem;
+}
+
+.schoolLogo img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   /* the logo is dark ink — lift it on the dark theme */
   filter: brightness(0) invert(0.92);
 }
 
-[data-theme='light'] .schoolLogo {
+[data-theme='light'] .schoolLogo img {
   filter: none;
 }
 

@@ -24,7 +24,7 @@ export default function Projects() {
   const { resolvedTheme } = useTheme();
 
   const project = projects[active];
-  const shownImg = Math.min(imgIndex, project.images.length - 1);
+  const shownImg = Math.max(0, Math.min(imgIndex, project.images.length - 1));
 
   const select = (i) => {
     const next = Math.max(0, Math.min(projects.length - 1, i));
@@ -112,17 +112,19 @@ export default function Projects() {
                           ) : null}
                         </div>
 
-                        {/* mobile-only inline preview */}
-                        <div className={styles.inlineMedia}>
-                          <Image
-                            src={p.images[0]}
-                            alt={`${p.title} preview`}
-                            width={720}
-                            height={450}
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
+                        {/* mobile-only inline preview — skipped without screenshots */}
+                        {p.images.length ? (
+                          <div className={styles.inlineMedia}>
+                            <Image
+                              src={p.images[0]}
+                              alt={`${p.title} preview`}
+                              width={720}
+                              height={450}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </li>
@@ -171,6 +173,14 @@ export default function Projects() {
                   />
                 ))
               )}
+
+              {/* projects without screenshots fall back to a monogram tile */}
+              {project.images.length === 0 ? (
+                <div className={styles.previewEmpty}>
+                  <span aria-hidden="true">{project.title.slice(0, 2).toUpperCase()}</span>
+                  <p>Screenshots unavailable — private build.</p>
+                </div>
+              ) : null}
 
               <div className={styles.previewBar}>
                 <span className={styles.previewTitle}>{project.title}</span>

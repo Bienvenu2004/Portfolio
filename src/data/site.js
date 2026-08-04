@@ -1,28 +1,34 @@
 /* ------------------------------------------------------------------
    All portfolio content lives here. Edit this file — not the
    components — to change copy, projects, skills or links.
+
+   TODO markers below flag values I drafted or estimated — check each
+   one and correct it before deploying.
    ------------------------------------------------------------------ */
 
 export const site = {
-  name: 'Abdulrahim',
-  firstName: 'Abdul',
-  lastName: 'Rahim',
+  name: 'Bienvenu Ambassa',
+  firstName: 'Bienvenu',
+  lastName: 'Ambassa',
   role: 'Full-Stack Web Developer',
-  tagline: 'I design and build fast, polished web experiences with Next.js, React and Node.',
+  tagline:
+    'I design and build production web platforms — React on the front, Spring Boot and Node underneath.',
   location: 'Cameroon',
   availability: 'Open to freelance & full-time roles',
-  email: 'abdulrahim.kibuh@gmail.com',
-  /* generated from /cv?preset=download (sidebar · gold · me-hero photo) */
-  cv: '/cv/Abdulrahim-Kibuh-CV.pdf',
-  portrait: '/images/me-hero.jpeg',
+  email: 'kidsglory1@gmail.com',
+  /* TODO: generate at /cv?preset=download → "Save as PDF", drop it in
+     /public/cv/ and point this here. null hides the instant-download
+     button and sends visitors to the CV builder instead. */
+  cv: null,
+  portrait: '/images/me-hero.webp',
   social: {
-    github: 'https://github.com/Abdulrahim2567',
-    linkedin: 'https://www.linkedin.com/in/abdou-rahim-729411246',
+    github: 'https://github.com/Bienvenu2004',
+    linkedin: 'https://www.linkedin.com/in/bienvenu-ambassa-637306239/',
   },
   stats: [
-    { value: '4+', label: 'Years building for the web' },
-    { value: '10+', label: 'Projects shipped' },
-    { value: '2', label: 'Open-source packages' },
+    { value: '3+', label: 'Years building for the web' },
+    { value: '2', label: 'Products shipped to production' },
+    { value: '5+', label: 'Frameworks used in production' },
   ],
 };
 
@@ -35,9 +41,18 @@ export const about = {
   /* **text** renders as a gold highlight */
   paragraphs: [
     'I’m a full-stack developer who cares about **the details users never consciously notice** — the timing of a transition, the weight of a shadow, the speed of a first paint. I build **interfaces that feel right**, backed by APIs that hold up.',
-    'My main tools are **Next.js**, **React**, **Node.js** and **Express**, with **MongoDB**, **MySQL** or **PostgreSQL** underneath. I’ve also done time in **Firebase** and **AWS**, and I like shipping complete products — design, build, deploy.',
+    'On the front I work in **React** and **Next.js**; behind it, **Java** with **Spring Boot** microservices, or **Node.js** and **Laravel**, over **PostgreSQL** or **MongoDB**. I test what I ship — **Cucumber** for behaviour, **Mockito** for the units — and I like taking a product all the way from design to deploy.',
   ],
-  highlights: ['Next.js', 'React', 'Node.js', 'Express', 'MongoDB', 'MySQL', 'Firebase', 'AWS'],
+  highlights: [
+    'React',
+    'Next.js',
+    'Java',
+    'Spring Boot',
+    'Node.js',
+    'PostgreSQL',
+    'Laravel',
+    'Cucumber',
+  ],
 };
 
 /* icon keys resolve to brand icons in Skills.jsx */
@@ -45,8 +60,8 @@ export const skillGroups = [
   {
     label: 'Frontend',
     skills: [
-      { name: 'Next.js', icon: 'nextjs' },
       { name: 'React', icon: 'react' },
+      { name: 'Next.js', icon: 'nextjs' },
       { name: 'JavaScript', icon: 'javascript' },
       { name: 'TypeScript', icon: 'typescript' },
       { name: 'HTML5', icon: 'html' },
@@ -59,22 +74,35 @@ export const skillGroups = [
   {
     label: 'Backend',
     skills: [
+      { name: 'Java', icon: 'java' },
+      { name: 'Spring Boot', icon: 'springboot' },
       { name: 'Node.js', icon: 'node' },
       { name: 'Express', icon: 'express' },
-      { name: 'REST APIs', icon: 'api' },
       { name: 'PHP', icon: 'php' },
+      { name: 'Laravel', icon: 'laravel' },
+      { name: 'REST APIs', icon: 'api' },
+      { name: 'Microservices', icon: 'microservices' },
     ],
   },
   {
     label: 'Data & Cloud',
     skills: [
-      { name: 'MongoDB', icon: 'mongodb' },
-      { name: 'MySQL', icon: 'mysql' },
       { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'MySQL', icon: 'mysql' },
+      { name: 'MongoDB', icon: 'mongodb' },
       { name: 'Firebase', icon: 'firebase' },
       { name: 'AWS', icon: 'aws' },
       { name: 'Vercel', icon: 'vercel' },
       { name: 'Git', icon: 'git' },
+    ],
+  },
+  {
+    label: 'Testing & Quality',
+    skills: [
+      { name: 'Cucumber (BDD)', icon: 'cucumber' },
+      { name: 'Mockito', icon: 'mockito' },
+      { name: 'JUnit', icon: 'junit' },
+      { name: 'Postman', icon: 'postman' },
     ],
   },
 ];
@@ -82,228 +110,116 @@ export const skillGroups = [
 /* Images live in /public/images/projects/ — each project takes an
    `images` array; multiple entries get a thumbnail switcher in the
    preview panel. Name theme variants `*-dark.*` / `*-light.*` and the
-   preview auto-picks the one matching the active theme. */
+   preview auto-picks the one matching the active theme. An empty
+   array renders a placeholder tile. */
 export const projects = [
-	{
-		title: 'LandlordNde24',
-		description:
-			'Property management software for landlords and tenants — listings, rent tracking and day-to-day property administration, live in production at landlordnde24.com.',
-		stack: ['React', 'Antd', 'Tailwind CSS', 'Node.js'],
-		images: [
-			'/images/projects/landlordnde24-dark.webp',
-			'/images/projects/landlordnde24-light.webp',
-		],
-		link: 'https://landlordnde24.com',
-		repo: null,
-		featured: true,
-	},
-	{
-		title: 'Caasitech Academy',
-		description:
-			'Web platform for Caasitech’s skills-development division — training programs, course information and student applications for learners across Cameroon.',
-		stack: ['HTML5', 'JavaScript', 'CSS3'],
-		images: [
-			'/images/projects/caasitech-academy.webp',
-			'/images/projects/caasitech-academy-2.webp',
-		],
-		link: null,
-		repo: null,
-		featured: true,
-	},
-	{
-		title: 'Perform by Caasitech',
-		description:
-			'An employee performance and engagement platform — modular tools for tracking productivity and workforce improvement, built to make people enjoy working again.',
-		stack: ['Next.js', 'Node.js', 'REST API'],
-		images: [
-			'/images/projects/performbycaasitech.webp',
-			'/images/projects/performbycaasitech-2.webp',
-		],
-		link: null,
-		repo: null,
-		featured: true,
-	},
-	{
-		title: 'WATCH — Movie Streaming',
-		description:
-			'A cinematic movie discovery and streaming app. Server-rendered catalog, debrid-powered streams, custom player, and the same gold-on-black design system this portfolio uses and built with a Zero-UI library approach.',
-		stack: ['Next.js', 'CSS Modules', 'TMDB API'],
-		images: [
-			'/images/projects/watch-dark.webp',
-			'/images/projects/watch-light.webp',
-		],
-		link: 'https://next-js-movie-site-three.vercel.app/',
-		repo: 'https://gitlab.com/kar73/NextJS-Movie-Site',
-		featured: true,
-	},
-	{
-		title: 'This Portfolio',
-		description:
-			'The site you’re looking at — a zero-UI-library rebuild on Next.js and CSS Modules, sharing design tokens with WATCH. Lighthouse-fast by design.',
-		stack: ['Next.js', 'CSS Modules', 'next-themes'],
-		images: [
-			'/images/projects/portfolio-dark.webp',
-			'/images/projects/portfolio-light.webp',
-		],
-		link: null,
-		repo: 'https://github.com/Abdulrahim2567/my-portfolio',
-		featured: false,
-	},
+  {
+    title: 'LandlordNde24',
+    description:
+      'Property management software for landlords and tenants — listings, rent tracking and day-to-day property administration, live in production at landlordnde24.com.',
+    stack: ['React', 'Antd', 'Tailwind CSS', 'Node.js'],
+    images: [
+      '/images/projects/landlordnde24-dark.webp',
+      '/images/projects/landlordnde24-light.webp',
+    ],
+    link: 'https://landlordnde24.com',
+    repo: null,
+    featured: true,
+  },
+  {
+    title: 'Klivar',
+    description:
+      'A compliance and risk-management platform for banks, microfinance institutions, insurers, FinTechs and payment providers — automating regulatory reporting, with AI assistance on top. I built it full-stack: React front end over Spring Boot microservices and PostgreSQL, covered by Cucumber and Mockito test suites.',
+    stack: ['React', 'Spring Boot', 'PostgreSQL', 'Cucumber', 'Microservices'],
+    images: [], // TODO: add screenshots to /public/images/projects/ if you have any
+    link: null,
+    repo: null,
+    featured: true,
+  },
 ];
 
-/* npm packages — shown in the "Packages I publish" section */
-export const packages = [
-  {
-    name: 'nextjs13-progress',
-    tagline: 'Route-change progress bar for the Next.js 13+ App Router.',
-    bullets: [
-      'Drop-in <Next13ProgressBar /> — one component, no config',
-      'App Router native (next/navigation aware)',
-      'Custom color, height and easing options',
-      'No layout shift — renders above the page',
-      'Full TypeScript types included',
-      'Tiny footprint with nprogress under the hood',
-    ],
-    tags: ['Next.js', 'App Router', 'TypeScript', 'UX'],
-    installCmd: 'npm i nextjs13-progress',
-    repo: 'https://github.com/Abdulrahim2567/nextjs13-progress',
-    npm: 'https://www.npmjs.com/package/nextjs13-progress',
-  },
-  {
-    name: 'nextjs13-nprogress-app-router',
-    tagline: 'nprogress wired to App Router navigation events.',
-    bullets: [
-      'Progress on Link clicks and router.push',
-      'Works alongside Suspense streaming',
-      'Configurable start/stop delays',
-      'Custom styling via CSS overrides',
-      'TypeScript support out of the box',
-      'Lightweight build, zero extra deps',
-    ],
-    tags: ['Next.js', 'nprogress', 'Router', 'TypeScript'],
-    installCmd: 'npm i nextjs13-nprogress-app-router',
-    repo: 'https://github.com/Abdulrahim2567/nextjs13-nprogress-app-router',
-    npm: 'https://www.npmjs.com/package/nextjs13-nprogress-app-router',
-  },
-];
+/* npm packages — shown in the "Packages I publish" section.
+   Empty array hides the section and its nav link entirely. */
+export const packages = [];
 
 export const education = [
   {
-    degree: 'Bachelor’s in Software Engineering',
-    institution: 'Institut Universitaire Siantou',
-    gpa: '3.41/4.0',
-    period: 'Nov 2021 – Jul 2022',
+    /* TODO: confirm the exact award title */
+    degree: 'Master’s (Year I) — Information Science & Software Engineering (SIGL)',
+    institution: 'University of Yaoundé I',
+    gpa: null,
+    period: 'Oct 2024 – Jun 2025',
     location: 'Yaoundé, Cameroon',
     description:
-      'Advanced coursework in full-stack development, software architecture and intelligent systems, culminating in a final project on responsive web applications.',
+      'Graduate-level software engineering: distributed system design, microservice architecture and applied software quality.',
+    /* TODO: these course lists are my draft — replace with your real modules */
     courses: [
-      'Web Development (React, Vue, Node.js)',
-      'Software Architecture',
-      'Applied Artificial Intelligence',
-      'Mobile Development (React Native)',
+      'Microservice Architecture',
+      'Advanced Software Engineering',
+      'Information Systems Design',
+      'Software Quality & Testing',
     ],
-    logo: '/images/certifications/siantou-logo.webp',
+    logo: '/images/certifications/uy1-logo.webp',
   },
   {
-    degree: 'BTS (Higher National Diploma) in Software Engineering',
-    institution: 'Institut Universitaire Siantou',
-    gpa: '3.21/4.0',
-    period: 'Nov 2019 – Jul 2021',
+    degree: 'Bachelor’s Degree — ICT for Development',
+    institution: 'University of Yaoundé I',
+    gpa: null,
+    period: 'Oct 2023 – Jul 2024',
     location: 'Yaoundé, Cameroon',
     description:
-      'Foundational computer science training focused on secure, scalable systems, networking and distributed computing in cloud environments.',
+      'Applied computing for development contexts — web and information systems built for real-world constraints.',
+    courses: [
+      'Web Application Development',
+      'Databases & Information Systems',
+      'ICT Project Management',
+      'Networks & Systems',
+    ],
+    logo: '/images/certifications/uy1-logo.webp',
+  },
+  {
+    degree: 'HND (Higher National Diploma) — Software Engineering',
+    institution: 'Institut Universitaire Siantou',
+    gpa: null,
+    period: 'Oct 2021 – Jul 2023',
+    location: 'Yaoundé, Cameroon',
+    description:
+      'Foundational computer science and software engineering training — programming, databases and web development.',
     courses: [
       'Object-Oriented Programming (Java)',
-      'Network Security & Cryptography',
-      'Cloud Computing (AWS Fundamentals)',
-      'Distributed Systems & Microservices',
+      'Web Development (HTML, CSS, JavaScript)',
+      'Relational Databases (SQL)',
+      'Software Analysis & Design',
     ],
     logo: '/images/certifications/siantou-logo.webp',
   },
 ];
 
-export const certifications = [
-  {
-    title: 'Salesforce Certified JavaScript Developer I',
-    issuer: 'Salesforce',
-    issued: 'Mar 2023',
-    status: 'Active',
-    badge: '/images/certifications/salesforce-js.webp',
-    verifyLink: 'https://trailhead.salesforce.com/credentials/verification',
-    pdf: '/certifications/salesforce-js-cert.pdf',
-  },
-  {
-    title: 'Salesforce Certified Platform Developer I',
-    issuer: 'Salesforce',
-    issued: 'Mar 2023',
-    status: 'Expired',
-    badge: '/images/certifications/salesforce-platform.webp',
-    verifyLink: 'https://trailhead.salesforce.com/credentials/verification',
-    pdf: null,
-  },
-];
+/* Empty array hides the certifications column. */
+export const certifications = [];
 
 export const timeline = [
   {
     logo: '/images/experience/nde24.webp',
     company: 'Nde24',
-    role: 'Technical Lead',
-    period: 'Apr 2025 — Present',
-    type: 'Full-time · Remote',
-    place: 'Yaoundé — MINKAN, Terminus Odza',
+    /* TODO: confirm your official job title */
+    role: 'Full-Stack Developer',
+    period: 'Mar 2026 — Present', // TODO: confirm start date
+    type: 'Full-time · Hybrid',
+    place: 'Yaoundé, Cameroon',
     description:
-      'Leading the technical team behind Nde24 — technical staff management, technology leadership and architecture decisions across the product.',
+      'Full-stack product work across the Nde24 platform — building features end-to-end and using AI-assisted development to ship faster.',
     current: true,
   },
   {
-    logo: '/images/experience/nde24.webp',
-    company: 'Nde24',
-    role: 'AEM CMS Developer',
-    period: 'Dec 2023 — Apr 2025',
-    type: 'Full-time · Remote',
-    place: 'Centre, Cameroon',
-    description:
-      'Built and maintained content platforms on Adobe Experience Manager (AEM) and modern content management systems.',
-  },
-  {
-    logo: '/images/experience/caasitech.webp',
-    company: 'Caasitech Group, LLC',
-    role: 'Web Developer · Machine Learning Recruit',
-    period: 'Nov 2023 — Jan 2024',
+    logo: null, // TODO: add a Klivar logo to /public/images/experience/
+    company: 'Klivar',
+    role: 'Full-Stack Developer',
+    period: 'Feb 2025 — Feb 2026', // TODO: confirm exact dates
     type: 'Full-time · On-site',
     place: 'Yaoundé, Cameroon',
     description:
-      'Built impactful web experiences while training on machine-learning algorithms — exploring the intersection of web development and ML.',
-  },
-  {
-    logo: '/images/experience/neema.webp',
-    company: 'Neema',
-    role: 'Web Developer',
-    period: 'Nov 2022 — Nov 2023',
-    type: 'Full-time · On-site',
-    place: 'Yaoundé, Cameroon',
-    description:
-      'Front-end development on production platforms — component architecture, UI implementation and cross-team collaboration.',
-  },
-  {
-    logo: null,
-    company: 'Freelance',
-    role: 'Software Engineer',
-    period: 'Jun 2022 — Nov 2023',
-    type: 'Freelance',
-    place: 'Yaoundé, Cameroon',
-    description:
-      'Independent software engineering for clients — web applications designed, built and shipped end-to-end.',
-  },
-  {
-    logo: '/images/certifications/siantou-logo.webp',
-    company: 'Siantou University Institute',
-    role: 'Student — Seasonal',
-    period: 'Oct 2021 — Jul 2022',
-    type: 'Seasonal',
-    place: 'Yaoundé, Cameroon',
-    description:
-      'Hands-on programming alongside coursework — jQuery, HTML5 and programming fundamentals.',
+      'Built Klivar’s compliance and risk-reporting platform end-to-end — React front end, Spring Boot microservices and PostgreSQL, with Cucumber behaviour tests and Mockito unit coverage.',
   },
 ];
 

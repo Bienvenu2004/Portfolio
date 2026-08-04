@@ -63,8 +63,9 @@ export default function DownloadCv({ className, children }) {
             <p className={styles.modalEyebrow}>Download CV</p>
             <h2 className={styles.modalTitle}>Full CV or just the parts you need?</h2>
             <p className={styles.hint}>
-              The full CV downloads instantly. Untick sections for a tailored copy — it opens
-              print-ready, just choose “Save as PDF”.
+              {site.cv
+                ? 'The full CV downloads instantly. Untick sections for a tailored copy — it opens print-ready, just choose “Save as PDF”.'
+                : 'Pick the sections you want — the CV opens print-ready, just choose “Save as PDF”.'}
             </p>
 
             <div className={styles.modalChecks}>
@@ -77,9 +78,12 @@ export default function DownloadCv({ className, children }) {
             </div>
 
             <div className={styles.modalActions}>
-              <a className={styles.addBtn} href={site.cv} download onClick={() => setOpen(false)}>
-                <FiFile aria-hidden="true" /> Full CV (PDF)
-              </a>
+              {/* no pre-generated PDF yet — the builder is the only route */}
+              {site.cv ? (
+                <a className={styles.addBtn} href={site.cv} download onClick={() => setOpen(false)}>
+                  <FiFile aria-hidden="true" /> Full CV (PDF)
+                </a>
+              ) : null}
               <button type="button" className={styles.printBtn} onClick={printSelection}>
                 <FiPrinter aria-hidden="true" /> Print selection
               </button>

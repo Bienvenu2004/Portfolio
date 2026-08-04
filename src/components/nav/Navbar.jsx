@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { FiGithub, FiLinkedin, FiMenu, FiX } from 'react-icons/fi';
-import { site } from '@/data/site';
+import { site, packages } from '@/data/site';
 import ThemeToggle from './ThemeToggle';
 import styles from './navbar.module.css';
 
+/* the Packages entry drops out when nothing is published */
 const LINKS = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#work', label: 'Work' },
-  { href: '#packages', label: 'Packages' },
+  ...(packages.length ? [{ href: '#packages', label: 'Packages' }] : []),
   { href: '#journey', label: 'Journey' },
   { href: '#education', label: 'Education' },
   { href: '#contact', label: 'Contact' },

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Bash(mv -f public/images/me-hero-cutout-trim.webp public/images/me-hero-cutout.webp)",
+      "Bash(node -e \"require\\('sharp'\\)\\('public/images/me-hero-cutout.webp'\\).metadata\\(\\).then\\(m=>console.log\\(m.width+'x'+m.height\\)\\)\")",
+      "Bash(echo \"exit=$?\")"
+    ]
+  }
+}
