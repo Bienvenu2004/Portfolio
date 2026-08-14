@@ -150,6 +150,16 @@ export const projects = [
     repo: null,
     featured: true,
   },
+  {
+    title: 'Developer Portfolio',
+    description:
+      'This very site. A hand-built portfolio with a cinematic dark aesthetic, theme switching, scroll-reveal animations and an in-browser CV generator that lets visitors pick sections and print a tailored PDF. Designed and coded end-to-end in Next.js and React, with no UI kit.',
+    stack: ['Next.js', 'React', 'CSS Modules', 'JavaScript'],
+    images: ['/images/projects/this-portfolio.png'],
+    link: null,
+    repo: null,
+    featured: true,
+  },
 ];
 
 /* npm packages   shown in the "Packages I publish" section.
