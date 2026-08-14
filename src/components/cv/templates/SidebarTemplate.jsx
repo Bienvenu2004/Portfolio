@@ -7,7 +7,7 @@ const DEFAULT_ORDER = ['profile', 'skills', 'languages', 'experience', 'projects
 
 /* Sidebar: dark 68mm column (photo, contact, then skills/languages in the
    user's order) with profile / experience / projects / education on the
-   right — main column also follows the user's section order. */
+   right   main column also follows the user's section order. */
 export default function SidebarTemplate({ cv }) {
   const L = CV_LABELS[cv.cvLanguage] ?? CV_LABELS.en;
   const order = cv.sectionOrder ?? DEFAULT_ORDER;
@@ -36,7 +36,7 @@ export default function SidebarTemplate({ cv }) {
           {cv.languages.map((l) => (
             <div key={l.id} className={styles.sideLang}>
               <span>
-                {l.name} — {l.level}
+                {l.name}   {l.level}
               </span>
               <span className={styles.sideLangBar} aria-hidden="true">
                 <span style={{ width: `${l.pct}%` }} />

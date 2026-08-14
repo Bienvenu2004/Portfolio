@@ -43,7 +43,7 @@ export default function Hero() {
             <p className={styles.tagline}>{site.tagline}</p>
             <div className={styles.hairline} aria-hidden="true" />
             <p className={styles.subtext}>
-              From marketing sites to dashboards and REST APIs — designed, built and deployed
+              From marketing sites to dashboards and REST APIs   designed, built and deployed
               end-to-end, with the details users never consciously notice.
             </p>
           </div>

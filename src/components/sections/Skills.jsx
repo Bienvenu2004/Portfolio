@@ -22,7 +22,7 @@ import {
   SiJunit5,
   SiPostman,
 } from 'react-icons/si';
-/* CSS3, AWS and Java were dropped from simple-icons — Font Awesome fills in */
+/* CSS3, AWS and Java were dropped from simple-icons   Font Awesome fills in */
 import { FaCss3Alt, FaAws, FaJava } from 'react-icons/fa';
 import { FiServer, FiGrid, FiCheckSquare } from 'react-icons/fi';
 import Reveal from '@/components/motion/Reveal';
@@ -58,7 +58,7 @@ const ICONS = {
   cucumber: SiCucumber,
   junit: SiJunit5,
   postman: SiPostman,
-  /* Mockito has no brand icon — a neutral check mark stands in */
+  /* Mockito has no brand icon   a neutral check mark stands in */
   mockito: FiCheckSquare,
 };
 
@@ -71,7 +71,7 @@ export default function Skills() {
 
       <div className="container">
         <SectionHeading eyebrow="Skills" title="Tools I reach" accent="for.">
-          Technologies I have real, shipped-project experience with — no percentages, just
+          Technologies I have real, shipped-project experience with   no percentages, just
           the stack I work in every week.
         </SectionHeading>
 

@@ -6,7 +6,7 @@ const splitList = (s) => s.split(',').map((x) => x.trim()).filter(Boolean);
 const DEFAULT_ORDER = ['profile', 'skills', 'languages', 'experience', 'projects', 'education'];
 
 /* Classic: header band; experience + projects in the main column,
-   profile / skills / languages / education in the side column — each
+   profile / skills / languages / education in the side column   each
    column follows the user's section order. */
 export default function ClassicTemplate({ cv }) {
   const L = CV_LABELS[cv.cvLanguage] ?? CV_LABELS.en;
@@ -77,7 +77,7 @@ export default function ClassicTemplate({ cv }) {
           {cv.languages.map((l) => (
             <div key={l.id} className={styles.langRow}>
               <span className={styles.skillLabel}>
-                {l.name} — {l.level}
+                {l.name}   {l.level}
               </span>
               <span className={styles.langBar} aria-hidden="true">
                 <span style={{ width: `${l.pct}%` }} />

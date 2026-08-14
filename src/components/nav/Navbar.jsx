@@ -81,7 +81,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* mobile panel — enters/exits from the top, same path both ways */}
+      {/* mobile panel   enters/exits from the top, same path both ways */}
       <div className={styles.panel} aria-hidden={!open}>
         <ul>
           {LINKS.map((l, i) => (

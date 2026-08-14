@@ -1,7 +1,7 @@
 import Reveal from '@/components/motion/Reveal';
 import styles from './sectionheading.module.css';
 
-/* Split display heading — `accent` renders in marquee gold, optional `end`
+/* Split display heading   `accent` renders in marquee gold, optional `end`
    returns to ink, e.g. title="Building software that" accent="actually ships"
    end="and holds up in production." */
 export default function SectionHeading({ eyebrow, title, accent, end, children }) {

@@ -22,7 +22,7 @@ export const CV_LABELS = {
   },
 };
 
-/* Accent swatches — brand gold first, then the source's palette. */
+/* Accent swatches   brand gold first, then the source's palette. */
 export const ACCENT_COLORS = [
   '#b97a10',
   '#0ea5e9',

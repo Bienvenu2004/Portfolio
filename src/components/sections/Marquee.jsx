@@ -15,7 +15,7 @@ import { FaAws, FaJava } from 'react-icons/fa';
 import { about } from '@/data/site';
 import styles from './marquee.module.css';
 
-/* brand icon per stack item — items without a match render text-only */
+/* brand icon per stack item   items without a match render text-only */
 const ICONS = {
   'Next.js': SiNextdotjs,
   React: SiReact,
@@ -32,7 +32,7 @@ const ICONS = {
   AWS: FaAws,
 };
 
-/* Infinite tech ticker — pure CSS translation, duplicated track for the loop.
+/* Infinite tech ticker   pure CSS translation, duplicated track for the loop.
    Decorative: hidden from screen readers, frozen under reduced motion. */
 export default function Marquee() {
   const items = [...about.highlights, ...about.highlights];

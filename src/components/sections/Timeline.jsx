@@ -13,7 +13,7 @@ export default function Timeline() {
 
       <div className="container">
         <SectionHeading eyebrow="Experience" title="Where I’ve" accent="worked.">
-          Roles and teams, most recent first — straight from the field.
+          Roles and teams, most recent first   straight from the field.
         </SectionHeading>
 
         <ol className={styles.list}>

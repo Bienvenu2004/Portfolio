@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { FiDownload, FiPrinter, FiX, FiFile } from 'react-icons/fi';
 import { site } from '@/data/site';
@@ -19,10 +20,27 @@ const SECTION_OPTIONS = [
    or pick sections and print a tailored copy via the CV generator. */
 export default function DownloadCv({ className, children }) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [sections, setSections] = useState(() =>
     Object.fromEntries(SECTION_OPTIONS.map(([k]) => [k, true]))
   );
   const router = useRouter();
+
+  // portal target only exists after mount (avoids SSR mismatch)
+  useEffect(() => setMounted(true), []);
+
+  // lock body scroll + close on Escape while the modal is open
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
 
   const toggle = (key) => setSections((s) => ({ ...s, [key]: !s[key] }));
 
@@ -42,7 +60,7 @@ export default function DownloadCv({ className, children }) {
         )}
       </button>
 
-      {open && (
+      {open && mounted && createPortal(
         <div
           className={styles.modalOverlay}
           onClick={(e) => e.target === e.currentTarget && setOpen(false)}
@@ -64,8 +82,8 @@ export default function DownloadCv({ className, children }) {
             <h2 className={styles.modalTitle}>Full CV or just the parts you need?</h2>
             <p className={styles.hint}>
               {site.cv
-                ? 'The full CV downloads instantly. Untick sections for a tailored copy — it opens print-ready, just choose “Save as PDF”.'
-                : 'Pick the sections you want — the CV opens print-ready, just choose “Save as PDF”.'}
+                ? 'The full CV downloads instantly. Untick sections for a tailored copy   it opens print-ready, just choose “Save as PDF”.'
+                : 'Pick the sections you want   the CV opens print-ready, just choose “Save as PDF”.'}
             </p>
 
             <div className={styles.modalChecks}>
@@ -78,7 +96,7 @@ export default function DownloadCv({ className, children }) {
             </div>
 
             <div className={styles.modalActions}>
-              {/* no pre-generated PDF yet — the builder is the only route */}
+              {/* no pre-generated PDF yet   the builder is the only route */}
               {site.cv ? (
                 <a className={styles.addBtn} href={site.cv} download onClick={() => setOpen(false)}>
                   <FiFile aria-hidden="true" /> Full CV (PDF)
@@ -89,7 +107,8 @@ export default function DownloadCv({ className, children }) {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

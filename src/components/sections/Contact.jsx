@@ -62,7 +62,7 @@ export default function Contact() {
         </div>
 
         <p className={styles.copyright}>
-          © {year} {site.name} · {site.role} · {site.location}. Built with Next.js — no UI
+          © {year} {site.name} · {site.role} · {site.location}. Built with Next.js   no UI
           library, just tokens.
         </p>
       </div>

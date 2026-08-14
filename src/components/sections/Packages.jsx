@@ -53,7 +53,7 @@ function PackageCard({ pkg, index }) {
 }
 
 export default function Packages() {
-  // nothing published yet — the section (and its nav link) stays hidden
+  // nothing published yet   the section (and its nav link) stays hidden
   if (packages.length === 0) return null;
 
   return (

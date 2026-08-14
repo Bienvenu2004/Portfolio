@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------
-   All portfolio content lives here. Edit this file — not the
-   components — to change copy, projects, skills or links.
+   All portfolio content lives here. Edit this file   not the
+   components   to change copy, projects, skills or links.
 
-   TODO markers below flag values I drafted or estimated — check each
+   TODO markers below flag values I drafted or estimated   check each
    one and correct it before deploying.
    ------------------------------------------------------------------ */
 
@@ -12,7 +12,7 @@ export const site = {
   lastName: 'Ambassa',
   role: 'Full-Stack Web Developer',
   tagline:
-    'I design and build production web platforms — React on the front, Spring Boot and Node underneath.',
+    'I design and build production web platforms   React on the front, Spring Boot and Node underneath.',
   location: 'Cameroon',
   availability: 'Open to freelance & full-time roles',
   email: 'kidsglory1@gmail.com',
@@ -40,8 +40,8 @@ export const about = {
   locationLine: 'Cameroon · UTC+1 · Available remotely',
   /* **text** renders as a gold highlight */
   paragraphs: [
-    'I’m a full-stack developer who cares about **the details users never consciously notice** — the timing of a transition, the weight of a shadow, the speed of a first paint. I build **interfaces that feel right**, backed by APIs that hold up.',
-    'On the front I work in **React** and **Next.js**; behind it, **Java** with **Spring Boot** microservices, or **Node.js** and **Laravel**, over **PostgreSQL** or **MongoDB**. I test what I ship — **Cucumber** for behaviour, **Mockito** for the units — and I like taking a product all the way from design to deploy.',
+    'I’m a full-stack developer who cares about **the details users never consciously notice**   the timing of a transition, the weight of a shadow, the speed of a first paint. I build **interfaces that feel right**, backed by APIs that hold up.',
+    'On the front I work in **React** and **Next.js**; behind it, **Java** with **Spring Boot** microservices, or **Node.js** and **Laravel**, over **PostgreSQL** or **MongoDB**. I test what I ship   **Cucumber** for behaviour, **Mockito** for the units   and I like taking a product all the way from design to deploy.',
   ],
   highlights: [
     'React',
@@ -107,7 +107,7 @@ export const skillGroups = [
   },
 ];
 
-/* Images live in /public/images/projects/ — each project takes an
+/* Images live in /public/images/projects/   each project takes an
    `images` array; multiple entries get a thumbnail switcher in the
    preview panel. Name theme variants `*-dark.*` / `*-light.*` and the
    preview auto-picks the one matching the active theme. An empty
@@ -116,7 +116,7 @@ export const projects = [
   {
     title: 'LandlordNde24',
     description:
-      'Property management software for landlords and tenants — listings, rent tracking and day-to-day property administration, live in production at landlordnde24.com.',
+      'Property management software for landlords and tenants   listings, rent tracking and day-to-day property administration, live in production at landlordnde24.com.',
     stack: ['React', 'Antd', 'Tailwind CSS', 'Node.js'],
     images: [
       '/images/projects/landlordnde24-dark.webp',
@@ -127,9 +127,23 @@ export const projects = [
     featured: true,
   },
   {
+    title: 'Sora Shine & Dine',
+    description:
+      'A bilingual (EN/FR) marketing site for a Yaoundé homemade-catering and small-chops business   filterable menu, occasions and gift-basket showcase, dark/light themes, and a friction-free ordering flow that pre-fills a WhatsApp message with the customer’s date, guest count and selection. Built and deployed as a fast, backend-free React app.',
+    stack: ['React', 'Vite', 'Tailwind CSS', 'i18n', 'Vercel'],
+    images: [
+      '/images/projects/sora-shine-dine-1.png',
+      '/images/projects/sora-shine-dine-2.png',
+      '/images/projects/sora-shine-dine-3.png',
+    ],
+    link: 'https://sora-shine-dine.vercel.app',
+    repo: null,
+    featured: true,
+  },
+  {
     title: 'Klivar',
     description:
-      'A compliance and risk-management platform for banks, microfinance institutions, insurers, FinTechs and payment providers — automating regulatory reporting, with AI assistance on top. I built it full-stack: React front end over Spring Boot microservices and PostgreSQL, covered by Cucumber and Mockito test suites.',
+      'A compliance and risk-management platform for banks, microfinance institutions, insurers, FinTechs and payment providers   automating regulatory reporting, with AI assistance on top. I built it full-stack: React front end over Spring Boot microservices and PostgreSQL, covered by Cucumber and Mockito test suites.',
     stack: ['React', 'Spring Boot', 'PostgreSQL', 'Cucumber', 'Microservices'],
     images: [], // TODO: add screenshots to /public/images/projects/ if you have any
     link: null,
@@ -138,21 +152,21 @@ export const projects = [
   },
 ];
 
-/* npm packages — shown in the "Packages I publish" section.
+/* npm packages   shown in the "Packages I publish" section.
    Empty array hides the section and its nav link entirely. */
 export const packages = [];
 
 export const education = [
   {
     /* TODO: confirm the exact award title */
-    degree: 'Master’s (Year I) — Information Science & Software Engineering (SIGL)',
+    degree: 'Master’s (Year I)   Information Science & Software Engineering (SIGL)',
     institution: 'University of Yaoundé I',
     gpa: null,
     period: 'Oct 2024 – Jun 2025',
     location: 'Yaoundé, Cameroon',
     description:
       'Graduate-level software engineering: distributed system design, microservice architecture and applied software quality.',
-    /* TODO: these course lists are my draft — replace with your real modules */
+    /* TODO: these course lists are my draft   replace with your real modules */
     courses: [
       'Microservice Architecture',
       'Advanced Software Engineering',
@@ -162,13 +176,13 @@ export const education = [
     logo: '/images/certifications/uy1-logo.webp',
   },
   {
-    degree: 'Bachelor’s Degree — ICT for Development',
+    degree: 'Bachelor’s Degree   ICT for Development',
     institution: 'University of Yaoundé I',
     gpa: null,
     period: 'Oct 2023 – Jul 2024',
     location: 'Yaoundé, Cameroon',
     description:
-      'Applied computing for development contexts — web and information systems built for real-world constraints.',
+      'Applied computing for development contexts   web and information systems built for real-world constraints.',
     courses: [
       'Web Application Development',
       'Databases & Information Systems',
@@ -178,13 +192,13 @@ export const education = [
     logo: '/images/certifications/uy1-logo.webp',
   },
   {
-    degree: 'HND (Higher National Diploma) — Software Engineering',
+    degree: 'HND (Higher National Diploma)   Software Engineering',
     institution: 'Institut Universitaire Siantou',
     gpa: null,
     period: 'Oct 2021 – Jul 2023',
     location: 'Yaoundé, Cameroon',
     description:
-      'Foundational computer science and software engineering training — programming, databases and web development.',
+      'Foundational computer science and software engineering training   programming, databases and web development.',
     courses: [
       'Object-Oriented Programming (Java)',
       'Web Development (HTML, CSS, JavaScript)',
@@ -204,22 +218,22 @@ export const timeline = [
     company: 'Nde24',
     /* TODO: confirm your official job title */
     role: 'Full-Stack Developer',
-    period: 'Mar 2026 — Present', // TODO: confirm start date
+    period: 'Mar 2026   Present', // TODO: confirm start date
     type: 'Full-time · Hybrid',
     place: 'Yaoundé, Cameroon',
     description:
-      'Full-stack product work across the Nde24 platform — building features end-to-end and using AI-assisted development to ship faster.',
+      'Full-stack product work across the Nde24 platform   building features end-to-end and using AI-assisted development to ship faster.',
     current: true,
   },
   {
     logo: null, // TODO: add a Klivar logo to /public/images/experience/
     company: 'Klivar',
     role: 'Full-Stack Developer',
-    period: 'Feb 2025 — Feb 2026', // TODO: confirm exact dates
+    period: 'Feb 2025   Feb 2026', // TODO: confirm exact dates
     type: 'Full-time · On-site',
     place: 'Yaoundé, Cameroon',
     description:
-      'Built Klivar’s compliance and risk-reporting platform end-to-end — React front end, Spring Boot microservices and PostgreSQL, with Cucumber behaviour tests and Mockito unit coverage.',
+      'Built Klivar’s compliance and risk-reporting platform end-to-end   React front end, Spring Boot microservices and PostgreSQL, with Cucumber behaviour tests and Mockito unit coverage.',
   },
 ];
 
@@ -228,5 +242,5 @@ export const footer = {
   headline: 'Let’s work',
   headlineAccent: 'together.',
   description:
-    'Have a project in mind, a role to fill, or just want to talk shop? My inbox is open — I usually reply within a day.',
+    'Have a project in mind, a role to fill, or just want to talk shop? My inbox is open   I usually reply within a day.',
 };

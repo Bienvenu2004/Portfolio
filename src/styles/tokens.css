@@ -1,12 +1,12 @@
 /* ------------------------------------------------------------------
-   BIENVENU AMBASSA — design tokens
+   BIENVENU AMBASSA   design tokens
    Ported from the WATCH "screening room" system: the UI recedes to
    near-black with warm projection-white text and a single marquee-
    amber (gold) accent. Light theme is the "matinee" variant.
    ------------------------------------------------------------------ */
 
 :root {
-  /* color — screening room (default, dark) */
+  /* color   screening room (default, dark) */
   --bg: #0b0d10;
   --bg-raised: #12151a;
   --surface: #171b21;
@@ -39,7 +39,7 @@
     0 0 40px var(--glow);
   --shadow-pop: 0 16px 48px rgba(0, 0, 0, 0.55);
 
-  /* motion — transform/opacity only, springs approximated with beziers */
+  /* motion   transform/opacity only, springs approximated with beziers */
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -49,7 +49,7 @@
   --t-slow: 420ms;
   --t-reveal: 640ms;
 
-  /* layout — near-full-viewport canvas, narrow measure for long text */
+  /* layout   near-full-viewport canvas, narrow measure for long text */
   --container: 96rem;
   --container-narrow: 68rem;
   --gutter: clamp(1.25rem, 4vw, 3.5rem);

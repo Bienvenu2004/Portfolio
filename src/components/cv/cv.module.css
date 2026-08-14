@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   CV Generator — form pane + live A4 preview on screen;
+   CV Generator   form pane + live A4 preview on screen;
    pure paper when printing. Accent driven by --cv-accent.
    ------------------------------------------------------------------ */
 
@@ -306,7 +306,7 @@
   gap: 0.6rem;
 }
 
-/* grid/flex children may not shrink below content size by default —
+/* grid/flex children may not shrink below content size by default  
    without this, long values push inputs out of their cards */
 .fieldGrid > * {
   min-width: 0;
@@ -465,7 +465,7 @@
   top: 4.5rem;
   min-width: 0;
   /* the A4 windows keep their 794px layout width even when visually
-     scaled — clip it so small screens don't scroll sideways */
+     scaled   clip it so small screens don't scroll sideways */
   overflow-x: hidden;
 }
 
@@ -483,7 +483,7 @@
   width: 210mm;
 }
 
-/* natural flowing sheet — hidden on screen (measures page count),
+/* natural flowing sheet   hidden on screen (measures page count),
    and the copy the browser prints */
 .measure {
   position: absolute;
@@ -948,11 +948,13 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--scrim);
 }
 
@@ -960,6 +962,9 @@
   position: relative;
   width: 100%;
   max-width: 26rem;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  margin: auto;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-l);
@@ -1109,7 +1114,7 @@
     position: static;
   }
 
-  /* print the natural flowing sheet — the browser handles page breaks */
+  /* print the natural flowing sheet   the browser handles page breaks */
   .measure {
     position: static;
     visibility: visible;

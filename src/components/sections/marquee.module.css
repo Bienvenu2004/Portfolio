@@ -49,7 +49,7 @@
 
 @keyframes scroll {
   to {
-    /* track holds two copies — moving one copy's width loops seamlessly */
+    /* track holds two copies   moving one copy's width loops seamlessly */
     transform: translateX(-50%);
   }
 }

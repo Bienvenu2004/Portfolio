@@ -46,7 +46,7 @@ export default function Projects() {
 
       <div className="container">
         <SectionHeading eyebrow="Selected Work" title="Things I’ve" accent="built.">
-          Complete products — designed, built and deployed. Screenshots drop straight into{' '}
+          Complete products   designed, built and deployed. Screenshots drop straight into{' '}
           <code>/public/images/projects/</code>.
         </SectionHeading>
 
@@ -112,7 +112,7 @@ export default function Projects() {
                           ) : null}
                         </div>
 
-                        {/* mobile-only inline preview — skipped without screenshots */}
+                        {/* mobile-only inline preview   skipped without screenshots */}
                         {p.images.length ? (
                           <div className={styles.inlineMedia}>
                             <Image
@@ -178,7 +178,7 @@ export default function Projects() {
               {project.images.length === 0 ? (
                 <div className={styles.previewEmpty}>
                   <span aria-hidden="true">{project.title.slice(0, 2).toUpperCase()}</span>
-                  <p>Screenshots unavailable — private build.</p>
+                  <p>Screenshots unavailable   private build.</p>
                 </div>
               ) : null}
 

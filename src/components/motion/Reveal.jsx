@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Scroll reveal — adds `.is-visible` when the element enters the viewport.
+ * Scroll reveal   adds `.is-visible` when the element enters the viewport.
  * Animates once, transform/opacity only (styles live in globals.css).
  * `delay` (ms) staggers siblings via the `--d` custom property.
  */

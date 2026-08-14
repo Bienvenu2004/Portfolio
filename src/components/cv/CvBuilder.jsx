@@ -20,7 +20,7 @@ import { ACCENT_COLORS, SIDEBAR_COLORS } from './labels';
 import { site, about, skillGroups, timeline, education, projects } from '@/data/site';
 import styles from './cv.module.css';
 
-/* every printable section — drives the download modal checkboxes */
+/* every printable section   drives the download modal checkboxes */
 const SECTION_OPTIONS = [
   ['profile', 'Profile Summary'],
   ['skills', 'Skills'],
@@ -33,7 +33,7 @@ const allSections = () => Object.fromEntries(SECTION_OPTIONS.map(([k]) => [k, tr
 const defaultOrder = () => SECTION_OPTIONS.map(([k]) => k);
 const SECTION_LABEL = Object.fromEntries(SECTION_OPTIONS);
 
-/* editor tabs — one panel visible at a time, scrollable bar on overflow */
+/* editor tabs   one panel visible at a time, scrollable bar on overflow */
 const TABS = [
   ['appearance', 'Appearance'],
   ['personal', 'Personal Info'],
@@ -52,7 +52,7 @@ const PAGE_GAP_PX = 20; // gap between preview pages
 
 const plain = (t) => t.replaceAll('**', '');
 
-/* Prefilled from the portfolio data — every field editable. */
+/* Prefilled from the portfolio data   every field editable. */
 function defaults() {
   return {
     template: 'classic',
@@ -106,7 +106,7 @@ function defaults() {
   };
 }
 
-/* Blank sheet for "Clear all" — keeps the appearance choices. */
+/* Blank sheet for "Clear all"   keeps the appearance choices. */
 function blank(current) {
   return {
     ...current,
@@ -128,7 +128,7 @@ function blank(current) {
   };
 }
 
-/* apply the section selection — templates hide empty sections */
+/* apply the section selection   templates hide empty sections */
 function applySections(cv) {
   const s = cv.sections ?? allSections();
   return {
@@ -218,7 +218,7 @@ export default function CvBuilder() {
 
   // restore a saved draft after mount (SSR-safe).
   // ?preset=download renders the canonical config (sidebar template,
-  // gold accent, first sidebar color, portfolio photo) — used to
+  // gold accent, first sidebar color, portfolio photo)   used to
   // generate the static PDF behind the site's Download CV button.
   useEffect(() => {
     const preset = new URLSearchParams(window.location.search).get('preset');
@@ -244,7 +244,7 @@ export default function CvBuilder() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) setCv({ ...defaults(), ...JSON.parse(saved) });
     } catch {
-      /* corrupt draft — keep defaults */
+      /* corrupt draft   keep defaults */
     }
     setLoaded(true);
   }, []);
@@ -255,7 +255,7 @@ export default function CvBuilder() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(cv));
     } catch {
-      /* storage full (large photo) — editing still works */
+      /* storage full (large photo)   editing still works */
     }
   }, [cv, loaded]);
 
@@ -280,7 +280,7 @@ export default function CvBuilder() {
     const ro = new ResizeObserver(update);
     ro.observe(sheet);
     return () => ro.disconnect();
-    // template switches replace the measured element — re-observe
+    // template switches replace the measured element   re-observe
   }, [cv.template]);
 
   const set = (patch) => setCv((c) => ({ ...c, ...patch }));
@@ -299,7 +299,7 @@ export default function CvBuilder() {
     reader.readAsDataURL(file);
   };
 
-  /* shared add-handlers — used by both the section header and the
+  /* shared add-handlers   used by both the section header and the
      bottom "Add …" row, so long lists never force a scroll back up */
   const addSkillGroup = () =>
     set({ skillGroups: [...cv.skillGroups, { id: newId('sg'), label: '', skills: '' }] });
@@ -740,7 +740,7 @@ export default function CvBuilder() {
                   <Field
                     label="Period"
                     value={e.period}
-                    placeholder="Jan 2024 — Present"
+                    placeholder="Jan 2024   Present"
                     onChange={(v) => setItem('experiences', e.id, { period: v })}
                   />
                   <Field
@@ -750,7 +750,7 @@ export default function CvBuilder() {
                   />
                 </div>
                 <Area
-                  label="Highlights — one per line"
+                  label="Highlights   one per line"
                   rows={3}
                   value={e.bullets.join('\n')}
                   onChange={(v) =>
@@ -844,7 +844,7 @@ export default function CvBuilder() {
                   />
                 </div>
                 <Area
-                  label="Highlights — one per line"
+                  label="Highlights   one per line"
                   rows={2}
                   value={d.bullets.join('\n')}
                   onChange={(v) =>
@@ -900,7 +900,7 @@ export default function CvBuilder() {
           <p className={styles.previewLabel}>Document Structure</p>
           <div className={styles.formSection}>
             <p className={styles.hint}>
-              The generated PDF follows this order — drag, or use the arrows.
+              The generated PDF follows this order   drag, or use the arrows.
             </p>
             <ol className={styles.orderList}>
               {orderKeys.map((key, i, arr) => (
@@ -973,7 +973,7 @@ export default function CvBuilder() {
             <p className={styles.modalEyebrow}>Download CV</p>
             <h2 className={styles.modalTitle}>What should it include?</h2>
             <p className={styles.hint}>
-              Untick anything you want to leave out — the preview updates to match.
+              Untick anything you want to leave out   the preview updates to match.
             </p>
 
             <div className={styles.modalChecks}>

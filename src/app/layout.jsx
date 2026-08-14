@@ -4,7 +4,7 @@ import Cursor from '@/components/ui/Cursor';
 import { site } from '@/data/site';
 import '@/styles/globals.css';
 
-// Display face only — body copy stays on the system stack for speed.
+// Display face only   body copy stays on the system stack for speed.
 // `variable` exposes it as --font-display for the token system.
 const display = Bebas_Neue({
   weight: '400',
@@ -14,10 +14,10 @@ const display = Bebas_Neue({
 });
 
 export const metadata = {
-  title: `${site.name} — ${site.role}`,
+  title: `${site.name}   ${site.role}`,
   description: site.tagline,
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name}   ${site.role}`,
     description: site.tagline,
     type: 'website',
     images: [site.portrait],
